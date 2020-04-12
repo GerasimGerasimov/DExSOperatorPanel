@@ -17,8 +17,9 @@ enum FetchState {
 
 export class TDeviceStore {
     @observable count: number = 0;
-    @observable DeviceData: object = {};
+    @observable changeTime: string = "";
     @observable state: FetchState = FetchState.done;
+    public pureDeviceData: object = {};
     private autoReloadTimer: any;
 
     constructor() {
@@ -31,21 +32,22 @@ export class TDeviceStore {
         this.count++;
     }
 
-
     @action
     async getDeviceData(){
         clearTimeout(this.autoReloadTimer);
-        //this.DeviceData = {};
         this.state = FetchState.pending;
         try {
             const data = await DeviceController.getData(task);
             runInAction(()=>{
                 this.state = FetchState.done;
-                this.DeviceData = data;
+                this.changeTime = data.time;
+                this.pureDeviceData = data;
             })
         } catch (e) {
             runInAction(()=>{
                 this.state = FetchState.error;
+                this.changeTime = new Date().toISOString();
+                this.pureDeviceData = {};
                 console.log(e);
             })
         }

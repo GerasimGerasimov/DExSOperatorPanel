@@ -6,7 +6,7 @@ import {deviceStore} from '../store/devices/devices'
 export const Home: React.FunctionComponent = observer(({}) => {
   
   function getUstat(payload: any): string {
-    const o = toJS(payload);
+    const o: any = deviceStore.pureDeviceData;//toJS(payload);
     //  data/U1/U1:RAM/data/Iexc
     //  U1:RAM/Iexc
     const inData = 'data' in o ? o['data'] : 'default';
@@ -38,7 +38,7 @@ export const Home: React.FunctionComponent = observer(({}) => {
                 {deviceStore.count}
               </span>
               <span className="badge badge-light bg-warning ml-1">
-                Ustat={getUstat(deviceStore.DeviceData)}
+                Ustat={getUstat(deviceStore.changeTime)}
               </span>
           </button>
     </Fragment>
