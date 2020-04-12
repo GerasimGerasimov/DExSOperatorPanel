@@ -1,46 +1,54 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {observer} from 'mobx-react'
-import {toJS} from 'mobx';
 import {deviceStore} from '../store/devices/devices'
 
 export const Home: React.FunctionComponent = observer(({}) => {
   
-  function getUstat(payload: any): string {
-    const o: any = deviceStore.pureDeviceData;//toJS(payload);
-    //  data/U1/U1:RAM/data/Iexc
-    //  U1:RAM/Iexc
-    const inData = 'data' in o ? o['data'] : 'default';
-    if (inData === 'default') return 'default';
- 
-    const u1Data = `U1` in inData ? inData['U1'] : 'default';
-    if (u1Data === 'default') return 'default';
+  const storeData: any = deviceStore.pureDeviceData;
+  //достоточно changeTime тут быть чтобы компонет перересовывался при обновлении
+  //даных, хотя changeTime не используется в данном коде
+  const changeTime: string = deviceStore.changeTime;
 
-    const u1Ram = `U1:RAM` in u1Data ? u1Data['U1:RAM'] : 'default';
-    if (u1Ram === 'default') return 'default';
-
-    const u1RamData = `data` in u1Ram ? u1Ram['data'] : 'default';
-    if (u1RamData === 'default') return 'default';
-
-    const Ustat = `Ustat` in u1RamData ? u1RamData['Ustat'] : 'default';
-    if (Ustat === 'default') return 'default';
-
-    return Ustat;
+  // U1>U1:RAM>data>Iexc
+  function getTagData(tag: string) {
+    const keyList: Array<string> = tag.split('>')
+    var o: any = storeData;
+    var value: any;
+    keyList.forEach((key:string)=>{
+      value = key in o ? o[key] : undefined;
+      if (!value) return undefined;
+      o = value;
+    })
+    return value;
   }
-
+ 
   return(
-    <Fragment>
-          <h1>Home page</h1>
-          <button type="button" className="btn btn-primary">
-              <span className="badge badge-light bg-success">
-                Notifications:
-              </span>
-              <span className="badge badge-light bg-warning ml-1">
-                {deviceStore.count}
-              </span>
-              <span className="badge badge-light bg-warning ml-1">
-                Ustat={getUstat(deviceStore.changeTime)}
-              </span>
-          </button>
-    </Fragment>
+    <>
+      <h1>Home page</h1>
+      <button type="button" className="btn btn-primary ml-1">
+        <span className="badge badge-light bg-success">
+          Count:
+        </span>
+        <span className="badge badge-light bg-warning ml-1">
+          {deviceStore.count}
+        </span>
+      </button>
+      <button type="button" className="btn btn-primary ml-1">
+        <span className="badge badge-light bg-success">
+          Ustat:
+        </span>
+        <span className="badge badge-light bg-warning ml-1">
+            {getTagData('U1>U1:RAM>data>Ustat')}
+        </span>
+      </button>
+      <button type="button" className="btn btn-primary ml-1">
+        <span className="badge badge-light bg-success">
+          Iexc:
+        </span>
+        <span className="badge badge-light bg-warning ml-1">
+            {getTagData('U1>U1:RAM>data>Iexc')}
+        </span>
+      </button>
+    </>
   )
 })

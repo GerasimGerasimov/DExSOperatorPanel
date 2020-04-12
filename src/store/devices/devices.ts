@@ -41,7 +41,7 @@ export class TDeviceStore {
             runInAction(()=>{
                 this.state = FetchState.done;
                 this.changeTime = data.time;
-                this.pureDeviceData = data;
+                this.pureDeviceData = data.data;
             })
         } catch (e) {
             runInAction(()=>{
@@ -65,7 +65,7 @@ export class TDeviceStore {
     tickTimer(){
         setInterval(()=>{
             this.incCounter();
-        }, 100);
+        }, 1000);
     }
 
 
