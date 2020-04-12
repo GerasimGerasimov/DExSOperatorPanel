@@ -1,4 +1,4 @@
-import {observable, action, autorun, runInAction} from 'mobx';
+import {observable, action, autorun, runInAction, computed} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
 
 const task = {
@@ -19,27 +19,29 @@ export class TDeviceStore {
     @observable count: number = 0;
     @observable DeviceData: object = {};
     @observable state: FetchState = FetchState.done;
+    private autoReloadTimer: any;
 
     constructor() {
-        this.tickTimer()
+        this.tickTimer();
+        this.startAutoReloadData();
     }
 
     @action
     incCounter(){
-        this.getDeviceData()
         this.count++;
     }
 
+
     @action
     async getDeviceData(){
-        this.DeviceData = {};
+        clearTimeout(this.autoReloadTimer);
+        //this.DeviceData = {};
         this.state = FetchState.pending;
         try {
             const data = await DeviceController.getData(task);
             runInAction(()=>{
                 this.state = FetchState.done;
                 this.DeviceData = data;
-                console.log(data);
             })
         } catch (e) {
             runInAction(()=>{
@@ -47,13 +49,21 @@ export class TDeviceStore {
                 console.log(e);
             })
         }
-
+        this.startAutoReloadData();
+    }
+    
+    @action
+    private startAutoReloadData() {
+        this.autoReloadTimer = setTimeout(async ()=>{
+            await this.getDeviceData()
+        },
+        10)
     }
 
     tickTimer(){
         setInterval(()=>{
             this.incCounter();
-        }, 10);
+        }, 100);
     }
 
 
@@ -61,5 +71,7 @@ export class TDeviceStore {
 
 export const deviceStore:TDeviceStore = new TDeviceStore();
 
+/*
 autorun(()=>{
     console.log('autorun:',deviceStore.count)});
+    */

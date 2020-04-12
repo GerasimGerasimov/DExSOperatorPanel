@@ -29,7 +29,8 @@ export default class DeviceController {
 
     private static validationJSON (data: any): any {
         try {
-            return JSON.parse(data);
+            const result = JSON.parse(data);
+            return result.data;
         } catch (e) {
             throw new Error ('Invalid JSON');
         }

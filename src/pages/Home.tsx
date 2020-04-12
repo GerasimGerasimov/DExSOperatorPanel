@@ -5,12 +5,11 @@ import {deviceStore} from '../store/devices/devices'
 
 export const Home: React.FunctionComponent = observer(({}) => {
   
-  function getIexc(payload: any): string {
+  function getUstat(payload: any): string {
     const o = toJS(payload);
-    const extData = 'data' in o ? o['data'] : 'default'; 
-    if (extData === 'default') return 'default';
-
-    const inData = 'data' in extData ? extData['data'] : 'default';
+    //  data/U1/U1:RAM/data/Iexc
+    //  U1:RAM/Iexc
+    const inData = 'data' in o ? o['data'] : 'default';
     if (inData === 'default') return 'default';
  
     const u1Data = `U1` in inData ? inData['U1'] : 'default';
@@ -22,10 +21,10 @@ export const Home: React.FunctionComponent = observer(({}) => {
     const u1RamData = `data` in u1Ram ? u1Ram['data'] : 'default';
     if (u1RamData === 'default') return 'default';
 
-    const Iexc = `Iexc` in u1RamData ? u1RamData['Iexc'] : 'default';
-    if (Iexc === 'default') return 'default';
+    const Ustat = `Ustat` in u1RamData ? u1RamData['Ustat'] : 'default';
+    if (Ustat === 'default') return 'default';
 
-    return Iexc;
+    return Ustat;
   }
 
   return(
@@ -39,7 +38,7 @@ export const Home: React.FunctionComponent = observer(({}) => {
                 {deviceStore.count}
               </span>
               <span className="badge badge-light bg-warning ml-1">
-                Iexc={getIexc(deviceStore.DeviceData)}
+                Ustat={getUstat(deviceStore.DeviceData)}
               </span>
           </button>
     </Fragment>
