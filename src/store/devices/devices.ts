@@ -53,7 +53,7 @@ export class TDeviceStore {
     tickTimer(){
         setInterval(()=>{
             this.incCounter();
-        }, 1000);
+        }, 10);
     }
 
 
