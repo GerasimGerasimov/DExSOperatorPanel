@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import MotorSVG from '../img/motor.svg'
 
 export const About: React.FunctionComponent = ({}) => {
     const [count, setCount] = useState(0);
@@ -22,6 +23,9 @@ export const About: React.FunctionComponent = ({}) => {
                     </span>
                 </p>
                 <Link to="/" className="btn btn-primary">Back to Home</Link>
+                <object id="svg_motor_remake" type="image/svg+xml"
+			        data={MotorSVG}  width="119.055mm" height="119.055mm">
+	            </object>	
             </div>
         </div>
     )
