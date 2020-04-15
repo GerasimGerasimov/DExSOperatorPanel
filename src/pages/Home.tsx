@@ -43,20 +43,17 @@ export default class Home extends Component {
   }
  
   componentDidMount(){
-    let id = 'vteg';
-    /*
-    const s: any = document.getElementById(id);//получаю доступ к DOM SVG
-    const g: any = s.contentDocument?.children[0].getElementsByTagName('*')//найду все элементы g
-    const Ustat: any = g.getElementById("Ustat");
-    console.log(g);
     console.log('был рендер')
-    */
-   const s: any = document.getElementById(id);//получаю доступ к DOM SVG
-   const f: any = s.getSVGDocument();
-   //const g: any = s.contentDocument?.children[0].getElementsByTagName('*')//найду все элементы g
-   const Ustat: any = f.getElementById("Ustat");
-   this.svgElementUstat = Ustat;
-   console.log('был рендер')
+  }
+
+  handleImageLoaded() {
+    console.log('svg загружен')
+    let id = 'vteg';
+    const s: any = document.getElementById(id);//получаю доступ к DOM SVG
+    const f: any = s.getSVGDocument();
+    //const g: any = s.contentDocument?.children[0].getElementsByTagName('*')//найду все элементы g
+    const Ustat: any = f.getElementById("Ustat");
+    this.svgElementUstat = Ustat;
   }
 
   render() {
@@ -89,7 +86,9 @@ export default class Home extends Component {
         </button>
         <br></br>
         <object className="mt-1" id="vteg" type="image/svg+xml"
-            data={MotorSVG}  > {/*width="100%" height="100%"*/}
+            data={MotorSVG}
+            onLoad={this.handleImageLoaded.bind(this)}
+            > {/*width="100%" height="100%"*/}
         </object>	      
       </>
     )
