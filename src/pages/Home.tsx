@@ -1,6 +1,7 @@
 import React from 'react'
 import {observer} from 'mobx-react'
 import {deviceStore} from '../store/devices/devices'
+import MotorSVG from '../img/vteg.svg'
 
 export const Home: React.FunctionComponent = observer(({}) => {
   
@@ -49,6 +50,10 @@ export const Home: React.FunctionComponent = observer(({}) => {
             {getTagData('U1>U1:RAM>data>Iexc')}
         </span>
       </button>
+      <br></br>
+      <object className="mt-1" id="vteg" type="image/svg+xml"
+			    data={MotorSVG}  > {/*width="100%" height="100%"*/}
+	    </object>	      
     </>
   )
 })

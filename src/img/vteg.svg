@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Создано Microsoft Visio, экспорт SVG vteg.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		width="1.85039in" height="3.26772in" viewBox="0 0 133.228 235.276" xml:space="preserve" color-interpolation-filters="sRGB"
+		class="st7">
+	<style type="text/css">
+	<![CDATA[
+		.st1 {stroke:#bfbfbf;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st2 {fill:none;stroke:#bfbfbf;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st3 {fill:#000000;font-family:Open Sans;font-size:0.666664em;font-weight:bold}
+		.st4 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st5 {fill:#000000;font-family:Calibri;font-size:0.666664em;font-weight:bold}
+		.st6 {fill:none;stroke:#bfbfbf;stroke-dasharray:0.5,1;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st7 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Patterns_And_Gradients">
+		<linearGradient id="grad0-4" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(270 0.5 0.5)">
+			<stop offset="0" stop-color="#f0f0f0" stop-opacity="1"/>
+			<stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+		</linearGradient>
+	</defs>
+	<g>
+		<title>Page-1</title>
+		<g id="shape23-1" transform="translate(286.299,36.8511) rotate(90)">
+			<title>Лист.23</title>
+			<path d="M0 235.28 L43.94 235.28" class="st1"/>
+		</g>
+		<g id="shape36-6" transform="translate(286.299,11.3386) rotate(90)">
+			<title>Лист.36</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape37-10" transform="translate(42.5197,-198.424)">
+			<title>Лист.37</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape38-12" transform="translate(22.6772,-164.409)">
+			<title>Лист.38</title>
+			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
+		</g>
+		<g id="shape39-14" transform="translate(28.3465,-164.409)">
+			<title>Лист.39</title>
+			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
+		</g>
+		<g id="shape43-16" transform="translate(31.1811,-96.378)">
+			<title>Лист.43</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape45-18" transform="translate(42.5197,-137.48)">
+			<title>Лист.45</title>
+			<ellipse cx="8.50394" cy="226.772" rx="8.50394" ry="8.50394" class="st2"/>
+		</g>
+		<g id="shape46-20" transform="translate(45.3543,-140.315)">
+			<title>Лист.46</title>
+			<desc>G</desc>
+			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
+			<text x="2.77" y="232.01" class="st3">G</text>		</g>
+		<g id="shape48-23" transform="translate(53.8583,-96.378)">
+			<title>Лист.48</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape49-25" transform="translate(31.1811,-70.8661)">
+			<title>Лист.49</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape52-27" transform="translate(53.8583,-70.8661)">
+			<title>Лист.52</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape53-29" transform="translate(31.1811,-45.3543)">
+			<title>Лист.53</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape54-31" transform="translate(53.8583,-45.3543)">
+			<title>Лист.54</title>
+			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
+		</g>
+		<g id="shape56-33" transform="translate(31.1811,-121.89)">
+			<title>Лист.56</title>
+			<path d="M0 235.28 L39.69 235.28" class="st1"/>
+		</g>
+		<g id="shape57-36" transform="translate(-195.591,121.89) rotate(-90)">
+			<title>Лист.57</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape58-39" transform="translate(-172.913,121.89) rotate(-90)">
+			<title>Лист.58</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape59-42" transform="translate(-195.591,147.402) rotate(-90)">
+			<title>Лист.59</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape60-45" transform="translate(-172.913,147.402) rotate(-90)">
+			<title>Лист.60</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape61-48" transform="translate(-195.591,172.913) rotate(-90)">
+			<title>Лист.61</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape62-51" transform="translate(-172.913,172.913) rotate(-90)">
+			<title>Лист.62</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape63-54" transform="translate(39.6806,-170.302)">
+			<title>Лист.63</title>
+			<path d="M0 235.28 L11.35 235.28" class="st1"/>
+		</g>
+		<g id="shape64-57" transform="translate(249.449,65.1969) rotate(90)">
+			<title>Лист.64</title>
+			<path d="M0 235.28 L133.23 235.28" class="st1"/>
+		</g>
+		<g id="shape65-61" transform="translate(14.1732,-170.079)">
+			<title>Лист.65</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape66-64" transform="translate(14.1732,-36.8504)">
+			<title>Лист.66</title>
+			<path d="M0 235.28 L25.51 235.28" class="st1"/>
+		</g>
+		<g id="shape67-67" transform="translate(-195.591,198.425) rotate(-90)">
+			<title>Лист.67</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape68-70" transform="translate(-184.144,113.385) rotate(-90)">
+			<title>Лист.68</title>
+			<path d="M0 235.28 L18.43 235.28" class="st1"/>
+		</g>
+		<g id="shape69-73" transform="translate(56.6929,-8.50394)">
+			<title>Лист.69</title>
+			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
+		</g>
+		<g id="shape70-75" transform="translate(56.6929,-14.1732)">
+			<title>Лист.70</title>
+			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
+		</g>
+		<g id="shape71-77" transform="translate(-172.764,209.766) rotate(-90)">
+			<title>Лист.71</title>
+			<path d="M0 235.28 L19.84 235.28" class="st1"/>
+		</g>
+		<g id="shape73-80" transform="translate(53.8583,2.84217E-014)">
+			<title>Лист.73</title>
+			<path d="M0 235.28 L17.01 235.28" class="st1"/>
+		</g>
+		<g id="shape74-83" transform="translate(-172.775,235.274) rotate(-90)">
+			<title>Лист.74</title>
+			<path d="M0 235.28 L8.5 235.28" class="st1"/>
+		</g>
+		<g id="shape75-86" transform="translate(59.5276,246.614) rotate(180)">
+			<title>Лист.75</title>
+			<path d="M0 235.28 L17.01 235.28" class="st1"/>
+		</g>
+		<g id="shape78-90" transform="translate(22.6772,-206.929)">
+			<title>Лист.78</title>
+			<desc>В1</desc>
+			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st4"/>
+			<text x="5.65" y="233.34" class="st5">В1</text>		</g>
+		<g id="shape80-93" transform="translate(22.6772,-178.583)">
+			<title>Лист.80</title>
+			<desc>T1</desc>
+			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st4"/>
+			<text x="5.91" y="233.34" class="st5">T1</text>		</g>
+		<g id="shape81-96" transform="translate(22.6772,-113.228)">
+			<title>Лист.81</title>
+			<desc>QS1</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="1.84" y="233.34" class="st5">QS1</text>		</g>
+		<g id="shape82-99" transform="translate(45.3543,-113.228)">
+			<title>Лист.82</title>
+			<desc>QS2</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="1.84" y="233.34" class="st5">QS2</text>		</g>
+		<g id="shape83-102" transform="translate(22.6772,-62.2047)">
+			<title>Лист.83</title>
+			<desc>QF1</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="1.9" y="233.34" class="st5">QF1</text>		</g>
+		<g id="shape84-105" transform="translate(45.3543,-62.2047)">
+			<title>Лист.84</title>
+			<desc>QF2</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="1.9" y="233.34" class="st5">QF2</text>		</g>
+		<g id="shape85-108" transform="translate(22.6772,-87.7165)">
+			<title>Лист.85</title>
+			<desc>ТВ1</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="2.25" y="233.34" class="st5">ТВ1</text>		</g>
+		<g id="shape86-111" transform="translate(45.3543,-87.7165)">
+			<title>Лист.86</title>
+			<desc>ТВ2</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="2.25" y="233.34" class="st5">ТВ2</text>		</g>
+		<g id="shape87-114" transform="translate(39.685,-2.83465)">
+			<title>Лист.87</title>
+			<desc>T2</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="4.5" y="233.34" class="st5">T2</text>		</g>
+		<g id="shape95-117" transform="translate(79.3701,-124.567)">
+			<title>Лист.95</title>
+			<desc>Uexc</desc>
+			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+			<text x="0" y="233.34" class="st5">Uexc</text>		</g>
+		<g id="group104-120" transform="translate(79.3701,-186.929)">
+			<title>Лист.104</title>
+			<g id="shape89-121">
+				<title>Лист.89</title>
+				<desc>Ustat</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Ustat</text>			</g>
+			<g id="shape102-124" transform="translate(19.8425,2.84217E-014)">
+				<title>Лист.102</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="group106-127" transform="translate(79.3701,-178.425)">
+			<title>Лист.106</title>
+			<g id="shape90-128">
+				<title>Лист.90</title>
+				<desc>Istat</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Istat</text>			</g>
+			<g id="shape103-131" transform="translate(19.8425,2.84217E-014)">
+				<title>Лист.103</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="group108-134" transform="translate(79.3701,-169.921)">
+			<title>Лист.108</title>
+			<g id="shape91-135">
+				<title>Лист.91</title>
+				<desc>Cos</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Cos</text>			</g>
+			<g id="shape105-138" transform="translate(19.8425,2.84217E-014)">
+				<title>Лист.105</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="-0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="group110-141" transform="translate(79.3701,-161.417)">
+			<title>Лист.110</title>
+			<g id="shape92-142">
+				<title>Лист.92</title>
+				<desc>P</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">P</text>			</g>
+			<g id="shape109-145" transform="translate(19.8425,0)">
+				<title>Лист.109</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="-0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="group112-148" transform="translate(79.3701,-152.913)">
+			<title>Лист.112</title>
+			<g id="shape93-149">
+				<title>Лист.93</title>
+				<desc>Q</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Q</text>			</g>
+			<g id="shape107-152" transform="translate(19.8425,2.84217E-014)">
+				<title>Лист.107</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="shape116-155" transform="translate(99.2126,-124.567)">
+			<title>Лист.116</title>
+			<desc>---</desc>
+			<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+			<text x="0" y="233.34" class="st5">---</text>		</g>
+		<g id="group117-158" transform="translate(42.5197,-226.614)">
+			<title>Лист.117</title>
+			<g id="shape118-159">
+				<title>Лист.118</title>
+				<desc>Upwr</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Upwr</text>			</g>
+			<g id="shape119-162" transform="translate(19.8425,2.84217E-014)">
+				<title>Лист.119</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="shape120-165" transform="translate(79.3701,-25.3543)">
+			<title>Лист.120</title>
+			<desc>UT2</desc>
+			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+			<text x="0" y="233.34" class="st5">UT2</text>		</g>
+		<g id="shape121-168" transform="translate(99.2126,-25.3543)">
+			<title>Лист.121</title>
+			<desc>---</desc>
+			<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+			<text x="0" y="233.34" class="st5">---</text>		</g>
+		<g id="shape124-171" transform="translate(0,-25.5118)">
+			<title>Лист.124</title>
+			<desc>UT1</desc>
+			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+			<text x="0" y="233.34" class="st5">UT1</text>		</g>
+		<g id="shape125-174" transform="translate(19.8425,-25.5118)">
+			<title>Лист.125</title>
+			<desc>---</desc>
+			<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+			<text x="0" y="233.34" class="st5">---</text>		</g>
+		<g id="group128-177" transform="translate(79.3701,-16.8504)">
+			<title>Лист.128</title>
+			<g id="shape122-178">
+				<title>Лист.122</title>
+				<desc>IT2</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">IT2</text>			</g>
+			<g id="shape123-181" transform="translate(19.8425,0)">
+				<title>Лист.123</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="group129-184" transform="translate(7.99361E-015,-17.0079)">
+			<title>Лист.129</title>
+			<g id="shape126-185">
+				<title>Лист.126</title>
+				<desc>IT1</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">IT1</text>			</g>
+			<g id="shape127-188" transform="translate(19.8425,0)">
+				<title>Лист.127</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="group130-191" transform="translate(79.3701,-133.228)">
+			<title>Лист.130</title>
+			<g id="shape94-192">
+				<title>Лист.94</title>
+				<desc>Iexc</desc>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Iexc</text>			</g>
+			<g id="shape113-195" transform="translate(19.8425,0)">
+				<title>Лист.113</title>
+				<desc>---</desc>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">---</text>			</g>
+		</g>
+		<g id="shape131-198" transform="translate(22.6772,-39.685)">
+			<title>Лист.131</title>
+			<path d="M0 235.28 L53.86 235.28 L53.86 147.4 L0 147.4 L0 235.28 Z" class="st6"/>
+		</g>
+		<g id="shape132-200" transform="translate(22.6772,-127.402)">
+			<title>Лист.132</title>
+			<desc>СТН</desc>
+			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
+			<text x="1.88" y="233.34" class="st5">СТН</text>		</g>
+	</g>
+</svg>
