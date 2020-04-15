@@ -4,15 +4,18 @@ import {observable, autorun} from 'mobx'
 import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from '../img/vteg.svg'
 
+/*
 interface HomeProps {
   store?: TDeviceStore
 }
 @inject('stores')
-
+*/
 @observer
-export default class Home extends Component<HomeProps> {
-  @observable Ustat: string = ''
-  @observable Iexc: string = ''
+//export default class Home extends Component<HomeProps> {
+export default class Home extends Component {
+  @observable Ustat: string = '';
+  @observable Iexc: string = '';
+  private svgElementUstat: any = undefined;
 
   constructor (props: any){
     super(props)
@@ -21,6 +24,8 @@ export default class Home extends Component<HomeProps> {
 
   private reportchangeTime(i: any){
     this.Ustat = this.getTagData('U1>U1:RAM>data>Ustat')
+   if (this.svgElementUstat) 
+      this.svgElementUstat.innerHTML = this.Ustat;
     this.Iexc = this.getTagData('U1>U1:RAM>data>Iexc')
   }
 
@@ -31,7 +36,7 @@ export default class Home extends Component<HomeProps> {
     var value: any;
     keyList.forEach((key:string)=>{
       value = key in o ? o[key] : undefined;
-      if (!value) return undefined;
+      if (!value) return '';
       o = value;
     })
     return value;
@@ -39,10 +44,19 @@ export default class Home extends Component<HomeProps> {
  
   componentDidMount(){
     let id = 'vteg';
-    var s = document.getElementById(id);//получаю доступ к DOM SVG
-    //console.log(s.data);
-    //var gs = s.contentDocument.children[0].getElementsByTagName('*');//найду все элементы g
+    /*
+    const s: any = document.getElementById(id);//получаю доступ к DOM SVG
+    const g: any = s.contentDocument?.children[0].getElementsByTagName('*')//найду все элементы g
+    const Ustat: any = g.getElementById("Ustat");
+    console.log(g);
     console.log('был рендер')
+    */
+   const s: any = document.getElementById(id);//получаю доступ к DOM SVG
+   const f: any = s.getSVGDocument();
+   //const g: any = s.contentDocument?.children[0].getElementsByTagName('*')//найду все элементы g
+   const Ustat: any = f.getElementById("Ustat");
+   this.svgElementUstat = Ustat;
+   console.log('был рендер')
   }
 
   render() {
@@ -81,3 +95,5 @@ export default class Home extends Component<HomeProps> {
     )
   }
 }
+
+//TODO получить доступ к DOM SVG

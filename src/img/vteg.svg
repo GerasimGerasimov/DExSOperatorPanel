@@ -210,7 +210,7 @@
 				<text x="0" y="233.34" class="st5">Ustat</text>			</g>
 			<g id="shape102-124" transform="translate(19.8425,2.84217E-014)">
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Ustat">---</text>			</g>
+				<text id="Ustat" x="0" y="233.34" class="st5" data-id="Ustat">---</text>			</g>
 		</g>
 		<g id="group106-127" transform="translate(79.3701,-178.425)">
 			<title>Лист.106</title>
