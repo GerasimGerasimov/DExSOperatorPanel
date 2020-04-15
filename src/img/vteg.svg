@@ -11,17 +11,17 @@
 		.st3 {fill:#000000;font-family:Open Sans;font-size:0.666664em;font-weight:bold}
 		.st4 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
 		.st5 {fill:#000000;font-family:Calibri;font-size:0.666664em;font-weight:bold}
-		.st6 {fill:none;stroke:#bfbfbf;stroke-dasharray:0.5,1;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st6 {fill:none;stroke-dasharray:0.5,1;stroke-width:0.5}
 		.st7 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
 	]]>
 	</style>
 
-	<defs id="Patterns_And_Gradients">
+	<!--defs id="Patterns_And_Gradients">
 		<linearGradient id="grad0-4" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(270 0.5 0.5)">
 			<stop offset="0" stop-color="#f0f0f0" stop-opacity="1"/>
 			<stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
 		</linearGradient>
-	</defs>
+	</defs -->
 	<g>
 		<title>Page-1</title>
 		<g id="shape23-1" transform="translate(286.299,36.8511) rotate(90)">
@@ -206,26 +206,18 @@
 		<g id="group104-120" transform="translate(79.3701,-186.929)">
 			<title>Лист.104</title>
 			<g id="shape89-121">
-				<title>Лист.89</title>
-				<desc>Ustat</desc>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Ustat</text>			</g>
 			<g id="shape102-124" transform="translate(19.8425,2.84217E-014)">
-				<title>Лист.102</title>
-				<desc>---</desc>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="Ustat">---</text>			</g>
 		</g>
 		<g id="group106-127" transform="translate(79.3701,-178.425)">
 			<title>Лист.106</title>
 			<g id="shape90-128">
-				<title>Лист.90</title>
-				<desc>Istat</desc>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Istat</text>			</g>
 			<g id="shape103-131" transform="translate(19.8425,2.84217E-014)">
-				<title>Лист.103</title>
-				<desc>---</desc>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">---</text>			</g>
 		</g>
@@ -347,7 +339,7 @@
 		</g>
 		<g id="shape131-198" transform="translate(22.6772,-39.685)">
 			<title>Лист.131</title>
-			<path d="M0 235.28 L53.86 235.28 L53.86 147.4 L0 147.4 L0 235.28 Z" class="st6"/>
+			<path d="M0 235.28 L53.86 235.28 L53.86 147.4 L0 147.4 L0 235.28 Z" class="st6 st1"/>
 		</g>
 		<g id="shape132-200" transform="translate(22.6772,-127.402)">
 			<title>Лист.132</title>

@@ -13,8 +13,7 @@ const stores = {
 };
 
 ReactDOM.render((
-  <Provider {...stores}>
-    {console.log(stores)}
+  <Provider stores>
     <App />
   </Provider>
   ), document.getElementById('root')
