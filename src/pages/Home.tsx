@@ -87,7 +87,7 @@ export default class Home extends Component {
         <br></br>
         <object className="mt-1" id="vteg" type="image/svg+xml"
             data={MotorSVG}
-            onLoad={this.handleImageLoaded.bind(this)}
+            onLoad={()=>{this.handleImageLoaded()}}
             > {/*width="100%" height="100%"*/}
         </object>	      
       </>
