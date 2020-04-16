@@ -1,0 +1,9 @@
+{
+    "type": "MainSwitch",
+    "date": "switchState",
+    "states":{
+        "off": "./img/switchOff.svg",
+        "on": "./img/switchOn.svg",
+        "NoLink": "./img/switchNoLink.svg"
+    }
+}
