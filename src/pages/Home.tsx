@@ -3,6 +3,7 @@ import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
 import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from '../img/vteg.svg'
+import {TSVGGroups, TElementAndAttrValue} from '../lib/svg/lib/svggroup'
 
 /*
 interface HomeProps {
@@ -15,7 +16,7 @@ interface HomeProps {
 export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
-  private svgElementUstat: any = undefined;
+  private Elements: Array<TElementAndAttrValue> | undefined = undefined;
 
   constructor (props: any){
     super(props)
@@ -23,10 +24,12 @@ export default class Home extends Component {
   }
 
   private reportchangeTime(i: any){
-    this.Ustat = this.getTagData('U1>U1:RAM>data>Ustat')
-   if (this.svgElementUstat) 
-      this.svgElementUstat.innerHTML = this.Ustat;
-    this.Iexc = this.getTagData('U1>U1:RAM>data>Iexc')
+    if (this.Elements) {
+      this.Elements.forEach((item:TElementAndAttrValue) => {
+        const value: string = this.getTagData(`U1>U1:RAM>data>${item.value}`)
+        item.element.innerHTML = value;
+      })
+    }
   }
 
   // U1>U1:RAM>data>Iexc
@@ -48,12 +51,8 @@ export default class Home extends Component {
 
   handleImageLoaded() {
     console.log('svg загружен')
-    let id = 'vteg';
-    const s: any = document.getElementById(id);//получаю доступ к DOM SVG
-    const f: any = s.getSVGDocument();
-    //const g: any = s.contentDocument?.children[0].getElementsByTagName('*')//найду все элементы g
-    const Ustat: any = f.getElementById("Ustat");
-    this.svgElementUstat = Ustat;
+    const g: TSVGGroups = new TSVGGroups('vteg');
+    this.Elements = g.getElementsAndValuesByAttr('data-id');
   }
 
   render() {
@@ -66,22 +65,6 @@ export default class Home extends Component {
           </span>
           <span className="badge badge-light bg-warning ml-1">
             {deviceStore.count}
-          </span>
-        </button>
-        <button type="button" className="btn btn-primary ml-1">
-          <span className="badge badge-light bg-success">
-            Ustat:
-          </span>
-          <span className="badge badge-light bg-warning ml-1">
-              {this.Ustat}
-          </span>
-        </button>
-        <button type="button" className="btn btn-primary ml-1">
-          <span className="badge badge-light bg-success">
-            Iexc:
-          </span>
-          <span className="badge badge-light bg-warning ml-1">
-              {this.Iexc}
           </span>
         </button>
         <br></br>

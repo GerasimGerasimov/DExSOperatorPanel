@@ -198,144 +198,105 @@
 			<desc>T2</desc>
 			<rect x="0" y="226.614" width="17.0079" height="8.66142" class="st4"/>
 			<text x="4.5" y="233.34" class="st5">T2</text>		</g>
-		<g id="shape95-117" transform="translate(79.3701,-124.567)">
-			<title>Лист.95</title>
-			<desc>Uexc</desc>
-			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
-			<text x="0" y="233.34" class="st5">Uexc</text>		</g>
+		<g id="group104-120" transform="translate(79.3701,-124.567)">
+			<g id="shape95-117">
+				<title>Напряжение возбуждения</title>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">Uexc</text>		</g>
+			<g id="shape116-155" transform="translate(19.8425,2.84217E-014)">
+				<title>Напряжение возбуждения</title>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5" data-id="Uexc">---</text>		</g>
+		</g>
 		<g id="group104-120" transform="translate(79.3701,-186.929)">
-			<title>Лист.104</title>
 			<g id="shape89-121">
+				<title>Напряжение статора</title>			
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Ustat</text>			</g>
 			<g id="shape102-124" transform="translate(19.8425,2.84217E-014)">
+				<title>Напряжение статора</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text id="Ustat" x="0" y="233.34" class="st5" data-id="Ustat">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="Ustat">---</text>			</g>
 		</g>
 		<g id="group106-127" transform="translate(79.3701,-178.425)">
-			<title>Лист.106</title>
 			<g id="shape90-128">
+				<title>Ток статора</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Istat</text>			</g>
 			<g id="shape103-131" transform="translate(19.8425,2.84217E-014)">
+				<title>Ток статора</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="Istat">---</text>			</g>
 		</g>
 		<g id="group108-134" transform="translate(79.3701,-169.921)">
-			<title>Лист.108</title>
 			<g id="shape91-135">
-				<title>Лист.91</title>
-				<desc>Cos</desc>
+				<title>Угол Фи</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">Cos</text>			</g>
+				<text x="0" y="233.34" class="st5">Fi</text>			</g>
 			<g id="shape105-138" transform="translate(19.8425,2.84217E-014)">
-				<title>Лист.105</title>
-				<desc>---</desc>
+				<title>Угол Фи</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="-0" y="233.34" class="st5">---</text>			</g>
+				<text x="-0" y="233.34" class="st5" data-id="Fi">---</text>			</g>
 		</g>
 		<g id="group110-141" transform="translate(79.3701,-161.417)">
-			<title>Лист.110</title>
 			<g id="shape92-142">
-				<title>Лист.92</title>
-				<desc>P</desc>
+				<title>Активная мощность</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">P</text>			</g>
 			<g id="shape109-145" transform="translate(19.8425,0)">
-				<title>Лист.109</title>
-				<desc>---</desc>
+				<title>Активная мощность</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="-0" y="233.34" class="st5">---</text>			</g>
+				<text x="-0" y="233.34" class="st5" data-id="Psg">---</text>			</g>
 		</g>
 		<g id="group112-148" transform="translate(79.3701,-152.913)">
-			<title>Лист.112</title>
 			<g id="shape93-149">
-				<title>Лист.93</title>
-				<desc>Q</desc>
+				<title>Реактивная мощность</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Q</text>			</g>
 			<g id="shape107-152" transform="translate(19.8425,2.84217E-014)">
-				<title>Лист.107</title>
-				<desc>---</desc>
+				<title>Реактивная мощность</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="Qsg">---</text>			</g>
 		</g>
-		<g id="shape116-155" transform="translate(99.2126,-124.567)">
-			<title>Лист.116</title>
-			<desc>---</desc>
-			<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-			<text x="0" y="233.34" class="st5">---</text>		</g>
 		<g id="group117-158" transform="translate(42.5197,-226.614)">
-			<title>Лист.117</title>
 			<g id="shape118-159">
-				<title>Лист.118</title>
-				<desc>Upwr</desc>
+				<title>Напряжение сети</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Upwr</text>			</g>
 			<g id="shape119-162" transform="translate(19.8425,2.84217E-014)">
-				<title>Лист.119</title>
-				<desc>---</desc>
+				<title>Напряжение сети</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="Upwr_ab">---</text>			</g>
 		</g>
-		<g id="shape120-165" transform="translate(79.3701,-25.3543)">
-			<title>Лист.120</title>
-			<desc>UT2</desc>
-			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
-			<text x="0" y="233.34" class="st5">UT2</text>		</g>
-		<g id="shape121-168" transform="translate(99.2126,-25.3543)">
-			<title>Лист.121</title>
-			<desc>---</desc>
-			<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-			<text x="0" y="233.34" class="st5">---</text>		</g>
-		<g id="shape124-171" transform="translate(0,-25.5118)">
-			<title>Лист.124</title>
-			<desc>UT1</desc>
-			<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
-			<text x="0" y="233.34" class="st5">UT1</text>		</g>
-		<g id="shape125-174" transform="translate(19.8425,-25.5118)">
-			<title>Лист.125</title>
-			<desc>---</desc>
-			<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-			<text x="0" y="233.34" class="st5">---</text>		</g>
+		<g id="group117-158" transform="translate(79.3701,-25.3543)">
+			<g id="shape120-165">
+				<title>Напряжение ввода 0.4кВ</title>
+				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5">UT2</text>		</g>
+			<g id="shape121-168" transform="translate(19.8425,2.84217E-014)">
+				<title>Напряжение ввода 0.4кВ</title>
+				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
+				<text x="0" y="233.34" class="st5" data-id="Uab_sync">---</text>		</g>
+		</g>
 		<g id="group128-177" transform="translate(79.3701,-16.8504)">
-			<title>Лист.128</title>
 			<g id="shape122-178">
-				<title>Лист.122</title>
-				<desc>IT2</desc>
+				<title>Ток ввода 0.4кВ</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">IT2</text>			</g>
 			<g id="shape123-181" transform="translate(19.8425,0)">
-				<title>Лист.123</title>
-				<desc>---</desc>
+				<title>Ток ввода 0.4кВ</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
-		</g>
-		<g id="group129-184" transform="translate(7.99361E-015,-17.0079)">
-			<title>Лист.129</title>
-			<g id="shape126-185">
-				<title>Лист.126</title>
-				<desc>IT1</desc>
-				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">IT1</text>			</g>
-			<g id="shape127-188" transform="translate(19.8425,0)">
-				<title>Лист.127</title>
-				<desc>---</desc>
-				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="IttA">---</text>			</g>
 		</g>
 		<g id="group130-191" transform="translate(79.3701,-133.228)">
-			<title>Лист.130</title>
 			<g id="shape94-192">
-				<title>Лист.94</title>
-				<desc>Iexc</desc>
+				<title>Ток возбуждения</title>
 				<rect x="0" y="226.614" width="19.8425" height="8.66142" class="st2"/>
 				<text x="0" y="233.34" class="st5">Iexc</text>			</g>
 			<g id="shape113-195" transform="translate(19.8425,0)">
-				<title>Лист.113</title>
-				<desc>---</desc>
+				<title>Ток возбуждения</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="Iexc">---</text>			</g>
 		</g>
 		<g id="shape131-198" transform="translate(22.6772,-39.685)">
 			<title>Лист.131</title>

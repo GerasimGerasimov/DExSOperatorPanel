@@ -33,7 +33,6 @@
     //    |---g---rect
     //    |-rect
     //    |-text
-'use strict'
     //Node - ветки
 class TNode{
     data: any;//данные ветви
@@ -490,7 +489,11 @@ function addGroupBounds (treeNode: TNode) {
 
 }
 
-    
+export class TElementAndAttrValue {
+    element: any;
+    value: string = '';
+}
+
 export class TSVGGroups {
     private tree: (TTree | undefined) = undefined;
 
@@ -563,7 +566,7 @@ export class TSVGGroups {
     //вообще я ищу svg контейнеры с аттрибутом 'data-id'
     //Продолжить!!!!!
     public getElementByAttrValue (attr: string, value: string): any {
-        console.warn(`TSVGGroups.prototype.getElementByAttrValue: ${attr} : ${value}`);//
+        console.warn(`TSVGGroups.getElementByAttrValue: ${attr} : ${value}`);//
         if (!this.tree) return undefined;
         const treeNode: TNode = this.tree._root;
         var s: string = '';
@@ -584,7 +587,7 @@ export class TSVGGroups {
         }
         catch (error){
             if ('stack' in error) {//произошло исключение
-                console.warn('TSVGGroups.prototype.getElementByAttrValue',error.stack);//это ошибка
+                console.warn('TSVGGroups.getElementByAttrValue',error.stack);//это ошибка
                 return null;
             }
             else {//группа-владелец найдена
@@ -592,6 +595,37 @@ export class TSVGGroups {
                     return(error);
             }
         }
+    }
+
+    //сканирует элементы SVG, возвращает массив элементов
+    //имеющих заданый аттрибут attr, и его значение для каждого элемента
+    public getElementsAndValuesByAttr (attr: string): Array<TElementAndAttrValue> | undefined {
+        console.warn(`TSVGGroups.getElementsAndValuesByAttr: ${attr}`);//
+        if (!this.tree) return undefined;
+        const treeNode: TNode = this.tree._root;
+        var value: string = '';
+        var result: Array<TElementAndAttrValue> = [];
+        try {
+            (function recurse(currentNode) {
+                const element: any = currentNode.data;
+                if (element.getAttribute != undefined ) {  
+                    if (value = element.getAttribute(attr)) {//ответ не пустая строка
+                        let e: TElementAndAttrValue = { element, value};
+                        result.push(e);
+                    }
+                }
+                var i: number = currentNode.children.length;
+                while (i !=0) {
+                    i--;
+                    recurse(currentNode.children[i]);
+                }
+                })(treeNode);
+        }
+        catch (error){
+                console.warn('TSVGGroups.getElementsAndValuesByAttr',error);//это ошибка
+                return undefined;
+        }
+        return result;
     }
 
     //метод. проверка нахождения точки с заданными координатами XY внутри Границы Аватара
