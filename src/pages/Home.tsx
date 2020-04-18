@@ -53,15 +53,13 @@ export default class Home extends Component {
   handleImageLoaded() {
     console.log('svg загружен')
     const g: TSVGGroups = new TSVGGroups('vteg');
-    this.Elements = g.getElementsAndValuesByAttr('data-id').map((item: TElementAndAttrValue):TSVGTemplateElement => {
-      let element = item.element;
-      let attr = changeSingleQuotesToDouble(item.value);
-      let result: TSVGTemplateElement = {
-        element,
-        attr
-      }
-      console.log(result)
-      return result
+    this.Elements = g.getElementsAndValuesByAttr('data-id')
+      .map((item: TElementAndAttrValue):TSVGTemplateElement => {
+        let result: TSVGTemplateElement = {
+          element: item.element,
+          attr: changeSingleQuotesToDouble(item.value)
+        }
+        return result
     });
   }
 
