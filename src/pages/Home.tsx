@@ -21,10 +21,10 @@ export default class Home extends Component {
 
   constructor (props: any){
     super(props)
-    autorun(()=>{this.reportchangeTime(deviceStore.changeTime)})
+    autorun(()=>{this.putValuesToSVGTemplate(deviceStore.changeTime)})
   }
 
-  private reportchangeTime(i: any){
+  private putValuesToSVGTemplate(changed: any){
     if (this.Elements) {
       this.Elements.forEach((item:TSVGTemplateElement) => {
         const value: string = this.getTagData(`U1>U1:RAM>data>${item.attr.value}`)
