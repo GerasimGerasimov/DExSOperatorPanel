@@ -206,7 +206,7 @@
 			<g id="shape116-155" transform="translate(19.8425,2.84217E-014)">
 				<title>Напряжение возбуждения</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Uexc">---</text>		</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Uexc'}">---</text>		</g>
 		</g>
 		<g id="group104-120" transform="translate(79.3701,-186.929)">
 			<g id="shape89-121">
@@ -216,7 +216,7 @@
 			<g id="shape102-124" transform="translate(19.8425,2.84217E-014)">
 				<title>Напряжение статора</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Ustat">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Ustat'}">---</text>			</g>
 		</g>
 		<g id="group106-127" transform="translate(79.3701,-178.425)">
 			<g id="shape90-128">
@@ -226,7 +226,7 @@
 			<g id="shape103-131" transform="translate(19.8425,2.84217E-014)">
 				<title>Ток статора</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Istat">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Istat'}">---</text>			</g>
 		</g>
 		<g id="group108-134" transform="translate(79.3701,-169.921)">
 			<g id="shape91-135">
@@ -236,7 +236,7 @@
 			<g id="shape105-138" transform="translate(19.8425,2.84217E-014)">
 				<title>Угол Фи</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="-0" y="233.34" class="st5" data-id="Fi">---</text>			</g>
+				<text x="-0" y="233.34" class="st5" data-id="{'value':'Fi'}">---</text>			</g>
 		</g>
 		<g id="group110-141" transform="translate(79.3701,-161.417)">
 			<g id="shape92-142">
@@ -246,7 +246,7 @@
 			<g id="shape109-145" transform="translate(19.8425,0)">
 				<title>Активная мощность</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="-0" y="233.34" class="st5" data-id="Psg">---</text>			</g>
+				<text x="-0" y="233.34" class="st5" data-id="{'value':'Psg'}">---</text>			</g>
 		</g>
 		<g id="group112-148" transform="translate(79.3701,-152.913)">
 			<g id="shape93-149">
@@ -256,7 +256,7 @@
 			<g id="shape107-152" transform="translate(19.8425,2.84217E-014)">
 				<title>Реактивная мощность</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Qsg">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Qsg'}">---</text>			</g>
 		</g>
 		<g id="group117-158" transform="translate(42.5197,-226.614)">
 			<g id="shape118-159">
@@ -266,7 +266,7 @@
 			<g id="shape119-162" transform="translate(19.8425,2.84217E-014)">
 				<title>Напряжение сети</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Upwr_ab">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Upwr_ab'}">---</text>			</g>
 		</g>
 		<g id="group117-158" transform="translate(79.3701,-25.3543)">
 			<g id="shape120-165">
@@ -276,7 +276,7 @@
 			<g id="shape121-168" transform="translate(19.8425,2.84217E-014)">
 				<title>Напряжение ввода 0.4кВ</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Uab_sync">---</text>		</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Uab_sync'}">---</text>		</g>
 		</g>
 		<g id="group128-177" transform="translate(79.3701,-16.8504)">
 			<g id="shape122-178">
@@ -286,7 +286,7 @@
 			<g id="shape123-181" transform="translate(19.8425,0)">
 				<title>Ток ввода 0.4кВ</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="IttA">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'IttA'}">---</text>			</g>
 		</g>
 		<g id="group130-191" transform="translate(79.3701,-133.228)">
 			<g id="shape94-192">
@@ -296,7 +296,7 @@
 			<g id="shape113-195" transform="translate(19.8425,0)">
 				<title>Ток возбуждения</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="Iexc">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'value':'Iexc'}">---</text>			</g>
 		</g>
 		<g id="shape131-198" transform="translate(22.6772,-39.685)">
 			<title>Лист.131</title>

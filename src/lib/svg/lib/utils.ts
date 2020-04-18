@@ -1,11 +1,16 @@
 //Библиотека полезных функций
 
+export function  changeSingleQuotesToDouble(attr: string): any {
+    const str: any = [].map.call(attr, c => c!=='\''? c : '\"').join('')
+    let res = JSON.parse(str);
+    return res;
+  }
 //Получение содержимого файла (синхронно)
 //fileName - название файла (на сервере) с указанием пути
 //Возвращает:
 //  1) строку с содержимым файла 
 //  2) undefine - если файл по какой-то причине не загрузился
-function getSyncTextFileContent(fileName) {
+export function getSyncTextFileContent(fileName: string) {
     var s ='';
     var req = new XMLHttpRequest();
         req.open("GET", fileName, false);//false - делаю сихронный запрос к http-серверу 
@@ -24,7 +29,7 @@ function getSyncTextFileContent(fileName) {
 
 //преобоазует строку в XML-объект (в зависимости от ключа)
 //если key = 'image/svg+xml' получаю SVG-объект
-function strToXML(source, key) {
+export function strToXML(source: string, key: any) {
     var parser = new DOMParser();
     var content = parser.parseFromString(source, key);
     console.log(content);

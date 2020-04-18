@@ -3,7 +3,8 @@ import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
 import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from '../img/vteg.svg'
-import {TSVGGroups, TElementAndAttrValue} from '../lib/svg/lib/svggroup'
+import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement} from '../lib/svg/lib/svggroup'
+import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
 
 /*
 interface HomeProps {
@@ -16,7 +17,7 @@ interface HomeProps {
 export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
-  private Elements: Array<TElementAndAttrValue> | undefined = undefined;
+  private Elements: Array<TSVGTemplateElement> = [];
 
   constructor (props: any){
     super(props)
@@ -25,8 +26,8 @@ export default class Home extends Component {
 
   private reportchangeTime(i: any){
     if (this.Elements) {
-      this.Elements.forEach((item:TElementAndAttrValue) => {
-        const value: string = this.getTagData(`U1>U1:RAM>data>${item.value}`)
+      this.Elements.forEach((item:TSVGTemplateElement) => {
+        const value: string = this.getTagData(`U1>U1:RAM>data>${item.attr.value}`)
         item.element.innerHTML = value;
       })
     }
@@ -52,7 +53,16 @@ export default class Home extends Component {
   handleImageLoaded() {
     console.log('svg загружен')
     const g: TSVGGroups = new TSVGGroups('vteg');
-    this.Elements = g.getElementsAndValuesByAttr('data-id');
+    this.Elements = g.getElementsAndValuesByAttr('data-id').map((item: TElementAndAttrValue):TSVGTemplateElement => {
+      let element = item.element;
+      let attr = changeSingleQuotesToDouble(item.value);
+      let result: TSVGTemplateElement = {
+        element,
+        attr
+      }
+      console.log(result)
+      return result
+    });
   }
 
   render() {
@@ -78,4 +88,4 @@ export default class Home extends Component {
   }
 }
 
-//TODO получить доступ к DOM SVG
+//TODO округление сверхмалых чисел типа вот такого 5.877471754111438e-39

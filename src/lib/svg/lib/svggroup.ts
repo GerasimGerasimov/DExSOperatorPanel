@@ -494,6 +494,15 @@ export class TElementAndAttrValue {
     value: string = '';
 }
 
+export class TElementAttrObject {
+    value: string = ''
+}
+
+export class TSVGTemplateElement {
+    element: any;
+    attr: TElementAttrObject = new TElementAttrObject;
+}
+
 export class TSVGGroups {
     private tree: (TTree | undefined) = undefined;
 
@@ -599,9 +608,9 @@ export class TSVGGroups {
 
     //сканирует элементы SVG, возвращает массив элементов
     //имеющих заданый аттрибут attr, и его значение для каждого элемента
-    public getElementsAndValuesByAttr (attr: string): Array<TElementAndAttrValue> | undefined {
+    public getElementsAndValuesByAttr (attr: string): Array<TElementAndAttrValue>{
         console.warn(`TSVGGroups.getElementsAndValuesByAttr: ${attr}`);//
-        if (!this.tree) return undefined;
+        if (!this.tree) return [];
         const treeNode: TNode = this.tree._root;
         var value: string = '';
         var result: Array<TElementAndAttrValue> = [];
@@ -623,7 +632,7 @@ export class TSVGGroups {
         }
         catch (error){
                 console.warn('TSVGGroups.getElementsAndValuesByAttr',error);//это ошибка
-                return undefined;
+                return [];
         }
         return result;
     }
