@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
 import {deviceStore, TDeviceStore} from '../store/devices/devices'
-import MotorSVG from '../img/vteg.svg'
+import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement} from '../lib/svg/lib/svggroup'
 import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
 
