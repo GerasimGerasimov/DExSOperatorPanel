@@ -3,9 +3,10 @@ import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
 import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from  '../assets/svg/vteg.svg'
-import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement} from '../lib/svg/lib/svggroup'
+import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement, TElementAttrObject} from '../lib/svg/lib/svggroup'
 import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
 import {TSvgContents} from '../lib/svg/lib/svgcontent'
+import TSwitch from '../lib/svg/lib/components'
 
 /*
 interface HomeProps {
@@ -19,6 +20,8 @@ export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
   private Elements: Array<TSVGTemplateElement> = [];
+  private MainSwitch: TSwitch | undefined = undefined;
+  private svgContents: TSvgContents = new TSvgContents();
 
   constructor (props: any){
     super(props)
@@ -28,8 +31,16 @@ export default class Home extends Component {
   private putValuesToSVGTemplate(changed: any){
     if (this.Elements) {
       this.Elements.forEach((item:TSVGTemplateElement) => {
-        const value: string = this.getTagData(`U1>U1:RAM>data>${item.attr.value}`)
-        item.element.innerHTML = value;
+        if (item.attr.model === 'text') {
+          const value: string = this.getTagData(`U1>U1:RAM>data>${item.attr.value}`)
+          item.element.innerHTML = value;
+        } else {
+          if (item.attr.model === 'TSwitch') {
+            console.log('TSwitch');
+            if (this.MainSwitch) 
+              this.MainSwitch.draw();
+          }
+        }
       })
     }
   }
@@ -58,15 +69,21 @@ export default class Home extends Component {
       .map((item: TElementAndAttrValue):TSVGTemplateElement => {
         let result: TSVGTemplateElement = {
           element: item.element,
-          attr: changeSingleQuotesToDouble(item.value)
+          attr: {...new TElementAttrObject(), ...changeSingleQuotesToDouble(item.value)}
         }
         return result
     });
     //загрузить SVG-шки выключателя
-    const svgContents: TSvgContents = new TSvgContents();
-    svgContents.getImg('switchOn'   ,  '/assets/svg/switchOn.svg');
-    svgContents.getImg('switchOff'  ,  '/assets/svg/switchOff.svg');
-    svgContents.getImg('switchNoLink', '/assets/svg/switchNoLink.svg');
+    this.svgContents.getImg('switchOn'   ,  '/assets/svg/switchOn.svg');
+    this.svgContents.getImg('switchOff'  ,  '/assets/svg/switchOff.svg');
+    this.svgContents.getImg('switchNoLink', '/assets/svg/switchNoLink.svg');
+
+    const element: TSVGTemplateElement | undefined = 
+      this.Elements.find((item: TSVGTemplateElement) => {
+        if (item.attr.model === 'TSwitch')
+          return item.element}
+      );
+    this.MainSwitch = new TSwitch(element?.element, this.svgContents);
   }
 
   render() {

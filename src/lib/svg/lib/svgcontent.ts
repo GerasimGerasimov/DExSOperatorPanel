@@ -19,7 +19,7 @@ export class TSvgContents {
         //если по указанному пути нет картинки, то вернуть null
         var svg: any = this.loadImg(key, path);
         if (svg !== undefined) {
-            svg = this.renameCSS(key, svg);//делаю названия стилей уникальными
+            //svg = this.renameCSS(key, svg);//делаю названия стилей уникальными
             this.aContents.set(key, svg);//вставляю в хранилище
             return svg;
         }

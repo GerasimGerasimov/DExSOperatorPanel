@@ -32,8 +32,8 @@
 			<title>Лист.36</title>
 			<path d="M0 235.28 L8.5 235.28" class="st1"/>
 		</g>
-		<g id="shape37-10" transform="translate(42.5197,-198.424)">
-			<title>Лист.37</title>
+		<g id="shape37-10" transform="translate(42.5197,-198.424)" data-id="{'value':'iSwState', 'model':'TSwitch'}">
+			<title>Сетевой выключатель</title>
 			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
 		</g>
 		<g id="shape38-12" transform="translate(22.6772,-164.409)">

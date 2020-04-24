@@ -495,7 +495,8 @@ export class TElementAndAttrValue {
 }
 
 export class TElementAttrObject {
-    value: string = ''
+    value: string = '';
+    model: string = 'text';
 }
 
 export class TSVGTemplateElement {
