@@ -17,7 +17,7 @@ export function getSyncTextFileContent(fileName: string): string {
         req.send();
         console.log(req.statusText);
         if (req.status !=200) {//ошибка
-            console.log(req.status+':'+req.statusText);
+            console.log(`${req.status}':'${req.statusText}`);
             return '';
         }
         else {//получил содержимое файла в виде строки
@@ -31,6 +31,5 @@ export function getSyncTextFileContent(fileName: string): string {
 export function strToXML(source: string, key: any): any {
     var parser = new DOMParser();
     var content: any = parser.parseFromString(source, key);
-    console.log(content);
     return content;//да, документ получил. Можно парсить    
 }

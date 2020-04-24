@@ -37,13 +37,12 @@ export class TSvgContents {
         //Создаю массив элементов имеющих свойство class (т.е. со стилями)
         var aec: Array<any> = [];//массив элементов имеющих стиль
         var styles:Array<string>=[];//массив названий стилей
-        var i = content.all.length;//кол-во элементов в XML
         //перебираю массив в поисках элементов имеющих свойство "class"
-        while (i--) {
-            if (content.all[i].classList.length){//у элементов имеющих аттрибут "class" classList.length не НОЛЬ
-                aec.push(content.all[i]);//нашёл, добавляю в массив
-                if (styles.indexOf(content.all[i].classList[0]) == -1)//если названия стиля ещё нет в массиве
-                    styles.push(content.all[i].classList[0]); //добавить его туда
+        for (let element of content.all) {
+            if (element.classList.length) {//у элементов имеющих аттрибут "class" classList.length не НОЛЬ
+                aec.push(element);//нашёл, добавляю в массив
+                if (styles.indexOf(element.classList[0]) == -1)//если названия стиля ещё нет в массиве
+                    styles.push(element.classList[0]); //добавить его туда                
             }
         }
         //и так на выходе у меня:
@@ -52,16 +51,14 @@ export class TSvgContents {
         //Теперь возьму CDATA из SVG
         var cdata: string = svg.querySelector('style').childNodes[1].nodeValue;
         //И начну менять стили
-        i = styles.length;
-        while (i--){
-            var newClassName = styles[i]+'_'+key;
-            var j = aec.length;
-            while (j--){
-                if (aec[j].classList[0] == styles[i])
-                        aec[j].setAttribute('class', newClassName);
-            }
-            cdata = cdata.replace(styles[i],newClassName);
-        }
+        styles.forEach((style: string) => {
+            let newClassName: string = `${style}_${key}`
+            aec.forEach((element: any) => {
+                if (element.classList[0] === style)
+                    element.setAttribute('class', newClassName) 
+            })
+            cdata = cdata.replace(style,newClassName);
+        })
         svg.querySelector('style').childNodes[1].nodeValue = cdata;
         return svg;
     }
@@ -69,11 +66,10 @@ export class TSvgContents {
     //Перед использованием загруженных SVG переименовывает название стилей чтобы они стали уникальными
     //Название стиля состоит из Key_stXXX
     private renameCSS (key: string, content: any){
-        console.log(content);
         var stSheet = content.attributes;
-        console.log(stSheet);
+        //console.log(stSheet);
         //var crs = stSheet.cssRules;
         //console.log(crs);
-        return content;
+        //return content;
     }
 }

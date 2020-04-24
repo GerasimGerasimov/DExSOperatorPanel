@@ -49,9 +49,6 @@ export default class Home extends Component {
  
   componentDidMount(){
     console.log('был рендер')
-    //загрузить SVG-шки выключателя
-    const svgContents: TSvgContents = new TSvgContents();
-    svgContents.getImg('switchOn'   , '/assets/svg/switchOn.svg');
   }
 
   handleImageLoaded() {
@@ -65,6 +62,11 @@ export default class Home extends Component {
         }
         return result
     });
+    //загрузить SVG-шки выключателя
+    const svgContents: TSvgContents = new TSvgContents();
+    svgContents.getImg('switchOn'   ,  '/assets/svg/switchOn.svg');
+    svgContents.getImg('switchOff'  ,  '/assets/svg/switchOff.svg');
+    svgContents.getImg('switchNoLink', '/assets/svg/switchNoLink.svg');
   }
 
   render() {
