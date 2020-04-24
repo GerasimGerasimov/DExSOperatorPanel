@@ -1,7 +1,4 @@
 //читает конфиги, заполняет объекты данными
-//хорошая статья про JSON:
-//https://itchief.ru/lessons/javascript/javascript-json
-
 var TLoadCfs = function (file) {
     this.file = file;
 }

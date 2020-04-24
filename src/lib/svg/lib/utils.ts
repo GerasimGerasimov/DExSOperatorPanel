@@ -10,7 +10,7 @@ export function  changeSingleQuotesToDouble(attr: string): any {
 //Возвращает:
 //  1) строку с содержимым файла 
 //  2) undefine - если файл по какой-то причине не загрузился
-export function getSyncTextFileContent(fileName: string) {
+export function getSyncTextFileContent(fileName: string): string {
     var s ='';
     var req = new XMLHttpRequest();
         req.open("GET", fileName, false);//false - делаю сихронный запрос к http-серверу 
@@ -18,7 +18,7 @@ export function getSyncTextFileContent(fileName: string) {
         console.log(req.statusText);
         if (req.status !=200) {//ошибка
             console.log(req.status+':'+req.statusText);
-            return undefined;
+            return '';
         }
         else {//получил содержимое файла в виде строки
             var s = req.responseText; 
@@ -29,9 +29,9 @@ export function getSyncTextFileContent(fileName: string) {
 
 //преобоазует строку в XML-объект (в зависимости от ключа)
 //если key = 'image/svg+xml' получаю SVG-объект
-export function strToXML(source: string, key: any) {
+export function strToXML(source: string, key: any): any {
     var parser = new DOMParser();
-    var content = parser.parseFromString(source, key);
+    var content: any = parser.parseFromString(source, key);
     console.log(content);
     return content;//да, документ получил. Можно парсить    
 }
