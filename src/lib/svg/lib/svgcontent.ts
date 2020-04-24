@@ -12,30 +12,31 @@ export class TSvgContents {
 
     public getImg (key: string, path: string = ''): any{//key-название картинки, path-имя файла с путём до неё
         const content: any = this.aContents.get(key);
-        if (!content) return content;
+        if (content) return content;
         //раз сюда пришёл, значит в хранилище нет искомого ключа
         //картинки нет, загрузить (со всеми преобразованиями стилей) и вернуть.
         //добавить в хранилище ключ (key-название картинки) и объект svg-изображения
         //если по указанному пути нет картинки, то вернуть null
-        var svg = this.loadImg(key, path);
-        if (svg != null) {
+        var svg: any = this.loadImg(key, path);
+        if (svg !== undefined) {
             svg = this.renameCSS(key, svg);//делаю названия стилей уникальными
             this.aContents.set(key, svg);//вставляю в хранилище
             return svg;
         }
     }
 
-    private loadImg (key: string, path: string){
+    private loadImg (key: string, path: string): any | undefined{
         //надо менять название стилей именно в CDATA так как хоть и названия 
         //стилей в элементах поменялись, но в CDATA они остались
         //1) загрузил указанный имидж
-        var xmls = getSyncTextFileContent(path);
+        var xmls: string = getSyncTextFileContent(path);
         var content: any = strToXML(xmls, 'image/svg+xml');
         //2) получил из него svg-объект
-        var svg = content.querySelector('svg');
+        var svg: any = content.querySelector('svg');
+        if (!svg) return undefined;
         //Создаю массив элементов имеющих свойство class (т.е. со стилями)
-        var aec = [];//массив элементов имеющих стиль
-        var styles=[];//массив названий стилей
+        var aec: Array<any> = [];//массив элементов имеющих стиль
+        var styles:Array<string>=[];//массив названий стилей
         var i = content.all.length;//кол-во элементов в XML
         //перебираю массив в поисках элементов имеющих свойство "class"
         while (i--) {
@@ -49,7 +50,7 @@ export class TSvgContents {
         //  aec[] - массив элементов имеющих стили
         //  styles[] - массив названий стилей
         //Теперь возьму CDATA из SVG
-        var cdata = svg.querySelector('style').childNodes[1].nodeValue;
+        var cdata: string = svg.querySelector('style').childNodes[1].nodeValue;
         //И начну менять стили
         i = styles.length;
         while (i--){
@@ -62,7 +63,6 @@ export class TSvgContents {
             cdata = cdata.replace(styles[i],newClassName);
         }
         svg.querySelector('style').childNodes[1].nodeValue = cdata;
-        console.log(svg);
         return svg;
     }
 

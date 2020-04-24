@@ -5,6 +5,7 @@ import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement} from '../lib/svg/lib/svggroup'
 import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
+import {TSvgContents} from '../lib/svg/lib/svgcontent'
 
 /*
 interface HomeProps {
@@ -48,6 +49,9 @@ export default class Home extends Component {
  
   componentDidMount(){
     console.log('был рендер')
+    //загрузить SVG-шки выключателя
+    const svgContents: TSvgContents = new TSvgContents();
+    svgContents.getImg('switchOn'   , '/assets/svg/switchOn.svg');
   }
 
   handleImageLoaded() {
@@ -66,7 +70,7 @@ export default class Home extends Component {
   render() {
     return(
       <>
-        <h1>Home page class</h1>
+        <h1>Home </h1>
         <button type="button" className="btn btn-primary ml-1">
           <span className="badge badge-light bg-success">
             Count:
