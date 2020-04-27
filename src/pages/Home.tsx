@@ -5,8 +5,8 @@ import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement, TElementAttrObject} from '../lib/svg/lib/svggroup'
 import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
-import {TSvgContents} from '../lib/svg/lib/svgcontent'
-import TSwitch from '../lib/svg/lib/components'
+import TSVGComponent from '../lib/svg/lib/components/TSVGComponent'
+import { createSVGComponent, TSVGComponentArgs } from '../lib/svg/lib/components/svgCompFabrica'
 
 /*
 interface HomeProps {
@@ -19,9 +19,7 @@ interface HomeProps {
 export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
-  private Elements: Array<TSVGTemplateElement> = [];
-  private MainSwitch: TSwitch | undefined = undefined;
-  private svgContents: TSvgContents = new TSvgContents();
+  private svgComponents: Array<TSVGComponent> = [];
 
   constructor (props: any){
     super(props)
@@ -29,20 +27,10 @@ export default class Home extends Component {
   }
 
   private putValuesToSVGTemplate(changed: any){
-    if (this.Elements) {
-      this.Elements.forEach((item:TSVGTemplateElement) => {
-        if (item.attr.model === 'text') {
-          const value: string = this.getTagData(`U1>U1:RAM>data>${item.attr.value}`)
-          item.element.innerHTML = value;
-        } else {
-          if (item.attr.model === 'TSwitch') {
-            console.log('TSwitch');
-            if (this.MainSwitch) 
-              this.MainSwitch.draw();
-          }
-        }
-      })
-    }
+    this.svgComponents.forEach((item: TSVGComponent) => {
+      const value = this.getTagData(`U1>U1:RAM>data>${item.value}`)
+      item.draw(value);
+    })
   }
 
   // U1>U1:RAM>data>Iexc
@@ -65,7 +53,7 @@ export default class Home extends Component {
   handleImageLoaded() {
     console.log('svg загружен')
     const g: TSVGGroups = new TSVGGroups('vteg');
-    this.Elements = g.getElementsAndValuesByAttr('data-id')
+    const Elements = g.getElementsAndValuesByAttr('data-id')
       .map((item: TElementAndAttrValue):TSVGTemplateElement => {
         let result: TSVGTemplateElement = {
           element: item.element,
@@ -73,17 +61,15 @@ export default class Home extends Component {
         }
         return result
     });
-    //загрузить SVG-шки выключателя
-    this.svgContents.getImg('switchOn'   ,  '/assets/svg/switchOn.svg');
-    this.svgContents.getImg('switchOff'  ,  '/assets/svg/switchOff.svg');
-    this.svgContents.getImg('switchNoLink', '/assets/svg/switchNoLink.svg');
-
-    const element: TSVGTemplateElement | undefined = 
-      this.Elements.find((item: TSVGTemplateElement) => {
-        if (item.attr.model === 'TSwitch')
-          return item.element}
-      );
-    this.MainSwitch = new TSwitch(element?.element, this.svgContents);
+    //создать объекты
+    Elements.forEach((item: TSVGTemplateElement) => {
+      const arg: TSVGComponentArgs = {
+        element: item.element,
+        value: item.attr.value
+      }
+      const o: TSVGComponent | undefined = createSVGComponent(item.attr.model, arg);
+      if (o) this.svgComponents.push(o);
+    });
   }
 
   render() {

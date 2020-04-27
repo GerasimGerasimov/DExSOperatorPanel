@@ -1,23 +1,25 @@
-import {TSvgContents} from './svgcontent'
+import {TSvgContents} from '../svgcontent'
+import TSVGComponent from './TSVGComponent'
+import { svgContents } from '../../svgloadimages';
 
 //компоненты на структурной схеме
 
-export default class TSwitch {
-    //Контейнеры
-    private SVGconteiner: any = undefined;//SVG контейнер (объект на общей структурной схеме имеющий data-id="")
+export default class TSwitch extends TSVGComponent{
 
-    private svgArray: TSvgContents | undefined = undefined;//массива SVG изображений с доступом по ключу
+    private svgArray: TSvgContents = svgContents;//массива SVG изображений с доступом по ключу
     private stageImgKey = {//ключи на SVG изображении из массива изображений с доступом по ключу
         On:     'switchOn', //имя SVG изображению Включённого выключателя
         Off:    'switchOff', //-- изображению Отключённого выключателя
-        NoLink: 'witchNoLink'  //-- изображению Нетзвестное состояние выключателя из-за отсутствия связи с сервером
+        NoLink: 'switchNoLink'  //-- изображению Нетзвестное состояние выключателя из-за отсутствия связи с сервером
     }
-    private stage: string = 'ON';
+    private stage: string = 'OFF';
     //private state: any;  //текущее состояние (из stageData) выключателя
     //private _state: any; //предыдущее состояние (чтобы перерисовывать компонент только при изменении состония)
-    constructor (svgElement: any, svgs: TSvgContents) {
-        this.SVGconteiner = svgElement;
-        this.svgArray = svgs;
+    constructor (svgElement: any, value: string) {
+        super(svgElement, value);
+    }
+    private getImg(key: string, path?: string) {
+        throw new Error("Method not implemented.");
     }
 
     //функция-отдаёт изображение по ключу из массива SVG-изображений.
@@ -27,7 +29,7 @@ export default class TSwitch {
     }
 
 	//Отрисовка компонента в контейнере(если состояние изменилось)
-    public draw(){
+    public draw(value: string){
         console.warn('SwDataClientDraw',this.stage);
         const container: any = this.SVGconteiner;
         if (container === undefined) return;

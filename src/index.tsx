@@ -6,11 +6,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'mobx-react';
 import mainStore from './store/mainStore'
+import { loadSVGImages } from './lib/svg/svgloadimages';
 
 const stores = {
   mainStore,
   DeviceStore: mainStore.deviceStore
 };
+
+loadSVGImages();
 
 ReactDOM.render((
   <Provider stores>
