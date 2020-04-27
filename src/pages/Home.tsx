@@ -20,8 +20,10 @@ export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
   private svgComponents: Array<TSVGComponent> = [];
-  private checkBoxInput: any = React.createRef();
-  @observable checked: boolean = true;
+  private checkBoxMainSwitch: any = React.createRef();
+  private checkBoxLinkAvail: any = React.createRef();
+  @observable MainSwitch: boolean = true;
+  @observable LinkAvail: boolean = true;
 
   constructor (props: any){
     super(props)
@@ -30,10 +32,10 @@ export default class Home extends Component {
 
   private putValuesToSVGTemplate(changed: any){
     this.svgComponents.forEach((item: TSVGComponent) => {
-      const value: TSVGComponentArg = {
-        value:this.getTagData(`U1>U1:RAM>data>${item.Tag}`),
-        valid: true
-      }
+      let value: TSVGComponentArg = {
+          value:this.getTagData(`U1>U1:RAM>data>${item.Tag}`),
+          valid: true
+        }
       item.setState(value);
       item.draw();
     })
@@ -78,17 +80,25 @@ export default class Home extends Component {
     });
   }
 
-  handleChange(event: any) {
-    this.checked = !this.checked
+  handleMainSwitch(event: any) {
+    this.MainSwitch = !this.MainSwitch
+  }
+
+  handleLinkAvail(event: any) {
+    this.LinkAvail = !this.LinkAvail
   }
 
   render() {
     return(
       <>
         <input type="checkbox"
-          checked = {this.checked}
-          onClick={this.handleChange.bind(this)}
-          ref = {this.checkBoxInput}/>
+          checked = {this.MainSwitch}
+          onClick={this.handleMainSwitch.bind(this)}
+          ref = {this.checkBoxMainSwitch}/>
+        <input type="checkbox"
+          checked = {this.LinkAvail}
+          onClick={this.handleLinkAvail.bind(this)}
+          ref = {this.checkBoxLinkAvail}/>
         <h1>Home </h1>
         <button type="button" className="btn btn-primary ml-1">
           <span className="badge badge-light bg-success">

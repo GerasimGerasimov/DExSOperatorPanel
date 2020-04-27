@@ -7,21 +7,17 @@ import { svgContents } from '../../svgloadimages';
 export default class TSwitch extends TSVGComponent{
 
     private svgArray: TSvgContents = svgContents;//массива SVG изображений с доступом по ключу
-    private stageImgKey = {//ключи на SVG изображении из массива изображений с доступом по ключу
-        On:     'switchOn', //имя SVG изображению Включённого выключателя
-        Off:    'switchOff', //-- изображению Отключённого выключателя
-        NoLink: 'switchNoLink'  //-- изображению Нетзвестное состояние выключателя из-за отсутствия связи с сервером
-    }
-    private stage: string = 'OFF';
-    //private state: any;  //текущее состояние (из stageData) выключателя
-    //private _state: any; //предыдущее состояние (чтобы перерисовывать компонент только при изменении состония)
+    private stage: string | undefined = undefined;
+ 
     constructor (svgElement: any, tag: string) {
         super(svgElement, tag);
     }
 
     public setState(arg:TSVGComponentArg) {
-        const value = arg.value;
+        if (arg.value === undefined) return this.stage = undefined;
+        return this.stage = (arg.value)? 'ON':'OFF'
     }
+
     //функция-отдаёт изображение по ключу из массива SVG-изображений.
 	private getImage(key: string): any {
         return this.svgArray!.getImg(key);
@@ -35,14 +31,13 @@ export default class TSwitch extends TSVGComponent{
         var content: any;
         switch (this.stage) {
             case 'ON':
-                    content = this.getImage(this.stageImgKey.On);
+                    content = this.getImage('switchOn');
                 break;
             case 'OFF':
-                    content = this.getImage(this.stageImgKey.Off);
+                    content = this.getImage('switchOff');
                 break;
-            case 'NOLINK':
-                    content = this.getImage(this.stageImgKey.NoLink);
-                break;            
+            default:
+                    content = undefined;
         }
         //2) разбираюсь с FO
         var fo: any = container.querySelector('foreignObject');
@@ -65,9 +60,9 @@ export default class TSwitch extends TSVGComponent{
         if (svg !== null) {
             fo.removeChild(svg);
         }
-        //теперь добавлю новый svg-элемент в FO
-        //svg = content.querySelector('svg');
-        fo.appendChild(content);
+        //теперь добавлю новый svg-элемент в FO если content не undefined)
+        if (content)
+            fo.appendChild(content);
     }
 
 }
