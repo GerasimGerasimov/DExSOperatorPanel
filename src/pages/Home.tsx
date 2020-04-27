@@ -5,8 +5,8 @@ import {deviceStore, TDeviceStore} from '../store/devices/devices'
 import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement, TElementAttrObject} from '../lib/svg/lib/svggroup'
 import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
-import TSVGComponent from '../lib/svg/lib/components/TSVGComponent'
-import { createSVGComponent, TSVGComponentArgs } from '../lib/svg/lib/components/svgCompFabrica'
+import {TSVGComponent, TSVGComponentArg} from '../lib/svg/lib/components/TSVGComponent'
+import { createSVGComponent, TSVGComponentInitialArgs } from '../lib/svg/lib/components/svgCompFabrica'
 
 /*
 interface HomeProps {
@@ -28,8 +28,12 @@ export default class Home extends Component {
 
   private putValuesToSVGTemplate(changed: any){
     this.svgComponents.forEach((item: TSVGComponent) => {
-      const value = this.getTagData(`U1>U1:RAM>data>${item.value}`)
-      item.draw(value);
+      const value: TSVGComponentArg = {
+        value:this.getTagData(`U1>U1:RAM>data>${item.Tag}`),
+        valid: true
+      }
+      item.setState(value);
+      item.draw();
     })
   }
 
@@ -57,15 +61,15 @@ export default class Home extends Component {
       .map((item: TElementAndAttrValue):TSVGTemplateElement => {
         let result: TSVGTemplateElement = {
           element: item.element,
-          attr: {...new TElementAttrObject(), ...changeSingleQuotesToDouble(item.value)}
+          attr: {...new TElementAttrObject(), ...changeSingleQuotesToDouble(item.tag)}
         }
         return result
     });
     //создать объекты
     Elements.forEach((item: TSVGTemplateElement) => {
-      const arg: TSVGComponentArgs = {
+      const arg: TSVGComponentInitialArgs = {
         element: item.element,
-        value: item.attr.value
+        tag: item.attr.tag
       }
       const o: TSVGComponent | undefined = createSVGComponent(item.attr.model, arg);
       if (o) this.svgComponents.push(o);

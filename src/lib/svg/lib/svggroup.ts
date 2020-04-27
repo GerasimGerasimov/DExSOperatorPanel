@@ -62,10 +62,10 @@ class TTree {
 
     getRootNode (element: any): any {
         var i = this.node.children.length;
-        while (i !=0 ) {
+        while (i !==0 ) {
             i--;
             var c = this.node.children[i].data;//вытащу для отладки
-            if (c == element) {
+            if (c === element) {
                 return this.node.children[i];
             }
         }
@@ -82,10 +82,10 @@ class TTree {
     //  Node - ссылка на ноду содержащую элемент
     getNode = function(node: TNode, element: any): any {
         var i = node.children.length;
-        while (i !=0 ) {
+        while (i !==0 ) {
             i--;
             var c = node.children[i].data;//вытащу для отладки
-            if (c == element) {
+            if (c === element) {
                 return node.children[i];
             }
         }
@@ -117,9 +117,9 @@ class TTree {
         //и добавлять его надо в ствол (самый первый нод)
         var i = a.length;//кол-во найденных родителей
         const root = this._root;//начинаю искать от корня (он будет углублятся по мере поиска)
-        while (i !=0) {
+        while (i !==0) {
             i--;//сразу доступ к самому первому родителю 
-            if (this.getNode(root, a[i]) == null) {//такой ветки на стволе нет, надо добавить
+            if (this.getNode(root, a[i]) === null) {//такой ветки на стволе нет, надо добавить
                 let n: any = new TNode(a[i]);
                     n.parent = root;
                 root.children.push(n);
@@ -155,15 +155,15 @@ function addArrToTree(a: Array<any>, treeNode: TNode) {
         (function (p, node) {
             var j = node.children.length;//кол-во детей у ноды
             var n ;//найденная нода (или undefine если не нашёл)
-            while (j != 0) {
+            while (j !== 0) {
                 j--;
-                if (node.children[j].data == p) {//есть нода с таким объектом
+                if (node.children[j].data === p) {//есть нода с таким объектом
                     n = node.children[j];//верну что нашёл объект
                     break;//прерву этот while
                 }
             }
             //вышел из цикла, смотрю на "n"
-            if (n == undefined) {//нода не найдена, треба создать новую
+            if (n === undefined) {//нода не найдена, треба создать новую
                 n = new TNode(p);
                 n.parent = node;//сделал ссылку на родителя ноды
                 node.children.push(n);//родителю добавил ноду в дети
@@ -186,14 +186,14 @@ function getSvgTransfList (attr: Array<string>): Array<TSvgTransformList>{
     if (attr == null) return attr;
     var i = attr.length;
     var arr: Array<TSvgTransformList> = [];
-    while (i != 0) {
+    while (i !== 0) {
         i--;
         //получил строку вида "translate(158.598,70.8661)" или "rotate(90)"
         //и выделяю тип трансформации и все циферки используя разделители " ", ",","(",")"
         var s = attr[i].split(/[, ()]/);	
         var t:TSvgTransformList = new TSvgTransformList(s[0]);
         for (var j = 1; j < s.length; j++) {//покажу что получил console.warn(s[j]) 
-            if (s[j] != "") 
+            if (s[j] !== "") 
             t.param.push(s[j]);
         }
         arr.push(t);
@@ -209,13 +209,13 @@ function getSvgTransfList (attr: Array<string>): Array<TSvgTransformList>{
 function getSvgTransfStrArr (s: string): Array<string>{
     const aTrs = ['translate','rotate','scale'];//массив ключевых слов трансформаций  (ещё есть matrix)
     var res: Array<string> = [];//тут будут строки трансформаций (потом их разделю на тип и параметры (которые в скобках))
-    if (s == null) return res;
+    if (s === null) return res;
     var j = aTrs.length;//я учитываю Три команды трансформации
-    while (j !=0) {//найду вхождения каждой команды так как их может быть несколько
+    while (j !==0) {//найду вхождения каждой команды так как их может быть несколько
             j--;
         var target = aTrs[j]; // цель поиска
         var pos = -1;
-        while ((pos = s.indexOf(target, pos + 1)) != -1) {
+        while ((pos = s.indexOf(target, pos + 1)) !== -1) {
             var ts = s.slice(pos, s.indexOf(')',pos+target.length)+1);//команды трансформации закрываются скобкой ")"
             res.push(ts);
         }
@@ -249,11 +249,11 @@ function getTransformation (s: string,
                                             ): TSvgTransformation
 {
     var result:TSvgTransformation = {dX, dY, angle, sX, sY};
-    if (s != null) {
+    if (s !== null) {
         var aTrStrList: Array<string> = getSvgTransfStrArr(s);//получу массив строк трансформаций
         var a = getSvgTransfList(aTrStrList);
         var i = a.length;
-        while (i !=0) {
+        while (i !==0) {
             i--;
             var o = a[i];
             switch (o.name) {
@@ -303,12 +303,12 @@ function addElemetsToTree(element: any, treeNode: TNode) {
     try {
         (function recurse(currentNode) {
             var i = currentNode.children.length;
-            while (i !=0) {
+            while (i !==0) {
                 i--;
-                if (currentNode.children[i].data == p) {
+                if (currentNode.children[i].data === p) {
                     //найдена нода, родитель заданного элемента
                     //проверить, есть ли в её детях заданный элемент (чтобы не добавлять повторно)
-                    if (currentNode.children.indexOf(element) == -1) {
+                    if (currentNode.children.indexOf(element) === -1) {
                         //такого элемента нет, добавить
                         const n:TNode = new TNode (element);
                         n.parent = currentNode.children[i];
@@ -330,7 +330,7 @@ function addElemetsToTree(element: any, treeNode: TNode) {
 
 function i2Space(i: number) {
     var s = '';
-    while (i !=0){
+    while (i !==0){
         s +='-';
         i--;
     }
@@ -378,7 +378,7 @@ function getTransform(treeNode: TNode){
         }
         var i = currentNode.children.length;
         d++;
-        while (i !=0) {
+        while (i !==0) {
             i--;              
             recurse(currentNode.children[i]);
         }
@@ -412,7 +412,7 @@ function createSvgAvatars(treeNode: TNode) {
         }
         var i = currentNode.children.length;
         d++;
-        while (i !=0) {
+        while (i !==0) {
             i--;
             recurse(currentNode.children[i]);
         }
@@ -424,7 +424,7 @@ function createSvgAvatars(treeNode: TNode) {
 //метод отрисовки полученных Аватаров на заданном Canvas (cnv)
 function drawAvatars (cnv: any, treeNode: TNode) {
     const scr: any = document.getElementById(cnv);
-    if (scr != null) {
+    if (scr !== null) {
         const ctx = scr.getContext('2d');
             var d: number = 0;
             (function recurse(currentNode) {
@@ -438,7 +438,7 @@ function drawAvatars (cnv: any, treeNode: TNode) {
                 }
                 var i: number = currentNode.children.length;
                 d++;
-                while (i !=0) {
+                while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
@@ -450,7 +450,7 @@ function drawAvatars (cnv: any, treeNode: TNode) {
 //метод отрисовки Границ Аватаров на заданном Canvas (cnv)
 function drawAvatarsBounds (cnv: any, treeNode: TNode) {
     const scr: any = document.getElementById(cnv);
-    if (scr != null) {
+    if (scr !== null) {
         const ctx: any = scr.getContext('2d');
             var d: number = 0;
             (function recurse(currentNode) {
@@ -461,7 +461,7 @@ function drawAvatarsBounds (cnv: any, treeNode: TNode) {
                 }
                 var i: number = currentNode.children.length;
                 d++;
-                while (i !=0) {
+                while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
@@ -491,11 +491,11 @@ function addGroupBounds (treeNode: TNode) {
 
 export class TElementAndAttrValue {
     element: any;
-    value: string = '';
+    tag: string = '';
 }
 
 export class TElementAttrObject {
-    value: string = '';
+    tag: string = '';
     model: string = 'text';
 }
 
@@ -519,12 +519,12 @@ export class TSVGGroups {
         //вывод: достиг объекта svg значит закончить поиск.
         this.tree = new TTree('svg');//создание корня (data = 'svg', parent = null, children = [пусто])
         var i = 0; ;//кол-во найденных тегов
-        if (gs.length != 0) {
+        if (gs.length !== 0) {
             i = gs.length;
-            while (i != 0) {
+            while (i !== 0) {
                 i--;
                 //мне интересны объекты g, text, path, rect, ellipse
-                if (['g', 'text', 'path', 'rect', 'ellipse'].indexOf(gs[i].tagName) == -1) {
+                if (['g', 'text', 'path', 'rect', 'ellipse'].indexOf(gs[i].tagName) === -1) {
                     continue;
                 }
                 //выделены только требуемые элементы
@@ -542,7 +542,7 @@ export class TSVGGroups {
             while (i != 0) {
                 i--;
                 //теперь мне интересны объекты text, path, rect, ellipse
-                if (['text', 'path', 'rect', 'ellipse'].indexOf(gs[i].tagName) == -1) {
+                if (['text', 'path', 'rect', 'ellipse'].indexOf(gs[i].tagName) === -1) {
                     continue;
                 }
                 //выделены только требуемые элементы
@@ -583,13 +583,13 @@ export class TSVGGroups {
         try {
             (function recurse(currentNode) {
                 if (currentNode.data.getAttribute != undefined ) {  
-                    if ((s = currentNode.data.getAttribute(attr)) == value) {
+                    if ((s = currentNode.data.getAttribute(attr)) === value) {
                         console.warn('attr:',s);
                         throw(currentNode.data);//Группа-Владелец найдена
                     }
                 }
                 var i: number = currentNode.children.length;
-                while (i !=0) {
+                while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
@@ -613,19 +613,19 @@ export class TSVGGroups {
         console.warn(`TSVGGroups.getElementsAndValuesByAttr: ${attr}`);//
         if (!this.tree) return [];
         const treeNode: TNode = this.tree._root;
-        var value: string = '';
+        var tag: string = '';
         var result: Array<TElementAndAttrValue> = [];
         try {
             (function recurse(currentNode) {
                 const element: any = currentNode.data;
                 if (element.getAttribute != undefined ) {  
-                    if (value = element.getAttribute(attr)) {//ответ не пустая строка
-                        let e: TElementAndAttrValue = { element, value};
+                    if (tag = element.getAttribute(attr)) {//ответ не пустая строка
+                        let e: TElementAndAttrValue = { element, tag};
                         result.push(e);
                     }
                 }
                 var i: number = currentNode.children.length;
-                while (i !=0) {
+                while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
@@ -653,7 +653,7 @@ export class TSVGGroups {
                     }
                 }
                 var i: number = currentNode.children.length;
-                while (i !=0) {
+                while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
@@ -673,11 +673,11 @@ export class TSVGGroups {
         //console.warn(element);
         try {
             (function recurse(currentNode) {
-                if (currentNode.parent != null) {
+                if (currentNode.parent !== null) {
                     //console.log(currentNode.parent);
                     if ('attributes' in currentNode.parent.data){
                         var s = '';
-                        if ((s = currentNode.parent.data.getAttribute('data-id')) != null) {
+                        if ((s = currentNode.parent.data.getAttribute('data-id')) !== null) {
                             console.warn('attr:',s);
                             throw(currentNode.parent);//Группа-Владелец найдена
                         }

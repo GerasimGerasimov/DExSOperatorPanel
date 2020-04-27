@@ -41,7 +41,7 @@ export class TSvgContents {
         for (let element of content.all) {
             if (element.classList.length) {//у элементов имеющих аттрибут "class" classList.length не НОЛЬ
                 aec.push(element);//нашёл, добавляю в массив
-                if (styles.indexOf(element.classList[0]) == -1)//если названия стиля ещё нет в массиве
+                if (styles.indexOf(element.classList[0]) === -1)//если названия стиля ещё нет в массиве
                     styles.push(element.classList[0]); //добавить его туда                
             }
         }
@@ -66,7 +66,7 @@ export class TSvgContents {
     //Перед использованием загруженных SVG переименовывает название стилей чтобы они стали уникальными
     //Название стиля состоит из Key_stXXX
     private renameCSS (key: string, content: any){
-        var stSheet = content.attributes;
+        //var stSheet = content.attributes;
         //console.log(stSheet);
         //var crs = stSheet.cssRules;
         //console.log(crs);

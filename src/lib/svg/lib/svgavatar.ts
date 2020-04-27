@@ -187,7 +187,7 @@ function path2BoundRect(a: Array<TModePoint>): TBoundRect {
 	var x = 0.0;
 	var y = 0.0;
 	var i = a.length;
-	while (i !=0) {
+	while (i !==0) {
 		i--;
 		x = a[i].x;
 		y = a[i].y;
@@ -196,8 +196,8 @@ function path2BoundRect(a: Array<TModePoint>): TBoundRect {
 	}
 	var minX = maxX;
 	var minY = maxY;
-	var i = a.length;
-	while (i !=0) {
+	i = a.length;
+	while (i !==0) {
 		i--;
 		x = a[i].x;
 		y = a[i].y;
@@ -348,14 +348,15 @@ export class TFigurePath extends TFigure  {
 		var s: Array<string> = this.owner.getAttribute('d').split(/ /);
 		//console.warn(s);
 		var i = 0;
-		while (i != s.length) {
+		while (i !== s.length) {
 			var m = s[i++];	//параметр в котором первый символ может быть: "М" или "L" или "A"
 							//	М-это первая точка Мx y
 							//	L - линия Lx y
 							//  А - дуга A rx ry x-axis-rotation large-arc-flag sweep-flag x y
 			var mode = m.charAt(0);
-			var	x = 0;//удаляю первый символ
+			var	x = 0;
 			var y = 0;
+			var p:TPoint = {x:0, y: 0};
 			//отработка М, L, A
 				switch (mode) {
 					case 'M':
@@ -364,7 +365,7 @@ export class TFigurePath extends TFigure  {
 						x = Number(m.slice(1));//удаляю первый символ
 						y = Number(s[i++]);
 						//вращение (rotate) и смещению (translate) координат
-						var p = rotateXY(x,y,this.t.angle);
+						    p = rotateXY(x,y,this.t.angle);
 						x = p.x + this.t.dX;
 						y = p.y + this.t.dY;
 						//console.warn(mode, x, y);
@@ -379,10 +380,10 @@ export class TFigurePath extends TFigure  {
 						var x_axis_rotation = Number(s[i++]);
 						var large_arc_flag  = Number(s[i++]);
 						var sweep_flag      = Number(s[i++]);
-						var x = Number(s[i++]);//XY конца
-						var y = Number(s[i++]);//дуги
+						    x = Number(s[i++]);//XY конца
+						    y = Number(s[i++]);//дуги
 						//вращение (rotate) и смещению (translate) координат
-						var p = rotateXY(x,y,this.t.angle);
+						    p = rotateXY(x,y,this.t.angle);
 						x = p.x + this.t.dX;
 						y = p.y + this.t.dY;
 						let pres: TPathModePoint = {
@@ -523,7 +524,7 @@ function searchSvgViewObjects(svgID: string){
 	var i = g_elements.length;//кол-во найденных элементов
 	var svg_element: any = {};//объект элемента
 	var res: Array<any> = [];//массив найденных элементов
-	while (i != 0) {
+	while (i !== 0) {
 		i--;
 		svg_element = g_elements[i];
 		switch (svg_element.tagName) {
@@ -547,7 +548,7 @@ function createSvgAvatarObjects (aVO: Array<any>): Array<any>{//aVO - масси
 	var res: Array<any> = [];//массив объектов-Аватаров
 	var o: any = {};//объект для SVG элемента
 	var i: number = aVO.length;
-	while (i !=0) {
+	while (i !==0) {
 		i--;
 		o = aVO[i];
 		//console.log(o);
@@ -584,13 +585,11 @@ export class TSVGAvatars {
 	//метод отрисовки полученных Аватаров на заданном Canvas (cnv)
 	public draw (cnv: any) {
 		var scr:any = document.getElementById(cnv);
-		if (scr != null) {
+		if (scr !== null) {
 			var	ctx = scr.getContext('2d');
-			var i = this.arAvatars.length;
-			while (i !=0) {
-				i--;
-				this.arAvatars[i].coFigure.draw(ctx);//вывод на канву
-			}
+			this.arAvatars.forEach((figure:TFigure) => {
+				figure.draw(ctx);
+			})
 		}
 	}
 
@@ -599,18 +598,16 @@ export class TSVGAvatars {
 		var scr: any = document.getElementById(cnv);
 		if (scr != null) {
 			var	ctx = scr.getContext('2d');
-			var i = this.arAvatars.length;
-			while (i !=0) {
-				i--;
-				this.arAvatars[i].coFigure.drawBound(ctx);//вывод на канву
-			}
+			this.arAvatars.forEach((figure:TFigure) => {
+				figure.drawBound(ctx);
+			})
 		}
 	}
 
 	//метод. проверка нахождения точки с заданными координатами XY внутри контура Аватара
 	public inArea (x: number, y: number): any {
 		var i = this.arAvatars.length;
-			while (i !=0) {
+			while (i !==0) {
 				i--;
 					if (this.arAvatars[i].coFigure.inArea(x, y)) {
 						console.warn(this.arAvatars[i]);
@@ -622,7 +619,7 @@ export class TSVGAvatars {
 	//метод. проверка нахождения точки с заданными координатами XY внутри Границы Аватара
 	public inBound (x: number, y: number, tolerance: number): any {
 		var i = this.arAvatars.length;
-			while (i !=0) {
+			while (i !==0) {
 				i--;
 					if (this.arAvatars[i].coFigure.inBound(x, y, tolerance)) {
 						//console.warn(this.arAvatars[i]);

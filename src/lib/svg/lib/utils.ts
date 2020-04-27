@@ -11,18 +11,16 @@ export function  changeSingleQuotesToDouble(attr: string): any {
 //  1) строку с содержимым файла 
 //  2) undefine - если файл по какой-то причине не загрузился
 export function getSyncTextFileContent(fileName: string): string {
-    var s: string ='';
     var req = new XMLHttpRequest();
         req.open("GET", fileName, false);//false - делаю сихронный запрос к http-серверу 
         req.send();
         console.log(req.statusText);
-        if (req.status !=200) {//ошибка
+        if (req.status !==200) {//ошибка
             console.log(`${req.status}':'${req.statusText}`);
             return '';
         }
         else {//получил содержимое файла в виде строки
-            var s = req.responseText; 
-            return s;//да, документ получил. Можно парсить
+            return req.responseText;//да, документ получил. Можно парсить
         }
 }
 

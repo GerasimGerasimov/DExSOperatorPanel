@@ -1,7 +1,7 @@
 import {TSvgContents} from '../svgcontent'
-import TSVGComponent from './TSVGComponent'
+import {TSVGComponent, TSVGComponentArg}  from './TSVGComponent'
 import { svgContents } from '../../svgloadimages';
-
+//TODO менять stege в зависимости от входящего value
 //компоненты на структурной схеме
 
 export default class TSwitch extends TSVGComponent{
@@ -15,22 +15,20 @@ export default class TSwitch extends TSVGComponent{
     private stage: string = 'OFF';
     //private state: any;  //текущее состояние (из stageData) выключателя
     //private _state: any; //предыдущее состояние (чтобы перерисовывать компонент только при изменении состония)
-    constructor (svgElement: any, value: string) {
-        super(svgElement, value);
-    }
-    private getImg(key: string, path?: string) {
-        throw new Error("Method not implemented.");
+    constructor (svgElement: any, tag: string) {
+        super(svgElement, tag);
     }
 
+    public setState(arg:TSVGComponentArg) {
+        const value = arg.value;
+    }
     //функция-отдаёт изображение по ключу из массива SVG-изображений.
-	public getImage(key: string): any {
-        console.log('TSwitchClient.prototype.getImage', key);
+	private getImage(key: string): any {
         return this.svgArray!.getImg(key);
     }
 
 	//Отрисовка компонента в контейнере(если состояние изменилось)
-    public draw(value: string){
-        console.warn('SwDataClientDraw',this.stage);
+    public draw(){
         const container: any = this.SVGconteiner;
         if (container === undefined) return;
         //1) подготовка нового SVG согласно состояния
