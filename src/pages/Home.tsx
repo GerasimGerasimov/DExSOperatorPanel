@@ -20,6 +20,8 @@ export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
   private svgComponents: Array<TSVGComponent> = [];
+  private checkBoxInput: any = React.createRef();
+  @observable checked: boolean = true;
 
   constructor (props: any){
     super(props)
@@ -76,9 +78,17 @@ export default class Home extends Component {
     });
   }
 
+  handleChange(event: any) {
+    this.checked = !this.checked
+  }
+
   render() {
     return(
       <>
+        <input type="checkbox"
+          checked = {this.checked}
+          onClick={this.handleChange.bind(this)}
+          ref = {this.checkBoxInput}/>
         <h1>Home </h1>
         <button type="button" className="btn btn-primary ml-1">
           <span className="badge badge-light bg-success">
