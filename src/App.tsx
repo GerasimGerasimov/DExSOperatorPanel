@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import { Navbar } from './components/containers/Navbar';
 import { About } from './pages/About';
 import { Profile } from './pages/Profile';
+import DeviceSettings from './pages/DeviceSettings';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/about" component={About}/>
+          <Route path="/devsettings" component={DeviceSettings}/>
           <Route path="/profile/:name" component={Profile}/>
         </Switch>
       </div>
