@@ -104,7 +104,7 @@ class TTree {
         var a: Array<any> = [];
             while (true){
                 var parent = e.parentElement;
-                if (parent.tagName == 'svg') break;//поиск завершён
+                if (parent.tagName === 'svg') break;//поиск завершён
                 //найден родитель
                 a.push(parent);//добавляет в конец массива
                 e = parent;
@@ -133,12 +133,6 @@ class TTree {
     }
 }
   
-function getParent(element: any){
-    return element.parentElement;
-}
-
-
-
 //a - массив родителей 'p', c с трансформациями 't' и их потомков
 //treeNode - начальная ветка дерева, куда надо добавить элементы из массива 
 function addArrToTree(a: Array<any>, treeNode: TNode) {
@@ -284,7 +278,7 @@ function getTransformation (s: string,
 function getParentsList (element: any){
     var result: Array<any> = [];
     (function recurse(currentNode) {
-        if (currentNode.parentElement.tagName != 'svg') {
+        if (currentNode.parentElement.tagName !== 'svg') {
             //добавление в список
             result.splice(0,0,currentNode.parentElement);
             recurse(currentNode.parentElement);//запускаю рекурсию
@@ -314,10 +308,10 @@ function addElemetsToTree(element: any, treeNode: TNode) {
                         n.parent = currentNode.children[i];
                         currentNode.children[i].children.push(n);
                         //как выйти из циков и рекурсии?
-                        throw "function addElemetsToTree parent is founded, element added";
+                        throw new Error ("function addElemetsToTree parent is founded, element added");
                         }
                     //надо выйти из цикла и рекурсии
-                    throw "function addElemetsToTree parent is founded, element exsisted";
+                    throw new Error ("function addElemetsToTree parent is founded, element exsisted");
                 }
                 recurse(currentNode.children[i]);
             }
@@ -328,6 +322,7 @@ function addElemetsToTree(element: any, treeNode: TNode) {
     }        
 }
 
+/*
 function i2Space(i: number) {
     var s = '';
     while (i !==0){
@@ -336,21 +331,18 @@ function i2Space(i: number) {
     }
     return s;
 }
-
+*/
 //обход дерева с целью вычисления смещений
 //от корня дерева, применяет к каждому узлу translate, rotate, scale
 //к узлам добавляет вычесленную для него трансформацию
 //и какой по счёту от корня
 function getTransform(treeNode: TNode){
-    var d: number = 0;
     (function recurse(currentNode: any) {
         var s: string='';
-        var id: string = '';
         var t: TSvgTransformation;
         try {
             s = currentNode.data.getAttribute('transform');
-            id = currentNode.data.getAttribute('id');
-            throw 'getTransform.Error';
+            throw new Error('getTransform.Error');
         }
         catch(error) {
         }
@@ -362,34 +354,21 @@ function getTransform(treeNode: TNode){
         catch(error) {
             p = new TSvgTransformation();
         }
-        //
         t = getTransformation (s, p.dX, p.dY,//чтобы не изменять parentTransform
-                                    p.angle,
-                                    p.sX, p.sY);
+                                p.angle,
+                                p.sX, p.sY);
         currentNode.t = t;
-        //console.log(i2Space(d)+currentNode.data.tagName+'.'+id+':'+s, currentNode.t);
-        try {
-            //console.log(i2Space(d)+'parent:'+
-            //            currentNode.parent.data.getAttribute('id')+
-            //                ':',currentNode.parent.t);
-            //console.error(i2Space(d)+currentNode.data.getAttribute('scada:id'));
-        }
-        catch(e) {
-        }
         var i = currentNode.children.length;
-        d++;
         while (i !==0) {
             i--;              
             recurse(currentNode.children[i]);
         }
-        d--;
     })(treeNode);
 }
 
 //создание аватаров элементов
 function createSvgAvatars(treeNode: TNode) {
     console.warn('createSvgAvatars');
-    var d: number = 0;
     (function recurse(currentNode) {
         try {
             switch (currentNode.data.tagName) {
@@ -411,12 +390,10 @@ function createSvgAvatars(treeNode: TNode) {
         catch (e){
         }
         var i = currentNode.children.length;
-        d++;
         while (i !==0) {
             i--;
             recurse(currentNode.children[i]);
         }
-        d--;
     })(treeNode);
 }
 
@@ -426,23 +403,17 @@ function drawAvatars (cnv: any, treeNode: TNode) {
     const scr: any = document.getElementById(cnv);
     if (scr !== null) {
         const ctx = scr.getContext('2d');
-            var d: number = 0;
             (function recurse(currentNode) {
                 try {
                 currentNode.data.coFigure.draw(ctx);
-                //console.log(i2Space(d)+currentNode.data.tagName+':',
-                //                currentNode.data.coFigure,
-                //                    currentNode.t);
                 }
                 catch (error){
                 }
                 var i: number = currentNode.children.length;
-                d++;
                 while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
-                d--;
             })(treeNode);	
     }		
 }
@@ -452,7 +423,6 @@ function drawAvatarsBounds (cnv: any, treeNode: TNode) {
     const scr: any = document.getElementById(cnv);
     if (scr !== null) {
         const ctx: any = scr.getContext('2d');
-            var d: number = 0;
             (function recurse(currentNode) {
                 try {
                 currentNode.data.coFigure.drawBound(ctx);
@@ -460,12 +430,10 @@ function drawAvatarsBounds (cnv: any, treeNode: TNode) {
                 catch (e){
                 }
                 var i: number = currentNode.children.length;
-                d++;
                 while (i !==0) {
                     i--;
                     recurse(currentNode.children[i]);
                 }
-                d--;
             })(treeNode);	
     }		
 }
@@ -485,9 +453,9 @@ function drawAvatarsBounds (cnv: any, treeNode: TNode) {
 //Потом выявить его родителя - это будет группа в которой находится элемент.
 
 //сканирует группы, добавляет к ним объект Bounds
-function addGroupBounds (treeNode: TNode) {
-
-}
+//function addGroupBounds (treeNode: TNode) {
+//
+//}
 
 export class TElementAndAttrValue {
     element: any;
@@ -501,7 +469,7 @@ export class TElementAttrObject {
 
 export class TSVGTemplateElement {
     element: any;
-    attr: TElementAttrObject = new TElementAttrObject;
+    attr: TElementAttrObject = new TElementAttrObject();
 }
 
 export class TSVGGroups {
@@ -537,9 +505,9 @@ export class TSVGGroups {
         }
         //теперь добавить к родителям их потомков - графические элементы
         i = 0; ;//
-        if (gs.length != 0) {
+        if (gs.length !== 0) {
             i = gs.length;
-            while (i != 0) {
+            while (i !== 0) {
                 i--;
                 //теперь мне интересны объекты text, path, rect, ellipse
                 if (['text', 'path', 'rect', 'ellipse'].indexOf(gs[i].tagName) === -1) {
@@ -582,7 +550,7 @@ export class TSVGGroups {
         var s: string = '';
         try {
             (function recurse(currentNode) {
-                if (currentNode.data.getAttribute != undefined ) {  
+                if (currentNode.data.getAttribute !== undefined ) {  
                     if ((s = currentNode.data.getAttribute(attr)) === value) {
                         console.warn('attr:',s);
                         throw(currentNode.data);//Группа-Владелец найдена
@@ -618,8 +586,8 @@ export class TSVGGroups {
         try {
             (function recurse(currentNode) {
                 const element: any = currentNode.data;
-                if (element.getAttribute != undefined ) {  
-                    if (tag = element.getAttribute(attr)) {//ответ не пустая строка
+                if (element.getAttribute !== undefined ) {  
+                    if ((tag = element.getAttribute(attr))) {//ответ не пустая строка
                         let e: TElementAndAttrValue = { element, tag};
                         result.push(e);
                     }

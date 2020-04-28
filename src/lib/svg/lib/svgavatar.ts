@@ -87,11 +87,11 @@ export class ASvgTransf {
 		const aTrs = ['translate','rotate','scale'];//массив ключевых слов трансформаций  (ещё есть matrix)
 		var res: Array<string> = [];//тут будут строки трансформаций (потом их разделю на тип и параметры (которые в скобках))
 		var j: number = aTrs.length;//я учитываю Три команды трансформации
-		while (j !=0) {//найду вхождения каждой команды так как их может быть несколько
+		while (j !==0) {//найду вхождения каждой команды так как их может быть несколько
 			j--;
 			var target: string = aTrs[j]; // цель поиска
 			var pos: number = -1;
-			while ((pos = s.indexOf(target, pos + 1)) != -1) {
+			while ((pos = s.indexOf(target, pos + 1)) !== -1) {
 				var ts = s.slice(pos, s.indexOf(')',pos+target.length)+1);//команды трансформации закрываются скобкой ")"
 				res.push(ts);
 			}
@@ -106,11 +106,11 @@ export class ASvgTransf {
 	//	angle	-	угол поворота
 	//	sX, sY	-	масштаб по осям
 	getTransformation (): TTransformation {
-		if (this._trString != undefined) {
+		if (this._trString !== undefined) {
 			this.aTrStrList = this.getSvgTransfStrArr(this._trString);//получу массив строк трансформаций
 			this.getSvgTransfList(this.aTrStrList);
 			var i = this.arr.length;
-			while (i !=0) {
+			while (i !==0) {
 				i--;
 				var o = this.arr[i];
 				switch (o.name) {
@@ -140,7 +140,7 @@ export class ASvgTransf {
 		//на выходе вернуть массив со списком объектов трансформации
 		var i: number = sattr.length;
 		this.arr = [];
-		while (i != 0) {
+		while (i !== 0) {
 			i--;
 			//получил строку вида "translate(158.598,70.8661)" или "rotate(90)"
 			//и выделяю тип трансформации и все циферки используя разделители " ", ",","(",")"
@@ -148,7 +148,7 @@ export class ASvgTransf {
 			//console.warn(s);
 			var t = new TSvgTransformList(s[0]);
 			for (var j = 1; j < s.length; j++) {//покажу что получил console.warn(s[j]) 
-				if (s[j] != "") 
+				if (s[j] !== "") 
 				t.param.push(s[j]);
 			}
 			//console.warn(t);
@@ -162,7 +162,7 @@ export class ASvgTransf {
 //из строки такого типа transform="translate(158.598,70.8661) rotate(90) translate(25.3701,-5.66929)"
 //перечень трансформаций разделён пробелами (даже для красоты надо запретить себе исползовать пробелы в трансформациях)
 function getSvgParentTransformation(parent: any): TTransformation{
-	if (parent != undefined) {
+	if (parent !== undefined) {
 		var p: any = parent.getAttribute('transform');//поиск аттрибута transform, в s будет строка аттрибута
 		if (p != null) {//у объекта есть родитель (элемент более высокго уровня)
 			var aSvgTransf = new ASvgTransf(p);

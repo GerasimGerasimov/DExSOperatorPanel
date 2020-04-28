@@ -206,7 +206,7 @@
 			<g id="shape116-155" transform="translate(19.8425,2.84217E-014)">
 				<title>Напряжение возбуждения</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="{'tag':'Uexc'}">---</text>		</g>
+				<text x="0" y="233.34" class="st5" data-id="{'tag':'Uexc','fraction':'1'}">---</text>		</g>
 		</g>
 		<g id="group104-120" transform="translate(79.3701,-186.929)">
 			<g id="shape89-121">
@@ -236,7 +236,7 @@
 			<g id="shape105-138" transform="translate(19.8425,2.84217E-014)">
 				<title>Угол Фи</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="-0" y="233.34" class="st5" data-id="{'tag':'Fi'}">---</text>			</g>
+				<text x="-0" y="233.34" class="st5" data-id="{'tag':'Fi','fraction':'2'}">---</text>			</g>
 		</g>
 		<g id="group110-141" transform="translate(79.3701,-161.417)">
 			<g id="shape92-142">
@@ -296,7 +296,7 @@
 			<g id="shape113-195" transform="translate(19.8425,0)">
 				<title>Ток возбуждения</title>
 				<rect x="0" y="226.614" width="34.0157" height="8.66142" class="st2"/>
-				<text x="0" y="233.34" class="st5" data-id="{'tag':'Iexc'}">---</text>			</g>
+				<text x="0" y="233.34" class="st5" data-id="{'tag':'Iexc','fraction':'1'}">---</text>			</g>
 		</g>
 		<g id="shape131-198" transform="translate(22.6772,-39.685)">
 			<title>Лист.131</title>

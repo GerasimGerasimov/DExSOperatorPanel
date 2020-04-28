@@ -20,10 +20,6 @@ export default class Home extends Component {
   @observable Ustat: string = '';
   @observable Iexc: string = '';
   private svgComponents: Array<TSVGComponent> = [];
-  private checkBoxMainSwitch: any = React.createRef();
-  private checkBoxLinkAvail: any = React.createRef();
-  @observable MainSwitch: boolean = true;
-  @observable LinkAvail: boolean = true;
 
   constructor (props: any){
     super(props)
@@ -73,32 +69,16 @@ export default class Home extends Component {
     Elements.forEach((item: TSVGTemplateElement) => {
       const arg: TSVGComponentInitialArgs = {
         element: item.element,
-        tag: item.attr.tag
+        ...item.attr
       }
-      const o: TSVGComponent | undefined = createSVGComponent(item.attr.model, arg);
+      const o: TSVGComponent | undefined = createSVGComponent(arg);
       if (o) this.svgComponents.push(o);
     });
-  }
-
-  handleMainSwitch(event: any) {
-    this.MainSwitch = !this.MainSwitch
-  }
-
-  handleLinkAvail(event: any) {
-    this.LinkAvail = !this.LinkAvail
   }
 
   render() {
     return(
       <>
-        <input type="checkbox"
-          checked = {this.MainSwitch}
-          onClick={this.handleMainSwitch.bind(this)}
-          ref = {this.checkBoxMainSwitch}/>
-        <input type="checkbox"
-          checked = {this.LinkAvail}
-          onClick={this.handleLinkAvail.bind(this)}
-          ref = {this.checkBoxLinkAvail}/>
         <h1>Home </h1>
         <button type="button" className="btn btn-primary ml-1">
           <span className="badge badge-light bg-success">
@@ -118,5 +98,3 @@ export default class Home extends Component {
     )
   }
 }
-
-//TODO округление сверхмалых чисел типа вот такого 5.877471754111438e-39

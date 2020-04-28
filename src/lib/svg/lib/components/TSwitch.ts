@@ -1,6 +1,7 @@
 import {TSvgContents} from '../svgcontent'
 import {TSVGComponent, TSVGComponentArg}  from './TSVGComponent'
 import { svgContents } from '../../svgloadimages';
+import { TSVGComponentInitialArgs } from './svgCompFabrica';
 //TODO менять stege в зависимости от входящего value
 //компоненты на структурной схеме
 
@@ -9,8 +10,8 @@ export default class TSwitch extends TSVGComponent{
     private svgArray: TSvgContents = svgContents;//массива SVG изображений с доступом по ключу
     private stage: string | undefined = undefined;
  
-    constructor (svgElement: any, tag: string) {
-        super(svgElement, tag);
+    constructor (args: TSVGComponentInitialArgs) {
+        super(args);
     }
 
     public setState(arg:TSVGComponentArg) {
