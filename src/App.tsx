@@ -13,9 +13,9 @@ function App() {
       <Navbar/>
       <div className="container pt-4">
         <Switch>
+          <Route path="/devsettings" component={DeviceSettings}/>
           <Route path="/" exact component={Home}/>
           <Route path="/about" component={About}/>
-          <Route path="/devsettings" component={DeviceSettings}/>
           <Route path="/profile/:name" component={Profile}/>
         </Switch>
       </div>
