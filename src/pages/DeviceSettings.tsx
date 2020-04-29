@@ -3,32 +3,84 @@ import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
 import {deviceStore, TDeviceStore} from '../store/devices/devices'
 
+class TPageContent {
+  name:string = '';
+  title: string = '';
+  parameters: Array<string> = [];
+}
+
 @observer
 export default class DeviceSettings extends Component {
 
+  private PagesMap: Map<string, TPageContent>;
+
   constructor (props: any){
     super(props)
+    this.PagesMap = new Map<string, TPageContent>();
+    const listItems:Array<string> = this.loadLinesFromBuffer(DEVICE_PAGES);
+    this.parsePagesArrayToMap(listItems);
+    const Items = Array.from(this.PagesMap, (item: any) => item[1].title);
+    console.log(Items);
+  }
+
+  private gerArrFromIniString(ini: string): Array<string> {
+    let res:Array<string>=[];
+    let i = ini.indexOf('=');
+    res.push(ini.slice(0,i));// pn
+    const _ini:Array<string> = ini.slice(i+1).split(/[/]/);// получил массив
+    _ini.splice(_ini.length-1,1);
+    res = res.concat(_ini);
+    return res;
+  }
+
+  private getPageContent(iniStr:string): TPageContent {
+    const args:Array<string> = this.gerArrFromIniString(iniStr)
+    const res: TPageContent = new TPageContent();
+    res.name = args[0];
+    res.title = args[1];
+    //res.parameters = argStr[2];
+    return res;
+  }
+
+  private parsePagesArrayToMap(PagesArray: Array<string>) {
+    PagesArray.forEach((item: string) => { 
+        if (item[0] !== ';') {//если не комментарий
+            let page = this.getPageContent(item);// получаю объект параметра
+                let key: string = page.name;//до добавляю в карту
+                this.PagesMap.set(key, page);
+            }
+    })
+  }
+
+  private loadLinesFromBuffer(buff:any): Array<string>{      
+    return buff.toString().split("\n").
+                    map((value: string): string => value.trim()).
+                        filter(String);
   }
 
   render() {
+    const listItems = Array.from(this.PagesMap.values(), (item: TPageContent) =>
+      <li>{item.title}</li>
+    );
+
     return(
       <>
         <h1>Settings</h1>
         <button type="button" className="btn btn-primary ml-1">
-          <span className="badge badge-light bg-success">
-          </span>
           <span className="badge badge-light bg-warning ml-1">
             {deviceStore.count}
           </span>
         </button>
+        <div className="text-left">
+          <ul>{listItems}</ul>
+        </div>
       </>
     )
   }
 }
 
-/*
-[PAGES]
-p0=Самовозбуждение/FLASH:SelfExciteEnable,FLASH:Ready_GS_ON/
+const DEVICE_PAGES: string = 
+`p0=Самовозбуждение/FLASH:SelfExciteEnable,FLASH:Ready_GS_ON/
 p1=Задания автоматического режима/RAM:Usgz,RAM:Stz,RAM:UstStC,RAM:Ustat,FLASH:zUs,FLASH:zSt/
 p2=Выходные параметры/RAM:Iexc,RAM:Ustat,RAM:Istat,RAM:Fi,RAM:Ssg,RAM:Psg,RAM:Qsg,RAM:Freq,RAM:Usg_ab/
 p3=Готовность/RAM:iReady,RAM:iPCSB_QF1,RAM:iCCSB_QF5,RAM:DExS_PWR_OK,RAM:iSwState,RAM:FAULT,RAM:TestMode/
@@ -45,5 +97,4 @@ p13=Начальное возбуждение/FLASH:IexcTest,FLASH:fIexcStart,FL
 p14=Контроль напряжения статора/RAM:Ustat,RAM:UstLow,RAM:UstFail,FLASH:UstNom,FLASH:UstLowReset,FLASH:UstLowSet,FLASH:UstFailReset,FLASH:UstFailSet/
 p15=Коэффициенты регулятора/FLASH:KUst,FLASH:KIexc,FLASH:Ti,CD:TfUstat,CD:TfIload,CD:TfFi/
 p16=Изоляция/RAM:RINSL,RAM:R_INSL_LOW,RAM:R_INSL_FLT,FLASH:RInslLow,FLASH:RInslFlt,FLASH:RInslUp,FLASH:RInslFltEnable/
-
-*/
+`
