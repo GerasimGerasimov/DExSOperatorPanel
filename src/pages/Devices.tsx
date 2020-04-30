@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import { Switch, Route, NavLink } from 'react-router-dom';
-import DeviceSettings from './DeviceSettings';
+import {NavLink } from 'react-router-dom';
 
 class TPageContent {
   name:string = '';
@@ -62,7 +61,7 @@ export default class Devices extends Component {
     const listItems = Array.from(this.PagesMap.values(),
       (item: TPageContent) => {
           const {name, title} = item;
-          const url: string = `/devsettings/${name.toLowerCase()}/`;
+          const url: string = `/devices/${name.toLowerCase()}/`;
           return (
             <NavLink
                 className="nav-link"
