@@ -6,6 +6,7 @@ import { Navbar } from './components/containers/Navbar';
 import { About } from './pages/About';
 import { Profile } from './pages/Profile';
 import DeviceSettings from './pages/DeviceSettings';
+import Devices from './pages/Devices';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Navbar/>
       <div className="container pt-4">
         <Switch>
-          <Route path="/devsettings" component={DeviceSettings}/>
+          <Route path="/devices" component={Devices}/>
+          <Route path="/devices/:devname" component={DeviceSettings}/>
           <Route path="/" exact component={Home}/>
           <Route path="/about" component={About}/>
           <Route path="/profile/:name" component={Profile}/>

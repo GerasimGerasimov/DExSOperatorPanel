@@ -38,6 +38,8 @@ export default class DeviceSettings extends Component {
     const res: TPageContent = new TPageContent();
     res.name = args[0];
     res.title = args[1];
+    //TODO распарсить в списки RAM/FLASH/CD
+    //превратить в теги U1>U1:RAM>data>Iexc
     //res.parameters = argStr[2];
     return res;
   }
@@ -60,7 +62,7 @@ export default class DeviceSettings extends Component {
 
   render() {
     const listItems = Array.from(this.PagesMap.values(), (item: TPageContent) =>
-      <li>{item.title}</li>
+      <li key={item.name}>{item.title}</li>
     );
 
     return(

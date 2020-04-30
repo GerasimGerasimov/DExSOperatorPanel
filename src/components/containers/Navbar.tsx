@@ -15,6 +15,9 @@ export const Navbar:React.FunctionComponent = ({}) => (
             </li>
             <li className="nav-item">
                 <NavLink to="/devsettings" className="nav-link">Settings</NavLink>
+            </li>
+            <li className="nav-item">
+                <NavLink to="/devices" className="nav-link">Devices</NavLink>
             </li>            
         </ul>
     </nav>
