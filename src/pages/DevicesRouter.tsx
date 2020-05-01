@@ -1,5 +1,6 @@
 //https://stackoverrun.com/ru/q/11548996
 import React, {Component} from 'react'
+import { NavLink } from 'react-router-dom';
 
 class TPageContent {
   name:string = '';
@@ -10,18 +11,17 @@ class TPageContent {
 export default class DevicesRouter extends Component {
 
   private PagesMap: Map<string, TPageContent>;
+  private history: any = {};
 
   constructor (props: any){
     super(props)
-    const {location} = props
-    const {pathname} = location
-    const {devname} = props.match.params;
-    console.log('DevicesRouter', devname)
+    this.history = props.history || {}
+    const devname: string = props.match.params.devname || '';
+    const pages: any = DEVICE_PAGES;
+    const devicePage = pages[devname] || ''
     this.PagesMap = new Map<string, TPageContent>();
-    const listItems:Array<string> = this.loadLinesFromBuffer(DEVICE_PAGES);
+    const listItems:Array<string> = this.loadLinesFromBuffer(devicePage);
     this.parsePagesArrayToMap(listItems);
-    const Items = Array.from(this.PagesMap, (item: any) => item[1].title);
-    console.log(Items);
   }
 
   private gerArrFromIniString(ini: string): Array<string> {
@@ -62,22 +62,35 @@ export default class DevicesRouter extends Component {
   }
 
   render() {
-    const listItems = Array.from(this.PagesMap.values(), (item: TPageContent) =>
-      <li key={item.name}>{item.title}</li>
-    );
+    const listItems = Array.from(this.PagesMap.values(),
+      (item: TPageContent) => {
+          const {name, title} = item;
+          const url: string = `/devices/${name.toLowerCase()}/`;
+          return (
+            <NavLink
+                className="nav-link"
+                key={name}
+                to={{pathname:`${url}`}}
+                >
+                {title}
+            </NavLink>
+          )
+    });
 
     return(
       <>
         <h1>Settings</h1>
         <div className="text-left">
-          <ul>{listItems}</ul>
+          <React.Fragment>
+            <ul>{listItems}</ul>
+          </React.Fragment>
         </div>
       </>
     )
   }
 }
 
-const DEVICE_PAGES: string = 
+const DEXS_PAGES: string = 
 `p0=Самовозбуждение/FLASH:SelfExciteEnable,FLASH:Ready_GS_ON/
 p1=Задания автоматического режима/RAM:Usgz,RAM:Stz,RAM:UstStC,RAM:Ustat,FLASH:zUs,FLASH:zSt/
 p2=Выходные параметры/RAM:Iexc,RAM:Ustat,RAM:Istat,RAM:Fi,RAM:Ssg,RAM:Psg,RAM:Qsg,RAM:Freq,RAM:Usg_ab/
@@ -96,3 +109,24 @@ p14=Контроль напряжения статора/RAM:Ustat,RAM:UstLow,RA
 p15=Коэффициенты регулятора/FLASH:KUst,FLASH:KIexc,FLASH:Ti,CD:TfUstat,CD:TfIload,CD:TfFi/
 p16=Изоляция/RAM:RINSL,RAM:R_INSL_LOW,RAM:R_INSL_FLT,FLASH:RInslLow,FLASH:RInslFlt,FLASH:RInslUp,FLASH:RInslFltEnable/
 `
+
+const ICM_PAGES: string = 
+`p0=Самовозбуждение/FLASH:SelfExciteEnable,FLASH:Ready_GS_ON/
+p1=Задания автоматического режима/RAM:Usgz,RAM:Stz,RAM:UstStC,RAM:Ustat,FLASH:zUs,FLASH:zSt/
+p2=Выходные параметры/RAM:Iexc,RAM:Ustat,RAM:Istat,RAM:Fi,RAM:Ssg,RAM:Psg,RAM:Qsg,RAM:Freq,RAM:Usg_ab/
+p3=Готовность/RAM:iReady,RAM:iPCSB_QF1,RAM:iCCSB_QF5,RAM:DExS_PWR_OK,RAM:iSwState,RAM:FAULT,RAM:TestMode/
+p4=Аварии/RAM:GlobalError,RAM:FieldFail,RAM:UstMaxFlt,RAM:NotUpVoltage,RAM:IttMaxFlt,RAM:IexcMaxFlt,RAM:FltMPS,RAM:FltCCSB,RAM:FSAsyncRun,RAM:QminAsyncRun,RAM:FLongForce,RAM:FreqMinFlt,RAM:R_INSL_FLT,RAM:IstOV/
+p5=Предупреждения/RAM:R_INSL_LOW,RAM:UstLow,RAM:UstFail,RAM:i2tR,RAM:UstMaxFlt/
+`
+
+const THCNT_PAGES: string = 
+`p0=Самовозбуждение/FLASH:SelfExciteEnable,FLASH:Ready_GS_ON/
+p1=Задания автоматического режима/RAM:Usgz,RAM:Stz,RAM:UstStC,RAM:Ustat,FLASH:zUs,FLASH:zSt/
+p2=Выходные параметры/RAM:Iexc,RAM:Ustat,RAM:Istat,RAM:Fi,RAM:Ssg,RAM:Psg,RAM:Qsg,RAM:Freq,RAM:Usg_ab/
+p3=Готовность/RAM:iReady,RAM:iPCSB_QF1,RAM:iCCSB_QF5,RAM:DExS_PWR_OK,RAM:iSwState,RAM:FAULT,RAM:TestMode/
+`
+const DEVICE_PAGES = {
+  dexs:  DEXS_PAGES,
+  thcnt: THCNT_PAGES,
+  icm:   ICM_PAGES
+}
