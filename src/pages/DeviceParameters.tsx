@@ -7,7 +7,7 @@ import { autorun, observable, extendObservable } from 'mobx';
 @observer
 export default class DeviceParameters extends Component {
 
-  @observable private parameters  = new Map<string, TParameter>();
+  private parameters  = new Map<string, TParameter>();
 
   constructor (props: any){
     super(props)
