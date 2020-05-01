@@ -68,7 +68,18 @@ export class TDeviceStore {
         }, 1000);
     }
 
-
+    // U1>U1:RAM>data>Iexc
+    public getTagData(tag: string) {
+        const keyList: Array<string> = tag.split('>')
+        var o: any = this.pureDeviceData;;
+        var value: any;
+        keyList.forEach((key:string)=>{
+        value = key in o ? o[key] : undefined;
+        if (!value) return '';
+        o = value;
+        })
+        return value;
+    }
 }
 
 export const deviceStore:TDeviceStore = new TDeviceStore();

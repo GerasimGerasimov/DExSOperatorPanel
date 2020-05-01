@@ -29,25 +29,12 @@ export default class Home extends Component {
   private putValuesToSVGTemplate(changed: any){
     this.svgComponents.forEach((item: TSVGComponent) => {
       let value: TSVGComponentArg = {
-          value:this.getTagData(`U1>U1:RAM>data>${item.Tag}`),
+          value:deviceStore.getTagData(`U1>U1:RAM>data>${item.Tag}`),
           valid: true
         }
       item.setState(value);
       item.draw();
     })
-  }
-
-  // U1>U1:RAM>data>Iexc
-  private getTagData(tag: string) {
-    const keyList: Array<string> = tag.split('>')
-    var o: any = deviceStore.pureDeviceData;;
-    var value: any;
-    keyList.forEach((key:string)=>{
-      value = key in o ? o[key] : undefined;
-      if (!value) return '';
-      o = value;
-    })
-    return value;
   }
  
   componentDidMount(){

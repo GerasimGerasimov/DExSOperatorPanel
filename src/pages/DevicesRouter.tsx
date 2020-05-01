@@ -1,6 +1,6 @@
 //https://stackoverrun.com/ru/q/11548996
 import React, {Component} from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { DEVICE_PAGES } from '../assets/datasets/devicespages';
 import { TDevicePageContent, TDevicePagesContent } from '../lib/devicepagecontent/devicepagecontent';
 
@@ -8,13 +8,14 @@ export default class DevicesRouter extends Component {
 
   private PagesMap: TDevicePagesContent;
   private history: any = {};
+  private devname: string = '';
 
   constructor (props: any){
     super(props)
     this.history = props.history || {}
-    const devname: string = props.match.params.devname || '';
+    this.devname = props.match.params.devname || '';
     const pages: any = DEVICE_PAGES;
-    const devicePage = pages[devname] || ''
+    const devicePage = pages[this.devname] || ''
     this.PagesMap = new TDevicePagesContent(devicePage);
   }
 
@@ -22,15 +23,20 @@ export default class DevicesRouter extends Component {
     const listItems = Array.from(this.PagesMap.Values,
       (item: TDevicePageContent) => {
           const {name, title} = item;
-          const url: string = `/devices/${name.toLowerCase()}/`;
+          const url: string = `/devices/${this.devname}/${name.toLowerCase()}/`;
           return (
-            <NavLink
+            <Link
                 className="nav-link"
                 key={name}
-                to={{pathname:`${url}`}}
+                to={{
+                  pathname:`${url}`,
+                  state: {
+                    deviceParameters: item.parameters
+                  }
+                }}
                 >
                 {title}
-            </NavLink>
+            </Link>
           )
     });
 

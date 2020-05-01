@@ -1,4 +1,4 @@
-export function gerArrFromIniString(ini: string): Array<string> {
+export function getArrFromIniString(ini: string): Array<string> {
     let res:Array<string>=[];
     let i = ini.indexOf('=');
     res.push(ini.slice(0,i));// pn
@@ -6,6 +6,10 @@ export function gerArrFromIniString(ini: string): Array<string> {
     _ini.splice(_ini.length-1,1);
     res = res.concat(_ini);
     return res;
+}
+
+export function getArrFromDelimitedStr(s: string, delimiter: string = ' '): Array<string> {
+  return s.slice().split(delimiter);
 }
 
 export function loadLinesFromBuffer(buff:any): Array<string>{      

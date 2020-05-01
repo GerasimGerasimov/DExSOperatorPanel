@@ -7,6 +7,7 @@ import { About } from './pages/About';
 import { Profile } from './pages/Profile';
 import Devices from './pages/Devices';
 import DevicesRouter from './pages/DevicesRouter';
+import DeviceParameters from './pages/DeviceParameters';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <Navbar/>
       <div className="container pt-4">
         <Switch>
-          <Route path="/" exact component={Home}/>          
-          <Route path="/devices" exact component={Devices}/>
-          <Route path="/devices/:devname" component={DevicesRouter}/>
+          <Route exact path="/" component={Home}/>          
+          <Route exact path="/devices" component={Devices}/>
+          <Route exact path="/devices/:devname" component={DevicesRouter}/>
+          <Route path="/devices/:devname/:list" component={DeviceParameters}/>
           <Route path="/about" component={About}/>
           <Route path="/profile/:name" component={Profile}/>
         </Switch>

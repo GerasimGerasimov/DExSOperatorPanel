@@ -1,4 +1,4 @@
-import { gerArrFromIniString, loadLinesFromBuffer } from "../util/misc";
+import { getArrFromIniString, loadLinesFromBuffer, getArrFromDelimitedStr} from "../util/misc";
 
 export class TDevicePagesContent {
   private pagesMap: Map<string, TDevicePageContent>;
@@ -29,13 +29,19 @@ export class TDevicePagesContent {
   }
 
   private getPageContent(inistr:string): TDevicePageContent {
-    const args:Array<string> = gerArrFromIniString(inistr)
+    const args:Array<string> = getArrFromIniString(inistr)
     const res: TDevicePageContent = new TDevicePageContent();
-    res.name = args[0];
-    res.title = args[1];
+    let paramstr: string;
+    [res.name, res.title, paramstr] = args;
+    let a: Array<string> = getArrFromDelimitedStr(paramstr, ',');
+    a.forEach((item: string) => {
+      const [section, name] = getArrFromDelimitedStr(item, ':');
+      const p: TParameter = new TParameter(name, section);
+      res.parameters.push(p);
+    })
+
     //TODO распарсить в списки RAM/FLASH/CD
     //превратить в теги U1>U1:RAM>data>Iexc
-    //res.parameters = argStr[2];
     return res;
   }
 
@@ -44,5 +50,20 @@ export class TDevicePagesContent {
 export class TDevicePageContent {
     name:string = '';
     title: string = '';
-    parameters: Array<string> = [];
+    parameters: Array<TParameter> = [];
+}
+
+export class TParameter {
+  name: string = '';
+  section: string = ''
+
+  constructor (name: string, section: string) {
+    this.name = name;
+    this.section = section;
+  }
+
+  //U1>U1:RAM>data>Iexc
+  public getTagPath(u: string): string {
+    return `${u}>${u}:${this.section}>data>${this.name}`
+  }
 }
