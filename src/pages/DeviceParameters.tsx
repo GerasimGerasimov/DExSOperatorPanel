@@ -42,7 +42,7 @@ export default class DeviceParameters extends Component {
                   Array.from(this.parameters.entries(), ([key, item]) => {
                     return (
                       <li key={key}>
-                          {item.value}
+                          {`${item.name}: ${item.value}`}
                       </li>
                     )}
                   )}
