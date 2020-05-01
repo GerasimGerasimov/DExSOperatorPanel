@@ -1,4 +1,6 @@
 import { getArrFromIniString, loadLinesFromBuffer, getArrFromDelimitedStr} from "../util/misc";
+import { observer } from "mobx-react";
+import { observable } from "mobx";
 
 export class TDevicePagesContent {
   private pagesMap: Map<string, TDevicePageContent>;
@@ -56,7 +58,7 @@ export class TDevicePageContent {
 export class TParameter {
   name: string = '';
   section: string = '';
-  title: string = ''
+  @observable value: string = ''
 
   constructor (name: string, section: string) {
     this.name = name;

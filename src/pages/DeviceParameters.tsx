@@ -5,24 +5,16 @@ import {deviceStore} from '../store/devices/devices'
 import { observer } from 'mobx-react';
 import { autorun, observable, extendObservable } from 'mobx';
 
-class TValuedParameter extends TParameter {
-    @observable public value: string = '';
-    constructor(name: string, section: string) {
-        super(name, section)
-    }
-}
-
 @observer
 export default class DeviceParameters extends Component {
 
-  @observable private parameters  = new Map<string, string>();
-  private a: Array<TParameter> = [];
+  @observable private parameters  = new Map<string, TParameter>();
 
   constructor (props: any){
     super(props)
-    this.a = props.location.state.deviceParameters || {};
-    this.a.forEach((item:TParameter)=>{
-        this.parameters.set(item.name, '');
+    const a: Array<TParameter> = props.location.state.deviceParameters || {};
+    a.forEach((item:TParameter)=>{
+        this.parameters.set(`${item.section}-${item.name}`, item);
     })
     autorun(()=>{this.update(deviceStore.changeTime)})
   }
@@ -33,22 +25,12 @@ export default class DeviceParameters extends Component {
   }
 
   private update(changed: any){
-    //console.log(changed);
-    this.a.forEach((item: TParameter) => {
-        item.title = this.getParameters(item.getTagPath('U1'));
-        this.parameters.set(item.name, item.title)
-        //extendObservable(item, {title: this.getParameters(item.getTagPath('U1'))})
-        //console.log(`${item.name}: ${item.value}`)
+    this.parameters.forEach((item: TParameter) => {
+        item.value = this.getParameters(item.getTagPath('U1'));
     })
   }
 
-  getChangeTime(change: any): string {
-    return '';
-  }
-
   render() {
-    console.log('render');
-
     return(
       <>
         <h1>Settings</h1>
@@ -56,10 +38,8 @@ export default class DeviceParameters extends Component {
               <ul>{
                   Array.from(this.parameters.entries(), ([key, item]) => {
                     return (
-                      <li
-                          key={`${key}`}
-                          >
-                          {`${item}`}
+                      <li key={key}>
+                          {item.value}
                       </li>
                     )}
                   )}
