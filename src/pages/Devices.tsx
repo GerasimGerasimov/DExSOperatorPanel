@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {NavLink } from 'react-router-dom';
+import { DEVICE_PAGES } from '../assets/datasets/deviceslist';
 
 class TPageContent {
   name:string = '';
@@ -54,17 +55,5 @@ export default class Devices extends Component {
         </div>
       </>
     )
-  }
-}
-
-const DEVICE_PAGES = {
-  DExS: {
-    title: "Регулятор возбуждения"
-  },
-  iCM: {
-    title: "Коммуникационный модуль"
-  },
-  ThCNT: {
-    title: "Модуль термоконтроля"
   }
 }
