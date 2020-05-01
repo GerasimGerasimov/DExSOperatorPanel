@@ -1,4 +1,3 @@
-//https://stackoverrun.com/ru/q/11548996
 import React, {Component} from 'react'
 import {TParameter } from '../lib/devicepagecontent/devicepagecontent';
 import {deviceStore} from '../store/devices/devices'
@@ -15,13 +14,17 @@ export default class DeviceParameters extends Component {
     const a: Array<TParameter> = props.location.state.deviceParameters || {};
     a.forEach((item:TParameter)=>{
         this.parameters.set(`${item.section}-${item.name}`, item);
+        //добавлю отслеживаемое свойство вручную, чтобы не засорять
+        //класс декораторами Mobx
+        //после extendObservable обязательно надо пользоваться get/set
+        //для Map
+        extendObservable(item, {value:''})
     })
     autorun(()=>{this.update(deviceStore.changeTime)})
   }
 
   private getParameters(tagPath: string): string {
-    const data: string = deviceStore.getTagData(tagPath);
-    return data;
+    return deviceStore.getTagData(tagPath);
   }
 
   private update(changed: any){

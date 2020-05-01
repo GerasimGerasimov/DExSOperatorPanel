@@ -58,7 +58,7 @@ export class TDevicePageContent {
 export class TParameter {
   name: string = '';
   section: string = '';
-  @observable value: string = ''
+  value: string = ''
 
   constructor (name: string, section: string) {
     this.name = name;
