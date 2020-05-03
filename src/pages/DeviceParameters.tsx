@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {TParameter } from '../lib/devicepagecontent/devicepagecontent';
-import {deviceStore} from '../store/devices/devices'
+import {devicesValueStore} from '../store/devices/devices'
 import { observer } from 'mobx-react';
 import { autorun, observable, extendObservable } from 'mobx';
 
@@ -20,11 +20,11 @@ export default class DeviceParameters extends Component {
         //для Map
         extendObservable(item, {value:''})
     })
-    autorun(()=>{this.update(deviceStore.changeTime)})
+    autorun(()=>{this.update(devicesValueStore.changeTime)})
   }
 
   private getParameters(tagPath: string): string {
-    return deviceStore.getTagData(tagPath);
+    return devicesValueStore.getTagData(tagPath);
   }
 
   private update(changed: any){
