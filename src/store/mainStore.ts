@@ -1,9 +1,9 @@
 import {devicesValueStore, TDevicesValueStore} from "./devices/devices";
-import { TDeviceInfoStore, devicesInfoStore } from "./devices/devicesinfo";
+import { TDevicesInfoStore, devicesInfoStore } from "./devices/devicesinfo";
 
 export class mainStore {
     public devicesValueStore: TDevicesValueStore;
-    public devicesInfoStore: TDeviceInfoStore;
+    public devicesInfoStore: TDevicesInfoStore;
     
     constructor (){
         this.devicesValueStore = devicesValueStore;

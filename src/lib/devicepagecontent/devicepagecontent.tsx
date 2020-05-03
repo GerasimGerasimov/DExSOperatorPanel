@@ -5,7 +5,7 @@ import { observable } from "mobx";
 export class TDevicePagesContent {
   private pagesMap: Map<string, TDevicePageContent>;
 
-  constructor(pages:string) {
+  constructor(pages:Array<string>) {
     this.pagesMap = new Map ([... this.getPagesMap(pages)])
   }
 
@@ -13,10 +13,9 @@ export class TDevicePagesContent {
     return this.pagesMap.values();
   }
 
-  private getPagesMap(pages:string): Map<string, TDevicePageContent> {
+  private getPagesMap(pages:Array<string>): Map<string, TDevicePageContent> {
     const res: Map<string, TDevicePageContent> = new Map<string, TDevicePageContent>();
-    const items:Array<string> = loadLinesFromBuffer(pages);
-    this.parsePagesArrayToMap(items, res);
+    this.parsePagesArrayToMap(pages, res);
     return res;
   }
 

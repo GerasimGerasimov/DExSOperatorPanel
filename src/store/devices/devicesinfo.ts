@@ -7,15 +7,25 @@ enum FetchState {
     error   = 'error'
 }
 
-export class TDeviceInfoStore {
 
+export class TDeviceInfoRAW {
+    PositionName: string = '';
+    Description: string = '';
+    Pages: Array<string> = [];
+    Slots: Array<string> = [];
+    Tags: any = {}
+}
+
+export class TDevicesInfoStore {
     @observable state: FetchState = FetchState.done;
-    public pureDeviceData: object = {};
+    public DevicesInfo: Map<string, TDeviceInfoRAW> = new Map<string, TDeviceInfoRAW>();
+
     private autoReloadTimer: any;
 
     constructor() {
+        this.getDevicesInfo();
         //this.tickTimer();
-        this.startAutoReloadData();
+        //this.startAutoReloadData();
     }
 
     @action
@@ -26,21 +36,8 @@ export class TDeviceInfoStore {
             const data = await DeviceController.getDevicesInfo();
             runInAction(()=>{
                 this.state = FetchState.done;
-                console.log(data);
-                /* распарсить в MAP таких объектов
-            res[key] = {
-                PositionName: value.PositionName,
-                Description: value.Tags.Description,
-                Pages: value.Tags.pages,
-                Slots: this.getObjectKeys(value.SlotsDescription),
-                Tags: this.extractTags(value.Tags)
-            }                
-                */
-                //
-                /*
-                this.changeTime = data.time;
-                this.pureDeviceData = data.data;
-                */
+                const DevicesInfo: any = data || {};
+                this.parseDevicesInfoRAWData(DevicesInfo);
             })
         } catch (e) {
             runInAction(()=>{
@@ -52,22 +49,23 @@ export class TDeviceInfoStore {
                 console.log(e);
             })
         }
-        this.startAutoReloadData();
-    }
-    
-    @action
-    private startAutoReloadData() {
-        this.autoReloadTimer = setTimeout(async ()=>{
-            await this.getDevicesInfo()
-        },
-        20)
+        //this.startAutoReloadData();
     }
 
-    private tickTimer(){
-        setInterval(()=>{
-            //this.incCounter();
-        }, 1000);
+    private parseDevicesInfoRAWData(DevicesInfo: any) {
+        console.log(DevicesInfo);
+        for (const key in DevicesInfo) {
+            let info: TDeviceInfoRAW = DevicesInfo[key];
+            //TODO поле Pages может быть пустым, поэтому его надо
+            //"собрать" в Три вкладки
+            this.addDefaultPages(info);
+            this.DevicesInfo.set(key, info);
+        }
+    }
+
+    private addDefaultPages(info: TDeviceInfoRAW) {
+
     }
 }
 
-export const devicesInfoStore:TDeviceInfoStore = new TDeviceInfoStore();
+export const devicesInfoStore:TDevicesInfoStore = new TDevicesInfoStore();

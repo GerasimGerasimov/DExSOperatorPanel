@@ -59,7 +59,7 @@ export class TDevicesValueStore {
         this.autoReloadTimer = setTimeout(async ()=>{
             await this.getDeviceData()
         },
-        20)
+        120)
     }
 
     tickTimer(){
