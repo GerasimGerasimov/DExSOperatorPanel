@@ -25,7 +25,7 @@ export default class DeviceController {
     public static async getDevicesInfo(): Promise<any> {
         try {
             const header: any = {
-                method: 'PUT',
+                method: 'GET',
                 cache: 'no-cache',
                 headers: {
                     'Content-Type':'application/json; charset=utf-8',

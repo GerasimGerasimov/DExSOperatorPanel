@@ -10,7 +10,7 @@ import { loadSVGImages } from './lib/svg/svgloadimages';
 
 const stores = {
   mainStore,
-  DeviceStore: mainStore.deviceStore
+  DeviceStore: mainStore.devicesValueStore
 };
 
 loadSVGImages();

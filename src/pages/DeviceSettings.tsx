@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
-import {deviceStore, TDeviceStore} from '../store/devices/devices'
+import {devicesValueStore, TDevicesValueStore} from '../store/devices/devices'
 
 class TPageContent {
   name:string = '';
@@ -70,7 +70,7 @@ export default class DeviceSettings extends Component {
         <h1>Settings</h1>
         <button type="button" className="btn btn-primary ml-1">
           <span className="badge badge-light bg-warning ml-1">
-            {deviceStore.count}
+            {devicesValueStore.count}
           </span>
         </button>
         <div className="text-left">

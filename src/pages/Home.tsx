@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {inject, observer} from 'mobx-react'
 import {observable, autorun} from 'mobx'
-import {deviceStore, TDeviceStore} from '../store/devices/devices'
+import {devicesValueStore, TDevicesValueStore} from '../store/devices/devices'
 import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement, TElementAttrObject} from '../lib/svg/lib/svggroup'
 import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
@@ -21,13 +21,13 @@ export default class Home extends Component {
 
   constructor (props: any){
     super(props)
-    autorun(()=>{this.putValuesToSVGTemplate(deviceStore.changeTime)})
+    autorun(()=>{this.putValuesToSVGTemplate(devicesValueStore.changeTime)})
   }
 
   private putValuesToSVGTemplate(changed: any){
     this.svgComponents.forEach((item: TSVGComponent) => {
       let value: TSVGComponentArg = {
-          value:deviceStore.getTagData(`U1>U1:RAM>data>${item.Tag}`),
+          value:devicesValueStore.getTagData(`U1>U1:RAM>data>${item.Tag}`),
           valid: true
         }
       item.setState(value);

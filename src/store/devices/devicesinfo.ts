@@ -27,6 +27,16 @@ export class TDeviceInfoStore {
             runInAction(()=>{
                 this.state = FetchState.done;
                 console.log(data);
+                /* распарсить в MAP таких объектов
+            res[key] = {
+                PositionName: value.PositionName,
+                Description: value.Tags.Description,
+                Pages: value.Tags.pages,
+                Slots: this.getObjectKeys(value.SlotsDescription),
+                Tags: this.extractTags(value.Tags)
+            }                
+                */
+                //
                 /*
                 this.changeTime = data.time;
                 this.pureDeviceData = data.data;
