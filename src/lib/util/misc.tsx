@@ -17,3 +17,11 @@ export function loadLinesFromBuffer(buff:any): Array<string>{
                     map((value: string): string => value.trim()).
                         filter(String);
 }
+
+export function isEmpty(obj: Object): boolean {
+  for (let key in obj) {
+    // если тело цикла начнет выполняться - значит в объекте есть свойства
+    return false;
+  }
+  return true;
+}
