@@ -18,7 +18,7 @@ function App() {
           <Route exact path="/" component={Home}/>          
           <Route exact path="/devices" component={Devices}/>
           <Route exact path="/devices/:position" component={DevicesRouter}/>
-          <Route path="/devices/:devname/:list" component={DeviceParameters}/>
+          <Route path="/devices/:position/:list" component={DeviceParameters}/>
           <Route path="/about" component={About}/>
           <Route path="/profile/:name" component={Profile}/>
         </Switch>
