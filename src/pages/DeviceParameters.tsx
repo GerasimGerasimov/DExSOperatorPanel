@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {TParameter } from '../lib/devicepagecontent/devicepagecontent';
 import {devicesValueStore} from '../store/devices/devices'
 import { observer } from 'mobx-react';
-import { autorun, observable, extendObservable } from 'mobx';
+import { autorun, extendObservable } from 'mobx';
 
 @observer
 export default class DeviceParameters extends Component {

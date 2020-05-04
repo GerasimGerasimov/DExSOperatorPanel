@@ -1,6 +1,4 @@
-import { getArrFromIniString, loadLinesFromBuffer, getArrFromDelimitedStr} from "../util/misc";
-import { observer } from "mobx-react";
-import { observable } from "mobx";
+import { getArrFromIniString, getArrFromDelimitedStr} from "../util/commonmisc";
 
 export class TDevicePagesContent {
   private pagesMap: Map<string, TDevicePageContent>;

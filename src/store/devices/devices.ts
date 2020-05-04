@@ -1,5 +1,7 @@
-import {observable, action, autorun, runInAction, computed} from 'mobx';
+import {observable, action, autorun, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
+import {devicesInfoStore} from './devicesinfo'
+import { FetchState } from '../../lib/util/misctypes';
 
 const task = {
     U1:{
@@ -7,12 +9,6 @@ const task = {
     'CD':'ALL',
     'FLASH':'ALL'
     }
-}
-
-enum FetchState {
-    pending = 'pending',
-    done    = 'done',
-    error   = 'error'
 }
 
 export class TDevicesValueStore {
@@ -24,7 +20,17 @@ export class TDevicesValueStore {
 
     constructor() {
         this.tickTimer();
-        this.startAutoReloadData();
+        
+        autorun(()=>{this.isDevicesInfoLoaded(devicesInfoStore.loadState)});
+    }
+
+    private isDevicesInfoLoaded(state: FetchState ){
+        if (state === FetchState.done) {//инфа об устройствах прогрузилась, далее
+            //1. создать запросы
+            const tasks: Array<Object> = devicesInfoStore.createRequests()
+            //2. запустить цикл чтения данных
+            this.startAutoReloadData();
+        }
     }
 
     @action
@@ -83,8 +89,3 @@ export class TDevicesValueStore {
 }
 
 export const devicesValueStore:TDevicesValueStore = new TDevicesValueStore();
-
-/*
-autorun(()=>{
-    console.log('autorun:',deviceStore.count)});
-    */

@@ -1,13 +1,7 @@
-import {observable, action, autorun, runInAction, computed} from 'mobx';
+import {observable, action, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
-import { isEmpty } from '../../lib/util/misc';
-
-enum FetchState {
-    pending = 'pending',
-    done    = 'done',
-    error   = 'error'
-}
-
+import { isEmpty } from '../../lib/util/commonmisc';
+import { FetchState } from '../../lib/util/misctypes';
 
 export class TDeviceInfoRAW {
     PositionName: string = '';
@@ -18,39 +12,49 @@ export class TDeviceInfoRAW {
 }
 
 export class TDevicesInfoStore {
-    @observable state: FetchState = FetchState.done;
+    @observable loadState: FetchState = FetchState.done;
     public DevicesInfo: Map<string, TDeviceInfoRAW> = new Map<string, TDeviceInfoRAW>();
-
-    private autoReloadTimer: any;
 
     constructor() {
         this.getDevicesInfo();
-        //this.tickTimer();
-        //this.startAutoReloadData();
     }
 
     @action
     private async getDevicesInfo(){
-        clearTimeout(this.autoReloadTimer);
-        this.state = FetchState.pending;
+        this.loadState = FetchState.pending;
         try {
             const data = await DeviceController.getDevicesInfo();
             runInAction(()=>{
-                this.state = FetchState.done;
+                this.loadState = FetchState.done;
                 const DevicesInfo: any = data || {};
                 this.parseDevicesInfoRAWData(DevicesInfo);
             })
         } catch (e) {
             runInAction(()=>{
-                this.state = FetchState.error;
-                /*
-                this.changeTime = new Date().toISOString();
-                this.pureDeviceData = {};
-                */
+                this.loadState = FetchState.error;
                 console.log(e);
             })
         }
-        //this.startAutoReloadData();
+    }
+
+    /* после чтения конфигурации устройств,
+       есть информация по кол-ву устройств и слотов в них
+       поэтому можно сформировать массив объектов запросов
+        [ {"U1":{"RAM":"ALL"}}, {"U2":{"FLASH":"ALL"}}
+    */
+    public createRequests(): Array<Object>{
+        const tasks: Array<Object> = [] 
+        for (let [key, value] of this.DevicesInfo) {
+            let info: TDeviceInfoRAW = value;
+            let o: any = {};
+            o[key] = {};
+            for (let tag in info.Tags) {
+                if (!isEmpty(info.Tags[tag]))
+                    o[key][tag.toUpperCase()] = 'ALL'
+            }
+            tasks.push(o);
+        }
+        return tasks;
     }
 
     private parseDevicesInfoRAWData(DevicesInfo: any) {
