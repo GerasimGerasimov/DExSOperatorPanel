@@ -3,34 +3,36 @@ import DeviceController from '../../controllers/devices/device'
 import {devicesInfoStore} from './devicesinfo'
 import { FetchState } from '../../lib/util/misctypes';
 
-const task = {
-    U1:{
-    'RAM':'ALL',
-    'CD':'ALL',
-    'FLASH':'ALL'
-    }
-}
-
 export class TDevicesValueStore {
     @observable count: number = 0;
     @observable changeTime: string = "";
     @observable state: FetchState = FetchState.done;
-    public pureDeviceData: object = {};
+    public pureDeviceData: any = {};
     private autoReloadTimer: any;
+    private Tasks = {
+        index: 0 as number,
+        tasks: [] as Array<object>
+    }
 
     constructor() {
         this.tickTimer();
-        
         autorun(()=>{this.isDevicesInfoLoaded(devicesInfoStore.loadState)});
     }
 
     private isDevicesInfoLoaded(state: FetchState ){
-        if (state === FetchState.done) {//инфа об устройствах прогрузилась, далее
-            //1. создать запросы
-            const tasks: Array<Object> = devicesInfoStore.createRequests()
-            //2. запустить цикл чтения данных
-            this.startAutoReloadData();
+        if (state === FetchState.done) {
+            this.createTasksAndStartDataLoop();//инфа об устройствах прогрузилась
         }
+    }
+
+    private createTasksAndStartDataLoop () {
+        //1. создать запросы
+        this.Tasks = {
+            index: 0,
+            tasks: devicesInfoStore.createRequests()
+        }
+        //2. запустить цикл чтения данных
+        this.startAutoReloadData();
     }
 
     @action
@@ -39,7 +41,7 @@ export class TDevicesValueStore {
     }
 
     @action
-    async getDeviceData(){
+    async getDeviceData(task: any){
         clearTimeout(this.autoReloadTimer);
         this.state = FetchState.pending;
         try {
@@ -47,7 +49,9 @@ export class TDevicesValueStore {
             runInAction(()=>{
                 this.state = FetchState.done;
                 this.changeTime = data.time;
-                this.pureDeviceData = data.data;
+                for( const key in data.data) {
+                    this.pureDeviceData[key] = data.data[key]
+                }
             })
         } catch (e) {
             runInAction(()=>{
@@ -63,7 +67,10 @@ export class TDevicesValueStore {
     @action
     private startAutoReloadData() {
         this.autoReloadTimer = setTimeout(async ()=>{
-            await this.getDeviceData()
+            const task: any = this.Tasks.tasks[this.Tasks.index]
+            await this.getDeviceData(task);
+            if (++this.Tasks.index === this.Tasks.tasks.length)
+                this.Tasks.index = 0;
         },
         120)
     }
