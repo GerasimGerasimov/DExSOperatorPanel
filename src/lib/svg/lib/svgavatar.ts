@@ -532,8 +532,6 @@ function searchSvgViewObjects(svgID: string){
 			case 'rect':
 			case 'path':
 			case 'text':
-				//console.log(svg_element.parentElement);//действительно показывает родителя
-				//console.log(svg_element);  
 				res.push(svg_element);
 				break;
 		}
@@ -551,7 +549,6 @@ function createSvgAvatarObjects (aVO: Array<any>): Array<any>{//aVO - масси
 	while (i !==0) {
 		i--;
 		o = aVO[i];
-		//console.log(o);
 		//получить трансформации SVG для объекта
 		var t:TTransformation = getSvgParentTransformation(o.parentElement);//получить трансформации родителя
 		switch (o.tagName) {

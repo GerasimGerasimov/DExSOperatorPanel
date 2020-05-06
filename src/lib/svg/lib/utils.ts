@@ -14,9 +14,7 @@ export function getSyncTextFileContent(fileName: string): string {
     var req = new XMLHttpRequest();
         req.open("GET", fileName, false);//false - делаю сихронный запрос к http-серверу 
         req.send();
-        console.log(req.statusText);
         if (req.status !==200) {//ошибка
-            console.log(`${req.status}':'${req.statusText}`);
             return '';
         }
         else {//получил содержимое файла в виде строки

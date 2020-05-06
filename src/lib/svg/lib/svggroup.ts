@@ -136,7 +136,6 @@ class TTree {
 //a - массив родителей 'p', c с трансформациями 't' и их потомков
 //treeNode - начальная ветка дерева, куда надо добавить элементы из массива 
 function addArrToTree(a: Array<any>, treeNode: TNode) {
-    //console.log('Добавление родителей в дерево');
     var i = 0;
     var searchNode = treeNode;//с чего начинать поиск
     while (i < a.length) {
@@ -501,7 +500,6 @@ export class TSVGGroups {
                 //Теперь просканировать tree от корня, если родителя нет, до добавлять его
                 addArrToTree(p, this.tree._root);
             }       
-            //console.log(tree);//построенное дерево родителей
         }
         //теперь добавить к родителям их потомков - графические элементы
         i = 0; ;//
@@ -517,7 +515,6 @@ export class TSVGGroups {
                 //Теперь просканировать tree от корня, если добавить родителям элементов
                 addElemetsToTree(gs[i], this.tree._root);
             }       
-            //console.log(this.tree);//построенное дерево родителей
         }
         //теперь пройти по дереву и узнать и добавить трансформации для каждого элемента
         getTransform(this.tree._root);
@@ -578,7 +575,6 @@ export class TSVGGroups {
     //сканирует элементы SVG, возвращает массив элементов
     //имеющих заданый аттрибут attr, и его значение для каждого элемента
     public getElementsAndValuesByAttr (attr: string): Array<TElementAndAttrValue>{
-        console.warn(`TSVGGroups.getElementsAndValuesByAttr: ${attr}`);//
         if (!this.tree) return [];
         const treeNode: TNode = this.tree._root;
         var tag: string = '';
@@ -642,7 +638,6 @@ export class TSVGGroups {
         try {
             (function recurse(currentNode) {
                 if (currentNode.parent !== null) {
-                    //console.log(currentNode.parent);
                     if ('attributes' in currentNode.parent.data){
                         var s = '';
                         if ((s = currentNode.parent.data.getAttribute('data-id')) !== null) {

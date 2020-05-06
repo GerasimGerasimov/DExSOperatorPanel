@@ -140,7 +140,6 @@ export class TDevicesInfoStore {
                 this.fillValuesValidData({position, section} as TPositionAndSection, data, time)
             }
         }
-        console.log(this.DevicesInfo)
     }
 
     private fillValuesUndefineds(PosAndSect:TPositionAndSection) {
@@ -182,7 +181,6 @@ export class TDevicesInfoStore {
 
     //p0=Самовозбуждение/FLASH:SelfExciteEnable,FLASH:Ready_GS_ON/
     private fillPageStr(section: string, parameters: any): string{
-        console.log(section, parameters);
         const sectionName: string = section.toLocaleUpperCase();
         var res: string = `${sectionName}=${sectionName}/`
         for (const key in parameters) {

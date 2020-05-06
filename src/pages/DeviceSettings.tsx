@@ -21,7 +21,6 @@ export default class DeviceSettings extends Component {
     const listItems:Array<string> = this.loadLinesFromBuffer(DEVICE_PAGES);
     this.parsePagesArrayToMap(listItems);
     const Items = Array.from(this.PagesMap, (item: any) => item[1].title);
-    console.log(Items);
   }
 
   private gerArrFromIniString(ini: string): Array<string> {
