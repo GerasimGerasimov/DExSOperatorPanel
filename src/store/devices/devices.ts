@@ -51,6 +51,7 @@ export class TDevicesValueStore {
                 this.changeTime = data.time;
                 for( const key in data.data) {
                     this.pureDeviceData[key] = data.data[key]
+                    devicesInfoStore.fillValuesFromReceivedData(data.data[key]);
                 }
             })
         } catch (e) {
