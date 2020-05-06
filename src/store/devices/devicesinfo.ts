@@ -76,6 +76,14 @@ export class TDevicesInfoStore {
         }
     }
 
+    //отдаёт значение по тегу U1/RAM/Iexc
+    public getTagValue(request: string) {
+        const [position, section, tag] = getArrFromDelimitedStr(request,'/')
+        const Position: any = this.DevicesInfo.get(position)!;
+        const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
+        const value: string = Tags.params.get(tag)?.value || ''
+        return value;
+    }
     /* после чтения конфигурации устройств,
        есть информация по кол-ву устройств и слотов в них
        поэтому можно сформировать массив объектов запросов
