@@ -5,7 +5,7 @@ import {devicesInfoStore} from '../store/devices/devicesinfo'
 import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGTemplateElement, loadSVGTemplateElements} from '../lib/svg/lib/svggroup'
 import {TSVGComponent, getTags, drawComponents} from '../lib/svg/lib/components/TSVGComponent'
-import { createSVGComponents } from '../lib/svg/lib/components/svgCompFabrica'
+import { createSVGComponents } from '../lib/svg/lib/components/svgCompFactory'
 
 /*
 interface HomeProps {
@@ -45,12 +45,12 @@ export default class Home extends Component {
     console.log('Home render')
     return(
       <>
-        <h1>Home </h1>
+        <h1>Home</h1>
         <object className="mt-1" id="vteg" type="image/svg+xml"
             data={MotorSVG}
             onLoad={()=>{this.handleImageLoaded()}}
             > {/*width="100%" height="100%"*/}
-        </object>	      
+        </object>
       </>
     )
   }

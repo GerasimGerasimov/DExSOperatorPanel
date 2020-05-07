@@ -1,7 +1,7 @@
 import {TSvgContents} from '../svgcontent'
 import {TSVGComponent, TSVGComponentArg}  from './TSVGComponent'
 import { svgContents } from '../../svgloadimages';
-import { TSVGComponentInitialArgs } from './svgCompFabrica';
+import { TSVGComponentInitialArgs } from './svgCompFactory';
 //TODO менять stege в зависимости от входящего value
 //компоненты на структурной схеме
 

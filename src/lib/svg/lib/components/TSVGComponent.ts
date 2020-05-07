@@ -1,4 +1,4 @@
-import { TSVGComponentInitialArgs, createSVGComponent } from "./svgCompFabrica";
+import { TSVGComponentInitialArgs, createSVGComponent } from "./svgCompFactory";
 
 export class TSVGComponentArg {
     value: string = '';

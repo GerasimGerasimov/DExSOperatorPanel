@@ -1,5 +1,5 @@
 import {TSVGComponent, TSVGComponentArg} from './TSVGComponent'
-import { TSVGComponentInitialArgs } from './svgCompFabrica';
+import { TSVGComponentInitialArgs } from './svgCompFactory';
 
 //компоненты на структурной схеме
 const DEFAULT_TEXT_VALUE: Array<string> = ['.---', '-.--','--.-','---.']
