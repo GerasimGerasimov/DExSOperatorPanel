@@ -15,7 +15,7 @@ export default class TSwitch extends TSVGComponent{
     }
 
     public setState(arg:TSVGComponentArg) {
-        if (arg.value === undefined) return this.stage = undefined;
+        if (!arg.value) return this.stage = undefined;
         return this.stage = (arg.value)? 'ON':'OFF'
     }
 
