@@ -203,6 +203,7 @@ export class TDevicesInfoStore {
         const [position, section] = getArrFromDelimitedStr(slot,':');
         return {position, section}
     }
+    
     private addDefaultPages(info: TDeviceInfoRAW) {
         if (info.Pages.length === 0) {
             const Tags: any = info.Tags;

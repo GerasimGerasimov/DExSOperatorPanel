@@ -62,8 +62,12 @@ export class TParameter {
     this.section = section;
   }
 
-  //U1>U1:RAM>data>Iexc
-  public getTagPath(u: string): string {
-    return `${u}>${u}:${this.section}>data>${this.name}`
+  //U1/U1:RAM/Iexc
+  public getTagPath(position: string): string {
+    return `${position}/${this.section}/${this.name}`
   }
+}
+
+export function getTags(position: string, parameters: Array<TParameter>):Array<string>{
+  return parameters.map((item: TParameter) => item.getTagPath(position))
 }

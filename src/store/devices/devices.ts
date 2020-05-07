@@ -5,9 +5,6 @@ import { FetchState } from '../../lib/util/misctypes';
 
 export class TDevicesValueStore {
     @observable count: number = 0;
-    @observable changeTime: string = "";
-    @observable state: FetchState = FetchState.done;
-    public pureDeviceData: any = {};
     private autoReloadTimer: any;
     private Tasks = {
         index: 0 as number,
@@ -43,22 +40,15 @@ export class TDevicesValueStore {
     @action
     async getDeviceData(task: any){
         clearTimeout(this.autoReloadTimer);
-        this.state = FetchState.pending;
         try {
             const data = await DeviceController.getData(task);
             runInAction(()=>{
-                this.state = FetchState.done;
-                this.changeTime = data.time;
                 for( const key in data.data) {
-                    this.pureDeviceData[key] = data.data[key]
                     devicesInfoStore.fillValuesFromReceivedData(data.data[key]);
                 }
             })
         } catch (e) {
             runInAction(()=>{
-                this.state = FetchState.error;
-                this.changeTime = new Date().toISOString();
-                this.pureDeviceData = {};
                 console.log(e);
             })
         }
@@ -80,19 +70,6 @@ export class TDevicesValueStore {
         setInterval(()=>{
             this.incCounter();
         }, 1000);
-    }
-
-    // U1>U1:RAM>data>Iexc
-    public getTagData(tag: string) {
-        const keyList: Array<string> = tag.split('>')
-        var o: any = this.pureDeviceData;;
-        var value: any;
-        keyList.forEach((key:string)=>{
-        value = key in o ? o[key] : undefined;
-        if (!value) return '';
-        o = value;
-        })
-        return value;
     }
 }
 

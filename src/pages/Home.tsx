@@ -17,6 +17,7 @@ interface HomeProps {
 //export default class Home extends Component<HomeProps> {
 export default class Home extends Component {
   private svgComponents: Array<TSVGComponent> = [];
+  private handlers: Array<any> = [];
 
   constructor (props: any){
     super(props)
@@ -29,9 +30,7 @@ export default class Home extends Component {
   private createAutorunInitiatorValues(){
     //запустить автообновление при изменении времени появления новой инфы
     const changes: Array<any> = devicesInfoStore.getObservableValues(getTags(this.svgComponents))
-    changes.forEach(item=>{
-      autorun(()=>{this.putValuesToSVGTemplate(item.time)})
-    })
+    this.handlers = changes.map(item => autorun(()=>{this.putValuesToSVGTemplate(item.time)}))
   }
 
   handleImageLoaded() {
