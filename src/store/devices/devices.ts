@@ -73,7 +73,7 @@ export class TDevicesValueStore {
             if (++this.Tasks.index === this.Tasks.tasks.length)
                 this.Tasks.index = 0;
         },
-        100)
+        10)
     }
 
     tickTimer(){

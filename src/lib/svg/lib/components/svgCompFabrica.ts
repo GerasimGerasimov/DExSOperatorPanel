@@ -1,6 +1,7 @@
 import {TSVGComponent} from "./TSVGComponent";
 import TText from "./TText";
 import TSwitch from "./TSwitch";
+import { TSVGTemplateElement } from "../svggroup";
 
 export class TSVGComponentInitialArgs {
     model: string = '';
@@ -21,3 +22,17 @@ export function createSVGComponent (args: TSVGComponentInitialArgs): TSVGCompone
         }
         return (models[model] || models['default'])()
 }
+
+export function createSVGComponents(elements: Array<TSVGTemplateElement>): Array<TSVGComponent> {
+    const res:Array<TSVGComponent> = []
+    //создать объекты
+    elements.forEach((item: TSVGTemplateElement) => {
+      const arg: TSVGComponentInitialArgs = {
+        element: item.element,
+        ...item.attr
+      }
+      const o: TSVGComponent | undefined = createSVGComponent(arg);
+      if (o) res.push(o);
+    });
+    return res;
+  }

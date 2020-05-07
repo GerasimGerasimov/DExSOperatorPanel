@@ -1,4 +1,4 @@
-import { TSVGComponentInitialArgs } from "./svgCompFabrica";
+import { TSVGComponentInitialArgs, createSVGComponent } from "./svgCompFabrica";
 
 export class TSVGComponentArg {
     value: string = '';
@@ -22,4 +22,28 @@ export class TSVGComponent {
 
 	//Отрисовка компонента в контейнере(если состояние изменилось)
     public draw(){}
+}
+
+export function getTags(components: Array<TSVGComponent>): Array<string> {
+    const res:Array<string> = []
+    components.forEach((item: TSVGComponent)=>{
+      res.push(item.Tag);
+    })
+    return res;
+  }
+
+interface IDataSource
+  {
+      (tag: string): string;
+  };
+  
+export function drawComponents(components: Array<TSVGComponent>, getData: IDataSource) {
+  components.forEach((item: TSVGComponent) => {
+    let value: TSVGComponentArg = {
+        value: getData(item.Tag),
+        valid: true
+      }
+    item.setState(value);
+    item.draw();
+  })
 }

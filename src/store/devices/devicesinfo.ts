@@ -18,9 +18,7 @@ class TParameter {
 }
 
 class TParameters {
-    @observable //time = {
-         time:string = new Date().toISOString()
-    //}
+    @observable time:string = new Date().toISOString()
     params: Map<string, TParameter> = new Map<string, TParameter>();
 }
 
@@ -42,19 +40,13 @@ export class TDeviceInfoRAW {
     Slots: Array<string> = [];
     Tags: TTags = {
         ram: {
-            //time: {
-                time: new Date().toISOString(),
-            //},
+            time: new Date().toISOString(),
             params: new Map<string, TParameter>()},
         flash: {
-            //time: {
-                time: new Date().toISOString(),
-            //},
+            time: new Date().toISOString(),
             params: new Map<string, TParameter>()},
         cd:{
-            //time: {
-                time: new Date().toISOString(),
-            //},
+            time: new Date().toISOString(),
             params: new Map<string, TParameter>()}
     };
 }
@@ -97,7 +89,7 @@ export class TDevicesInfoStore {
             devices.add(`${position}/${section}`)
         })
         //тут теперь только уникальные сеты,
-        //нужно выделить U1/RAM и U2/FLASH ...
+        //нужно выделить U1/RAM и U2/FLASH ... и ссылки на них положить в массив
         devices.forEach((item:string) => {
             let [position, section] = getArrFromDelimitedStr(item,'/');
             res.push(this.getTimeFromPositionSection(position, section));
@@ -108,7 +100,6 @@ export class TDevicesInfoStore {
     private getTimeFromPositionSection(position: string, section: string): any {
         const Position: any = this.DevicesInfo.get(position)!;
         const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
-        //const value: any = Tags.time || ''
         return Tags;
     }
 

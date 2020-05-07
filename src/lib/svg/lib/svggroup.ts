@@ -3,6 +3,7 @@
             TFigurePath,
             TFigureRect,
             TFigureText} from './svgavatar'
+import { changeSingleQuotesToDouble } from './utils';
     //Список групп "g"
     //там могут быть подгруппы, например
     //g---rect
@@ -662,3 +663,16 @@ export class TSVGGroups {
     }	    
 
 }
+
+export function loadSVGTemplateElements(template: string): Array<TSVGTemplateElement>{
+    const g: TSVGGroups = new TSVGGroups(template);
+    const elements = g.getElementsAndValuesByAttr('data-id')
+      .map((item: TElementAndAttrValue):TSVGTemplateElement => {
+        let e: TSVGTemplateElement = {
+          element: item.element,
+          attr: {...new TElementAttrObject(), ...changeSingleQuotesToDouble(item.tag)}
+        }
+        return e;
+    });
+    return elements;
+  }

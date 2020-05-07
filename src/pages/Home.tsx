@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
-import {inject, observer} from 'mobx-react'
-import {observable, autorun} from 'mobx'
-import {devicesValueStore} from '../store/devices/devices'
+import { observer} from 'mobx-react'
+import {autorun} from 'mobx'
 import {devicesInfoStore} from '../store/devices/devicesinfo'
 import MotorSVG from  '../assets/svg/vteg.svg'
-import {TSVGGroups, TElementAndAttrValue, TSVGTemplateElement, TElementAttrObject} from '../lib/svg/lib/svggroup'
-import { changeSingleQuotesToDouble } from '../lib/svg/lib/utils'
-import {TSVGComponent, TSVGComponentArg} from '../lib/svg/lib/components/TSVGComponent'
-import { createSVGComponent, TSVGComponentInitialArgs } from '../lib/svg/lib/components/svgCompFabrica'
+import {TSVGTemplateElement, loadSVGTemplateElements} from '../lib/svg/lib/svggroup'
+import {TSVGComponent, getTags, drawComponents} from '../lib/svg/lib/components/TSVGComponent'
+import { createSVGComponents } from '../lib/svg/lib/components/svgCompFabrica'
 
 /*
 interface HomeProps {
@@ -22,60 +20,29 @@ export default class Home extends Component {
 
   constructor (props: any){
     super(props)
-    //TODO
-    //сформировать список time от всех position/section
-    //которые могут меняться на этой странице
-    //autorun(()=>{this.putValuesToSVGTemplate(devicesValueStore.changeTime)})
   }
 
   private putValuesToSVGTemplate(changed: any){
-    this.svgComponents.forEach((item: TSVGComponent) => {
-      let value: TSVGComponentArg = {
-          value: devicesInfoStore.getTagValue(item.Tag),//devicesValueStore.getTagData(`U1>U1:RAM>data>${item.Tag}`),
-          valid: true
-        }
-      item.setState(value);
-      item.draw();
-    })
+    drawComponents(this.svgComponents, devicesInfoStore.getTagValue.bind(devicesInfoStore));
   }
  
-  componentDidMount(){
-    console.log('был рендер')
+  private createAutorunInitiatorValues(){
+    //запустить автообновление при изменении времени появления новой инфы
+    const changes: Array<any> = devicesInfoStore.getObservableValues(getTags(this.svgComponents))
+    changes.forEach(item=>{
+      autorun(()=>{this.putValuesToSVGTemplate(item.time)})
+    })
   }
 
   handleImageLoaded() {
     console.log('svg загружен')
-    const g: TSVGGroups = new TSVGGroups('vteg');
-    const Elements = g.getElementsAndValuesByAttr('data-id')
-      .map((item: TElementAndAttrValue):TSVGTemplateElement => {
-        let result: TSVGTemplateElement = {
-          element: item.element,
-          attr: {...new TElementAttrObject(), ...changeSingleQuotesToDouble(item.tag)}
-        }
-        return result
-    });
-    //создать объекты
-    Elements.forEach((item: TSVGTemplateElement) => {
-      const arg: TSVGComponentInitialArgs = {
-        element: item.element,
-        ...item.attr
-      }
-      const o: TSVGComponent | undefined = createSVGComponent(arg);
-      if (o) this.svgComponents.push(o);
-    });
-    const changes: any = devicesInfoStore.getObservableValues(this.getTags())
-    autorun(()=>{this.putValuesToSVGTemplate(changes[0].time)})
-  }
-
-  private getTags(): Array<string> {
-    const res:Array<string> = []
-    this.svgComponents.forEach((item: TSVGComponent)=>{
-      res.push(item.Tag);
-    })
-    return res;
+    const elements: Array<TSVGTemplateElement> = loadSVGTemplateElements('vteg');
+    this.svgComponents = createSVGComponents(elements)
+    this.createAutorunInitiatorValues();
   }
 
   render() {
+    console.log('Home render')
     return(
       <>
         <h1>Home </h1>
