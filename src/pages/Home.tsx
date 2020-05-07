@@ -22,7 +22,10 @@ export default class Home extends Component {
 
   constructor (props: any){
     super(props)
-    autorun(()=>{this.putValuesToSVGTemplate(devicesValueStore.changeTime)})
+    //TODO
+    //сформировать список time от всех position/section
+    //которые могут меняться на этой странице
+    //autorun(()=>{this.putValuesToSVGTemplate(devicesValueStore.changeTime)})
   }
 
   private putValuesToSVGTemplate(changed: any){
@@ -60,6 +63,16 @@ export default class Home extends Component {
       const o: TSVGComponent | undefined = createSVGComponent(arg);
       if (o) this.svgComponents.push(o);
     });
+    const changes: any = devicesInfoStore.getObservableValues(this.getTags())
+    autorun(()=>{this.putValuesToSVGTemplate(changes[0].time)})
+  }
+
+  private getTags(): Array<string> {
+    const res:Array<string> = []
+    this.svgComponents.forEach((item: TSVGComponent)=>{
+      res.push(item.Tag);
+    })
+    return res;
   }
 
   render() {

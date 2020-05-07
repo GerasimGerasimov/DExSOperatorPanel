@@ -18,7 +18,9 @@ class TParameter {
 }
 
 class TParameters {
-    @observable time: string = new Date().toISOString();
+    @observable //time = {
+         time:string = new Date().toISOString()
+    //}
     params: Map<string, TParameter> = new Map<string, TParameter>();
 }
 
@@ -40,12 +42,19 @@ export class TDeviceInfoRAW {
     Slots: Array<string> = [];
     Tags: TTags = {
         ram: {
-            time: new Date().toISOString(),
+            //time: {
+                time: new Date().toISOString(),
+            //},
             params: new Map<string, TParameter>()},
         flash: {
-            time: new Date().toISOString(),
+            //time: {
+                time: new Date().toISOString(),
+            //},
             params: new Map<string, TParameter>()},
-        cd:{time: new Date().toISOString(),
+        cd:{
+            //time: {
+                time: new Date().toISOString(),
+            //},
             params: new Map<string, TParameter>()}
     };
 }
@@ -74,6 +83,33 @@ export class TDevicesInfoStore {
                 console.log(e);
             })
         }
+    }
+
+    //сканирует список тегов U1/RAM/Iexc
+    //выделяет из них Position/Section и выдаёт массив
+    //(или set - посмотрю что будет срабатывать)
+    //ссылок на отслеживаемые time для передачи в autorun
+    public getObservableValues(tags:Array<string>):Array<any> {
+        const res: Array<any> = [];
+        const devices: Set<string> = new Set<string>();
+        tags.forEach((item) => {
+            let [position, section] = getArrFromDelimitedStr(item,'/');
+            devices.add(`${position}/${section}`)
+        })
+        //тут теперь только уникальные сеты,
+        //нужно выделить U1/RAM и U2/FLASH ...
+        devices.forEach((item:string) => {
+            let [position, section] = getArrFromDelimitedStr(item,'/');
+            res.push(this.getTimeFromPositionSection(position, section));
+        })
+        return res;
+    }
+
+    private getTimeFromPositionSection(position: string, section: string): any {
+        const Position: any = this.DevicesInfo.get(position)!;
+        const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
+        //const value: any = Tags.time || ''
+        return Tags;
     }
 
     //отдаёт значение по тегу U1/RAM/Iexc
