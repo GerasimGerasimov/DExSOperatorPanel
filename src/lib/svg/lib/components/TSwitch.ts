@@ -9,14 +9,24 @@ export default class TSwitch extends TSVGComponent{
 
     private svgArray: TSvgContents = svgContents;//массива SVG изображений с доступом по ключу
     private stage: string | undefined = undefined;
+    private prevStage: string | undefined = undefined;
  
     constructor (args: TSVGComponentInitialArgs) {
         super(args);
     }
 
-    public setState(arg:TSVGComponentArg) {
-        if (!arg.value) return this.stage = undefined;
-        return this.stage = (arg.value)? 'ON':'OFF'
+    public setState(arg:TSVGComponentArg): boolean {
+        if (!arg.value) 
+            this.stage = undefined;
+        else
+            this.stage = (arg.value)? 'ON':'OFF'
+        return true;//this.checkChanhes()
+    }
+
+    private checkChanhes(): boolean {
+        const res: boolean = (this.stage === this.prevStage);
+        this.prevStage = this.stage;
+        return res;
     }
 
     //функция-отдаёт изображение по ключу из массива SVG-изображений.

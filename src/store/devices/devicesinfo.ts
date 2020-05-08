@@ -104,12 +104,25 @@ export class TDevicesInfoStore {
     }
 
     //отдаёт значение по тегу U1/RAM/Iexc
-    public getTagValue(request: string) {
+    public getTagValue(request: string): string {
         const [position, section, tag] = getArrFromDelimitedStr(request,'/')
         const Position: any = this.DevicesInfo.get(position)!;
         const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
         const value: string = Tags.params.get(tag)?.value || ''
         return value;
+    }
+
+    //отдаёт значение заданных свойств (value, msu) по тегу U1/RAM/Iexc
+    public getTagProperties(Tag: string, properties: Array<string>): any {
+        const [position, section, tag] = getArrFromDelimitedStr(Tag,'/')
+        const Position: any = this.DevicesInfo.get(position)!;
+        const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
+        const param: TParameter | any = Tags.params.get(tag);
+        const res: any = {};
+        properties.forEach((item: string) => {
+            res[item] = param[item] || '';
+        })
+        return res;
     }
     /* после чтения конфигурации устройств,
        есть информация по кол-ву устройств и слотов в них
@@ -203,7 +216,7 @@ export class TDevicesInfoStore {
         const [position, section] = getArrFromDelimitedStr(slot,':');
         return {position, section}
     }
-    
+
     private addDefaultPages(info: TDeviceInfoRAW) {
         if (info.Pages.length === 0) {
             const Tags: any = info.Tags;

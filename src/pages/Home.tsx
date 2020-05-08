@@ -24,7 +24,7 @@ export default class Home extends Component {
   }
 
   private putValuesToSVGTemplate(changed: any){
-    drawComponents(this.svgComponents, devicesInfoStore.getTagValue.bind(devicesInfoStore));
+    drawComponents(this.svgComponents, devicesInfoStore.getTagProperties.bind(devicesInfoStore));
   }
  
   private createAutorunInitiatorValues(){
