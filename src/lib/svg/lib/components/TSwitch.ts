@@ -16,10 +16,11 @@ export default class TSwitch extends TSVGComponent{
     }
 
     public setState(arg:TSVGComponentArg): boolean {
-        if (!arg.value) 
+        if (!arg.value) {
             this.stage = undefined;
-        else
+        } else {
             this.stage = (arg.value)? 'ON':'OFF'
+        }
         return true;//this.checkChanhes()
     }
 

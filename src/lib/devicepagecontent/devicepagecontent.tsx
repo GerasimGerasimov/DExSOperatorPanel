@@ -55,7 +55,7 @@ export class TDevicePageContent {
 export class TParameter {
   name: string = '';
   section: string = '';
-  value: string = ''
+  value: string = '';
 
   constructor (name: string, section: string) {
     this.name = name;
