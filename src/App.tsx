@@ -5,9 +5,9 @@ import Home from './pages/Home';
 import { Navbar } from './components/containers/Navbar';
 import { About } from './pages/About';
 import { Profile } from './pages/Profile';
-import Devices from './pages/Devices';
-import DevicesRouter from './pages/DevicesRouter';
-import DeviceParameters from './pages/DeviceParameters';
+import Devices from './pages/settings/Devices';
+import DevicesRouter from './pages/settings/DevicesRouter';
+import DeviceParameters from './pages/settings/DeviceParameters';
 
 function App() {
   return (

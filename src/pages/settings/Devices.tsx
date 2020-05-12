@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {NavLink } from 'react-router-dom';
-import {devicesInfoStore, TDeviceInfoRAW} from '../store/devices/devicesinfo'
+import {devicesInfoStore, TDeviceInfoRAW} from '../../store/devices/devicesinfo'
 
 class TPageTitle {
   name:string = '';

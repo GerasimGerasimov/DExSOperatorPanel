@@ -1,8 +1,8 @@
 //https://stackoverrun.com/ru/q/11548996
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
-import { TDevicePageContent, TDevicePagesContent } from '../lib/devicepagecontent/devicepagecontent';
-import {devicesInfoStore} from '../store/devices/devicesinfo'
+import { TDevicePageContent, TDevicePagesContent } from '../../lib/devicepagecontent/devicepagecontent';
+import {devicesInfoStore} from '../../store/devices/devicesinfo'
 
 export default class DevicesRouter extends Component {
 

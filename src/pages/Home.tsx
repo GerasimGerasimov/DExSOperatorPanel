@@ -34,14 +34,13 @@ export default class Home extends Component {
   }
 
   handleImageLoaded() {
-    console.log('svg загружен')
+    //svg загружен
     const elements: Array<TSVGTemplateElement> = loadSVGTemplateElements('vteg');
     this.svgComponents = createSVGComponents(elements)
     this.createAutorunInitiatorValues();
   }
 
   render() {
-    console.log('Home render')
     return(
       <>
         <h1>Home</h1>

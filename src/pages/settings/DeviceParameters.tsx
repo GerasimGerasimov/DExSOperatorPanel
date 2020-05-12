@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {TParameter, getTags } from '../lib/devicepagecontent/devicepagecontent';
+import {TParameter, getTags } from '../../lib/devicepagecontent/devicepagecontent';
 import { observer } from 'mobx-react';
 import { autorun, extendObservable } from 'mobx';
-import { devicesInfoStore } from '../store/devices/devicesinfo';
+import { devicesInfoStore } from '../../store/devices/devicesinfo';
 
 @observer
 export default class DeviceParameters extends Component {
