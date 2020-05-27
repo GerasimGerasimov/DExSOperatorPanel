@@ -1,0 +1,23 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 4px 4px;
+  grid-template-areas: "Name Name Name Name" "No Value Value Yes" "Ok Ok Cancel Cancel";
+  
+}
+.grid-container > div {
+  padding: 5px;
+}
+
+.Value { grid-area: Value; }
+
+.No { grid-area: No; }
+
+.Yes { grid-area: Yes; }
+
+.Ok { grid-area: Ok; }
+
+.Cancel { grid-area: Cancel; }
+
+.Name { grid-area: Name; }
