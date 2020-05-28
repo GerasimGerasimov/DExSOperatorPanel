@@ -56,6 +56,8 @@ export class TParameter {
   name: string = '';
   section: string = '';
   value: string = '';
+  type: string = 'TFloat';//на TFloat - включается цифровая клавиатура
+  msu: string = '';//единицы измерения
 
   constructor (name: string, section: string) {
     this.name = name;

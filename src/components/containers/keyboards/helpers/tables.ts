@@ -1,5 +1,5 @@
-import { TParameter } from "../datasets/dataset";
 import { RowCountError, SuccessfullyValueFound, FailedSearchOfValue } from "../errors/ErrorTableValueSearch";
+import { TParameter } from "../../../../lib/devicepagecontent/devicepagecontent";
 
 export function getTableClickRowCol(event: any): {row: number, col: number} {
     let cell: any = event.target;

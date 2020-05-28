@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import Modal from './HOC/Modal';
+//import Modal from '../../HOC/Modal';
+import Modal from '../../HOC/Modal';
 import KeyBoard from './UI/KeyBoards/KeyBoard';
-import { Parameters, TParameter, getData } from '../datasets/dataset';
-import { getTableClickRowCol, getParameterByRow } from '../helpers/tables';
+import { Parameters, getData } from './datasets/dataset';
+import { getTableClickRowCol, getParameterByRow } from './helpers/tables';
+import { TParameter } from '../../../lib/devicepagecontent/devicepagecontent';
 
 interface IState {
   showModal: boolean;
@@ -32,9 +34,11 @@ export default class DeviceParameters extends Component<{}, IState> {
   }
 
   componentWillMount () {
+    /*
     this.setState({
       parameters: getData(Parameters)
     })
+    */
   }
 
   private handlerModalShow(event: any) {
