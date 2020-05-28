@@ -7,12 +7,6 @@ import {TSVGTemplateElement, loadSVGTemplateElements} from '../lib/svg/lib/svggr
 import {TSVGComponent, getTags, drawComponents} from '../lib/svg/lib/components/TSVGComponent'
 import { createSVGComponents } from '../lib/svg/lib/components/svgCompFactory'
 
-/*
-interface HomeProps {
-  store?: TDeviceStore
-}
-@inject('stores')
-*/
 @observer
 //export default class Home extends Component<HomeProps> {
 export default class Home extends Component {

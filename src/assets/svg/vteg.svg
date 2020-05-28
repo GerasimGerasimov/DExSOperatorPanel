@@ -44,7 +44,7 @@
 			<title>Лист.39</title>
 			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
 		</g>
-		<g id="shape43-16" transform="translate(31.1811,-96.378)">
+		<g id="shape43-16" transform="translate(31.1811,-96.378)" data-id="{'tag':'U1/RAM/DIN.1(C1_DC)', 'model':'TSwitch'}">
 			<title>Лист.43</title>
 			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
 		</g>
@@ -57,7 +57,7 @@
 			<desc>G</desc>
 			<ellipse cx="5.66929" cy="229.606" rx="5.66929" ry="5.66929" class="st2"/>
 			<text x="2.77" y="232.01" class="st3">G</text>		</g>
-		<g id="shape48-23" transform="translate(53.8583,-96.378)">
+		<g id="shape48-23" transform="translate(53.8583,-96.378)" data-id="{'tag':'U1/RAM/DIN.3(C2_DC)', 'model':'TSwitch'}">
 			<title>Лист.48</title>
 			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
 		</g>
@@ -69,11 +69,11 @@
 			<title>Лист.52</title>
 			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
 		</g>
-		<g id="shape53-29" transform="translate(31.1811,-45.3543)">
+		<g id="shape53-29" transform="translate(31.1811,-45.3543)" data-id="{'tag':'U1/RAM/DIN.0(C1_AC)', 'model':'TSwitch'}">
 			<title>Лист.53</title>
 			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
 		</g>
-		<g id="shape54-31" transform="translate(53.8583,-45.3543)">
+		<g id="shape54-31" transform="translate(53.8583,-45.3543)" data-id="{'tag':'U1/RAM/DIN.2(C2_AC)', 'model':'TSwitch'}">
 			<title>Лист.54</title>
 			<rect x="0" y="218.268" width="17.0079" height="17.0079" class="st2"/>
 		</g>

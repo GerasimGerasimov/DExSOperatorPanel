@@ -19,9 +19,9 @@ export default class TSwitch extends TSVGComponent{
         if (!arg.value) {
             this.stage = undefined;
         } else {
-            this.stage = (arg.value)? 'ON':'OFF'
+            this.stage = (arg.value.trim() === '1')? 'ON':'OFF'
         }
-        return true;//this.checkChanhes()
+        return true;
     }
 
     private checkChanhes(): boolean {
