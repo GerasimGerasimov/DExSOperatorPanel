@@ -56,10 +56,6 @@ export default class KeyBoardNumeric extends Component<IKeyBoardProps, IState> {
       selectionDirection
     }
     this.position = this.selection.selectionStart;
-    console.log(selectionStart,
-                 selectionEnd,
-                  selectionDirection,
-                    'pos:'+this.position)
   }
 
   //удаляет символы перед курсором
@@ -93,7 +89,6 @@ export default class KeyBoardNumeric extends Component<IKeyBoardProps, IState> {
 
   private focus() {
     const position = this.position;
-    console.log('focus:',position)
     this.textInput.current.focus();
   }
 
@@ -127,10 +122,10 @@ export default class KeyBoardNumeric extends Component<IKeyBoardProps, IState> {
     return(
       <div className="KeyBoardBlock">
           <div className="kbn-grid-container">
-            <div className="kbn-header">
-              {`${this.props.data.name}:${this.prevValue}`}
+            <div className="kbn-header text-center">
+              {`${this.props.data.name}: ${this.prevValue} ${this.props.data.msu}`}
             </div>
-            <div className="kbn-discription">Ток возбуждения</div>
+            <div className="kbn-discription">{this.props.data.comment}</div>
             <div className="kbn-value">
               <input
                   type="text"

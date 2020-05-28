@@ -55,7 +55,7 @@ export default class KeyBoardBoolean extends Component<IKeyBoardProps, IState> {
             <KeyBoardButton position="Cancel" value="Cancel" onClick={()=>this.handleHide('cancel')}/>
             <KeyBoardButton position="No" value="0" onClick={()=>{this.handlerSetValue('0')}}/>
             <KeyBoardButton position="Yes" value="1" onClick={()=>{this.handlerSetValue('1')}}/>
-            <div className="Name">{`${this.props.data.name}:${this.prevValue}`}</div>
+            <div className="Name text-center">{`${this.props.data.name}: ${this.prevValue}`}</div>
           </div>
       </div>
     )

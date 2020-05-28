@@ -16,7 +16,9 @@
     padding: 5px;
   }
 
-  .kbn-header { grid-area: kbn-header; }
+  .kbn-header { 
+    grid-area: kbn-header;
+  }
   
   .kbn-discription { grid-area: kbn-discription; }
   

@@ -7,6 +7,8 @@ export interface IKeyBoardProps {
     data: {
         name: string;
         value: string;
+        comment: string;
+        msu: string;
     }
 }
 

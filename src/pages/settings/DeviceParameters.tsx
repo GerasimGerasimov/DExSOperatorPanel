@@ -26,7 +26,9 @@ export default class DeviceParameters extends Component<{}, IState> {
   private handlers: Array<any> = [];
   private selected = {
     name: '',
-    value: ''
+    value: '',
+    comment: '',
+    msu:'',
   }
 
   constructor (props: any){
@@ -40,7 +42,9 @@ export default class DeviceParameters extends Component<{}, IState> {
     this.position = position;
     const a: Array<TParameter> = props.location.state.deviceParameters || {};
     a.forEach((item:TParameter)=>{
-        this.parameters.set(`${this.position}/${item.section}/${item.name}`, item);
+        const tag = `${this.position}/${item.section}/${item.name}`;
+        item.tag = tag;
+        this.parameters.set(tag, item);
         extendObservable(item, {value:''})
     })
     this.createAutorunInitiatorValues();
@@ -76,11 +80,13 @@ export default class DeviceParameters extends Component<{}, IState> {
     const {row, col} = getTableClickRowCol(event);
     const p:TParameter | undefined = getParameterByRow(this.parameters, row);
     if (p) {
-      const type = p.type || ''
-      const keyBoard = this.getKeyBoardType(type);
+      const  {msu, comment, objType, value} = devicesInfoStore.getTagProperties (p.tag, ['msu','value','comment','objType']);
+      const keyBoard = this.getKeyBoardType(objType);
       this.selected = {
         name: p.name,
-        value: p.value
+        value,
+        comment,
+        msu
       }
       this.setState({
         showModal: true,
@@ -122,7 +128,6 @@ export default class DeviceParameters extends Component<{}, IState> {
         <h1>Settings</h1>
           <div className="table-responsive"> 
             <table className="table table-bordered table-condensed table-hover"
-                   //contentEditable="true"
                 >
                 <thead>
                     <tr>

@@ -53,6 +53,7 @@ export class TDevicePageContent {
 }
 
 export class TParameter {
+  tag: string = '';// тэг параметра U1/RAM/Iexc
   name: string = '';
   section: string = '';
   value: string = '';
