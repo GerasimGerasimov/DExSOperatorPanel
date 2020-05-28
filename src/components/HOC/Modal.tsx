@@ -6,14 +6,6 @@ export default class Modal extends Component<{}, {}> {
     super(props)
   }
 
-  componentDidMount() {
-    //modalRoot.appendChild(this.el);
-  }
-
-  componentWillUnmount() {
-    //modalRoot.removeChild(this.el);
-  }
-
   render() {
     return (
     <div className="modal">

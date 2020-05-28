@@ -65,11 +65,6 @@ export default class DeviceParameters extends Component<{}, IState> {
     }
   }
 
-  handlerValueOnClick(e: any) {
-    console.log(e);
-    this.setState({showModal: !this.state.showModal})
-  }
-
   private getKeyBoardType(ParameterType: string): string {
     switch (ParameterType) {
       case 'TBit':              return 'KeyBoardBoolean'
@@ -79,7 +74,7 @@ export default class DeviceParameters extends Component<{}, IState> {
 
   private handlerModalShow(event: any) {
     const {row, col} = getTableClickRowCol(event);
-    const p:TParameter | undefined = getParameterByRow(this.state.parameters, row);
+    const p:TParameter | undefined = getParameterByRow(this.parameters, row);
     if (p) {
       const type = p.type || ''
       const keyBoard = this.getKeyBoardType(type);
@@ -128,7 +123,6 @@ export default class DeviceParameters extends Component<{}, IState> {
           <div className="table-responsive"> 
             <table className="table table-bordered table-condensed table-hover"
                    //contentEditable="true"
-                   onClick = {(e)=>this.handlerModalShow(e)}
                 >
                 <thead>
                     <tr>
@@ -137,7 +131,7 @@ export default class DeviceParameters extends Component<{}, IState> {
                         <th>Value</th>
                     </tr>
                 </thead>
-                <tbody onClick = {(e)=>this.handlerValueOnClick(e)}>
+                <tbody onClick = {(e)=>this.handlerModalShow(e)}>
                   {
                     Array.from(this.parameters.entries(), ([key, item]) => {
                     const  {msu} = devicesInfoStore.getTagProperties (key, ['value','msu']);
