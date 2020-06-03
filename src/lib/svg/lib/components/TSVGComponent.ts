@@ -49,3 +49,7 @@ export function drawComponents(components: Array<TSVGComponent>, getData: IDataS
     await item.draw();
   })
 }
+
+//TODO при проблемах связи, компонеты должны показывать состояние по дефолту
+//TText "---"
+//TSwitch - пустой контейнер

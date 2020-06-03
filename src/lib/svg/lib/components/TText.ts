@@ -16,16 +16,16 @@ export default class TText extends TSVGComponent{
     }
 
     public setState(arg:TSVGComponentArg): boolean {
-        if (arg.value) {
-            let a: Array<string> = arg.value.split(' ');
-            this.value = `${Number(a[0] || 0).toFixed(this.fraction)} ${a[1] || ''}`;
-        } else {
-            this.value = DEFAULT_TEXT_VALUE[this.defaultPosition++ & 3];
-        }
-        return true; //this.checkChanhes()
+        let [value, msu] = arg.value.split(' ');
+        value = value.trim() || '';
+        msu = msu? ` ${msu}`:'';
+        this.value = (value)
+        ? `${Number(value).toFixed(this.fraction)}${msu}`
+        : DEFAULT_TEXT_VALUE[this.defaultPosition++ & 3]
+        return true; //this.checkChanges()
     }
 
-    private checkChanhes(): boolean {
+    private checkChanges(): boolean {
         const res: boolean = (this.value === this.predState);
         this.predState = this.value;
         return res;

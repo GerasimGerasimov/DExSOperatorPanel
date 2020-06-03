@@ -11,7 +11,7 @@ export class TSvgContents {
         return this.aContents.get(key);
     }
 
-    public async getImg (key: string, path: string = '') {//key-название картинки, path-имя файла с путём до неё
+    public async getImg ({ key, path = '' }: { key: string; path?: string; }): Promise<any | undefined> {//key-название картинки, path-имя файла с путём до неё
         var content: any = this.aContents.get(key);
         if (content !== undefined) {
           return content;
@@ -19,8 +19,8 @@ export class TSvgContents {
             content = await getObjectURL(path);
             if (content!== undefined) {
                 this.aContents.set(key, content);//вставляю в хранилище
-                return content;
             }
+            return content;
         }
     }
 
