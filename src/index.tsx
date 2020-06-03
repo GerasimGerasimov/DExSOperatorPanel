@@ -13,13 +13,14 @@ const stores = {
   DeviceStore: mainStore.devicesValueStore
 };
 
-loadSVGImages();
-
-ReactDOM.render((
-  <Provider stores>
-    <App />
-  </Provider>
-  ), document.getElementById('root')
+loadSVGImages()
+.then(()=>{//после подгрузки картинок, будет запущенj React приложение
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  )}
 );
 
 // If you want your app to work offline and load faster, you can change

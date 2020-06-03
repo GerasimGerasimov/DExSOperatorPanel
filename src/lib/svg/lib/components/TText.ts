@@ -32,7 +32,7 @@ export default class TText extends TSVGComponent{
     }
 
 	//Отрисовка компонента в контейнере(если состояние изменилось)
-    public draw(){
+    public async draw(){
         this.SVGconteiner.innerHTML = this.value;
     }
 }
