@@ -2,17 +2,27 @@ import {TSvgContents} from '../svgcontent'
 import {TSVGComponent, TSVGComponentArg}  from './TSVGComponent'
 import { svgContents } from '../../svgloadimages';
 import { TSVGComponentInitialArgs } from './svgCompFactory';
+import { randomStringAsBase64Url } from '../../../util/cryputils';
 //TODO менять stege в зависимости от входящего value
 //компоненты на структурной схеме
 
 export default class TSwitch extends TSVGComponent{
 
     private svgArray: TSvgContents = svgContents;//массива SVG изображений с доступом по ключу
+    //private images: Map<string, any> = new Map();
     private stage: string | undefined = undefined;
     private prevStage: string | undefined = undefined;
  
     constructor (args: TSVGComponentInitialArgs) {
         super(args);
+        /*
+        this.svgArray.Contents.forEach ((value, key) => {
+            const newClassName: string = randomStringAsBase64Url(4);
+            const image = this.svgArray.renameCSS(newClassName, value);
+            this.images.set(key, image)
+            console.log(this.tag, ' : ',key, ':', newClassName)
+        })
+        */
     }
 
     public setState(arg:TSVGComponentArg): boolean {
@@ -24,15 +34,9 @@ export default class TSwitch extends TSVGComponent{
         return true;
     }
 
-    private checkChanhes(): boolean {
-        const res: boolean = (this.stage === this.prevStage);
-        this.prevStage = this.stage;
-        return res;
-    }
-
     //функция-отдаёт изображение по ключу из массива SVG-изображений.
 	private getImage(key: string): any {
-        return this.svgArray!.getImg(key);
+        return this.svgArray.getImg(key);
     }
 
 	//Отрисовка компонента в контейнере(если состояние изменилось)
@@ -53,10 +57,12 @@ export default class TSwitch extends TSVGComponent{
         }
         //2) разбираюсь с FO
         var fo: any = container.querySelector('foreignObject');
+        var box: any;//DOMRect;
         if (fo === null) {
             //если FO ещё не встроен, то создать и встроить
             //узнаю размеры контейнера
-            var box: DOMRect = container.querySelector('rect').getBBox();
+            var rect: any  = container.querySelector('rect');
+            box = rect.getBBox();
             //Создаю FO
             fo = document.createElementNS('http://www.w3.org/2000/svg','foreignObject');
             //Устанавливаю аттрибуты размеров FO
@@ -66,6 +72,7 @@ export default class TSwitch extends TSVGComponent{
             fo.setAttribute('height', box.height);
             //добавляю FO к контеннеру
             container.appendChild(fo);
+            console.log(this.tag,' : ', this.stage, container.id, box);
         }
         //3) если в FO уже вставлен SVG то надо его удалить и заменить новым
         var svg: any = fo.querySelector('svg');
@@ -73,8 +80,9 @@ export default class TSwitch extends TSVGComponent{
             fo.removeChild(svg);
         }
         //теперь добавлю новый svg-элемент в FO если content не undefined)
-        if (content)
+        if (content) {
             fo.appendChild(content);
+        }
     }
 
 }
