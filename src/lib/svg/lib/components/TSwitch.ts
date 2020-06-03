@@ -6,8 +6,8 @@ import { TSVGComponentInitialArgs } from './svgCompFactory';
 
 //связь между состоянием и подгружаемой картинкой
 const stages: any = {
-    ON : 'switchOn',
-    OFF:'switchOff',
+    ON :  'switchOn',
+    OFF:  'switchOff',
     empty:'empty'
 }
 
@@ -22,11 +22,9 @@ export default class TSwitch extends TSVGComponent{
 
     public setState(arg:TSVGComponentArg): boolean {
         const value = arg.value.trim();
-        if (!value) {
-            this.stage = 'empty';
-        } else {
-            this.stage = (value === '1')? 'ON':'OFF'
-        }
+        this.stage = (value)
+        ? (value === '1')? 'ON':'OFF'
+        : 'empty'
         return true;
     }
 
