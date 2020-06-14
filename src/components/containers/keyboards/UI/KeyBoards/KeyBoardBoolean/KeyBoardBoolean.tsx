@@ -36,7 +36,6 @@ export default class KeyBoardBoolean extends Component<IKeyBoardProps, IState> {
   inputChangedHandler = (event: any) => {
     const value = event.target.value;
     this.setState(state => ({value}));
-    console.log(this.state.value)
   }
 
   render() {

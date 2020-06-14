@@ -41,7 +41,6 @@ export default class KeyBoardNumeric extends Component<IKeyBoardProps, IState> {
     event.persist();
     const value = event.target.value;
     this.setState(state => ({value}))
-    console.log(this.state.value)
   }
 
   private returnPrevValue() {

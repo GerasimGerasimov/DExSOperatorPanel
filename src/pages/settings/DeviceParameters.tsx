@@ -6,6 +6,8 @@ import { devicesInfoStore } from '../../store/devices/devicesinfo';
 import KeyBoard from '../../components/containers/keyboards/UI/KeyBoards/KeyBoard';
 import Modal from '../../components/HOC/Modal';
 import { getTableClickRowCol, getParameterByRow } from '../../components/containers/keyboards/helpers/tables';
+import DeviceController from '../../controllers/devices/device';
+import { getObjectFromTagAndValue } from '../../lib/util/commonmisc';
 
 interface IState {
   showModal: boolean;
@@ -29,6 +31,7 @@ export default class DeviceParameters extends Component<{}, IState> {
     value: '',
     comment: '',
     msu:'',
+    tag:''
   }
 
   constructor (props: any){
@@ -86,7 +89,8 @@ export default class DeviceParameters extends Component<{}, IState> {
         name: p.name,
         value,
         comment,
-        msu
+        msu,
+        tag:p.tag
       }
       this.setState({
         showModal: true,
@@ -94,25 +98,20 @@ export default class DeviceParameters extends Component<{}, IState> {
       })
     }
   }
-
-  setNewValueToParameter(name: string, newValue: string): Map<string, TParameter> {
-    const res: Map<string, TParameter> = new Map<string, TParameter>()
-    this.state.parameters.forEach((value, key)=>{
-      if (key === name) {
-        value.value = newValue;
-      }
-      res.set(key, value)
-    })
-    return res;
-  }
-
   
-  handlerModalClose(result: IInputResult) {
+  async handlerModalClose(result: IInputResult) {
     const {cause, value} = result;
-    const parameters: Map<string, TParameter> = this.setNewValueToParameter(this.selected.name, value)
+    const {tag} =  this.selected;
+    const req: any = getObjectFromTagAndValue(tag, value);
+    console.log(this.selected);
+    try {
+      const data = await DeviceController.writeValue(req);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
     this.setState({
-      showModal: false,
-      parameters
+      showModal: false
     })
   }
 
@@ -136,7 +135,7 @@ export default class DeviceParameters extends Component<{}, IState> {
                         <th>Value</th>
                     </tr>
                 </thead>
-                <tbody onClick = {(e)=>this.handlerModalShow(e)}>
+                <tbody onDoubleClick = {(e)=>this.handlerModalShow(e)}>
                   {
                     Array.from(this.parameters.entries(), ([key, item]) => {
                     const  {msu} = devicesInfoStore.getTagProperties (key, ['value','msu']);

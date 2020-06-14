@@ -8,6 +8,17 @@ export function getArrFromIniString(ini: string): Array<string> {
     return res;
 }
 
+export function getObjectFromTagAndValue (Tag: string, value: string): any {
+  const a: Array<string> = getArrFromDelimitedStr(Tag, '/');
+  const [position, section, tag] = a;
+  const res: Object = {[position]:{
+    [section]:{
+      [tag]:value
+    }
+  }}
+  return res;
+}
+
 export function getArrFromDelimitedStr(s: string, delimiter: string = ' '): Array<string> {
   return s.slice().split(delimiter);
 }

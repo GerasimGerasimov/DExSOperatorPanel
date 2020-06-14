@@ -1,4 +1,5 @@
-const urlDevicesValues: string = 'http://localhost:5004/v1/devices/';
+const urlDevicesValuesGet: string = 'http://localhost:5004/v1/devices/';
+const urlDevicesValuesWrite: string = 'http://localhost:5004/v1/values/';
 const urlDevicesInfo: string = 'http://localhost:5004/v1/info/';
 
 export default class DeviceController {
@@ -12,7 +13,7 @@ export default class DeviceController {
                 },
                 body:JSON.stringify(request)
             }
-            return await fetch(urlDevicesValues, header)
+            return await fetch(urlDevicesValuesGet, header)
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
@@ -32,6 +33,26 @@ export default class DeviceController {
                 }
             }
             return await fetch(urlDevicesInfo, header)
+                .then (this.handledHTTPResponse)
+                .then (this.validationJSON);
+        } catch(e) {
+            console.log(e);
+            throw new Error (`Fetch Error: ${e.message}`);
+        }
+    }
+
+    public static async  writeValue(request: object): Promise<any> {
+        try {
+            const header: any = {
+                method: 'PUT',
+                cache: 'no-cache',
+                mode: 'cors',
+                headers: {
+                    'Content-Type':'application/json; charset=utf-8',
+                },
+                body:JSON.stringify(request)
+            }
+            return await fetch(urlDevicesValuesWrite, header)
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
