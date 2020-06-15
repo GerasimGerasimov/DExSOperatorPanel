@@ -101,14 +101,16 @@ export default class DeviceParameters extends Component<{}, IState> {
   
   async handlerModalClose(result: IInputResult) {
     const {cause, value} = result;
-    const {tag} =  this.selected;
-    const req: any = getObjectFromTagAndValue(tag, value);
-    console.log(this.selected);
-    try {
-      const data = await DeviceController.writeValue(req);
-      console.log(data);
-    } catch (e) {
-      console.log(e);
+    if (cause === "ok") {
+      const {tag} =  this.selected;
+      const req: any = getObjectFromTagAndValue(tag, value);
+      console.log(this.selected);
+      try {
+        const data = await DeviceController.writeValue(req);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
     }
     this.setState({
       showModal: false
@@ -135,7 +137,7 @@ export default class DeviceParameters extends Component<{}, IState> {
                         <th>Value</th>
                     </tr>
                 </thead>
-                <tbody onDoubleClick = {(e)=>this.handlerModalShow(e)}>
+                <tbody onClick = {(e)=>this.handlerModalShow(e)}>
                   {
                     Array.from(this.parameters.entries(), ([key, item]) => {
                     const  {msu} = devicesInfoStore.getTagProperties (key, ['value','msu']);
