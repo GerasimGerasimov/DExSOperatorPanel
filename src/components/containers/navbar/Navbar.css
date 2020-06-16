@@ -1,0 +1,33 @@
+.nav-btn {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    z-index: 100;
+    margin-left: auto;
+}
+
+
+.burger {
+    position: absolute;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+    right: 0.25rem;
+    top: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid red;
+}
+
+.NavBar:hover {
+    opacity: 0.7;
+}
+
+.NavBar.open {
+    left: 320px;
+}

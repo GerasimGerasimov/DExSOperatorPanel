@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import './App.css';
 import Home from './pages/Home';
-import { Navbar } from './components/containers/Navbar';
+import { Navbar } from './components/containers/navbar/Navbar';
 import { About } from './pages/About';
 import { Profile } from './pages/Profile';
 import Devices from './pages/settings/Devices';
@@ -12,8 +12,8 @@ import DeviceParameters from './pages/settings/DeviceParameters';
 function App() {
   return (
     <BrowserRouter>
+      <div>
       <Navbar/>
-      <div className="container pt-4">
         <Switch>
           <Route exact path="/" component={Home}/>          
           <Route exact path="/devices" component={Devices}/>
