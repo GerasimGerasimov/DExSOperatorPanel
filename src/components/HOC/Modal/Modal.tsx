@@ -1,7 +1,16 @@
 import React, {Component} from 'react'
 import './Modal.css'
 
-export default class Modal extends Component<{}, {}> {
+export interface IModalProps {
+  classes?: string;
+  children?: any;
+}
+
+export default class Modal extends Component<IModalProps, {}> {
+  private cls: Array<string> = [
+    'Modal',
+    this.props.classes || ''
+  ];
 
   constructor (props: any){
     super(props)
@@ -9,7 +18,7 @@ export default class Modal extends Component<{}, {}> {
 
   render() {
     return (
-    <div className="Modal">
+    <div className={this.cls.join(' ')}>
       {this.props.children}
     </div>
   )}

@@ -119,7 +119,7 @@ export default class DeviceParameters extends Component<{}, IState> {
 
   render() {
     const modal = this.state.showModal
-    ? (<Modal>
+    ? (<Modal classes='content-center'>
         <KeyBoard keyBoardType={this.state.keyBoard} data={this.selected} onClick={this.handlerModalClose.bind(this)}/>
       </Modal>)
     : null;

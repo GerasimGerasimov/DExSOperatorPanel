@@ -21,10 +21,7 @@ export const Navbar:React.FunctionComponent = (props) => {
     const navbar = (visible)
         ? (
             <div>
-                <div>
-                    <Modal></Modal>
-                </div>
-                <div>
+                <Modal classes="content-right">
                     <nav className={cls.join(' ')}>
                         <ul className="navbar-nav">
                             <li className="nav-item">
@@ -38,7 +35,7 @@ export const Navbar:React.FunctionComponent = (props) => {
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </Modal>
             </div>
 
         )
@@ -48,7 +45,7 @@ export const Navbar:React.FunctionComponent = (props) => {
         <div>
             {navbar}
             <div
-                className="burger2"
+                className="NavBar"
             >
                 <MenuTougle
                     isOpen={visible}
