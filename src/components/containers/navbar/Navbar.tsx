@@ -13,6 +13,8 @@ export const Navbar:React.FunctionComponent = (props) => {
         'bg-primary',
     ]
 
+    const NavLinkCls: string = "nav-link p-1 bg-primary";
+
     const tougleMenu = () => {
         setVisible(!visible)
     }
@@ -24,23 +26,22 @@ export const Navbar:React.FunctionComponent = (props) => {
     const navbar = (visible)
         ? (
             <div>
-                <Modal classes="content-right">
-                    <nav className={cls.join(' ')} onClick={handleClose}>
-                        <ul className="navbar-nav p-1">
-                            <li className="nav-item">
-                                <NavLink exact to="/" className="nav-link" >Home</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/about" className="nav-link">About</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/devices" className="nav-link">Devices</NavLink>
-                            </li>
-                        </ul>
-                    </nav>
-                </Modal>
+              <Modal classes="content-right">
+                <nav className={cls.join(' ')} onClick={handleClose}>
+                  <ul className="navbar-nav">
+                    <li>
+                      <NavLink exact to="/" className={NavLinkCls}>Home</NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/devices" className={NavLinkCls}>Devices</NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/about" className={NavLinkCls}>About</NavLink>
+                    </li>
+                  </ul>
+                </nav>
+              </Modal>
             </div>
-
         )
         : null;
     
@@ -48,8 +49,7 @@ export const Navbar:React.FunctionComponent = (props) => {
         <div>
             {navbar}
             <div
-                className="NavBar"
-            >
+                className="NavBar">
                 <MenuTougle
                     isOpen={visible}
                     onTougle={tougleMenu}

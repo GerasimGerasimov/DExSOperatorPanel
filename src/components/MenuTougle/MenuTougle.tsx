@@ -12,7 +12,7 @@ export const MenuTougle = (props: IMenuTougleProps) => {
         'fa',
         props.isOpen 
         ? 'fa-times open'
-        : 'fa-bars'
+        : 'fa-bars' //'fa-chevron-left'
     ]
 
     return (
