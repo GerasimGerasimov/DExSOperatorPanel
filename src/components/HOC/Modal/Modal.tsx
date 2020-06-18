@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './Modal.css'
 
 export default class Modal extends Component<{}, {}> {
 
@@ -8,7 +9,7 @@ export default class Modal extends Component<{}, {}> {
 
   render() {
     return (
-    <div className="modal">
+    <div className="Modal">
       {this.props.children}
     </div>
   )}

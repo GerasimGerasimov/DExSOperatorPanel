@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { autorun, extendObservable } from 'mobx';
 import { devicesInfoStore } from '../../store/devices/devicesinfo';
 import KeyBoard from '../../components/containers/keyboards/UI/KeyBoards/KeyBoard';
-import Modal from '../../components/HOC/Modal';
+import Modal from '../../components/HOC/Modal/Modal';
 import { getTableClickRowCol, getParameterByRow } from '../../components/containers/keyboards/helpers/tables';
 import DeviceController from '../../controllers/devices/device';
 import { getObjectFromTagAndValue } from '../../lib/util/commonmisc';

@@ -1,0 +1,15 @@
+.MenuTougle {
+    font-size: 1rem;
+    color: black;
+    transition: opacity 0.25s ease-in;
+    opacity: 0.5;
+}
+
+.MenuTougle:hover {
+    opacity: 1;
+}
+
+.MenuTougle.open {
+    color: red;
+    left: 50px;
+}
