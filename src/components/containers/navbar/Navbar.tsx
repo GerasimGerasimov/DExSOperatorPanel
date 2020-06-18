@@ -13,19 +13,22 @@ export const Navbar:React.FunctionComponent = (props) => {
         'bg-primary',
     ]
 
-    const click = ()=> {
+    const tougleMenu = () => {
         setVisible(!visible)
-        console.log('click', visible)
+    }
+
+    const handleClose = () => {
+        setVisible(false)
     }
 
     const navbar = (visible)
         ? (
             <div>
                 <Modal classes="content-right">
-                    <nav className={cls.join(' ')}>
-                        <ul className="navbar-nav">
+                    <nav className={cls.join(' ')} onClick={handleClose}>
+                        <ul className="navbar-nav p-1">
                             <li className="nav-item">
-                                <NavLink exact to="/" className="nav-link">Home</NavLink>
+                                <NavLink exact to="/" className="nav-link" >Home</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="/about" className="nav-link">About</NavLink>
@@ -49,7 +52,7 @@ export const Navbar:React.FunctionComponent = (props) => {
             >
                 <MenuTougle
                     isOpen={visible}
-                    onTougle={click}
+                    onTougle={tougleMenu}
                 />
             </div>
         </div>
