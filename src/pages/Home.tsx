@@ -37,7 +37,6 @@ export default class Home extends Component {
   render() {
     return(
       <>
-        <h2>Home</h2>
         <object className="mt-1" id="vteg" type="image/svg+xml"
             data={MotorSVG}
             onLoad={()=>{this.handleImageLoaded()}}

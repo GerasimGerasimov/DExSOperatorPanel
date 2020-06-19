@@ -8,7 +8,7 @@ import { BackHistoty } from '../../BackHistoty/BackHistoty';
 export const Navbar:React.FunctionComponent = (props) => {
     
     const [visible, setVisible] = useState(false);
-
+    const history: number = window.history.length;
     const cls = [
         'navbar-dark',
         'bg-primary',
@@ -48,7 +48,11 @@ export const Navbar:React.FunctionComponent = (props) => {
           className="NavBar">
           <BackHistoty
               isOpen={visible}
-              onBack={()=>{}}
+              onBack={()=>{
+                if (window.history.state !== null) {
+                  window.history.back();
+                }
+              }}
           />
           <MenuTougle
               isOpen={visible}
