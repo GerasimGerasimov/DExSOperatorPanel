@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import './Navbar.css'
 import Modal from '../../HOC/Modal/Modal';
 import { MenuTougle } from '../../MenuTougle/MenuTougle';
-import { BackHistoty } from '../../BackHistoty/BackHistoty';
+import { BackHistory } from '../../BackHistory/BackHistory';
 
 export const Navbar:React.FunctionComponent = (props) => {
     
@@ -12,6 +12,7 @@ export const Navbar:React.FunctionComponent = (props) => {
     const cls = [
         'navbar-dark',
         'bg-primary',
+        'w-100'
     ]
 
     const NavLinkCls: string = "nav-link p-1 bg-primary";
@@ -28,7 +29,7 @@ export const Navbar:React.FunctionComponent = (props) => {
       <div>
         <div className="NavBarSizes"></div>
         <nav className={cls.join(' ')} onClick={handleClose}>
-          <ul className="navbar-nav">
+          <ul className="navbar-nav w-100">
             <li>
               <NavLink exact to="/" className={NavLinkCls}>Home</NavLink>
             </li>
@@ -46,8 +47,7 @@ export const Navbar:React.FunctionComponent = (props) => {
     const menubar = (
         <div
           className="NavBar">
-          <BackHistoty
-              isOpen={visible}
+          <BackHistory
               onBack={()=>{
                 if (window.history.state !== null) {
                   window.history.back();

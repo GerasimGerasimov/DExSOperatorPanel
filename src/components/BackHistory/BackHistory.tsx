@@ -1,14 +1,13 @@
 import React from 'react';
-import './BackHistoty.css';
+import './BackHistory.css';
 
-export interface IBackHistotyProps {
-    isOpen: boolean;
+export interface IBackHistoryProps {
     onBack: (e: any) => any;
 }
 
-export const BackHistoty = (props: IBackHistotyProps) => {
+export const BackHistory = (props: IBackHistoryProps) => {
     const classes = [
-        'BackHistoty',
+        'BackHistory',
         'fa',
         'fa-chevron-left'
     ]

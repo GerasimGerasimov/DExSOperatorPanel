@@ -1,4 +1,4 @@
-.BackHistoty {
+.BackHistory {
     width: 1rem;
     height: 1rem;
     /*font-size: 1rem;*/
@@ -7,11 +7,11 @@
     opacity: 0.5;
 }
 
-.BackHistoty:hover {
+.BackHistory:hover {
     opacity: 1;
 }
 
-.BackHistoty.open {
+.BackHistory.open {
     color: red;
     left: 50px;
 }
