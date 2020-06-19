@@ -1,8 +1,9 @@
 import React , { useState }  from 'react'
 import {NavLink} from 'react-router-dom'
 import './Navbar.css'
-import { MenuTougle } from '../../MenuTougle/MenuTougle';
 import Modal from '../../HOC/Modal/Modal';
+import { MenuTougle } from '../../MenuTougle/MenuTougle';
+import { BackHistoty } from '../../BackHistoty/BackHistoty';
 
 export const Navbar:React.FunctionComponent = (props) => {
     
@@ -50,6 +51,10 @@ export const Navbar:React.FunctionComponent = (props) => {
             {navbar}
             <div
                 className="NavBar">
+                <BackHistoty
+                    isOpen={visible}
+                    onBack={()=>{}}
+                />
                 <MenuTougle
                     isOpen={visible}
                     onTougle={tougleMenu}

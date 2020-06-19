@@ -1,4 +1,4 @@
-.MenuTougle {
+.BackHistoty {
     width: 1rem;
     height: 1rem;
     font-size: 1rem;
@@ -7,11 +7,11 @@
     opacity: 0.5;
 }
 
-.MenuTougle:hover {
+.BackHistoty:hover {
     opacity: 1;
 }
 
-.MenuTougle.open {
+.BackHistoty.open {
     color: red;
     left: 50px;
 }
