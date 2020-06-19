@@ -1,12 +1,17 @@
 .NavBar {
     position: absolute;
     cursor: pointer;
-    right: 0.25rem;
-    top: 0.25rem;
+    right: 0rem;
+    top: 0rem;
     display: flex;
-    border: 1px solid red;
 }
 
 .NavBar:hover {
     opacity: 0.9;
+}
+
+.NavBarSizes {
+    height: 1rem;
+    width: 2rem;
+    box-sizing: border-box;
 }

@@ -24,42 +24,53 @@ export const Navbar:React.FunctionComponent = (props) => {
         setVisible(false)
     }
 
-    const navbar = (visible)
+    const navbar = (
+      <div>
+        <div className="NavBarSizes"></div>
+        <nav className={cls.join(' ')} onClick={handleClose}>
+          <ul className="navbar-nav">
+            <li>
+              <NavLink exact to="/" className={NavLinkCls}>Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/devices" className={NavLinkCls}>Devices</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className={NavLinkCls}>About</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    )
+
+    const menubar = (
+        <div
+          className="NavBar">
+          <BackHistoty
+              isOpen={visible}
+              onBack={()=>{}}
+          />
+          <MenuTougle
+              isOpen={visible}
+              onTougle={tougleMenu}
+          />
+        </div>
+    )
+
+    const modal = (visible)
         ? (
             <div>
               <Modal classes="content-right">
-                <nav className={cls.join(' ')} onClick={handleClose}>
-                  <ul className="navbar-nav">
-                    <li>
-                      <NavLink exact to="/" className={NavLinkCls}>Home</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/devices" className={NavLinkCls}>Devices</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/about" className={NavLinkCls}>About</NavLink>
-                    </li>
-                  </ul>
-                </nav>
+                {navbar}
               </Modal>
             </div>
         )
         : null;
-    
+
     return (
         <div>
-            {navbar}
-            <div
-                className="NavBar">
-                <BackHistoty
-                    isOpen={visible}
-                    onBack={()=>{}}
-                />
-                <MenuTougle
-                    isOpen={visible}
-                    onTougle={tougleMenu}
-                />
-            </div>
+            {modal}
+            {menubar}
         </div>
     )
 }
