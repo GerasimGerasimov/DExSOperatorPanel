@@ -15,3 +15,10 @@
     width: 2rem;
     box-sizing: border-box;
 }
+
+.NavBarWrapper {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+}

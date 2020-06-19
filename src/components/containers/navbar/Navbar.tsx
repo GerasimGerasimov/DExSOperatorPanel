@@ -12,7 +12,7 @@ export const Navbar:React.FunctionComponent = (props) => {
     const cls = [
         'navbar-dark',
         'bg-primary',
-        'w-100'
+        'h-100'
     ]
 
     const NavLinkCls: string = "nav-link p-1 bg-primary";
@@ -26,19 +26,14 @@ export const Navbar:React.FunctionComponent = (props) => {
     }
 
     const navbar = (
-      <div>
+      <div className="NavBarWrapper">
         <div className="NavBarSizes"></div>
         <nav className={cls.join(' ')} onClick={handleClose}>
-          <ul className="navbar-nav w-100">
-            <li>
-              <NavLink exact to="/" className={NavLinkCls}>Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/devices" className={NavLinkCls}>Devices</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" className={NavLinkCls}>About</NavLink>
-            </li>
+          <ul className="navbar-nav">
+            <li><NavLink exact to="/" className={NavLinkCls}>Home</NavLink></li>
+            <li><NavLink to="/trands" className={NavLinkCls}>Trands</NavLink></li>
+            <li><NavLink to="/devices" className={NavLinkCls}>Devices</NavLink></li>
+            <li><NavLink to="/about" className={NavLinkCls}>About</NavLink></li>
           </ul>
         </nav>
       </div>
