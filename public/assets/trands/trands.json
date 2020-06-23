@@ -1,0 +1,14 @@
+{
+    "deep":640,
+    "interval":10,
+    "trands": {
+        "trand_1":{
+            "height":"64 px",
+            "tags": ["U1>RAM>Iexc","U1>RAM>Uexc","U1>RAM>DIN.2(C2_AC)"]
+        },
+        "trand_2":{
+            "height":"64 px",
+            "tags": ["U1>RAM>DIN.0(C1_AC)","U1>RAM>DIN.1(C1_DC)"]
+        }
+    }
+}

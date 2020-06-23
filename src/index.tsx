@@ -8,11 +8,14 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'mobx-react';
 import mainStore from './store/mainStore'
 import { loadSVGImages } from './lib/svg/svgloadimages';
+import { Trands } from './lib/trands/trands'
 
 const stores = {
   mainStore,
   DeviceStore: mainStore.devicesValueStore
 };
+
+Trands.loadConfig();
 
 loadSVGImages()
 .then(()=>{//после подгрузки картинок, будет запущенj React приложение

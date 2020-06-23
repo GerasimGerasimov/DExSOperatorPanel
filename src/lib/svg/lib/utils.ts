@@ -10,7 +10,7 @@ export function  changeSingleQuotesToDouble(attr: string): any {
 //Возвращает:
 //  1) строку с содержимым файла 
 //  2) undefine - если файл по какой-то причине не загрузился
-async function getTextByURL (url: string) {
+export async function getTextByURL (url: string) {
     try {
         const res  = await fetch(url)
         const text = await res.text();
