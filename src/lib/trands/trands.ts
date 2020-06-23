@@ -8,7 +8,7 @@
 6) Если в массиве tags несколько трендов то графики требуется совмещать
 */
 import {getTextByURL} from '../svg/lib/utils' 
-import { TTrand } from './trand';
+import { TTrandsGroup } from './trandsgroup';
 
 const settingsURL = '/assets/trands/trands.json'
 
@@ -16,10 +16,9 @@ export class TTrands {
     private url: string = ''
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
-    private trands: Map<string, TTrand> = new Map()
+    private trands: Map<string, TTrandsGroup> = new Map()
 
     constructor (url: string = settingsURL) {
-        console.log('create Trands')
         this.url = url
     }
 
@@ -36,8 +35,8 @@ export class TTrands {
         if (trands === undefined) return;
         for (const key in trands) {
             const value: any = trands[key];
-            const trand: TTrand = new TTrand(value);
-            this.trands.set(key, trand)
+            const group: TTrandsGroup = new TTrandsGroup(value);
+            this.trands.set(key, group)
         }
     }
 }

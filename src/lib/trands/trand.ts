@@ -1,21 +1,20 @@
 interface ITrandProp {
-  height: string,
-  tags: Array<string>
-}
-
-class TTrandHeight {
-  height: number = 0; //высота графика
-  mu: string = 'px';  //единицы измерения
+  color: string,
+  signed?: boolean,
+  fraction?: number
 }
 
 export class TTrand {
-  private height: TTrandHeight;
+  private tag: string;
+  private color: string;
+  private signed: boolean;
+  private fraction: number;
 
-  constructor(prop: ITrandProp){
-    const [height, mu] = prop.height.split(' ');
-    this.height = {
-      height: Number(height),
-      mu
-    }
+  constructor(tag: string, prop: ITrandProp){
+    this.tag = tag;
+    this.color = prop.color || 'red';
+    this.signed = prop.signed || false;
+    this.fraction = prop.fraction || 0;
   }
+
 }
