@@ -17,6 +17,8 @@ export class TTrands {
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
     private trands: Map<string, TTrandsGroup> = new Map()
+    private updateTimer: any = undefined;
+    private count: number = 0;
 
     constructor (url: string = settingsURL) {
         this.url = url
@@ -28,7 +30,6 @@ export class TTrands {
         this.deep = settings.deep || 0;
         this.interval = settings.interval || 0;
         this.getTrands(settings.trands || undefined)
-        console.log(settings)
     }
 
     private getTrands(trands: any) {
@@ -38,6 +39,17 @@ export class TTrands {
             const group: TTrandsGroup = new TTrandsGroup(this.deep, value);
             this.trands.set(key, group)
         }
+    }
+
+    public startUpdateTimer() {
+        this.updateTimer = setInterval(this.updateTrandsValue.bind(this), this.interval)
+    }
+
+    private updateTrandsValue(){
+        console.log(`update ${this.count++}`);
+        this.trands.forEach((group:TTrandsGroup)=>{
+            group.setTagsValues()
+        })
     }
 }
 

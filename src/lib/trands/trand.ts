@@ -35,4 +35,12 @@ export class TTrand {
     const model: TModel = factory(objType, props)
     return model;
   }
+
+  public setValueToEnd(value: any) {
+    this.model.setValueToEnd(value);
+  }
+
+  public getValueByIndex(index: number): any {
+    return this.model.getValueByIndex(index)
+  }
 }

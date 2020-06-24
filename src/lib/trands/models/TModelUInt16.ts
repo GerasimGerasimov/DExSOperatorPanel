@@ -7,4 +7,16 @@ export class TModelUInt16 extends TModel {
     super(props);
     this.data = new Uint16Array(this.deep)
   }
+
+  public setValueToEnd(value: any) {
+    this.data[this.endIndex] = value;
+    const endIndex = ++this.endIndex;
+    this.endIndex = (endIndex >= this.deep)
+                    ? 0
+                    : endIndex;
+  }
+
+  public getValueByIndex(index: number): any {
+    return this.data[index]
+  }
 }

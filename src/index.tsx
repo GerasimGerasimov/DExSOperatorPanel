@@ -15,7 +15,10 @@ const stores = {
   DeviceStore: mainStore.devicesValueStore
 };
 
-Trands.loadConfig();
+(async () => {
+  await Trands.loadConfig();
+  Trands.startUpdateTimer();
+})();
 
 loadSVGImages()
 .then(()=>{//после подгрузки картинок, будет запущенj React приложение

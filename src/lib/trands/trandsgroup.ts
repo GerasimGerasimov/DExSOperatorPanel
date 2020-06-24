@@ -46,5 +46,9 @@ export class TTrandsGroup {
     return tags;
   }
 
-  
+  public setTagsValues() {
+    this.tags.forEach((tag:TTrand) => {
+      tag.setValueToEnd(Math.random()*256)
+    })
+  }
 }

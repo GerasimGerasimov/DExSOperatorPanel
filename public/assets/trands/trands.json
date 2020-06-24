@@ -1,6 +1,6 @@
 {
-    "deep":640,
-    "interval":10,
+    "deep":128,
+    "interval":1000,
     "trands": {
         "trand_1":{
             "height":"64 px",
