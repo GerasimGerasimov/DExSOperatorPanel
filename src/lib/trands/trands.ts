@@ -35,7 +35,7 @@ export class TTrands {
         if (trands === undefined) return;
         for (const key in trands) {
             const value: any = trands[key];
-            const group: TTrandsGroup = new TTrandsGroup(value);
+            const group: TTrandsGroup = new TTrandsGroup(this.deep, value);
             this.trands.set(key, group)
         }
     }

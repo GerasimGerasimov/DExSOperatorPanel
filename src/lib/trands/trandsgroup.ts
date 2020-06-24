@@ -1,5 +1,5 @@
 //тренды вписанные в один блок графика
-import { TTrand } from './trand';
+import { TTrand, ITrandProp } from './trand';
 
 interface ITrandsGroupProp {
   height: string,
@@ -12,10 +12,12 @@ class TTrandHeight {
 }
 
 export class TTrandsGroup {
+  private deep: number; //глубина архива
   private height: TTrandHeight;
   private tags: Map<string, TTrand>;
 
-  constructor (props: ITrandsGroupProp) {
+  constructor (deep: number, props: ITrandsGroupProp) {
+    this.deep = deep;
     this.height = this.setHeightProps(props.height);
     this.tags = this.setTagsProps(props.tags);
   }
@@ -32,7 +34,12 @@ export class TTrandsGroup {
     const tags: Map<string, TTrand> = new Map();
     for (const key in props) {
       const value: any = props[key];
-      const trand: TTrand = new TTrand(key, value);
+      const trandProp: ITrandProp = {
+        tag: key,
+        deep: this.deep,
+        ...value
+      }
+      const trand: TTrand = new TTrand(trandProp);
       tags.set(key, trand)
       console.log(value)
     }
