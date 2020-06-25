@@ -19,7 +19,7 @@
             }
         },
         "trand_2":{
-            "height":"16 px",
+            "height":"32 px",
             "tags": {
                 "U1/RAM/DIN.0(C1_AC)":{
                     "color":"red"

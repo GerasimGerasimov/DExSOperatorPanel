@@ -8,7 +8,7 @@
 6) Если в массиве tags несколько трендов то графики требуется совмещать
 */
 import {getTextByURL} from '../svg/lib/utils' 
-import { TTrandsGroup } from './trandsgroup';
+import { TTrandsGroup, TTrandHeight } from './trandsgroup';
 
 const settingsURL = '/assets/trands/trands.json'
 
@@ -50,6 +50,22 @@ export class TTrands {
         this.trands.forEach((group:TTrandsGroup)=>{
             group.setTagsValues()
         })
+    }
+
+    public getTagList():Array<string> {
+        const res: Array<string>=[]
+        this.trands.forEach((group:TTrandsGroup)=>{
+            res.push(group.getTagNameList())
+        })
+        return res;
+    }
+
+    public getBoxesHeight():Array<TTrandHeight> {
+        const res: Array<TTrandHeight>=[]
+        this.trands.forEach((group:TTrandsGroup)=>{
+            res.push(group.getBoxHeight())
+        })
+        return res;
     }
 }
 

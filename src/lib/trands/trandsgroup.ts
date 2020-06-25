@@ -6,7 +6,7 @@ interface ITrandsGroupProp {
   tags: Array<string>
 }
 
-class TTrandHeight {
+export class TTrandHeight {
   height: number = 0; //высота графика
   mu: string = 'px';  //единицы измерения
 }
@@ -20,6 +20,14 @@ export class TTrandsGroup {
     this.deep = deep;
     this.height = this.setHeightProps(props.height);
     this.tags = this.setTagsProps(props.tags);
+  }
+
+  public getTagNameList(): string{
+    return 'TTrandsGroup'
+  }
+
+  public getBoxHeight():TTrandHeight{
+    return this.height;
   }
 
   private setHeightProps(prop: string): TTrandHeight {
