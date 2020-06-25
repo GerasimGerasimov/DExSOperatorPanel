@@ -1,5 +1,16 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-export const Trands: React.FunctionComponent = ({}) => (
-    <h1>Trands page</h1>
-)
+export default class Trands extends Component {
+    
+    constructor (props: any){
+        super(props)
+    }
+
+    render() {
+        return(
+          <>
+            <h1>Trands page</h1>
+          </>
+        )
+      }
+}

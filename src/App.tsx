@@ -4,7 +4,7 @@ import './App.css';
 import Home from './pages/Home';
 import { Navbar } from './components/containers/navbar/Navbar';
 import { About } from './pages/About';
-import { Trands } from './pages/Trands';
+import Trands from './pages/Trands';
 import Devices from './pages/settings/Devices';
 import DevicesRouter from './pages/settings/DevicesRouter';
 import DeviceParameters from './pages/settings/DeviceParameters';
