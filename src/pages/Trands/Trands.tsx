@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
+import TViewBox from './TViewBox'
 
 export default class TrandsPage extends Component {
     
@@ -10,15 +11,11 @@ export default class TrandsPage extends Component {
 
     private getTrandsBoxes(): any{
       return Trands.getBoxesHeight().map((value, index)=>{
-        const {height, mu} = {...value}
         return (
-          <div
-            key={index}
-            className='Trands box'
-            style={{
-              height: `${height}${mu}`
-            }}>
-          </div>
+            <TViewBox
+              key={index}
+              height = {value}
+            />
         )
       })
     }
