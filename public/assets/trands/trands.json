@@ -6,12 +6,17 @@
             "height":"64 px",
             "tags": {
                 "U1/RAM/Iexc":{
-                    "color":"red"
+                    "color":"red",
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfAllRange"
                 },
                 "U1/RAM/Uexc":{
                     "color":"blue",
                     "signed": true,
-                    "fraction":1
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"Fixed 600"
                 },
                 "U1/RAM/DIN.2(C2_AC)":{
                     "color":"yellow"
