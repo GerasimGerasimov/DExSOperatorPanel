@@ -18,7 +18,19 @@ export class TModelUInt16 extends TModel {
   }
 
   public getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
-    return 0;
+    let max: number = 0;
+    let value: number = 0;
+    let index: number = FromIdx;
+    let idx: number = 0;
+    while (Count-- != 0) {
+      if ((idx = index++) >= this.deep) {
+        idx = idx - this.deep;
+      }
+      if ((value = Math.abs(this.data[idx])) > max) {
+        max = value
+      }
+    }
+    return max;
   }
 
   public getValueByIndex(index: number): any {
