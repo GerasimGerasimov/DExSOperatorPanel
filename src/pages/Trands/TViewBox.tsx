@@ -20,6 +20,7 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
           style={{
             height: `${height}${mu}`
           }}>
+            <h3>TViewBox</h3>
         </div>
       )
     }

@@ -49,6 +49,10 @@ export class TTrand {
     this.model = this.getTagPropertiesForTrand(this.tag)
   }
 
+  public get Model():TModel {
+    return this.model;
+  }
+
   private getTagPropertiesForTrand(tag: string): TModel {
     const  {msu, comment, objType} = devicesInfoStore.getTagProperties (tag, ATagProperties);
     const props: IModelProp = {
@@ -60,8 +64,8 @@ export class TTrand {
   }
 
   public setValueToModel(value: any) {
-    const max: number = this.model.getMaxValue(0, 5);
-    console.log(`tag ${this.tag} max: ${max}`)
+    //const max: number = this.model.getMaxValue(0, 5);
+    //console.log(`tag ${this.tag} max: ${max}`)
     this.model.setValue(value);
   }
 

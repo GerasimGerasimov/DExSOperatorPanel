@@ -16,7 +16,7 @@ export class TTrands {
     private url: string = ''
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
-    private trands: Map<string, TTrandsGroup> = new Map()
+    private trandsGroups: Map<string, TTrandsGroup> = new Map()
     private updateTimer: any = undefined;
     private count: number = 0;
 
@@ -29,15 +29,15 @@ export class TTrands {
         const settings = await JSON.parse(text);
         this.deep = settings.deep || 0;
         this.interval = settings.interval || 0;
-        this.getTrands(settings.trands || undefined)
+        this.createTrandsGroups(settings.trands || undefined)
     }
 
-    private getTrands(trands: any) {
+    private createTrandsGroups(trands: any) {
         if (trands === undefined) return;
         for (const key in trands) {
             const value: any = trands[key];
             const group: TTrandsGroup = new TTrandsGroup(this.deep, value);
-            this.trands.set(key, group)
+            this.trandsGroups.set(key, group)
         }
     }
 
@@ -47,14 +47,14 @@ export class TTrands {
 
     private updateTrandsValue(){
         console.log(`update ${this.count++}`);
-        this.trands.forEach((group:TTrandsGroup)=>{
+        this.trandsGroups.forEach((group:TTrandsGroup)=>{
             group.setTagsValues()
         })
     }
 
     public getTagList():Array<string> {
         const res: Array<string>=[]
-        this.trands.forEach((group:TTrandsGroup)=>{
+        this.trandsGroups.forEach((group:TTrandsGroup)=>{
             res.push(group.getTagNameList())
         })
         return res;
@@ -62,7 +62,7 @@ export class TTrands {
 
     public getBoxesHeight():Array<TTrandHeight> {
         const res: Array<TTrandHeight>=[]
-        this.trands.forEach((group:TTrandsGroup)=>{
+        this.trandsGroups.forEach((group:TTrandsGroup)=>{
             res.push(group.getBoxHeight())
         })
         return res;
