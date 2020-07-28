@@ -60,6 +60,8 @@ export class TTrand {
   }
 
   public setValueToModel(value: any) {
+    const max: number = this.model.getMaxValue(0, 5);
+    console.log(`tag ${this.tag} max: ${max}`)
     this.model.setValue(value);
   }
 

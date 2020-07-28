@@ -68,7 +68,7 @@ export class TModel {
     return res;
   }
 
-  public getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
+  protected getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
     return 0;
   }
 

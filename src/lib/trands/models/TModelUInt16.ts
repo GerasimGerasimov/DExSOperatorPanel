@@ -17,7 +17,7 @@ export class TModelUInt16 extends TModel {
                     : endIndex;
   }
 
-  public getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
+  protected getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
     let max: number = 0;
     let value: number = 0;
     let index: number = FromIdx;

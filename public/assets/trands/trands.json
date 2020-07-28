@@ -9,7 +9,7 @@
                     "color":"red",
                     "fraction":1,
                     "offset": "10 %",
-                    "MaxValueMode":"MaxOfAllRange"
+                    "MaxValueMode":"MaxOfSelectedRange"
                 },
                 "U1/RAM/Uexc":{
                     "color":"blue",
