@@ -9,6 +9,8 @@
 */
 import {getTextByURL} from '../svg/lib/utils' 
 import { TTrandsGroup, TTrandHeight } from './trandsgroup';
+import { TTrand } from './trand';
+import TViewBoxModel, { IViewBoxModelProps } from '../../pages/Trands/TViewBoxModel';
 
 const settingsURL = '/assets/trands/trands.json'
 
@@ -17,6 +19,7 @@ export class TTrands {
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
     private trandsGroups: Map<string, TTrandsGroup> = new Map()
+    private viewBoxes: Map<string, TViewBoxModel> = new Map();
     private updateTimer: any = undefined;
     private count: number = 0;
 
@@ -30,6 +33,7 @@ export class TTrands {
         this.deep = settings.deep || 0;
         this.interval = settings.interval || 0;
         this.createTrandsGroups(settings.trands || undefined)
+        this.createViewBoxesModels();
     }
 
     private createTrandsGroups(trands: any) {
@@ -39,6 +43,17 @@ export class TTrands {
             const group: TTrandsGroup = new TTrandsGroup(this.deep, value);
             this.trandsGroups.set(key, group)
         }
+    }
+
+    private createViewBoxesModels() {
+        this.trandsGroups.forEach((trandsGroup: TTrandsGroup, key: string) =>{
+            const props: IViewBoxModelProps = {
+                height: trandsGroup.getBoxHeight(),
+                models: trandsGroup
+            }
+            const viewBoxModel: TViewBoxModel = new TViewBoxModel(props);
+            this.viewBoxes.set(key, viewBoxModel)
+        })
     }
 
     public startUpdateTimer() {
@@ -60,10 +75,10 @@ export class TTrands {
         return res;
     }
 
-    public getBoxesHeight():Array<TTrandHeight> {
-        const res: Array<TTrandHeight>=[]
-        this.trandsGroups.forEach((group:TTrandsGroup)=>{
-            res.push(group.getBoxHeight())
+    public getBoxes():Array<TViewBoxModel> {
+        const res: Array<TViewBoxModel>=[]
+        this.viewBoxes.forEach((box:TViewBoxModel)=>{
+            res.push(box)
         })
         return res;
     }

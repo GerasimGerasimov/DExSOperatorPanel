@@ -10,11 +10,12 @@ export default class TrandsPage extends Component {
     }
 
     private getTrandsBoxes(): any{
-      return Trands.getBoxesHeight().map((value, index)=>{
+      return Trands.getBoxes().map((box, index)=>{
         return (
             <TViewBox
               key={index}
-              height = {value}
+              height = {box.Height}
+              viewBox = {box}
             />
         )
       })
