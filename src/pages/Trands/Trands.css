@@ -9,7 +9,18 @@
 }
 
 .Trands.box {
+  position: relative;
   border: 1px dashed blue;
   box-sizing: border-box;
   width: 100%;
+}
+
+.Trands.canvas {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border: 1px dashed green;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 }

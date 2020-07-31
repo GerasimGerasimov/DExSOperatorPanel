@@ -10,10 +10,24 @@ export interface IViewBoxProps {
 
 export default class TViewBox extends Component<IViewBoxProps, {}> {
     private height: TTrandHeight;
+    private viewBox: TViewBoxModel;
 
     constructor (props: any){
       super(props);
       this.height = this.props.height;
+      this.viewBox = this.props.viewBox;
+    }
+
+    componentDidMount() {
+      const canvas:any = this.refs.canvas
+      const ctx: any = canvas.getContext("2d")
+      this.viewBox.draw();
+      ctx.drawImage(this.viewBox.Context.canvas, 0, 0);
+      // img.onload = () => {
+      //   ctx.drawImage(img, 0, 0)
+      //   ctx.font = "40px Courier"
+      //   ctx.fillText(this.props.text, 210, 75)
+      // }
     }
 
     render() {
@@ -25,6 +39,7 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
             height: `${height}${mu}`
           }}>
             <h3>TViewBox</h3>
+            <canvas ref="canvas" className='Trands canvas'></canvas>
         </div>
       )
     }

@@ -19,7 +19,7 @@ export class TTrands {
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
     private trandsGroups: Map<string, TTrandsGroup> = new Map()
-    private viewBoxes: Map<string, TViewBoxModel> = new Map();
+    private viewBoxesModel: Map<string, TViewBoxModel> = new Map();
     private updateTimer: any = undefined;
     private count: number = 0;
 
@@ -52,7 +52,7 @@ export class TTrands {
                 models: trandsGroup
             }
             const viewBoxModel: TViewBoxModel = new TViewBoxModel(props);
-            this.viewBoxes.set(key, viewBoxModel)
+            this.viewBoxesModel.set(key, viewBoxModel)
         })
     }
 
@@ -77,7 +77,7 @@ export class TTrands {
 
     public getBoxes():Array<TViewBoxModel> {
         const res: Array<TViewBoxModel>=[]
-        this.viewBoxes.forEach((box:TViewBoxModel)=>{
+        this.viewBoxesModel.forEach((box:TViewBoxModel)=>{
             res.push(box)
         })
         return res;
