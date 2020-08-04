@@ -32,18 +32,24 @@ export default class TViewBoxModel {
       return this.ctx
     }
 
+    public get Canvas(): any {
+      return this.canvas
+    }
+
     public draw() {
-      //const ctx = this.canvas.getContext("2d");
-      const path = new Path2D();
-      const r = 20;
-      path.arc(20, 20, r, 0, 2 * Math.PI);
-      this.ctx.fill(path);
+      this.ctx.fillStyle = '#FD0';
+      this.ctx.beginPath();
+      this.ctx.rect(0,0,10,10);
+      this.ctx.stroke();
     }
 
     public resize(width: number, height: number) {
       this.ctxsize = {width, height}
-      this.canvas.width = width;
-      this.canvas.height = height;
+      //this.canvas.width = width;
+      //this.canvas.height = height;
+      this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
+      this.ctx = this.canvas.getContext("2d"/*, { alpha: false }*/);
+      this.ctx.imageSmoothingEnabled = false;
     }
 
     public get Height():TTrandHeight {

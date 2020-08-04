@@ -19,15 +19,15 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
     }
 
     componentDidMount() {
-      const canvas:any = this.refs.canvas
-      const ctx: any = canvas.getContext("2d")
+      const canvas:any = this.refs.canvas;
+      const w: number = canvas.clientWidth;
+      const h: number = canvas.clientHeight;
+      this.viewBox.resize(w, h);
       this.viewBox.draw();
-      ctx.drawImage(this.viewBox.Context.canvas, 0, 0);
-      // img.onload = () => {
-      //   ctx.drawImage(img, 0, 0)
-      //   ctx.font = "40px Courier"
-      //   ctx.fillText(this.props.text, 210, 75)
-      // }
+      const ctx: any = canvas.getContext("bitmaprenderer"/*, { alpha: false }*/)
+      //ctx.drawImage(this.viewBox.Context.canvas, 0, 0);
+      var bitmapOne = this.viewBox.Canvas.transferToImageBitmap();
+      ctx.transferFromImageBitmap(bitmapOne);
     }
 
     render() {
@@ -39,7 +39,7 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
             height: `${height}${mu}`
           }}>
             <h3>TViewBox</h3>
-            <canvas ref="canvas" className='Trands canvas'></canvas>
+            <canvas ref="canvas" className='Trands canvas' style={{background: '#f4f4f4'}}></canvas>
         </div>
       )
     }
