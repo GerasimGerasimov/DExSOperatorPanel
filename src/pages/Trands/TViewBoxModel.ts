@@ -37,7 +37,7 @@ export default class TViewBoxModel {
     }
 
     public draw() {
-      this.ctx.fillStyle = '#FD0';
+      this.ctx.strokeStyle = "blue";
       this.ctx.beginPath();
       this.ctx.rect(0,0,10,10);
       this.ctx.stroke();
