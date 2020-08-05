@@ -11,6 +11,7 @@ export interface IViewBoxProps {
 export default class TViewBox extends Component<IViewBoxProps, {}> {
     private height: TTrandHeight;
     private viewBox: TViewBoxModel;
+    private canasRef: any = React.createRef();
 
     constructor (props: any){
       super(props);
@@ -19,14 +20,14 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
     }
 
     componentDidMount() {
-      const canvas:any = this.refs.canvas;
+      const canvas:any = this.canasRef.current;// this.refs.canvas;
       const w: number = canvas.clientWidth;
       const h: number = canvas.clientHeight;
       this.viewBox.resize(w, h);
       this.viewBox.draw();
-      const ctx: any = canvas.getContext("bitmaprenderer"/*, { alpha: false }*/)
+      var ctx: any = canvas.getContext("bitmaprenderer", { alpha: false })
       //ctx.drawImage(this.viewBox.Context.canvas, 0, 0);
-      var bitmapOne = this.viewBox.Canvas.transferToImageBitmap();
+      const bitmapOne = this.viewBox.Canvas.transferToImageBitmap();
       ctx.transferFromImageBitmap(bitmapOne);
     }
 
@@ -39,7 +40,7 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
             height: `${height}${mu}`
           }}>
             <h3>TViewBox</h3>
-            <canvas ref="canvas" className='Trands canvas' style={{background: '#f4f4f4'}}></canvas>
+            <canvas ref={this.canasRef} className='Trands canvas' style={{background: '#f4f4f4'}}></canvas>
         </div>
       )
     }

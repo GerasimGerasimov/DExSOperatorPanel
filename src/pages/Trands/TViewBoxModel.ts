@@ -38,8 +38,9 @@ export default class TViewBoxModel {
 
     public draw() {
       this.ctx.strokeStyle = "blue";
+      this.ctx.lineWidth = 2;
       this.ctx.beginPath();
-      this.ctx.rect(0,0,10,10);
+      this.ctx.rect(0,0,this.ctxsize.height,this.ctxsize.height);
       this.ctx.stroke();
     }
 
@@ -48,7 +49,7 @@ export default class TViewBoxModel {
       //this.canvas.width = width;
       //this.canvas.height = height;
       this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
-      this.ctx = this.canvas.getContext("2d"/*, { alpha: false }*/);
+      this.ctx = this.canvas.getContext("2d", { alpha: false });
       this.ctx.imageSmoothingEnabled = false;
     }
 
