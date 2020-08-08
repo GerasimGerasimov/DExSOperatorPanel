@@ -10,6 +10,7 @@ interface ICanvasSize {
   width: number;
   height: number;
 }
+
 export default class TViewBoxModel {
     private canvas: OffscreenCanvas;
     private ctx: any;
@@ -23,7 +24,7 @@ export default class TViewBoxModel {
     constructor (props: IViewBoxModelProps){
       this.height = props.height;
       this.models = props.models;
-      this.ctxsize = {width:1024, height:this.height.height}
+      this.ctxsize = {width:0, height:0}
       this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
       this.ctx = this.canvas.getContext("2d");
     }
@@ -45,12 +46,13 @@ export default class TViewBoxModel {
     }
 
     public resize(width: number, height: number) {
-      this.ctxsize = {width, height}
-      //this.canvas.width = width;
-      //this.canvas.height = height;
-      this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
-      this.ctx = this.canvas.getContext("2d", { alpha: false });
-      this.ctx.imageSmoothingEnabled = false;
+      if ((width != this.ctxsize.width) || 
+          (height != this.ctxsize.height)) {
+            this.ctxsize = {width, height}
+            this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
+            this.ctx = this.canvas.getContext("2d");
+            this.ctx.imageSmoothingEnabled = false;
+      }
     }
 
     public get Height():TTrandHeight {

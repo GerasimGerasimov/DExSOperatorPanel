@@ -6,34 +6,37 @@ import React, {Component} from 'react'
 import './Trands.css'
 import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
+import DrawCanvas from './TDrawCanvas';
 
 export interface IViewBoxProps {
   height: TTrandHeight;
   viewBox: TViewBoxModel;
 }
 
-export default class TViewBox extends Component<IViewBoxProps, {}> {
-    private height: TTrandHeight;
+export interface ISaveContextFunction {
+  (element: any): void;
+}
+
+interface IViewBoxState {
+  count: number;
+}
+
+export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
+    private heightProp: TTrandHeight;
     private viewBox: TViewBoxModel;
-    private canvasRef: any = React.createRef();
 
     constructor (props: any){
       super(props);
-      this.height = this.props.height;
+      this.state = {
+        count: 0
+      }
+
+      this.heightProp = this.props.height;
       this.viewBox = this.props.viewBox;
     }
 
     componentDidMount() {
-      window.addEventListener("resize", this.onResize);
-      const canvas:any = this.canvasRef.current;
-      const w: number = canvas.clientWidth;
-      const h: number = canvas.clientHeight;
-      this.viewBox.resize(w, h);
-      this.viewBox.draw();
-      var ctx: any = canvas.getContext("bitmaprenderer", { alpha: false })
-      //ctx.drawImage(this.viewBox.Context.canvas, 0, 0);
-      const bitmapOne = this.viewBox.Canvas.transferToImageBitmap();
-      ctx.transferFromImageBitmap(bitmapOne);
+      //window.addEventListener("resize", this.onResize);
     }
 
     private onResize(){
@@ -52,15 +55,19 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
   }
      
     componentWillUnmount() {
-        window.removeEventListener("resize", this.onResize);
+      //window.removeEventListener("resize", this.onResize);
     }
 
-    private setCanvasRef(element: any) {
-      this.canvasRef = element;
+    private handleClick(){
+      console.log('click', this.state.count);
+      this.setState(state=> ({
+          count: state.count + 1
+        })
+      )
     }
 
     render() {
-      const {height, mu} = {...this.height}
+      const {height, mu} = {...this.heightProp}
       return (
         <div
           className='Trands box'
@@ -68,8 +75,14 @@ export default class TViewBox extends Component<IViewBoxProps, {}> {
             height: `${height}${mu}`
           }}>
             <h3>TViewBox</h3>
-            <canvas ref={this.canvasRef} className='Trands canvas' style={{background: '#f4f4f4'}}></canvas>
+            <DrawCanvas
+              changeCount={this.state.count}
+              viewBox = {this.viewBox}
+             />
+          <button onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
         </div>
       )
     }
 }
+
+//<canvas ref={this.canvasRef} className='Trands canvas' style={{background: '#f4f4f4'}}></canvas>
