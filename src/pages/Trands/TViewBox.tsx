@@ -79,7 +79,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               changeCount={this.state.count}
               viewBox = {this.viewBox}
              />
-          <button onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
+          <button className='Trands btn' onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
         </div>
       )
     }
