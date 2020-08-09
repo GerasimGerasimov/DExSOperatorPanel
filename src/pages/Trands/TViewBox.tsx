@@ -24,7 +24,7 @@ interface IViewBoxState {
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private heightProp: TTrandHeight;
-    private viewBox: TViewBoxModel;
+    private viewBoxModel: TViewBoxModel;
 
     constructor (props: any){
       super(props);
@@ -34,7 +34,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       }
 
       this.heightProp = this.props.height;
-      this.viewBox = this.props.viewBox;
+      this.viewBoxModel = this.props.viewBox;
     }
 
     componentDidMount() {
@@ -72,7 +72,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             <DrawCanvas
               changeCount={this.state.count}
               width={this.state.width}
-              viewBox = {this.viewBox}
+              viewBoxModel = {this.viewBoxModel}
              />
           <button className='Trands btn' onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
         </div>

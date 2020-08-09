@@ -5,32 +5,32 @@ import TViewBoxModel from './TViewBoxModel';
 
 export interface IDrawCanvasProps {
   changeCount: any;
-  viewBox: TViewBoxModel;
+  viewBoxModel: TViewBoxModel;
   width: number;
 }
 
 export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
   private ctx: any;
-  private viewBox: TViewBoxModel;
+  private viewBoxModel: TViewBoxModel;
   private height: number = 0;
   private width: number = 0;
 
   constructor(props: IDrawCanvasProps) {
     super(props);
-    this.viewBox = this.props.viewBox;
+    this.viewBoxModel = this.props.viewBoxModel;
   }
 
   saveContext(element: any) {
     this.ctx = element.getContext('bitmaprenderer');
     this.width = element.clientWidth;
     this.height = element.clientHeight;
-    this.viewBox.resize(this.width, this.height);
+    this.viewBoxModel.resize(this.width, this.height);
   }
 
   componentDidUpdate() {
     const { changeCount } = this.props;
-    this.viewBox.draw();
-    const bitmapOne = this.viewBox.Canvas.transferToImageBitmap();
+    this.viewBoxModel.draw();
+    const bitmapOne = this.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);
   }
 

@@ -52,6 +52,7 @@ export default class TViewBoxModel {
         const s = `${value.Tag}: ${value.Model.EndIndex}`
         this.ctx.strokeStyle = value.Color;
         this.ctx.strokeText(s, 150, i +=18);
+        //TODO тут должны отрисовываться графики
       })
     }
 
