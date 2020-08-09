@@ -12,6 +12,7 @@ interface ICanvasSize {
 }
 
 export default class TViewBoxModel {
+    private count: number = 0;
     private canvas: OffscreenCanvas;
     private ctx: any;
     private height: TTrandHeight;
@@ -43,6 +44,9 @@ export default class TViewBoxModel {
       this.ctx.beginPath();
       this.ctx.rect(0,0,this.ctxsize.height,this.ctxsize.height);
       this.ctx.stroke();
+      this.ctx.strokeStyle = "red";
+      this.ctx.font = "16px serif";
+      this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count++}`, 2, 18);
     }
 
     public resize(width: number, height: number) {

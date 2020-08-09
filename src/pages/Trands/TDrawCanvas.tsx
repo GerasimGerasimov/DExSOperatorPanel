@@ -6,9 +6,10 @@ import TViewBoxModel from './TViewBoxModel';
 export interface IDrawCanvasProps {
   changeCount: any;
   viewBox: TViewBoxModel;
+  width: number;
 }
 
-export default class Canvas extends React.Component <IDrawCanvasProps,{}>{
+export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
   private ctx: any;
   private viewBox: TViewBoxModel;
   private height: number = 0;
@@ -34,6 +35,6 @@ export default class Canvas extends React.Component <IDrawCanvasProps,{}>{
   }
 
   render() {
-    return <OutCanvas contextRef={this.saveContext.bind(this)} />;
+    return <OutCanvas width={this.props.width} contextRef={this.saveContext.bind(this)} />;
   }
 }

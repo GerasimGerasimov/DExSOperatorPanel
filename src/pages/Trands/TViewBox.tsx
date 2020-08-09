@@ -19,6 +19,7 @@ export interface ISaveContextFunction {
 
 interface IViewBoxState {
   count: number;
+  width: number
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
@@ -28,7 +29,8 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     constructor (props: any){
       super(props);
       this.state = {
-        count: 0
+        count: 0,
+        width: window.innerWidth
       }
 
       this.heightProp = this.props.height;
@@ -36,26 +38,18 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     componentDidMount() {
-      //window.addEventListener("resize", this.onResize);
+      window.addEventListener("resize", this.onResize.bind(this));
     }
 
     private onResize(){
       console.log('resize');
-      //this.canvasRef.current = React.createRef();
-      //const canvas:any = this.canvasRef.current
-      //if (canvas) {
-      //  console.log(canvas)
-      //}
-      //const w: number = canvas.clientWidth;
-      //const h: number = canvas.clientHeight;
+      this.setState(state=>({
+        width: window.innerWidth,
+      }));
     }
-
-    componentWillMount() {
-      //this.onResize();
-  }
-     
+    
     componentWillUnmount() {
-      //window.removeEventListener("resize", this.onResize);
+      window.removeEventListener("resize", this.onResize);
     }
 
     private handleClick(){
@@ -77,6 +71,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             <h3>TViewBox</h3>
             <DrawCanvas
               changeCount={this.state.count}
+              width={this.state.width}
               viewBox = {this.viewBox}
              />
           <button className='Trands btn' onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
@@ -84,5 +79,3 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       )
     }
 }
-
-//<canvas ref={this.canvasRef} className='Trands canvas' style={{background: '#f4f4f4'}}></canvas>
