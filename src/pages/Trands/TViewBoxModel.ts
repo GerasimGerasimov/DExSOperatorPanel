@@ -47,6 +47,12 @@ export default class TViewBoxModel {
       this.ctx.strokeStyle = "red";
       this.ctx.font = "16px serif";
       this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count++}`, 2, 18);
+      var i: number = 0;
+      this.models.Trands.forEach((value: TTrand)=>{
+        const s = `${value.Tag}: ${value.Model.EndIndex}`
+        this.ctx.strokeStyle = value.Color;
+        this.ctx.strokeText(s, 150, i +=18);
+      })
     }
 
     public resize(width: number, height: number) {

@@ -35,6 +35,10 @@ export class TModel {
     this.MaxValueMode = this.setMaxValueMode(props.MaxValueMode)
   }
   
+  public get EndIndex(): number {
+    return this.endIndex;
+  }
+  
   public setMaxValueMode (prop: string | undefined, defaultProp: string = defaultMaxValueMode): IMaxValueMode {
     const modeValue: string = prop || defaultProp;
     const [mode, value] =  modeValue.split(' ');

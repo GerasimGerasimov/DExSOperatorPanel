@@ -3,10 +3,10 @@
     "interval":1000,
     "trands": {
         "trand_1":{
-            "height":"64 px",
+            "height":"128 px",
             "tags": {
                 "U1/RAM/Iexc":{
-                    "color":"red",
+                    "color":"#e94b3c",
                     "fraction":1,
                     "offset": "10 %",
                     "MaxValueMode":"MaxOfSelectedRange"
@@ -24,7 +24,7 @@
             }
         },
         "trand_2":{
-            "height":"32 px",
+            "height":"64 px",
             "tags": {
                 "U1/RAM/DIN.0(C1_AC)":{
                     "color":"red"

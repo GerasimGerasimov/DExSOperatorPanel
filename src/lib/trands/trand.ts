@@ -49,6 +49,14 @@ export class TTrand {
     this.model = this.getTagPropertiesForTrand(this.tag)
   }
 
+  public get Color(): string {
+    return this.TrandProps.color;
+  }
+
+  public get Tag(): string {
+    return this.tag;
+  }
+
   public get Model():TModel {
     return this.model;
   }
