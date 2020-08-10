@@ -1,5 +1,6 @@
 //тренды вписанные в один блок графика
-import { TTrand, ITrandProp } from './trand';
+import { TTrand } from './trand';
+import { ITrandProp } from './itrand';
 
 interface ITrandsGroupProp {
   height: string,

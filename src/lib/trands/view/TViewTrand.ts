@@ -1,5 +1,17 @@
-export interface IViewTrandProp {
+import { ITrandTagProperties } from "../itrand";
+import { TModel } from "../models/TModel";
 
+export interface IViewTrandProp {
+  TrandProp: ITrandTagProperties;
+  model: TModel;
+  width: number;
+  height: number;
+}
+
+export interface IViewTrandDrawProps {
+  ctx: any;
+  fromIdx: number;
+  count: number;
 }
 
 export class TViewTrand {
@@ -7,4 +19,8 @@ export class TViewTrand {
 
   }
 
+  public draw(props: IViewTrandDrawProps){
+
+  }
+  
 }

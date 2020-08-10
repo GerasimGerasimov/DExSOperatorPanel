@@ -13,11 +13,13 @@ export interface IMaxValueMode {
 }
 
 export interface IModelProp {
+  objType: string;
   deep: number, //глубина архива
   MaxValueMode: string;
 }
 
 export class TModel {
+  protected objType: string;
   protected deep: number;
   protected endIndex: number = 0;
   protected MaxValueMode: IMaxValueMode = {
@@ -31,6 +33,7 @@ export class TModel {
   protected TemporaryMaxValue: number = 0;
 
   constructor(props: IModelProp) {
+    this.objType = props.objType;
     this.deep = props.deep;
     this.MaxValueMode = this.setMaxValueMode(props.MaxValueMode)
   }
@@ -39,6 +42,10 @@ export class TModel {
     return this.endIndex;
   }
   
+  public get ObjType(): string {
+    return this.objType;
+  }
+
   public setMaxValueMode (prop: string | undefined, defaultProp: string = defaultMaxValueMode): IMaxValueMode {
     const modeValue: string = prop || defaultProp;
     const [mode, value] =  modeValue.split(' ');

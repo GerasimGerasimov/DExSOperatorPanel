@@ -1,26 +1,7 @@
 import { devicesInfoStore } from "../../store/devices/devicesinfo";
 import { TModel, IModelProp, EMaxValueMode, IMaxValueMode } from "./models/TModel";
 import ModelFactory from "./models/ModelFactory";
-
-export interface ITrandProp {
-  tag: string,//название тега типа U1/RAM/Uexc
-  deep: number, //глубина архива
-  color: string, //цвет линии тренда
-  signed?: boolean, //имеет ли знак (для знаковых нужна ось)
-  fraction?: number,
-  offset?: string, //"10 %" расположение оси. в примере 10% от нижней линии окна
-  MaxValueMode?: string// "MaxOfAllRange", "MaxOfSelectedRange", "Fixed 600"
-                       // режим масштабирования по амплидуде 
-}
-
-interface ITrandTagProperties {
-  deep: number, //глубина архива
-  color: string, //цвет линии тренда
-  signed: boolean, //имеет ли знак (для знаковых нужна ось)
-  fraction: number,
-  offset: string, //"10 %" расположение оси. в примере 10% от нижней линии окна
-  MaxValueMode: string;
-}
+import { ITrandTagProperties, ITrandProp } from "./itrand";
 
 const defaultMaxValueMode: string =  `${EMaxValueMode.Fixed} 100`;
 const ATagProperties: Array<string> = ['msu','value','comment','objType'];
@@ -49,6 +30,10 @@ export class TTrand {
     this.model = this.getTagPropertiesForTrand(this.tag)
   }
 
+  public get TrandTagProps(): ITrandTagProperties {
+    return this.TrandProps;
+  }
+
   public get Color(): string {
     return this.TrandProps.color;
   }
@@ -64,6 +49,7 @@ export class TTrand {
   private getTagPropertiesForTrand(tag: string): TModel {
     const  {msu, comment, objType} = devicesInfoStore.getTagProperties (tag, ATagProperties);
     const props: IModelProp = {
+      objType,
       deep: this.TrandProps.deep,
       MaxValueMode: this.TrandProps.MaxValueMode
     }

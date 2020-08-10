@@ -1,6 +1,7 @@
 import { TTrandHeight, TTrandsGroup } from '../../lib/trands/trandsgroup'
 import { TTrand } from '../../lib/trands/trand';
-import { TViewTrand } from '../../lib/trands/view/TViewTrand';
+import { TViewTrand, IViewTrandProp, IViewTrandDrawProps } from '../../lib/trands/view/TViewTrand';
+import ViewFactory from '../../lib/trands/view/ViewTrandFactoty';
 
 export interface IViewBoxModelProps {
   height: TTrandHeight;
@@ -27,15 +28,26 @@ export default class TViewBoxModel {
     constructor (props: IViewBoxModelProps){
       this.height = props.height;
       this.models = props.models;
-      this.views = this.createModelDependentView();
       this.ctxsize = {width:0, height:0}
       this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
       this.ctx = this.canvas.getContext("2d");
+      this.views = this.createModelDependentView();
     }
 
     private createModelDependentView(): Map<string, TViewTrand> {
       const views: Map<string, TViewTrand> = new Map();
       //TODO coздать отображения View специфичные для моделей
+      this.models.Trands.forEach((trand:TTrand, key: string)=>{
+        const objType: string = trand.Model.ObjType
+        const props: IViewTrandProp = {
+          TrandProp: trand.TrandTagProps,
+          model: trand.Model,
+          width:  this.ctxsize.width,
+          height: this.ctxsize.height
+        }
+        const view: TViewTrand = ViewFactory(objType, props);
+        views.set(key, view)
+      })
       return views;
     }
 
@@ -61,11 +73,23 @@ export default class TViewBoxModel {
         const s = `${value.Tag}: ${value.Model.EndIndex}`
         this.ctx.strokeStyle = value.Color;
         this.ctx.strokeText(s, 150, i +=18);
-        //TODO тут должны отрисовываться графики
+        
       })
+      this.drawLineChart();
     }
 
     private drawLineChart(){
+      let props: IViewTrandDrawProps = {
+        ctx: this.ctx,
+        fromIdx: 0,
+        count: 100,
+      }
+      this.views.forEach((view: TViewTrand)=>{
+        if (view) {
+          view.draw(props)
+          //TODO написать функцию отрисовки графика
+        }
+      })
 
     }
 
