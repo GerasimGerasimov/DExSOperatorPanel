@@ -1,5 +1,6 @@
 import { TTrandHeight, TTrandsGroup } from '../../lib/trands/trandsgroup'
 import { TTrand } from '../../lib/trands/trand';
+import { TViewTrand } from '../../lib/trands/view/TViewTrand';
 
 export interface IViewBoxModelProps {
   height: TTrandHeight;
@@ -17,6 +18,7 @@ export default class TViewBoxModel {
     private ctx: any;
     private height: TTrandHeight;
     private models: TTrandsGroup;
+    private views: Map<string, TViewTrand>;
     private ctxsize: ICanvasSize = {
       width : 0,
       height: 0
@@ -25,9 +27,16 @@ export default class TViewBoxModel {
     constructor (props: IViewBoxModelProps){
       this.height = props.height;
       this.models = props.models;
+      this.views = this.createModelDependentView();
       this.ctxsize = {width:0, height:0}
       this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
       this.ctx = this.canvas.getContext("2d");
+    }
+
+    private createModelDependentView(): Map<string, TViewTrand> {
+      const views: Map<string, TViewTrand> = new Map();
+      //TODO coздать отображения View специфичные для моделей
+      return views;
     }
 
     public get Context(): any {
@@ -59,7 +68,7 @@ export default class TViewBoxModel {
     private drawLineChart(){
 
     }
-    
+
     public resize(width: number, height: number) {
       if ((width != this.ctxsize.width) || 
           (height != this.ctxsize.height)) {
