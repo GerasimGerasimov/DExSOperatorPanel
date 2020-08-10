@@ -56,6 +56,10 @@ export default class TViewBoxModel {
       })
     }
 
+    private drawLineChart(){
+
+    }
+    
     public resize(width: number, height: number) {
       if ((width != this.ctxsize.width) || 
           (height != this.ctxsize.height)) {

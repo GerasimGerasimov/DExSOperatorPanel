@@ -67,6 +67,7 @@ export class TTrands {
         })
     }
 
+    /*
     public getTagList():Array<string> {
         const res: Array<string>=[]
         this.trandsGroups.forEach((group:TTrandsGroup)=>{
@@ -74,6 +75,7 @@ export class TTrands {
         })
         return res;
     }
+    */
 
     public getBoxes():Array<TViewBoxModel> {
         const res: Array<TViewBoxModel>=[]

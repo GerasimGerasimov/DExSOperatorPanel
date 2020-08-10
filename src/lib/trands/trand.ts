@@ -1,6 +1,6 @@
 import { devicesInfoStore } from "../../store/devices/devicesinfo";
 import { TModel, IModelProp, EMaxValueMode, IMaxValueMode } from "./models/TModel";
-import { factory } from "./models/ModelFactory";
+import ModelFactory from "./models/ModelFactory";
 
 export interface ITrandProp {
   tag: string,//название тега типа U1/RAM/Uexc
@@ -67,7 +67,7 @@ export class TTrand {
       deep: this.TrandProps.deep,
       MaxValueMode: this.TrandProps.MaxValueMode
     }
-    const model: TModel = factory(objType, props)
+    const model: TModel = ModelFactory(objType, props)
     return model;
   }
 

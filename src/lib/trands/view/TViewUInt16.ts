@@ -1,16 +1,9 @@
-export interface IViewProp {
+import { TViewTrand, IViewTrandProp } from "./TViewTrand";
 
-}
 
-class TView {
-  constructor(props: IViewProp) {
+export class TViewUInt16 extends TViewTrand {
 
-  }
-}
-
-export class TViewUInt16 extends TView {
-
-  constructor(props: IViewProp) {
+  constructor(props: IViewTrandProp) {
     super(props);
   }
 
