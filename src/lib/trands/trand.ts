@@ -14,7 +14,7 @@ export class TTrand {
     color: 'red',
     signed: false,
     fraction: 0,
-    offset: '0',
+    offset: '100',//100% соответсвует нижнему расположению оси
     MaxValueMode: defaultMaxValueMode
   };
 

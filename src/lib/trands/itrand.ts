@@ -16,5 +16,6 @@ export interface ITrandTagProperties {
   signed: boolean, //имеет ли знак (для знаковых нужна ось)
   fraction: number,
   offset: string, //"10 %" расположение оси. в примере 10% от нижней линии окна
+                  // для пересчёта в пикселы px при ресайзе
   MaxValueMode: string;
 }

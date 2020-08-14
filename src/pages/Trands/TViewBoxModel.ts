@@ -1,6 +1,6 @@
 import { TTrandHeight, TTrandsGroup } from '../../lib/trands/trandsgroup'
 import { TTrand } from '../../lib/trands/trand';
-import { TViewTrand, IViewTrandProp, IViewTrandDrawProps } from '../../lib/trands/view/TViewTrand';
+import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps, IViewTrandSizeProp } from '../../lib/trands/view/TViewTrand';
 import ViewFactory from '../../lib/trands/view/ViewTrandFactoty';
 
 export interface IViewBoxModelProps {
@@ -72,10 +72,9 @@ export default class TViewBoxModel {
     }
 
     private drawLineChart(){
-      let props: IViewTrandDrawProps = {
+      let props: IViewTrandDrawMethodProps = {
         ctx: this.ctx,
-        fromIdx: 0,
-        count: 100,
+        fromIdx: 0
       }
       this.views.forEach((view: TViewTrand)=>{
         if (view) {
@@ -93,6 +92,21 @@ export default class TViewBoxModel {
             this.ctx = this.canvas.getContext("2d");
             this.ctx.imageSmoothingEnabled = false;
       }
+      this.resizeViews();
+    }
+
+    private resizeViews() {
+      let props: IViewTrandSizeProp = {
+        count: this.ctxsize.width,//TODO потом заменю на некую кнопку "масштаб"
+        width: this.ctxsize.width,
+        height: this.ctxsize.height
+      }
+      this.views.forEach((view: TViewTrand)=>{
+        if (view) {
+          view.resize(props)
+        }
+      })
+
     }
 
     public get Height():TTrandHeight {
