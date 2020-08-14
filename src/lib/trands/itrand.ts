@@ -10,6 +10,7 @@ export interface ITrandProp {
 }
 
 export interface ITrandTagProperties {
+  tag: string,//название тега типа U1/RAM/Uexc
   deep: number, //глубина архива
   color: string, //цвет линии тренда
   signed: boolean, //имеет ли знак (для знаковых нужна ось)

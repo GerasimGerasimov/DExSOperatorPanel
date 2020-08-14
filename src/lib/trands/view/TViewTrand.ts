@@ -15,8 +15,16 @@ export interface IViewTrandDrawProps {
 }
 
 export class TViewTrand {
-  constructor(props: IViewTrandProp) {
+  protected TrandProp: ITrandTagProperties;
+  protected model: TModel;
+  protected width: number;
+  protected height: number;
 
+  constructor(props: IViewTrandProp) {
+    this.TrandProp = props.TrandProp;
+    this.model = props.model;
+    this.width = props.width;
+    this.height = props.height;
   }
 
   public draw(props: IViewTrandDrawProps){

@@ -9,7 +9,11 @@ export class TViewUInt16 extends TViewTrand {
   }
 
   public draw(props: IViewTrandDrawProps){
-
+    const max = this.model.getMaxValue(props.fromIdx, props.count);
+    const s = `${this.TrandProp.tag}: ${this.model.EndIndex} max: ${max}`
+    props.ctx.strokeStyle = this.TrandProp.color;
+    props.ctx.strokeText(s, 150, 20);
+    //TODO написать функцию отрисовки графика
   }
   
 }

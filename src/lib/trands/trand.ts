@@ -9,6 +9,7 @@ const ATagProperties: Array<string> = ['msu','value','comment','objType'];
 export class TTrand {
   private tag: string;
   private TrandProps: ITrandTagProperties = {
+    tag:'',
     deep:0,
     color: 'red',
     signed: false,
@@ -21,6 +22,7 @@ export class TTrand {
 
   constructor(prop: ITrandProp){
     this.tag = prop.tag;
+    this.TrandProps.tag = prop.tag;
     this.TrandProps.deep = prop.deep;
     this.TrandProps.color =prop.color || 'red';
     this.TrandProps.signed = prop.signed || false;
