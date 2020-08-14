@@ -24,8 +24,14 @@
             }
         },
         "trand_2":{
-            "height":"64 px",
+            "height":"300 px",
             "tags": {
+                "U1/RAM/Iexc":{
+                    "color":"green",
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"Fixed 400"
+                },
                 "U1/RAM/DIN.0(C1_AC)":{
                     "color":"red"
                 },
