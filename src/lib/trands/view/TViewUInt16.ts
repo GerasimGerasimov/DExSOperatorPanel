@@ -1,5 +1,4 @@
 import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps, IViewTrandSizeProp } from "./TViewTrand";
-import { CaughtException } from "mobx/lib/internal";
 
 interface IAxisProps {
   ctx: any,
@@ -12,7 +11,6 @@ export class TViewUInt16 extends TViewTrand {
 
   constructor(props: IViewTrandProp) {
     super(props);
-    console.log('TViewUInt16')
   }
 
   public draw(props: IViewTrandDrawMethodProps): void {
@@ -21,7 +19,6 @@ export class TViewUInt16 extends TViewTrand {
     const s = `${this.TrandProp.tag}: ${this.model.EndIndex}`;// max: ${max}
     props.ctx.strokeStyle = this.TrandProp.color;
     props.ctx.strokeText(s, 150, 20);
-    //TODO написать функцию отрисовки графика
     //отрисовка Оси
     const AxisProps: IAxisProps = {
       ctx: props.ctx,
@@ -65,7 +62,7 @@ export class TViewUInt16 extends TViewTrand {
 
   private getHScale(fromIdx: number): number {
     const max: number = this.model.getMaxValue(fromIdx, this.Sizes.count);
-    const HScale: number = ((this.Sizes.height - this.Scales.Axis) / max) || 1;
+    const HScale: number = (this.Scales.Axis / max);
     return HScale;
   }
 

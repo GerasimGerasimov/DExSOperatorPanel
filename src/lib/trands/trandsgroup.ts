@@ -16,6 +16,7 @@ export class TTrandsGroup {
   private deep: number; //глубина архива
   private height: TTrandHeight;
   private trands: Map<string, TTrand>;
+  private count: number = 0;
 
   constructor (deep: number, props: ITrandsGroupProp) {
     this.deep = deep;
@@ -61,7 +62,9 @@ export class TTrandsGroup {
 
   public setTagsValues() {
     this.trands.forEach((tag:TTrand) => {
-      tag.setValueToModel(Math.random()*256)
+      //tag.setValueToModel(Math.random()*256)
+      tag.setValueToModel(this.count);
+      if (this.count++ > 128) this.count = 0;
     })
   }
 }
