@@ -1,5 +1,5 @@
 {
-    "deep":256,
+    "deep":2048,
     "interval":100,
     "trands": {
         "trand_1":{

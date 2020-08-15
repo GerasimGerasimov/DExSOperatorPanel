@@ -18,7 +18,7 @@ export interface IModelProp {
   MaxValueMode: string;
 }
 
-export class TModel {
+export abstract class TModel {
   protected objType: string;
   protected deep: number;
   protected endIndex: number = 0;
@@ -38,6 +38,10 @@ export class TModel {
     this.MaxValueMode = this.setMaxValueMode(props.MaxValueMode)
   }
   
+  public abstract setValue(value: any): void;
+
+  public abstract getValueByIndex(index: number): any;
+
   public get EndIndex(): number {
     return this.endIndex;
   }
@@ -79,9 +83,7 @@ export class TModel {
     return res;
   }
 
-  protected getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
-    return 0;
-  }
+  protected abstract getMaxValueOfselectedRange(FromIdx: number, Count: number): number;
 
   protected setMaxOfAllRange(value: number) {
     const absValue: number = Math.abs(value);
@@ -90,11 +92,4 @@ export class TModel {
     }
   }
 
-  public setValue(value: any) {
-
-  }
-
-  public getValueByIndex(index: number): any {
-    return 0;
-  }
 }
