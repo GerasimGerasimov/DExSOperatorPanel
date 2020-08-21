@@ -17,7 +17,7 @@ export default class DeviceController {
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
-            console.log(e);
+            //console.log(e);
             throw new Error (`Fetch Error: ${e.message}`);
         }
     }
@@ -36,7 +36,7 @@ export default class DeviceController {
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
-            console.log(e);
+            //console.log(e);
             throw new Error (`Fetch Error: ${e.message}`);
         }
     }
@@ -56,7 +56,7 @@ export default class DeviceController {
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
-            console.log(e);
+            //console.log(e);
             throw new Error (`Fetch Error: ${e.message}`);
         }
     }

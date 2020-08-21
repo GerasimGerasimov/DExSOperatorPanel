@@ -11,6 +11,7 @@ import DrawCanvas from './TDrawCanvas';
 export interface IViewBoxProps {
   height: TTrandHeight;
   viewBox: TViewBoxModel;
+  scrollPosition: number;
 }
 
 export interface ISaveContextFunction {
@@ -19,7 +20,8 @@ export interface ISaveContextFunction {
 
 interface IViewBoxState {
   count: number;
-  width: number
+  width: number;
+  scrollPosition: number;
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
@@ -30,7 +32,8 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       super(props);
       this.state = {
         count: 0,
-        width: window.innerWidth
+        width: window.innerWidth,
+        scrollPosition: this.props.scrollPosition
       }
 
       this.heightProp = this.props.height;
@@ -68,12 +71,13 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
           style={{
             height: `${height}${mu}`
           }}>
-            <h3>TViewBox</h3>
             <DrawCanvas
               changeCount={this.state.count}
               width={this.state.width}
               viewBoxModel = {this.viewBoxModel}
+              scrollPosition = {this.state.scrollPosition}
              />
+             <h3 className='Trands h3'>TViewBox</h3>
           <button className='Trands btn' onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
         </div>
       )

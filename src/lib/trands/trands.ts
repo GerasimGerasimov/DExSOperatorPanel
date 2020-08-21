@@ -65,7 +65,7 @@ export class TTrands {
     }
 
     private updateTrandsValue(){
-        console.log(`update ${this.count++}`);
+        //console.log(`update ${this.count++}`);
         this.trandsGroups.forEach((group:TTrandsGroup)=>{
             group.setTagsValues()
         })

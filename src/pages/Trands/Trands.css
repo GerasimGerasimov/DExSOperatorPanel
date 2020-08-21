@@ -32,6 +32,12 @@
   top: 0px;
 }
 
+.Trands.h3 {
+  position: absolute;
+  left: 0px;
+  top: 32px;
+}
+
 .Trands.range {
   width: 100%;
 }

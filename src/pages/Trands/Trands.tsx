@@ -24,13 +24,14 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
       this.setState({scrollPosition: e.target.value});
     }
 
-    private getTrandsBoxes(): any{
+    private getTrandsBoxes(scrollPosition: number): any{
       return Trands.getBoxes().map((box, index)=>{
         return (
             <TViewBox
               key={index}
               height = {box.Height}
               viewBox = {box}
+              scrollPosition = {scrollPosition}
             />
         )
       })
@@ -42,7 +43,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
           <>
             <h1>Trands page {this.state.scrollPosition}</h1>
             <div className='Trands wrapper'>
-              {this.getTrandsBoxes()}
+              {this.getTrandsBoxes(this.state.scrollPosition)}
             </div>
             <input type="range"
               className = 'Trands range'

@@ -49,7 +49,7 @@ export class TDevicesValueStore {
             })
         } catch (e) {
             runInAction(()=>{
-                console.log(e);
+                //console.log(e);
             })
         }
         this.startAutoReloadData();

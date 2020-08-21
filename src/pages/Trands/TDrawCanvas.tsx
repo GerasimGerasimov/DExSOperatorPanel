@@ -7,9 +7,14 @@ export interface IDrawCanvasProps {
   changeCount: any;
   viewBoxModel: TViewBoxModel;
   width: number;
+  scrollPosition: number;
 }
 
-export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
+interface IDrawCanvasState {
+  scrollPosition: number;
+}
+
+export default class Canvas extends React.Component <IDrawCanvasProps, IDrawCanvasState>{
   private ctx: any;
   private viewBoxModel: TViewBoxModel;
   private height: number = 0;
@@ -18,6 +23,10 @@ export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
   constructor(props: IDrawCanvasProps) {
     super(props);
     this.viewBoxModel = this.props.viewBoxModel;
+    this.state = {
+      scrollPosition: this.props.scrollPosition
+    }
+    this.viewBoxModel.ScrollPosition = this.state.scrollPosition;
   }
 
   saveContext(element: any) {
@@ -28,7 +37,10 @@ export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
   }
 
   componentDidUpdate() {
-    const { changeCount } = this.props;
+    this.draw()
+  }
+
+  private draw() {
     this.viewBoxModel.draw();
     const bitmapOne = this.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);

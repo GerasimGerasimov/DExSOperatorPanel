@@ -24,6 +24,7 @@ export default class TViewBoxModel {
       width : 0,
       height: 0
     }
+    private scrollPosition: number = 0;
 
     constructor (props: IViewBoxModelProps){
       this.height = props.height;
@@ -32,6 +33,10 @@ export default class TViewBoxModel {
       this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
       this.ctx = this.canvas.getContext("2d");
       this.views = this.createModelDependentView();
+    }
+
+    public set ScrollPosition(value: number) {
+      this.scrollPosition = value;
     }
 
     private createModelDependentView(): Map<string, TViewTrand> {
@@ -60,15 +65,11 @@ export default class TViewBoxModel {
     }
 
     public draw() {
-      this.ctx.strokeStyle = "blue";
       this.ctx.lineWidth = 2;
       this.ctx.beginPath();
-      this.ctx.rect(0,0,this.ctxsize.height,this.ctxsize.height);
-      this.ctx.stroke();
-      this.ctx.strokeStyle = "red";
       this.ctx.font = "16px serif";
-      this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count++}`, 2, 18);
       this.drawLineChart();
+      this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count++} : ${this.scrollPosition}`, 2, 18);
     }
 
     private drawLineChart(){
