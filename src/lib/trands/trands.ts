@@ -27,6 +27,10 @@ export class TTrands {
         this.url = url
     }
 
+    public get Deep(): number {
+        return this.deep;
+    }
+    
     public async loadConfig() {
         const text: string = await getTextByURL(this.url)
         const settings = await JSON.parse(text);
