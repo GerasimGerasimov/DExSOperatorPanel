@@ -11,7 +11,7 @@
                     "offset": "10 %",
                     "MaxValueMode":"MaxOfSelectedRange"
                 },
-                "U1/RAM/Uexc":{
+                "U1/RAM/Ustat":{
                     "color":"blue",
                     "signed": true,
                     "fraction":1,
