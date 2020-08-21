@@ -21,22 +21,21 @@ export interface ISaveContextFunction {
 interface IViewBoxState {
   count: number;
   width: number;
-  scrollPosition: number;
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private heightProp: TTrandHeight;
     private viewBoxModel: TViewBoxModel;
+    private scrollPosition: number;
 
     constructor (props: any){
       super(props);
       this.state = {
         count: 0,
         width: window.innerWidth,
-        scrollPosition: this.props.scrollPosition
       }
-
       this.heightProp = this.props.height;
+      this.scrollPosition = this.props.scrollPosition;
       this.viewBoxModel = this.props.viewBox;
     }
 
@@ -55,6 +54,12 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       window.removeEventListener("resize", this.onResize);
     }
 
+    shouldComponentUpdate(nextProps:IViewBoxProps): boolean{
+      this.scrollPosition = nextProps.scrollPosition;
+      return true;
+    }
+
+
     private handleClick(){
       console.log('click', this.state.count);
       this.setState(state=> ({
@@ -72,12 +77,12 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             height: `${height}${mu}`
           }}>
             <DrawCanvas
-              changeCount={this.state.count}
+              //changeCount={this.state.count}
               width={this.state.width}
               viewBoxModel = {this.viewBoxModel}
-              scrollPosition = {this.state.scrollPosition}
+              scrollPosition = {this.scrollPosition}
              />
-             <h3 className='Trands h3'>TViewBox</h3>
+             <h3 className='Trands h3'>TViewBox {this.scrollPosition}</h3>
           <button className='Trands btn' onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
         </div>
       )

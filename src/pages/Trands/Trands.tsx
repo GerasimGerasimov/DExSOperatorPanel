@@ -20,7 +20,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     }
 
     private changeScrollPosition(e: any) {
-      //console.log(e.target.value)
       this.setState({scrollPosition: e.target.value});
     }
 
@@ -41,7 +40,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 
         return(
           <>
-            <h1>Trands page {this.state.scrollPosition}</h1>
+            <h1>Trands page</h1>
             <div className='Trands wrapper'>
               {this.getTrandsBoxes(this.state.scrollPosition)}
             </div>
@@ -51,7 +50,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
               min="0"
               max={this.state.deep}
               step="1"
-              onInput={(e)=>this.changeScrollPosition(e)}/>
+              onChange={(e)=>this.changeScrollPosition(e)}/>
           </>
         )
       }
