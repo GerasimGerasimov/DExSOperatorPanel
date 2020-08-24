@@ -10,8 +10,13 @@
 import {getTextByURL} from '../svg/lib/utils' 
 import { TTrandsGroup} from './trandsgroup';
 import TViewBoxModel, { IViewBoxModelProps } from '../../pages/Trands/TViewBoxModel';
+import { randomStringAsBase64Url } from '../util/cryputils';
 
 const settingsURL = '/assets/trands/trands.json'
+
+export interface IEventOnUpdate {
+    (): void;
+}
 
 export class TTrands {
     private url: string = ''
@@ -22,10 +27,22 @@ export class TTrands {
     private viewBoxesModel: Map<string, TViewBoxModel> = new Map();
     private updateTimer: any = undefined;
     private count: number = 0;
+    private onUpdateHandlers: Map<string, IEventOnUpdate | undefined> = new Map();
 
     constructor (url: string = settingsURL) {
-        this.url = url
+        this.url = url;
     }
+
+    public setOnUpdate(handler: IEventOnUpdate): string {
+        const ID: string = randomStringAsBase64Url(4);
+        this.onUpdateHandlers.set(ID, handler);
+        return ID;
+    }
+
+    public deleteOnUpdateByID(ID: string): void {
+        this.onUpdateHandlers.delete(ID);
+    }
+
 
     public get Deep(): number {
         return this.deep;
@@ -70,7 +87,16 @@ export class TTrands {
     private updateTrandsValue(){
         //console.log(`update ${this.count++}`);
         this.trandsGroups.forEach((group:TTrandsGroup)=>{
-            group.setTagsValues()
+            group.setTagsValues();
+            this.executeOnUpdateHandlers();
+        })
+    }
+
+    private executeOnUpdateHandlers() {
+        this.onUpdateHandlers.forEach(handler => {
+          if (handler) {
+            handler()
+          }
         })
     }
 

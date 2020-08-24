@@ -1,6 +1,6 @@
 {
     "deep":1024,
-    "interval":100,
+    "interval":10,
     "initialWidthScale": 1,
     "trands": {
         "trand_1":{

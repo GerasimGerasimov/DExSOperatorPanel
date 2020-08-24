@@ -2,21 +2,35 @@ import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
 import TViewBox from './TViewBox'
-import { ITrandProp } from '../../lib/trands/itrand'
 
 interface ITrandsPageState {
   scrollPosition: number;
   deep: number;
+  changeCount: number;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
     
+    private UpdateID: string = '';
+
     constructor (props: any){
         super(props);
         this.state = {
           scrollPosition: 0,
-          deep: Trands.Deep
+          deep: Trands.Deep,
+          changeCount: 0
         }
+        this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
+    }
+
+    public componentWillUnmount(){
+      Trands.deleteOnUpdateByID(this.UpdateID);
+    }
+
+    private onDataUpdate(){
+      this.setState(state=> ({
+        changeCount: state.changeCount + 1
+      }))
     }
 
     private changeScrollPosition(e: any) {
