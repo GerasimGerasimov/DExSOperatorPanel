@@ -29,7 +29,7 @@ export class TViewUInt16 extends TViewTrand {
     //вычислить вертикальную шкалу HScale
     this.Scales.HScale = this.getHScale(props.fromIdx);
     //собственна график
-    this.drawLineGraph(props.ctx, props.fromIdx);
+    this.drawLineGraph(props.ctx, this.model.EndIndex);//props.fromIdx);
   }
   
   private drawAxis(props: IAxisProps) {
