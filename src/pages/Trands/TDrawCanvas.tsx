@@ -43,7 +43,6 @@ export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
   }
 
   private draw() {
-    console.log('draw ', this.cnt++, ' ', this.scrollPosition)
     this.viewBoxModel.draw();
     const bitmapOne = this.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);

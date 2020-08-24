@@ -1,5 +1,5 @@
 {
-    "deep":495,
+    "deep":2048,
     "interval":10,
     "initialWidthScale": 1,
     "trands": {
@@ -11,6 +11,33 @@
                     "fraction":1,
                     "offset": "10 %",
                     "MaxValueMode":"MaxOfSelectedRange"
+                },
+                "U1/RAM/Ustat":{
+                    "color":"blue",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"Fixed 600"
+                },
+                "U1/RAM/DIN.2(C2_AC)":{
+                    "color":"yellow"
+                }
+            }
+        },
+        "trand_2":{
+            "height":"300 px",
+            "tags": {
+                "U1/RAM/Iexc":{
+                    "color":"green",
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"Fixed 400"
+                },
+                "U1/RAM/DIN.0(C1_AC)":{
+                    "color":"red"
+                },
+                "U1/RAM/DIN.1(C1_DC)":{
+                    "color":"green"
                 }
             }
         }

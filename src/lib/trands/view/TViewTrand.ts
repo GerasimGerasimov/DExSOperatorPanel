@@ -6,6 +6,7 @@ export interface IViewTrandProp {
   model: TModel;
   width: number;
   height: number;
+  deep: number;
 }
 
 export interface IViewTrandDrawMethodProps {
@@ -30,10 +31,12 @@ export abstract class TViewTrand {
   protected Scales: IViewTrandScalesProps;
   protected Sizes: IViewTrandSizeProp;
   protected model: TModel;
+  protected deep: number;
 
   constructor(props: IViewTrandProp) {
     this.TrandProp = props.TrandProp;
     this.model = props.model;
+    this.deep = props.deep;
     
     this.Sizes = {
       count: props.width, //по умолчанию, кол-во выводимых точек равно ширине

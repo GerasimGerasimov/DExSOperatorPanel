@@ -77,7 +77,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             height: `${height}${mu}`
           }}>
             <DrawCanvas
-              //changeCount={this.state.count}
               width={this.state.width}
               viewBoxModel = {this.viewBoxModel}
               scrollPosition = {this.scrollPosition}

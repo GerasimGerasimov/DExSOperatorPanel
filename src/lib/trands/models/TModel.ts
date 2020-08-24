@@ -50,6 +50,14 @@ export abstract class TModel {
     return this.objType;
   }
 
+  public getNextIndex(index: number): number {
+    let idx: number = index;
+    if (++idx >= this.deep) {
+      idx = 0
+    }
+    return idx;
+  }
+
   public setMaxValueMode (prop: string | undefined, defaultProp: string = defaultMaxValueMode): IMaxValueMode {
     const modeValue: string = prop || defaultProp;
     const [mode, value] =  modeValue.split(' ');

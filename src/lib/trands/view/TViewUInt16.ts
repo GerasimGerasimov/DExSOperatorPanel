@@ -13,9 +13,19 @@ export class TViewUInt16 extends TViewTrand {
     super(props);
   }
 
+  private getStartPosition(index: number, offset: number): number {
+    let revOffset: number = offset;
+    let res: number = index - this.Sizes.count - revOffset;
+    let mod: number = res % this.deep;
+    if (res < 0) {
+      res = (mod == 0)? 0: this.deep + mod;
+    }
+    return res;
+  }
+
   public draw(props: IViewTrandDrawMethodProps): void {
     props.ctx.beginPath();
-    const s = `${this.TrandProp.tag}: ${this.model.EndIndex}`;// max: ${max}
+    const s = `${this.TrandProp.tag}: ${this.model.EndIndex} fromIdx: ${props.fromIdx}`;
     props.ctx.strokeStyle = this.TrandProp.color;
     props.ctx.strokeText(s, 150, 20);
     //отрисовка Оси
@@ -26,10 +36,11 @@ export class TViewUInt16 extends TViewTrand {
       color: this.TrandProp.color
     }
     this.drawAxis(AxisProps);
+    const startPosition: number = this.getStartPosition(this.model.EndIndex, props.fromIdx)
     //вычислить вертикальную шкалу HScale
-    this.Scales.HScale = this.getHScale(props.fromIdx);
+    this.Scales.HScale = this.getHScale(startPosition);
     //собственна график
-    this.drawLineGraph(props.ctx, this.model.EndIndex);//props.fromIdx);
+    this.drawLineGraph(props.ctx, startPosition);
   }
   
   private drawAxis(props: IAxisProps) {
@@ -40,13 +51,15 @@ export class TViewUInt16 extends TViewTrand {
 
   private drawLineGraph(ctx: any, fromIdx: number) {
     let count: number = this.Sizes.count;
-    let idx: number = fromIdx;
-    let y: number = this.getScaledY(idx++)
+    let y: number = this.getScaledY(fromIdx);
+    let idx: number = this.model.getNextIndex(fromIdx);
     let x: number = 0;
     ctx.moveTo(x,y)
+    console.log(`draw idx:${idx} y:${y} x:${x}`);
     while (count-- != 0) {
-      y = this.getScaledY(idx++);
+      y = this.getScaledY(idx);
       x += this.Scales.WScale;
+      idx = this.model.getNextIndex(idx);
       ctx.lineTo(x,y);
     }
     ctx.stroke();
@@ -61,7 +74,7 @@ export class TViewUInt16 extends TViewTrand {
 
   private getHScale(fromIdx: number): number {
     const max: number = this.model.getMaxValue(fromIdx, this.Sizes.count);
-    const HScale: number = (this.Scales.Axis / max);
+    const HScale: number = (this.Scales.Axis / ((max != 0)? max : this.Scales.Axis));
     return HScale;
   }
 
@@ -75,7 +88,7 @@ export class TViewUInt16 extends TViewTrand {
     //1) Положение оси (задано в % от высоты)
     this.Scales.Axis = this.getOffsetInPixels(this.TrandProp.offset);
     //2) Шкалы: вертикальная и горизонтальная
-    this.Scales.WScale = width / (count || 1);
+    this.Scales.WScale = width / count;
     //this.Scales.HScale зависит от maxValue и каждый раз перерасчитывается при выводе
   }
 
