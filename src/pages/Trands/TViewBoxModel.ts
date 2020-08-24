@@ -6,6 +6,8 @@ import ViewFactory from '../../lib/trands/view/ViewTrandFactoty';
 export interface IViewBoxModelProps {
   height: TTrandHeight;
   models: TTrandsGroup;
+  deep: number;
+  WidthScale: number;
 }
 
 interface ICanvasSize {
@@ -14,7 +16,9 @@ interface ICanvasSize {
 }
 
 export default class TViewBoxModel {
+    private WidthScale: number = 1;
     private count: number = 0;
+    private deep: number = 0;
     private canvas: OffscreenCanvas;
     private ctx: any;
     private height: TTrandHeight;
@@ -27,6 +31,8 @@ export default class TViewBoxModel {
     private scrollPosition: number = 0;
 
     constructor (props: IViewBoxModelProps){
+      this.WidthScale = props.WidthScale;
+      this.deep = props.deep;
       this.height = props.height;
       this.models = props.models;
       this.ctxsize = {width:0, height:0}
@@ -38,7 +44,7 @@ export default class TViewBoxModel {
     public set ScrollPosition(value: number) {
       this.scrollPosition = value;
     }
-
+    
     private createModelDependentView(): Map<string, TViewTrand> {
       const views: Map<string, TViewTrand> = new Map();
       //TODO coздать отображения View специфичные для моделей
@@ -65,17 +71,28 @@ export default class TViewBoxModel {
     }
 
     public draw() {
+      this.ctx.clearRect(0, 0, this.ctxsize.width, this.ctxsize.height);
       this.ctx.lineWidth = 2;
       this.ctx.beginPath();
       this.ctx.font = "16px serif";
       this.drawLineChart();
-      this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count++} : ${this.scrollPosition}`, 2, 18);
+      this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count} : ${this.scrollPosition}`, 2, 18);
+    }
+
+    private getStartPosition(index: number, offset: number): number {
+      let revOffset: number = this.deep - offset - 1;
+      let res: number = index - this.count - revOffset;
+      let mod: number = res % this.deep;
+      if (res < 0) {
+        res = (mod == 0)? 0: this.deep + mod;
+      }
+      return res;
     }
 
     private drawLineChart(){
       let props: IViewTrandDrawMethodProps = {
         ctx: this.ctx,
-        fromIdx: 0
+        fromIdx: this.getStartPosition(0, this.scrollPosition)
       }
       this.views.forEach((view: TViewTrand)=>{
         if (view) {
@@ -97,8 +114,9 @@ export default class TViewBoxModel {
     }
 
     private resizeViews() {
+      this.count = (this.ctxsize.width * this.WidthScale) | 0;
       let props: IViewTrandSizeProp = {
-        count: this.ctxsize.width,//TODO потом заменю на некую кнопку "масштаб"
+        count: this.count,//TODO потом заменю на некую кнопку "масштаб"
         width: this.ctxsize.width,
         height: this.ctxsize.height
       }

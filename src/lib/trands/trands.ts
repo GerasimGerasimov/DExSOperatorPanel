@@ -8,8 +8,7 @@
 6) Если в массиве tags несколько трендов то графики требуется совмещать
 */
 import {getTextByURL} from '../svg/lib/utils' 
-import { TTrandsGroup, TTrandHeight } from './trandsgroup';
-import { TTrand } from './trand';
+import { TTrandsGroup} from './trandsgroup';
 import TViewBoxModel, { IViewBoxModelProps } from '../../pages/Trands/TViewBoxModel';
 
 const settingsURL = '/assets/trands/trands.json'
@@ -18,6 +17,7 @@ export class TTrands {
     private url: string = ''
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
+    private WidthScale: number = 1; //масштаб по горизонтали
     private trandsGroups: Map<string, TTrandsGroup> = new Map()
     private viewBoxesModel: Map<string, TViewBoxModel> = new Map();
     private updateTimer: any = undefined;
@@ -36,6 +36,7 @@ export class TTrands {
         const settings = await JSON.parse(text);
         this.deep = settings.deep || 0;
         this.interval = settings.interval || 0;
+        this.WidthScale = settings.initialWidthScale || 1;
         this.createTrandsGroups(settings.trands || undefined)
         this.createViewBoxesModels();
     }
@@ -53,7 +54,9 @@ export class TTrands {
         this.trandsGroups.forEach((trandsGroup: TTrandsGroup, key: string) =>{
             const props: IViewBoxModelProps = {
                 height: trandsGroup.getBoxHeight(),
-                models: trandsGroup
+                models: trandsGroup,
+                deep: this.deep,
+                WidthScale: this.WidthScale
             }
             const viewBoxModel: TViewBoxModel = new TViewBoxModel(props);
             this.viewBoxesModel.set(key, viewBoxModel)

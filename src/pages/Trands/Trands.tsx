@@ -55,6 +55,3 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         )
       }
 }
-/*TODO при выводе в один канвас двух параметров, цвет устанавливается как у последнего,
-  а должны быть разные - как прописаны в конфиге
-*/ 

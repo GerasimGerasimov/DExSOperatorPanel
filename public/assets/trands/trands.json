@@ -1,6 +1,7 @@
 {
     "deep":1024,
     "interval":100,
+    "initialWidthScale": 1,
     "trands": {
         "trand_1":{
             "height":"128 px",

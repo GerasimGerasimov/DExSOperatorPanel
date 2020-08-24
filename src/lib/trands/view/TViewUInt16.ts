@@ -14,7 +14,7 @@ export class TViewUInt16 extends TViewTrand {
   }
 
   public draw(props: IViewTrandDrawMethodProps): void {
-    props.ctx.clearRect(0, 0, this.Sizes.width, this.Sizes.height);
+    props.ctx.beginPath();
     const s = `${this.TrandProp.tag}: ${this.model.EndIndex}`;// max: ${max}
     props.ctx.strokeStyle = this.TrandProp.color;
     props.ctx.strokeText(s, 150, 20);
