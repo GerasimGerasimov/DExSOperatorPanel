@@ -73,7 +73,7 @@ export default class TViewBoxModel {
 
     public draw() {
       this.ctx.clearRect(0, 0, this.ctxsize.width, this.ctxsize.height);
-      this.ctx.lineWidth = 2;
+      this.ctx.lineWidth = 1;
       this.ctx.beginPath();
       this.ctx.font = "16px serif";
       this.drawLineChart();
