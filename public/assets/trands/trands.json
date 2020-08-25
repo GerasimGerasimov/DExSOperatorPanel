@@ -25,7 +25,7 @@
             }
         },
         "trand_2":{
-            "height":"300 px",
+            "height":"64 px",
             "tags": {
                 "U1/RAM/Iexc":{
                     "color":"green",

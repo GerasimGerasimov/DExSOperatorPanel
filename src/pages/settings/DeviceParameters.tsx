@@ -126,7 +126,6 @@ export default class DeviceParameters extends Component<{}, IState> {
 
     return(
       <>
-        <h1>Settings</h1>
           <div className="table-responsive"> 
             <table className="table table-bordered table-condensed table-hover"
                 >

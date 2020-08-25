@@ -9,7 +9,7 @@ export interface IOutCanvasProps {
 interface IOutCanvasState {
   width: number;
 }
-export default class TOutCanvas extends React.Component <IOutCanvasProps, IOutCanvasState> {
+export default class TOutCanvas extends Component <IOutCanvasProps, IOutCanvasState> {
 
   constructor(props: IOutCanvasProps) {
     super(props);

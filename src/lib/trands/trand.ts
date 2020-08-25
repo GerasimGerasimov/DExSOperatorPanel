@@ -1,5 +1,5 @@
 import { devicesInfoStore } from "../../store/devices/devicesinfo";
-import { TModel, IModelProp, EMaxValueMode, IMaxValueMode } from "./models/TModel";
+import { TModel, IModelProp, EMaxValueMode} from "./models/TModel";
 import ModelFactory from "./models/ModelFactory";
 import { ITrandTagProperties, ITrandProp } from "./itrand";
 

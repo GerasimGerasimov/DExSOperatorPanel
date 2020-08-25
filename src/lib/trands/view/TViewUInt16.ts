@@ -55,7 +55,7 @@ export class TViewUInt16 extends TViewTrand {
     let idx: number = this.model.getNextIndex(fromIdx);
     let x: number = 0;
     ctx.moveTo(x,y)
-    console.log(`draw idx:${idx} y:${y} x:${x}`);
+    //console.log(`draw idx:${idx} y:${y} x:${x}`);
     while (count-- != 0) {
       y = this.getScaledY(idx);
       x += this.Scales.WScale;

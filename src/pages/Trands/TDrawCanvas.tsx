@@ -4,24 +4,21 @@ import OutCanvas from './TOutCanvas';
 import TViewBoxModel from './TViewBoxModel';
 
 export interface IDrawCanvasProps {
-  //changeCount: any;
   viewBoxModel: TViewBoxModel;
   width: number;
   scrollPosition: number;
 }
 
-export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
+export default class Canvas extends Component <IDrawCanvasProps, {}>{
   private ctx: any;
   private viewBoxModel: TViewBoxModel;
   private height: number = 0;
   private width: number = 0;
-  private cnt: number = 0;
-  private scrollPosition: number;
 
   constructor(props: IDrawCanvasProps) {
     super(props);
     this.viewBoxModel = this.props.viewBoxModel;
-    this.viewBoxModel.ScrollPosition = this.scrollPosition = this.props.scrollPosition;
+    this.viewBoxModel.ScrollPosition = this.props.scrollPosition;
   }
 
   saveContext(element: any) {
@@ -37,7 +34,6 @@ export default class Canvas extends React.Component <IDrawCanvasProps, {}>{
 
   shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{
     this.viewBoxModel.ScrollPosition = 
-      this.scrollPosition = 
         nextProps.scrollPosition;
     return true;
   }

@@ -19,7 +19,6 @@ export interface ISaveContextFunction {
 }
 
 interface IViewBoxState {
-  count: number;
   width: number;
 }
 
@@ -31,8 +30,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     constructor (props: any){
       super(props);
       this.state = {
-        count: 0,
-        width: window.innerWidth,
+        width: window.innerWidth
       }
       this.heightProp = this.props.height;
       this.scrollPosition = this.props.scrollPosition;
@@ -59,15 +57,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       return true;
     }
 
-
-    private handleClick(){
-      console.log('click', this.state.count);
-      this.setState(state=> ({
-          count: state.count + 1
-        })
-      )
-    }
-
     render() {
       const {height, mu} = {...this.heightProp}
       return (
@@ -81,8 +70,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               viewBoxModel = {this.viewBoxModel}
               scrollPosition = {this.scrollPosition}
              />
-             <h3 className='Trands h3'>TViewBox {this.scrollPosition}</h3>
-          <button className='Trands btn' onClick={()=>{this.handleClick()}}>{`Count ${this.state.count}`}</button>
         </div>
       )
     }
