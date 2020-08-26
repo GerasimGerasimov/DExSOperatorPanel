@@ -5,13 +5,11 @@
     color: black;
     transition: opacity 0.25s ease-in;
     opacity: 0.5;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .BackHistory:hover {
     opacity: 1;
-}
-
-.BackHistory.open {
-    color: red;
-    left: 50px;
+    background-color: white;
 }
