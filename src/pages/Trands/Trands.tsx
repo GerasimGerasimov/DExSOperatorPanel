@@ -20,7 +20,10 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
           deep: Trands.Deep,
           changeCount: 0
         }
-        this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
+    }
+
+    public componentDidMount() {
+      this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
     }
 
     public componentWillUnmount(){
