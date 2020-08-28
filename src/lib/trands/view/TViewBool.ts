@@ -44,12 +44,13 @@ export class TViewBool extends TViewTrand {
     let y: number = this.getScaledY(fromIdx);
     let idx: number = this.model.getNextIndex(fromIdx);
     let x: number = 0;
+    let dY: number = 0;
     while (count-- != 0) {
       y = this.getScaledY(idx);
       x += this.Scales.WScale;
       idx = this.model.getNextIndex(idx);
-      ctx.fillRect(x, y, this.Scales.WScale, y)
+      dY = this.Scales.Axis-y;
+      if (dY) {ctx.fillRect(x, y, this.Scales.WScale, dY)};
     }
   }
-  //TODO глюк при выводе нескольких ТВit
 }

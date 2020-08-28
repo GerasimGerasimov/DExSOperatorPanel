@@ -40,6 +40,14 @@
                     "fraction":1,
                     "offset": "50 %",
                     "MaxValueMode":"Fixed 400"
+                },
+                "U1/RAM/DIN.0(C1_AC)":{
+                    "color":"#284A7E",
+                    "offset": "30 %"
+                },
+                "U1/RAM/DIN.1(C1_DC)":{
+                    "color":"#FFBA40",
+                    "offset": "0 %"
                 }
             }
         }
