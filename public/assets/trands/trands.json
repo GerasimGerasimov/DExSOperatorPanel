@@ -27,24 +27,27 @@
                     "MaxValueMode":"MaxOfSelectedRange"
                 },
                 "U1/RAM/DIN.2(C2_AC)":{
-                    "color":"yellow"
+                    "color":"#447BD4",
+                    "offset": "5 %"
                 }
             }
         },
         "trand_2":{
-            "height":"64 px",
+            "height":"164 px",
             "tags": {
                 "U1/RAM/Iexc":{
                     "color":"green",
                     "fraction":1,
-                    "offset": "50 %",
+                    "offset": "90 %",
                     "MaxValueMode":"Fixed 400"
                 },
                 "U1/RAM/DIN.0(C1_AC)":{
-                    "color":"red"
+                    "color":"#284A7E",
+                    "offset": "60 %"
                 },
                 "U1/RAM/DIN.1(C1_DC)":{
-                    "color":"green"
+                    "color":"#FFBA40",
+                    "offset": "10 %"
                 }
             }
         }

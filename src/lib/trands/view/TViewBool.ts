@@ -7,11 +7,19 @@ export class TViewBool extends TViewTrand {
     super(props);
   }
 
+  protected getScaledY(index: number): number {
+    const value: number = this.model.getValueByIndex(index);
+    const scaledValue: number = (value != 0)? 10 : 0;//value * this.Scales.HScale;
+    const res = this.Scales.Axis - scaledValue;
+    return res | 0
+  }
+
   public draw(props: IViewTrandDrawMethodProps): void {
     props.ctx.beginPath();
-    const s = `${this.TrandProp.tag}: ${this.model.EndIndex} fromIdx: ${props.fromIdx}`;
+    //const s = `${this.TrandProp.tag}: ${this.model.EndIndex} fromIdx: ${props.fromIdx}`;
     props.ctx.strokeStyle = this.TrandProp.color;
-    props.ctx.strokeText(s, 150, 20);
+    props.ctx.fillStyle = this.TrandProp.color;
+    //props.ctx.strokeText(s, 150, 20);
     //отрисовка Оси
     const AxisProps: IAxisProps = {
       ctx: props.ctx,
@@ -21,8 +29,6 @@ export class TViewBool extends TViewTrand {
     }
     this.drawAxis(AxisProps);
     const startPosition: number = this.getStartPosition(this.model.EndIndex, props.fromIdx)
-    //вычислить вертикальную шкалу HScale
-    this.Scales.HScale = this.getHScale(startPosition);
     //собственна график
     this.drawLineGraph(props.ctx, startPosition);
   }
@@ -38,14 +44,12 @@ export class TViewBool extends TViewTrand {
     let y: number = this.getScaledY(fromIdx);
     let idx: number = this.model.getNextIndex(fromIdx);
     let x: number = 0;
-    ctx.moveTo(x,y)
-    //console.log(`draw idx:${idx} y:${y} x:${x}`);
     while (count-- != 0) {
       y = this.getScaledY(idx);
       x += this.Scales.WScale;
       idx = this.model.getNextIndex(idx);
-      ctx.lineTo(x,y);
+      ctx.fillRect(x, y, this.Scales.WScale, y)
     }
-    ctx.stroke();
   }
+  //TODO глюк при выводе нескольких ТВit
 }

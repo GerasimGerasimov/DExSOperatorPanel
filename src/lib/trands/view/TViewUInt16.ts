@@ -9,9 +9,9 @@ export class TViewUInt16 extends TViewTrand {
 
   public draw(props: IViewTrandDrawMethodProps): void {
     props.ctx.beginPath();
-    const s = `${this.TrandProp.tag}: ${this.model.EndIndex} fromIdx: ${props.fromIdx}`;
+    //const s = `${this.TrandProp.tag}: ${this.model.EndIndex} fromIdx: ${props.fromIdx}`;
     props.ctx.strokeStyle = this.TrandProp.color;
-    props.ctx.strokeText(s, 150, 20);
+    //props.ctx.strokeText(s, 150, 20);
     //отрисовка Оси
     const AxisProps: IAxisProps = {
       ctx: props.ctx,
