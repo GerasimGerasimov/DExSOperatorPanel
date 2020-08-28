@@ -77,7 +77,7 @@ export default class TViewBoxModel {
       this.ctx.beginPath();
       this.ctx.font = "16px serif";
       this.drawLineChart();
-      this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count} : ${this.scrollPosition}`, 2, 18);
+      //this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count} : ${this.scrollPosition}`, 2, 18);
     }
 
     private drawLineChart(){
