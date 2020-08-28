@@ -1,7 +1,6 @@
 import { TModel, IModelProp } from "./TModel";
 
 export class TModelUInt16 extends TModel {
-  private data: Uint16Array;
 
   constructor(props: IModelProp) {
     super(props);
@@ -10,11 +9,7 @@ export class TModelUInt16 extends TModel {
 
   public setValue(value: any) {
     super.setMaxOfAllRange(value);
-    this.data[this.endIndex] = value;
-    const endIndex = ++this.endIndex;
-    this.endIndex = (endIndex >= this.deep)
-                    ? 0
-                    : endIndex;
+    super.setValue(value);
   }
 
   protected getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
@@ -33,7 +28,4 @@ export class TModelUInt16 extends TModel {
     return max;
   }
 
-  public getValueByIndex(index: number): any {
-    return this.data[index]
-  }
 }

@@ -19,6 +19,13 @@
                     "offset": "50 %",
                     "MaxValueMode":"Fixed 600"
                 },
+                "U1/RAM/Istat":{
+                    "color":"green",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "20 %",
+                    "MaxValueMode":"MaxOfSelectedRange"
+                },
                 "U1/RAM/DIN.2(C2_AC)":{
                     "color":"yellow"
                 }

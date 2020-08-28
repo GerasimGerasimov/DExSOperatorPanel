@@ -18,7 +18,13 @@ export interface IModelProp {
   MaxValueMode: string;
 }
 
+type TypedArray = Int8Array    | Uint8Array   | Uint8ClampedArray |
+                  Int16Array   | Uint16Array  |
+                  Int32Array   | Uint32Array  |
+                  Float32Array | Float64Array
+
 export abstract class TModel {
+  protected data: TypedArray | [] = [];
   protected objType: string;
   protected deep: number;
   protected endIndex: number = 0;
@@ -38,9 +44,17 @@ export abstract class TModel {
     this.MaxValueMode = this.setMaxValueMode(props.MaxValueMode)
   }
   
-  public abstract setValue(value: any): void;
+  public setValue(value: any) {
+    this.data[this.endIndex] = value;
+    const endIndex = ++this.endIndex;
+    this.endIndex = (endIndex >= this.deep)
+                    ? 0
+                    : endIndex;
+  }
 
-  public abstract getValueByIndex(index: number): any;
+  public getValueByIndex(index: number): any {
+    return this.data[index]
+  }
 
   public get EndIndex(): number {
     return this.endIndex;

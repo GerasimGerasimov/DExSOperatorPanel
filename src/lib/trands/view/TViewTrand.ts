@@ -52,9 +52,44 @@ export abstract class TViewTrand {
   }
 
   public abstract draw(props: IViewTrandDrawMethodProps): void;
-
-  public abstract resize(sizes: IViewTrandSizeProp): void;
   
+  protected getStartPosition(index: number, offset: number): number {
+    let revOffset: number = offset;
+    let res: number = index - this.Sizes.count - revOffset;
+    let mod: number = res % this.deep;
+    if (res < 0) {
+      res = (mod == 0)? 0: this.deep + mod;
+    }
+    return res;
+  }
+
+  protected getScaledY(index: number): number {
+    const value: number = this.model.getValueByIndex(index);
+    const scaledValue: number = value * this.Scales.HScale;
+    const res = this.Scales.Axis - scaledValue;
+    return res | 0
+  }
+
+  protected getHScale(fromIdx: number): number {
+    const max: number = this.model.getMaxValue(fromIdx, this.Sizes.count);
+    const HScale: number = (this.Scales.Axis / ((max != 0)? max : this.Scales.Axis));
+    return HScale;
+  }
+
+  public resize(sizes: IViewTrandSizeProp): void {
+    const {width, height, count} = {... sizes};
+    //при ресайзе меняются:
+    //0) ширина-высота области отображения
+    this.Sizes.count = count;
+    this.Sizes.height = height;
+    this.Sizes.width = width;
+    //1) Положение оси (задано в % от высоты)
+    this.Scales.Axis = this.getOffsetInPixels(this.TrandProp.offset);
+    //2) Шкалы: вертикальная и горизонтальная
+    this.Scales.WScale = width / count;
+    //this.Scales.HScale зависит от maxValue и каждый раз перерасчитывается при выводе
+  }
+
   protected getOffsetInPixels(sOffset: string): number {
     let res: number = 0;
     const s: Array<string> = sOffset.split(' ');
