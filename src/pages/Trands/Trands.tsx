@@ -6,7 +6,6 @@ import TViewBox from './TViewBox'
 interface ITrandsPageState {
   scrollPosition: number;
   deep: number;
-  changeCount: number;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
@@ -17,23 +16,8 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         super(props);
         this.state = {
           scrollPosition: 0,
-          deep: Trands.Deep,
-          changeCount: 0
+          deep: Trands.Deep
         }
-    }
-
-    public componentDidMount() {
-      this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
-    }
-
-    public componentWillUnmount(){
-      Trands.deleteOnUpdateByID(this.UpdateID);
-    }
-
-    private onDataUpdate(){
-      this.setState(state=> ({
-        changeCount: state.changeCount + 1
-      }))
     }
 
     private changeScrollPosition(e: any) {

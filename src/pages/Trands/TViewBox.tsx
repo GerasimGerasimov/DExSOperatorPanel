@@ -7,6 +7,7 @@ import './Trands.css'
 import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas from './TDrawCanvas';
+import { Trands } from '../../lib/trands/trands';
 
 export interface IViewBoxProps {
   height: TTrandHeight;
@@ -20,17 +21,20 @@ export interface ISaveContextFunction {
 
 interface IViewBoxState {
   width: number;
+  changeCount: number;
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private heightProp: TTrandHeight;
     private viewBoxModel: TViewBoxModel;
     private scrollPosition: number;
+    private UpdateID: string = '';
 
     constructor (props: any){
       super(props);
       this.state = {
-        width: window.innerWidth
+        width: window.innerWidth,
+        changeCount: 0
       }
       this.heightProp = this.props.height;
       this.scrollPosition = this.props.scrollPosition;
@@ -39,6 +43,13 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
 
     componentDidMount() {
       window.addEventListener("resize", this.onResize.bind(this));
+      this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
+    }
+
+    private onDataUpdate(){
+      this.setState(state=> ({
+        changeCount: state.changeCount + 1
+      }))
     }
 
     private onResize(){
@@ -50,6 +61,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     
     componentWillUnmount() {
       window.removeEventListener("resize", this.onResize);
+      Trands.deleteOnUpdateByID(this.UpdateID);
     }
 
     shouldComponentUpdate(nextProps:IViewBoxProps): boolean{
