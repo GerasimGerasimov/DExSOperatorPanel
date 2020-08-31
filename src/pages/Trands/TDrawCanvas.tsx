@@ -19,6 +19,7 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
     super(props);
     this.viewBoxModel = this.props.viewBoxModel;
     this.viewBoxModel.ScrollPosition = this.props.scrollPosition;
+    this.width = this.props.width;
   }
 
   saveContext(element: any) {

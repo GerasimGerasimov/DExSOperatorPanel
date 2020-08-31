@@ -44,6 +44,10 @@ export default class TViewBoxModel {
     public set ScrollPosition(value: number) {
       this.scrollPosition = value;
     }
+
+    public get ScrollPosition(): number {
+      return this.scrollPosition;
+    }
     
     private createModelDependentView(): Map<string, TViewTrand> {
       const views: Map<string, TViewTrand> = new Map();

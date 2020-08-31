@@ -10,8 +10,6 @@ interface ITrandsPageState {
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
     
-    private UpdateID: string = '';
-
     constructor (props: any){
         super(props);
         this.state = {
@@ -54,5 +52,3 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         )
       }
 }
-
-//<h3>Trands page</h3>
