@@ -37,7 +37,7 @@ export default class TViewBoxModel {
       this.models = props.models;
       this.ctxsize = {width:0, height:0}
       this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
-      this.ctx = this.canvas.getContext("2d");
+      this.ctx = this.canvas.getContext("2d",{ alpha: false });
       this.views = this.createModelDependentView();
     }
 
@@ -72,12 +72,9 @@ export default class TViewBoxModel {
     }
 
     public draw() {
-      this.ctx.clearRect(0, 0, this.ctxsize.width, this.ctxsize.height);
-      this.ctx.lineWidth = 1;
-      this.ctx.beginPath();
-      this.ctx.font = "16px serif";
+      this.ctx.fillStyle = 'white';
+      this.ctx.fillRect(0, 0, this.ctxsize.width, this.ctxsize.height);
       this.drawLineChart();
-      //this.ctx.strokeText(`${this.ctxsize.width} x ${this.ctxsize.height} : ${this.count} : ${this.scrollPosition}`, 2, 18);
     }
 
     private drawLineChart(){
@@ -98,8 +95,9 @@ export default class TViewBoxModel {
           (height != this.ctxsize.height)) {
             this.ctxsize = {width, height}
             this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
-            this.ctx = this.canvas.getContext("2d");
+            this.ctx = this.canvas.getContext("2d", { alpha: false });
             this.ctx.imageSmoothingEnabled = false;
+            this.ctx.lineWidth = 1;
             this.resizeViews();
       }
       

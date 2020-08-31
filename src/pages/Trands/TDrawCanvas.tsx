@@ -22,7 +22,7 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   }
 
   saveContext(element: any) {
-    this.ctx = element.getContext('bitmaprenderer');
+    this.ctx = element.getContext('bitmaprenderer', { alpha: false });
     this.width = element.clientWidth;
     this.height = element.clientHeight;
     this.viewBoxModel.resize(this.width, this.height);
