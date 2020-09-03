@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
 import TViewBox from './TViewBox'
+import TrandsMenu from '../../components/TrandsMenu/TrandsMenu';
 
 interface ITrandsPageState {
   scrollPosition: number;
@@ -38,6 +39,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     render() {
         return(
           <div>
+            <TrandsMenu></TrandsMenu>
             <div className='Trands wrapper'>
               {this.getTrandsBoxes(this.state.scrollPosition)}
               <input type="range"

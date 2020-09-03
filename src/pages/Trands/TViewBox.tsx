@@ -30,7 +30,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private scrollPosition: number;
     private UpdateID: string = '';
 
-    constructor (props: any){
+    constructor (props: IViewBoxProps){
       super(props);
       this.state = {
         width: window.innerWidth,
