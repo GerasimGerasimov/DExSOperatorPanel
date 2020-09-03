@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './TrandsMenu.css';
 import { OnLineButton } from './buttons/OnLine/OnLineButton';
+import { DBButton } from './buttons/DB/DBButton';
 
 interface ITrandsMenuProps {
 
@@ -26,7 +27,7 @@ export default class TrandsMenu extends Component<ITrandsMenuProps,{}> {
             isOpen={true}
             onTougle={tougleMenu}
         />
-        <OnLineButton
+        <DBButton
             isOpen={true}
             onTougle={tougleMenu}
         />

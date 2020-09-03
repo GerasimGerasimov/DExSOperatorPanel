@@ -1,0 +1,19 @@
+.DBButton {
+  height: 1rem;
+  font-size: 1rem;
+  color: black;
+  transition: opacity 0.25s ease-in;
+  opacity: 0.5;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 1px;
+}
+
+.DBButton:hover {
+  opacity: 1;
+  background-color: white;
+}
+
+.DBButton.open {
+  background-color: white;
+}
