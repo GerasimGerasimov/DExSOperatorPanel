@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import './TrandsMenu.css';
-import { OnLineButton } from './buttons/OnLine/OnLineButton';
-import { DBButton } from './buttons/DB/DBButton';
+import { MenuButton } from './buttons/MenuButton';
 
 interface ITrandsMenuProps {
 
@@ -13,23 +12,25 @@ export default class TrandsMenu extends Component<ITrandsMenuProps,{}> {
   }
 
   render() {
-    const tougleMenu = () => {
-      //setVisible(!visible)
+    const handlerOnLine = () => {
+      console.log('OnLine')
     }
 
-    const handleClose = () => {
-      //setVisible(false)
+    const handlerDB = () => {
+      console.log('DB')
     }
 
   const menu = (
       <div>
-        <OnLineButton
-            isOpen={true}
-            onTougle={tougleMenu}
+        <MenuButton
+          icon={'fa-network-wired'}
+          isPressed = {true}
+          onClick={handlerOnLine}
         />
-        <DBButton
-            isOpen={true}
-            onTougle={tougleMenu}
+        <MenuButton
+          icon={'fa-database'}
+          isPressed = {false}
+          onClick={handlerDB}
         />
       </div>
   )
