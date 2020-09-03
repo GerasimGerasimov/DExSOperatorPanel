@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
 import TViewBox from './TViewBox'
-import TrandsMenu from '../../components/TrandsMenu/TrandsMenu';
+import TrandsMenu, { IToolButton } from '../../components/TrandsMenu/TrandsMenu';
 
 interface ITrandsPageState {
   scrollPosition: number;
@@ -10,13 +10,25 @@ interface ITrandsPageState {
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
-    
+    private ToolButtons: Array<IToolButton> = [
+      { type:'Button', icon:['fa-network-wired'], onClick:this.handlerPausePlay},
+      { type:'Button', icon:['fa-database'],      onClick:this.handlerPausePlay},
+      { type:'TougleButton', icon:['fa-play-circle','fa-pause-circle'], isTougle:false,
+        onClick:this.handlerPausePlay},
+      { type:'Button', icon:['fa-search-minus'],  onClick:this.handlerPausePlay},
+      { type:'Button', icon:['fa-search-plus'],   onClick:this.handlerPausePlay},
+      { type:'Button', icon:['fa-ruler-combined'],onClick:this.handlerPausePlay},
+    ]
     constructor (props: any){
         super(props);
         this.state = {
           scrollPosition: 0,
           deep: Trands.Deep
         }
+    }
+
+    private handlerPausePlay(e: any, tougle: boolean){
+      console.log('press', tougle)
     }
 
     private changeScrollPosition(e: any) {
@@ -39,7 +51,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     render() {
         return(
           <div>
-            <TrandsMenu></TrandsMenu>
+            <TrandsMenu buttons = {this.ToolButtons}/>
             <div className='Trands wrapper'>
               {this.getTrandsBoxes(this.state.scrollPosition)}
               <input type="range"

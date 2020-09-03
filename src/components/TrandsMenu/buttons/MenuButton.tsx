@@ -3,8 +3,7 @@ import './MenuButton.css';
 
 export interface IMenuButtonProps {
     icon: string;
-    isPressed: boolean;
-    onClick: (e: any) => any;
+    onClick: (e: any, state: boolean) => any;
 }
 
 export const MenuButton = (props: IMenuButtonProps) => {
@@ -18,7 +17,7 @@ export const MenuButton = (props: IMenuButtonProps) => {
     return (
         <i 
             className = {classes.join(' ')}
-            onClick={(e)=>props.onClick(e)}
+            onClick={(e)=>props.onClick(e, false)}
         ></i>
     )
 }
