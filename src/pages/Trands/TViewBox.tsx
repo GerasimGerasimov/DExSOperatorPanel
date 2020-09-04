@@ -13,6 +13,7 @@ export interface IViewBoxProps {
   height: TTrandHeight;
   viewBox: TViewBoxModel;
   scrollPosition: number;
+  widthScale: number;
 }
 
 export interface ISaveContextFunction {
@@ -29,6 +30,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private viewBoxModel: TViewBoxModel;
     private scrollPosition: number;
     private UpdateID: string = '';
+    private widthScale: number;
 
     constructor (props: IViewBoxProps){
       super(props);
@@ -39,6 +41,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       this.heightProp = this.props.height;
       this.scrollPosition = this.props.scrollPosition;
       this.viewBoxModel = this.props.viewBox;
+      this.widthScale = this.props.widthScale;
     }
 
     componentDidMount() {
@@ -66,6 +69,10 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
 
     shouldComponentUpdate(nextProps:IViewBoxProps): boolean{
       this.scrollPosition = nextProps.scrollPosition;
+      if (nextProps.widthScale != this.widthScale) {
+        this.widthScale = nextProps.widthScale;
+        this.viewBoxModel.WidthScale = this.widthScale;
+      }
       return true;
     }
 

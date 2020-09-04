@@ -16,7 +16,7 @@ interface ICanvasSize {
 }
 
 export default class TViewBoxModel {
-    private WidthScale: number = 1;
+    private widthScale: number = 1;
     private count: number = 0;
     private deep: number = 0;
     private canvas: OffscreenCanvas;
@@ -31,7 +31,7 @@ export default class TViewBoxModel {
     private scrollPosition: number = 0;
 
     constructor (props: IViewBoxModelProps){
-      this.WidthScale = props.WidthScale;
+      this.widthScale = props.WidthScale;
       this.deep = props.deep;
       this.height = props.height;
       this.models = props.models;
@@ -108,7 +108,7 @@ export default class TViewBoxModel {
     }
 
     private resizeViews() {
-      this.count = (this.ctxsize.width * this.WidthScale) | 0;
+      this.count = (this.ctxsize.width * this.widthScale) | 0;
       if (this.count > this.deep) {
         this.count = this.deep;
       }
@@ -122,7 +122,6 @@ export default class TViewBoxModel {
           view.resize(props)
         }
       })
-
     }
 
     public get Height():TTrandHeight {
@@ -131,5 +130,14 @@ export default class TViewBoxModel {
 
     public get Models(): Map<string, TTrand> {
       return this.models.Trands;
+    }
+    
+    public set WidthScale(value: number) {
+      this.widthScale = value;
+      this.count = (this.ctxsize.width * this.widthScale) | 0;
+      this.views.forEach((view: TViewTrand)=>{
+        if (view) {
+          view.setCount(this.count)}
+      })
     }
 }

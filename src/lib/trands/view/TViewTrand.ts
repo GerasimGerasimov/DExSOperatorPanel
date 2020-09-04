@@ -90,6 +90,11 @@ export abstract class TViewTrand {
     //this.Scales.HScale зависит от maxValue и каждый раз перерасчитывается при выводе
   }
 
+  public setCount(count: number) {
+    this.Sizes.count = count;
+    this.Scales.WScale = this.Sizes.width / count;
+  }
+
   protected getOffsetInPixels(sOffset: string): number {
     let res: number = 0;
     const s: Array<string> = sOffset.split(' ');

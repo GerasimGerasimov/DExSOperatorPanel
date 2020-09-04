@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './TougleButton.css';
 
 export interface ITougleButtonProps {
+    name: string;
     icon: Array<string>;
     isTougle: boolean
     onClick: (e: any, tougle: boolean) => any;
@@ -19,15 +20,15 @@ export const TougleButton = (props: ITougleButtonProps) => {
         'pressed'
     ]
 
-    const click = (e: any) => {
+    const click = () => {
         changeTougle(!tougle);
-        props.onClick(e, tougle)
+        props.onClick(props.name, tougle)
     }
 
     return (
         <i 
             className = {classes.join(' ')}
-            onClick={(e)=>click(e)}
+            onClick={()=>click()}
         ></i>
     )
 }

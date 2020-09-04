@@ -2,6 +2,7 @@ import React from 'react';
 import './MenuButton.css';
 
 export interface IMenuButtonProps {
+    name: string;
     icon: string;
     onClick: (e: any, state: boolean) => any;
 }
@@ -17,7 +18,7 @@ export const MenuButton = (props: IMenuButtonProps) => {
     return (
         <i 
             className = {classes.join(' ')}
-            onClick={(e)=>props.onClick(e, false)}
+            onClick={()=>props.onClick(props.name, false)}
         ></i>
     )
 }

@@ -22,7 +22,7 @@ export class TTrands {
     private url: string = ''
     private deep: number = 0;// глубина архива
     private interval: number = 0;// интервал обновления данных
-    private WidthScale: number = 1; //масштаб по горизонтали
+    private widthScale: number = 1; //масштаб по горизонтали
     private trandsGroups: Map<string, TTrandsGroup> = new Map()
     private viewBoxesModel: Map<string, TViewBoxModel> = new Map();
     private updateTimer: any = undefined;
@@ -43,17 +43,20 @@ export class TTrands {
         this.onUpdateHandlers.delete(ID);
     }
 
-
     public get Deep(): number {
         return this.deep;
     }
     
+    public get WidthScale(): number {
+        return this.widthScale;
+    }
+
     public async loadConfig() {
         const text: string = await getTextByURL(this.url)
         const settings = await JSON.parse(text);
         this.deep = settings.deep || 0;
         this.interval = settings.interval || 0;
-        this.WidthScale = settings.initialWidthScale || 1;
+        this.widthScale = settings.initialWidthScale || 1;
         this.createTrandsGroups(settings.trands || undefined)
         this.createViewBoxesModels();
     }
@@ -73,7 +76,7 @@ export class TTrands {
                 height: trandsGroup.getBoxHeight(),
                 models: trandsGroup,
                 deep: this.deep,
-                WidthScale: this.WidthScale
+                WidthScale: this.widthScale
             }
             const viewBoxModel: TViewBoxModel = new TViewBoxModel(props);
             this.viewBoxesModel.set(key, viewBoxModel)

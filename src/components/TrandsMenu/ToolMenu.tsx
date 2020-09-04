@@ -1,20 +1,21 @@
 import React, {Component} from 'react'
-import './TrandsMenu.css';
+import './ToolMenu.css';
 import { MenuButton } from './buttons/MenuButton';
 import { TougleButton } from './touglebutton/TougleButton';
 
 export interface IToolButton {
+  name: string;
   type: string;
   icon: Array<string>;
   isTougle?: boolean;
-  onClick: (e: any, state: boolean) => any;
+  onClick: any;//(name: string, state: boolean) => any;
 }
 
 export interface ITrandsMenuProps {
-  buttons: Array<IToolButton>
+  elements: Array<IToolButton>
 }
 
-export default class TrandsMenu extends Component<ITrandsMenuProps,{}> {
+export default class ToolMenu extends Component<ITrandsMenuProps,{}> {
   constructor (props:ITrandsMenuProps) {
     super(props)
   }
@@ -24,12 +25,14 @@ export default class TrandsMenu extends Component<ITrandsMenuProps,{}> {
       'TougleButton'  : () => {return (
                         <TougleButton
                           key = {key}
+                          name = {prop.name}
                           icon={prop.icon}
                           isTougle = {prop.isTougle || false}
                           onClick={prop.onClick}/>)},
       'Button' : () => {return (
                         <MenuButton
                           key = {key}
+                          name = {prop.name}
                           icon={prop.icon[0]}
                           onClick={prop.onClick}/>)},
       'default': () => {
@@ -41,12 +44,12 @@ export default class TrandsMenu extends Component<ITrandsMenuProps,{}> {
   }
 
   render() {
-    const buttons = this.props.buttons.map((value:IToolButton, index: number) =>{
+    const buttons = this.props.elements.map((value:IToolButton, index: number) =>{
       return this.factory(value, index)
     })
 
     return (
-      <div className="TrandsMenu">
+      <div className="ToolMenu">
         {buttons}
       </div>
     )
