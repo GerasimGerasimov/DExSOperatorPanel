@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import './TougleButton.css';
+import { IToolButtonProps } from '../iToolButton';
 
-export interface ITougleButtonProps {
-    name: string;
-    icon: Array<string>;
-    isTougle?: boolean
-    onClick: (e: any, tougle: boolean) => any;
-}
-
-export const TougleButton = (props: ITougleButtonProps) => {
+export const TougleButton = (props: IToolButtonProps) => {
     const [tougle, changeTougle] = useState(props.isTougle || false);
 
     const classes = [

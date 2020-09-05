@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
 import TViewBox from './TViewBox'
-import ToolMenu, { IToolButtonProps } from '../../components/TrandsMenu/ToolMenu';
+import ToolMenu from '../../components/TrandsMenu/ToolMenu';
+import { IToolButtonProps } from '../../components/TrandsMenu/buttons/iToolButton';
 
 interface ITrandsPageState {
   scrollPosition: number;

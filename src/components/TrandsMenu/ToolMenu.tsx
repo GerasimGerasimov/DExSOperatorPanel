@@ -2,15 +2,8 @@ import React, {Component} from 'react'
 import './ToolMenu.css';
 import { ToolButton } from './buttons/ToolButton/ToolButton';
 import { TougleButton } from './buttons/touglebutton/TougleButton';
+import { IToolButtonProps } from './buttons/iToolButton';
 
-
-export interface IToolButtonProps {
-  name: string;
-  type: string;
-  icon: Array<string>;
-  isTougle?: boolean;
-  onClick: any;//(name: string, state: boolean) => any;
-}
 
 export interface ITrandsMenuProps {
   elements: Array<IToolButtonProps>

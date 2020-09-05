@@ -1,11 +1,6 @@
 import React from 'react';
 import './ToolButton.css';
-
-export interface IToolButtonProps {
-    name: string;
-    icon: Array<string> | string;
-    onClick: (e: any, state: boolean) => any;
-}
+import { IToolButtonProps } from '../iToolButton';
 
 export const ToolButton = (props: IToolButtonProps) => {
     const classes = [
