@@ -51,7 +51,6 @@ export default class TViewBoxModel {
     
     private createModelDependentView(): Map<string, TViewTrand> {
       const views: Map<string, TViewTrand> = new Map();
-      //TODO coздать отображения View специфичные для моделей
       this.models.Trands.forEach((trand:TTrand, key: string)=>{
         const objType: string = trand.Model.ObjType
         const props: IViewTrandProp = {
@@ -113,7 +112,7 @@ export default class TViewBoxModel {
         this.count = this.deep;
       }
       let props: IViewTrandSizeProp = {
-        count: this.count,//TODO потом заменю на некую кнопку "масштаб"
+        count: this.count,
         width: this.ctxsize.width,
         height: this.ctxsize.height
       }
