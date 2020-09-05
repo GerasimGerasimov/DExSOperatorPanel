@@ -1,0 +1,25 @@
+.Legend {
+  position: relative;
+  top: -100%;
+  left: 60px;
+  width: 30%;
+  /*height: 32px;*/
+  border: 1px dashed red;
+  box-sizing: border-box;
+}
+
+.Legend.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction:column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  border: 1px dashed green;
+  left:0%;
+}
+
+.Legend.element {
+  border: 1px dashed blue;
+  /*left:-10%;*/
+}
+

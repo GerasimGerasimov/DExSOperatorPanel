@@ -8,6 +8,7 @@ import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
+import TViewBoxLegend from './TViewBoxLegend';
 
 export interface IViewBoxProps {
   height: TTrandHeight;
@@ -89,6 +90,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               viewBoxModel = {this.viewBoxModel}
               scrollPosition = {this.scrollPosition}
              />
+             <TViewBoxLegend/>
         </div>
       )
     }
