@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
 import TViewBox from './TViewBox'
-import ToolMenu, { IToolButton } from '../../components/TrandsMenu/ToolMenu';
+import ToolMenu, { IToolButtonProps } from '../../components/TrandsMenu/ToolMenu';
 
 interface ITrandsPageState {
   scrollPosition: number;
@@ -11,14 +11,14 @@ interface ITrandsPageState {
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
-    private ToolMenu: Array<IToolButton> = [
-      { name: 'onLine', type:'Button', icon:['fa-network-wired'], onClick:this.handlerToolMenu.bind(this)},
-      { name: 'DB', type:'Button', icon:['fa-database'],      onClick:this.handlerToolMenu.bind(this)},
+    private ToolMenu: Array<IToolButtonProps> = [
+      { name: 'onLine', type:'ToolButton', icon:['fa-network-wired'], onClick:this.handlerToolMenu.bind(this)},
+      { name: 'DB', type:'ToolButton', icon:['fa-database'],      onClick:this.handlerToolMenu.bind(this)},
       { name: 'PlayPause', type:'TougleButton', icon:['fa-play-circle','fa-pause-circle'], isTougle:false,
         onClick:this.handlerToolMenu.bind(this)},
-      { name: 'ZoomMinus', type:'Button', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
-      { name: 'ZoomPlus', type:'Button', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)},
-      { name: 'Amplitude', type:'Button', icon:['fa-ruler-combined'],onClick:this.handlerToolMenu.bind(this)},
+      { name: 'ZoomMinus', type:'ToolButton', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
+      { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)},
+      { name: 'Amplitude', type:'ToolButton', icon:['fa-ruler-combined'],onClick:this.handlerToolMenu.bind(this)},
     ]
     constructor (props: any){
         super(props);
@@ -31,17 +31,13 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 
     private onZoomMinus(status: boolean){
       let widthScale = Number((this.state.widthScale + 0.1).toFixed(1));
-      this.setState((state)=> (
-        {widthScale: ((widthScale > 4)? 4: widthScale)}
-      ))
+      this.setState({widthScale: ((widthScale > 4)? 4: widthScale)})
       console.log(this.state.widthScale);
     }
 
     private onZoomPlus(status:boolean){
       let widthScale = Number((this.state.widthScale - 0.1).toFixed(1));
-      this.setState(state=> (
-        {widthScale: ((widthScale < 0.2)? 0.2: widthScale)}
-      ))
+      this.setState({widthScale: ((widthScale < 0.2)? 0.2: widthScale)})
       console.log(this.state.widthScale);
     }
 

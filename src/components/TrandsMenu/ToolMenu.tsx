@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import './ToolMenu.css';
-import { MenuButton } from './buttons/MenuButton';
-import { TougleButton } from './touglebutton/TougleButton';
+import { ToolButton } from './buttons/ToolButton/ToolButton';
+import { TougleButton } from './buttons/touglebutton/TougleButton';
 
-export interface IToolButton {
+
+export interface IToolButtonProps {
   name: string;
   type: string;
   icon: Array<string>;
@@ -12,7 +13,7 @@ export interface IToolButton {
 }
 
 export interface ITrandsMenuProps {
-  elements: Array<IToolButton>
+  elements: Array<IToolButtonProps>
 }
 
 export default class ToolMenu extends Component<ITrandsMenuProps,{}> {
@@ -20,21 +21,18 @@ export default class ToolMenu extends Component<ITrandsMenuProps,{}> {
     super(props)
   }
 
-  private factory(prop:IToolButton, key: number): any {
+  private factory(prop:IToolButtonProps, key: number): any {
     const Types: {[type: string]: any} = {
       'TougleButton'  : () => {return (
                         <TougleButton
+                          {... prop}
                           key = {key}
-                          name = {prop.name}
-                          icon={prop.icon}
-                          isTougle = {prop.isTougle || false}
-                          onClick={prop.onClick}/>)},
-      'Button' : () => {return (
-                        <MenuButton
+                          />)},
+      'ToolButton' : () => {return (
+                        <ToolButton
+                          {... prop}
                           key = {key}
-                          name = {prop.name}
-                          icon={prop.icon[0]}
-                          onClick={prop.onClick}/>)},
+                          />)},
       'default': () => {
           console.log(`${prop.type} not found`)
           return null;
@@ -44,7 +42,7 @@ export default class ToolMenu extends Component<ITrandsMenuProps,{}> {
   }
 
   render() {
-    const buttons = this.props.elements.map((value:IToolButton, index: number) =>{
+    const buttons = this.props.elements.map((value:IToolButtonProps, index: number) =>{
       return this.factory(value, index)
     })
 

@@ -4,12 +4,12 @@ import './TougleButton.css';
 export interface ITougleButtonProps {
     name: string;
     icon: Array<string>;
-    isTougle: boolean
+    isTougle?: boolean
     onClick: (e: any, tougle: boolean) => any;
 }
 
 export const TougleButton = (props: ITougleButtonProps) => {
-    const [tougle, changeTougle] = useState(props.isTougle);
+    const [tougle, changeTougle] = useState(props.isTougle || false);
 
     const classes = [
         'MenuButton',

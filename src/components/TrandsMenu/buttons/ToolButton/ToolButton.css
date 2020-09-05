@@ -1,4 +1,4 @@
-.MenuButton {
+.ToolButton {
   height: 1rem;
   font-size: 1rem;
   color: black;
@@ -9,12 +9,12 @@
   margin: 1px;
 }
 
-.MenuButton:hover {
+.ToolButton:hover {
   opacity: 1;
   background-color: white;
   transition: opacity 0.25s ease-in;
 }
 
-.MenuButton.pressed {
+.ToolButton.pressed {
   background-color: white;
 }
