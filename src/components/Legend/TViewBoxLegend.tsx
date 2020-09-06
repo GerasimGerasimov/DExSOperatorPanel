@@ -14,11 +14,9 @@ export default class TViewBoxLegend extends Component<IViewBoxLegendProps, IView
 
     render() {
       return (
-        <div className='Legend'>
-            <div className='Legend wrapper'>
-              <div className='Legend element'>1111</div>
-              <div className='Legend element'>2222</div>
-            </div>
+        <div className='legend'>
+              <div className='legend__item'>U1/Iexc</div>
+              <div className='legend__item'>U2/Ustat</div>
         </div>
       )
     }

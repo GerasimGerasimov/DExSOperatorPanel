@@ -8,7 +8,7 @@ import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
-import TViewBoxLegend from './TViewBoxLegend';
+import TViewBoxLegend from '../../components/Legend/TViewBoxLegend';
 
 export interface IViewBoxProps {
   height: TTrandHeight;
