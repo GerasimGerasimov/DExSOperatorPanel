@@ -90,7 +90,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               viewBoxModel = {this.viewBoxModel}
               scrollPosition = {this.scrollPosition}
              />
-             <TViewBoxLegend/>
+             <TViewBoxLegend Items={[]}/>
         </div>
       )
     }

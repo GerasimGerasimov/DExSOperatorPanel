@@ -2,7 +2,15 @@ import React, {Component} from 'react'
 import './Legend.css'
 import { ColorMark } from './ColorMark/colormark';
 
+export interface ILegendItem {
+  color: string;
+  tag: string;
+  value: string;
+  mu: string
+}
+
 export interface IViewBoxLegendProps {
+  Items: Array<ILegendItem>;
 }
 
 interface IViewBoxLegendState {
@@ -37,15 +45,3 @@ export default class TViewBoxLegend extends Component<IViewBoxLegendProps, IView
 }
 
 //TODO сделать легенду к графику
-/*
-              <div className='legend__item flex_row'>
-                <ColorMark color={'green'}/>
-                <span >U2/Iexc:</span>
-                <span >100.5 А</span>
-              </div>
-              <div className='legend__item flex_row'>
-                <ColorMark color={'gray'}/>
-                <span >U2/Ustat:</span>
-                <span >6300 А</span>
-              </div>
-*/

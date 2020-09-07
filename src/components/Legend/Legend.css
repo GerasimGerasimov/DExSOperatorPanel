@@ -3,20 +3,12 @@
   position: relative;
   top: -100%;
   left: 3px;
-  /*border: 1px dashed red;*/
+  border: 1px dashed red;
   line-height:70%;/*влияет на высоту элемента*/
-  opacity: 0.7;
+  color: black;
+  font-weight: bold;
+  -webkit-text-stroke: 1px lightgray;
+  -webkit-text-fill-color: black;
 }
 
-.legend__item {
-  font-size: 1em;
-  box-sizing: border-box;
-  border: 1px dashed blue;
-}
-
-.flex_row {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-}
 
