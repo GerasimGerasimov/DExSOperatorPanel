@@ -8,7 +8,7 @@ import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
-import TViewBoxLegend from '../../components/Legend/TViewBoxLegend';
+import TViewBoxLegend, { ILegendItem } from '../../components/Legend/TViewBoxLegend';
 
 export interface IViewBoxProps {
   height: TTrandHeight;
@@ -32,6 +32,20 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private scrollPosition: number;
     private UpdateID: string = '';
     private widthScale: number;
+    private LegendItems: Array<ILegendItem> = [
+      {
+        color: 'red',
+        tag: 'U1/Iexc',
+        value: '100.5',
+        msu: 'A'
+      },
+      {
+        color: 'green',
+        tag: 'U1/Ustat',
+        value: '13450',
+        msu: 'B'
+      }
+    ]
 
     constructor (props: IViewBoxProps){
       super(props);
@@ -90,7 +104,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               viewBoxModel = {this.viewBoxModel}
               scrollPosition = {this.scrollPosition}
              />
-             <TViewBoxLegend Items={[]}/>
+             <TViewBoxLegend Items={this.LegendItems}/>
         </div>
       )
     }

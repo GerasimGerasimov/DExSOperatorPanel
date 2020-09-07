@@ -6,7 +6,7 @@ export interface ILegendItem {
   color: string;
   tag: string;
   value: string;
-  mu: string
+  msu: string
 }
 
 export interface IViewBoxLegendProps {
@@ -17,28 +17,30 @@ interface IViewBoxLegendState {
 }
 
 export default class TViewBoxLegend extends Component<IViewBoxLegendProps, IViewBoxLegendState> {
+    private Items: Array<ILegendItem>;
     constructor (props: IViewBoxLegendProps){
       super(props);
+      this.Items = props.Items;
     }
 
     render() {
       return (
         <div className='legend'>
           <table>
-            <tr>
-              <td><ColorMark color={'green'}/></td>
-              <td>U2/Iexc</td>
-              <td>100.5</td>
-              <td>А</td>
-            </tr>
-            <tr>
-              <td><ColorMark color={'gray'}/></td>
-              <td>U2/Ustat</td>
-              <td>11340</td>
-              <td>B</td>
-            </tr>
+           {
+            this.Items.map((item, index) => {
+              const  {color, tag, value, msu} = item
+                return (
+                  <tr key={index}>
+                    <td><ColorMark color={color}/></td>
+                    <td>{tag}</td>
+                    <td >{value}</td>
+                    <td >{msu}</td>
+                  </tr>
+                  )}
+                )
+            }
           </table>
-
         </div>
       )
     }
