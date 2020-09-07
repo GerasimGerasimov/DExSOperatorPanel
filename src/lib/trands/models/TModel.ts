@@ -16,6 +16,8 @@ export interface IModelProp {
   objType: string;
   deep: number, //глубина архива
   MaxValueMode: string;
+  msu: string;//единицы измерения
+  fraction: number;//кол-во знаков после запятой
 }
 
 type TypedArray = Int8Array    | Uint8Array   | Uint8ClampedArray |
@@ -25,6 +27,8 @@ type TypedArray = Int8Array    | Uint8Array   | Uint8ClampedArray |
 
 export abstract class TModel {
   protected data: TypedArray | [] = [];
+  public readonly msu: string;//единицы измерения
+  public readonly fraction: number;//кол-во знаков после запятой
   protected objType: string;
   protected deep: number;
   protected endIndex: number = 0;
@@ -41,6 +45,8 @@ export abstract class TModel {
   constructor(props: IModelProp) {
     this.objType = props.objType;
     this.deep = props.deep;
+    this.msu = props.msu;
+    this.fraction = props.fraction;
     this.MaxValueMode = this.setMaxValueMode(props.MaxValueMode)
   }
   
@@ -52,12 +58,18 @@ export abstract class TModel {
                     : endIndex;
   }
 
+  public getStringValueByIndex(index: number): string {
+    return this.data[index].toFixed(this.fraction);
+  }
+
   public getValueByIndex(index: number): any {
     return this.data[index]
   }
 
   public get EndIndex(): number {
-    return this.endIndex;
+    let idx = this.endIndex;
+    let res = (--idx < 0)? this.deep - 1 : idx;
+    return res;
   }
   
   public get ObjType(): string {

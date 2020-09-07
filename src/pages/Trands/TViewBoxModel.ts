@@ -80,6 +80,35 @@ export default class TViewBoxModel {
       this.drawLineChart();
     }
 
+    public getLegendStaticData():Array<any> {
+      const res: Array<any> = [];
+      this.views.forEach((view: TViewTrand)=>{
+        if (view) {
+          res.push(view.getLegendProps());
+        }
+      })
+      return res;
+    }
+
+    public getModelEndIndex(): number {
+      let res: number = 0;
+      for (const [key, value] of this.views) {
+        res = value.getModelEndIndex();
+        break;
+      }
+      return res;
+    }
+
+    public getLegendValues(index: number): Array<string> {
+      const res: Array<string> = [];
+      this.views.forEach((view: TViewTrand)=>{
+        if (view) {
+          res.push(view.getLegendModelValue(index));
+        }
+      })
+      return res;
+    }
+
     private drawLineChart(){
       let props: IViewTrandDrawMethodProps = {
         ctx: this.ctx,

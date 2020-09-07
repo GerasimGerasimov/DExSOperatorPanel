@@ -53,6 +53,24 @@ export abstract class TViewTrand {
 
   public abstract draw(props: IViewTrandDrawMethodProps): void;
   
+  public getLegendProps(): any {
+    const res = {
+      tag: this.TrandProp.tag,
+      color: this.TrandProp.color,
+      value: '',
+      msu: this.model.msu
+    }
+    return res;
+  }
+
+  public getModelEndIndex(): number {
+    return this.model.EndIndex;
+  }
+  
+  public getLegendModelValue(index: number): string {
+    return this.model.getStringValueByIndex(index)
+  }
+
   protected getStartPosition(index: number, offset: number): number {
     let revOffset: number = offset;
     let res: number = index - this.Sizes.count - revOffset;

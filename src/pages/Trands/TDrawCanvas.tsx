@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './Trands.css'
 import OutCanvas from './TOutCanvas';
 import TViewBoxModel from './TViewBoxModel';
+import TViewBoxLegend, { ILegendItem } from '../../components/Legend/TViewBoxLegend';
 
 export interface IDrawCanvasProps {
   viewBoxModel: TViewBoxModel;
@@ -14,12 +15,14 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   private viewBoxModel: TViewBoxModel;
   private height: number = 0;
   private width: number = 0;
+  private LegendItems: Array<ILegendItem> = [];
 
   constructor(props: IDrawCanvasProps) {
     super(props);
     this.viewBoxModel = this.props.viewBoxModel;
     this.viewBoxModel.ScrollPosition = this.props.scrollPosition;
     this.width = this.props.width;
+    this.LegendItems = this.viewBoxModel.getLegendStaticData();
   }
 
   saveContext(element: any) {
@@ -30,13 +33,22 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   }
 
   componentDidUpdate() {
-    this.draw()
+    this.draw();
+    this.fillLegendValueItems();
   }
 
   shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{
     this.viewBoxModel.ScrollPosition = 
         nextProps.scrollPosition;
     return true;
+  }
+
+  private fillLegendValueItems(){
+    const index: number = this.viewBoxModel.getModelEndIndex();
+    const values: Array<string> = this.viewBoxModel.getLegendValues(index);
+    values.forEach((value, index)=>{
+      this.LegendItems[index].value = value
+    })
   }
 
   private draw() {
@@ -46,6 +58,11 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   }
 
   render() {
-    return <OutCanvas width={this.props.width} contextRef={this.saveContext.bind(this)} />;
+    return (
+      <>
+        <OutCanvas width={this.props.width} contextRef={this.saveContext.bind(this)} />
+        <TViewBoxLegend Items={this.LegendItems}/>
+      </>
+    )
   }
 }

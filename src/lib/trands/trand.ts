@@ -15,7 +15,7 @@ export class TTrand {
     signed: false,
     fraction: 0,
     offset: '100',//100% соответсвует нижнему расположению оси
-    MaxValueMode: defaultMaxValueMode
+    MaxValueMode: defaultMaxValueMode,
   };
 
   private model: TModel;
@@ -36,6 +36,10 @@ export class TTrand {
     return this.TrandProps;
   }
 
+  public getModelEndIndex(): number {
+    return this.model.EndIndex
+  }
+  
   public get Color(): string {
     return this.TrandProps.color;
   }
@@ -53,7 +57,9 @@ export class TTrand {
     const props: IModelProp = {
       objType,
       deep: this.TrandProps.deep,
-      MaxValueMode: this.TrandProps.MaxValueMode
+      MaxValueMode: this.TrandProps.MaxValueMode,
+      msu,
+      fraction: this.TrandProps.fraction
     }
     const model: TModel = ModelFactory(objType, props)
     return model;

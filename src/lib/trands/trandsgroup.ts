@@ -28,10 +28,6 @@ export class TTrandsGroup {
     return this.trands;
   }
 
-  public getTagNameList(): string{
-    return 'TTrandsGroup'
-  }
-
   public getBoxHeight():TTrandHeight{
     return this.height;
   }
