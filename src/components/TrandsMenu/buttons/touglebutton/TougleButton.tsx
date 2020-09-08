@@ -9,9 +9,8 @@ export const TougleButton = (props: IToolButtonProps) => {
         'MenuButton',
         'fa',
         tougle
-        ? props.icon[0]
+        ? (`${props.icon[0]} toogled`)
         : props.icon[1],
-        'pressed'
     ]
 
     const click = () => {

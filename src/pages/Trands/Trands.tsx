@@ -19,7 +19,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomMinus', type:'ToolButton', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)},
-      { name: 'Amplitude', type:'ToolButton', icon:['fa-ruler-combined'],onClick:this.handlerToolMenu.bind(this)},
+      { name: 'Amplitude', type:'TougleButton', icon:['fa-ruler-combined', 'fa-ruler-combined'],onClick:this.handlerToolMenu.bind(this)},
     ]
     constructor (props: any){
         super(props);
@@ -46,11 +46,16 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
       console.log((status)?'play':'pause');
     }
 
+    private onAmplitude(status: boolean) {
+      console.log((status)?'Measure Amplitude':'Not Measure Amplitude');
+    }
+
     private handlerToolMenu(name: string, status: boolean){
       const handlers: {[handlerName: string]: any} = {
         'ZoomMinus' : this.onZoomMinus.bind(this),
         'ZoomPlus'  : this.onZoomPlus.bind(this),
         'PlayPause' : this.onPlayPause,
+        'Amplitude' : this.onAmplitude,
         'default'   : ()=>{console.log(`${name} not found`)}
       }
       return (handlers[name] || handlers['default'])(status)

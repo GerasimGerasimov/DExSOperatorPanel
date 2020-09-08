@@ -18,3 +18,7 @@
 .MenuButton.pressed {
   background-color: white;
 }
+
+.MenuButton.toogled {
+  opacity: 1;
+}
