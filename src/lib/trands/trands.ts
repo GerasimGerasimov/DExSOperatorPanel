@@ -28,7 +28,7 @@ export class TTrands {
     private updateTimer: any = undefined;
     private count: number = 0;
     private onUpdateHandlers: Map<string, IEventOnUpdate | undefined> = new Map();
-
+    private run: boolean = true;
     constructor (url: string = settingsURL) {
         this.url = url;
     }
@@ -49,6 +49,10 @@ export class TTrands {
     
     public get WidthScale(): number {
         return this.widthScale;
+    }
+
+    public set Run(value: boolean) {
+        this.run = value;
     }
 
     public async loadConfig() {
@@ -88,11 +92,12 @@ export class TTrands {
     }
 
     private updateTrandsValue(){
-        //console.log(`update ${this.count++}`);
+      if (this.run) {
         this.trandsGroups.forEach((group:TTrandsGroup)=>{
             group.setTagsValues();
             this.executeOnUpdateHandlers();
         })
+      }
     }
 
     private executeOnUpdateHandlers() {
@@ -102,16 +107,6 @@ export class TTrands {
           }
         })
     }
-
-    /*
-    public getTagList():Array<string> {
-        const res: Array<string>=[]
-        this.trandsGroups.forEach((group:TTrandsGroup)=>{
-            res.push(group.getTagNameList())
-        })
-        return res;
-    }
-    */
 
     public getBoxes():Array<TViewBoxModel> {
         const res: Array<TViewBoxModel>=[]

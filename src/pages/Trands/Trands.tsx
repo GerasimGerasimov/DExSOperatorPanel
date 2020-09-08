@@ -9,7 +9,6 @@ interface ITrandsPageState {
   scrollPosition: number;
   deep: number;
   widthScale: number;
-  Run: boolean;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
@@ -28,7 +27,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
           scrollPosition: 0,
           deep: Trands.Deep,
           widthScale: Trands.WidthScale,
-          Run: true
         }
     }
 
@@ -45,9 +43,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     }
 
     private onPlayPause(status: boolean) {
-      console.log((status)?'play':'pause');
-      //TODO остановить обновление данных по событию обновления
-      this.setState({Run: status})
+      Trands.Run = status;
     }
 
     private onAmplitude(status: boolean) {

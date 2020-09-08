@@ -48,7 +48,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     private onResize(){
-      console.log('resize');
       this.setState(state=>({
         width: window.innerWidth,
       }));
