@@ -9,6 +9,7 @@ interface ITrandsPageState {
   scrollPosition: number;
   deep: number;
   widthScale: number;
+  Run: boolean;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
@@ -26,7 +27,8 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         this.state = {
           scrollPosition: 0,
           deep: Trands.Deep,
-          widthScale: Trands.WidthScale
+          widthScale: Trands.WidthScale,
+          Run: true
         }
     }
 
@@ -44,18 +46,20 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 
     private onPlayPause(status: boolean) {
       console.log((status)?'play':'pause');
+      //TODO остановить обновление данных по событию обновления
+      this.setState({Run: status})
     }
 
     private onAmplitude(status: boolean) {
-      console.log((status)?'Measure Amplitude':'Not Measure Amplitude');
+      console.log((!status)?'Measure Amplitude':'Not Measure Amplitude');
     }
 
     private handlerToolMenu(name: string, status: boolean){
       const handlers: {[handlerName: string]: any} = {
         'ZoomMinus' : this.onZoomMinus.bind(this),
         'ZoomPlus'  : this.onZoomPlus.bind(this),
-        'PlayPause' : this.onPlayPause,
-        'Amplitude' : this.onAmplitude,
+        'PlayPause' : this.onPlayPause.bind(this),
+        'Amplitude' : this.onAmplitude.bind(this),
         'default'   : ()=>{console.log(`${name} not found`)}
       }
       return (handlers[name] || handlers['default'])(status)

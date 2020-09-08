@@ -1,7 +1,3 @@
-//https://philna.sh/blog/2018/09/27/techniques-for-animating-on-the-canvas-in-react/
-//https://codepen.io/vasilly/pen/NRKyWL
-//https://stackoverflow.com/questions/53661473/canvas-animation-reactjs-with-requestanimationframe
-
 import React, {Component} from 'react'
 import './Trands.css'
 import { TTrandHeight } from '../../lib/trands/trandsgroup'
