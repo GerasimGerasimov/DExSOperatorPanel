@@ -67,4 +67,3 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   }
 }
 //TODO проверить на реактивность - должны рендерится только значения
-//TODO пофиксить ошибку при старте у таблицы, добавить tbody/head/foot

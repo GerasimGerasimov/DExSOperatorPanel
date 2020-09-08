@@ -27,19 +27,21 @@ export default class TViewBoxLegend extends Component<IViewBoxLegendProps, IView
       return (
         <div className='legend'>
           <table>
-           {
-            this.Items.map((item, index) => {
-              const  {color, tag, value, msu} = item
-                return (
-                  <tr key={index}>
-                    <td><ColorMark color={color}/></td>
-                    <td>{tag}</td>
-                    <td >{value}</td>
-                    <td >{msu}</td>
-                  </tr>
-                  )}
-                )
-            }
+            <tbody>
+            {
+              this.Items.map((item, index) => {
+                const  {color, tag, value, msu} = item
+                  return (
+                    <tr key={index}>
+                      <td><ColorMark color={color}/></td>
+                      <td>{tag}</td>
+                      <td >{value}</td>
+                      <td >{msu}</td>
+                    </tr>
+                    )}
+                  )
+              }
+            </tbody>
           </table>
         </div>
       )
