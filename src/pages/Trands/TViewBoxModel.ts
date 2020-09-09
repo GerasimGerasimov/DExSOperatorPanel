@@ -132,7 +132,6 @@ export default class TViewBoxModel {
             this.ctx.lineWidth = 1;
             this.resizeViews();
       }
-      
     }
 
     private resizeViews() {

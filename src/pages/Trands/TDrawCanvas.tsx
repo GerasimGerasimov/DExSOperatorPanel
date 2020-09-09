@@ -33,8 +33,10 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   }
 
   componentDidUpdate() {
-    this.draw();
-    this.fillLegendValueItems();
+    setTimeout(() => {
+      this.draw();
+      this.fillLegendValueItems();
+    },0);
   }
 
   shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{

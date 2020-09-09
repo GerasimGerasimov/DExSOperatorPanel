@@ -97,3 +97,4 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         )
       }
 }
+//TODO при входе на страницу у которой Run=false надо заставить сделать рендер!
