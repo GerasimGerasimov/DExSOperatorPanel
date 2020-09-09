@@ -15,7 +15,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     private ToolMenu: Array<IToolButtonProps> = [
       { name: 'onLine', type:'ToolButton', icon:['fa-network-wired'], onClick:this.handlerToolMenu.bind(this)},
       { name: 'DB', type:'ToolButton', icon:['fa-database'],      onClick:this.handlerToolMenu.bind(this)},
-      { name: 'PlayPause', type:'TougleButton', icon:['fa-play-circle','fa-pause-circle'], isTougle:false,
+      { name: 'PlayPause', type:'TougleButton', icon:['fa-play-circle','fa-pause-circle'], isTougle: !Trands.Run,
         onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomMinus', type:'ToolButton', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)},
@@ -43,6 +43,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     }
 
     private onPlayPause(status: boolean) {
+      console.log(Trands.Run)
       Trands.Run = status;
     }
 
@@ -97,4 +98,3 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         )
       }
 }
-//TODO при входе на страницу у которой Run=false надо заставить сделать рендер!

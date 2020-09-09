@@ -32,7 +32,15 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
     this.viewBoxModel.resize(this.width, this.height);
   }
 
+  componentDidMount() {
+    this.update()
+  }
+
   componentDidUpdate() {
+    this.update()
+  }
+
+  private update(){
     setTimeout(() => {
       this.draw();
     },0);

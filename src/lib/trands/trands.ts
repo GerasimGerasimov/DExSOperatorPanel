@@ -55,6 +55,10 @@ export class TTrands {
         this.run = value;
     }
 
+    public get Run(): boolean {
+        return this.run;
+    }
+
     public async loadConfig() {
         const text: string = await getTextByURL(this.url)
         const settings = await JSON.parse(text);
