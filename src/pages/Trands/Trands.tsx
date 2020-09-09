@@ -97,3 +97,5 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         )
       }
 }
+
+//TODO сделать "палку" измерения амплитуды
