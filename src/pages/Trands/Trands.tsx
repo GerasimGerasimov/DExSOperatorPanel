@@ -43,7 +43,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     }
 
     private onPlayPause(status: boolean) {
-      console.log(Trands.Run)
       Trands.Run = status;
     }
 

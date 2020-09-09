@@ -23,6 +23,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private scrollPosition: number;
     private UpdateID: string = '';
     private widthScale: number;
+    private onResizeHandler: any;
 
     constructor (props: IViewBoxProps){
       super(props);
@@ -34,10 +35,11 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       this.scrollPosition = this.props.scrollPosition;
       this.viewBoxModel = this.props.viewBox;
       this.widthScale = this.props.widthScale;
+      this.onResizeHandler = this.onResize.bind(this)
     }
 
     componentDidMount() {
-      window.addEventListener("resize", this.onResize.bind(this));
+      window.addEventListener("resize", this.onResizeHandler);
       this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
     }
 
@@ -54,7 +56,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
     
     componentWillUnmount() {
-      window.removeEventListener("resize", this.onResize);
+      window.removeEventListener("resize", this.onResizeHandler);
       Trands.deleteOnUpdateByID(this.UpdateID);
     }
 
