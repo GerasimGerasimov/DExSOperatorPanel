@@ -69,14 +69,18 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       return true;
     }
 
+    private onClickHandler(e: any) {
+      console.log('click')
+    }
+
     render() {
       const {height, mu} = {...this.heightProp}
       return (
         <div
           className='Trands box'
-          style={{
-            height: `${height}${mu}`
-          }}>
+          style={{height: `${height}${mu}`}}
+          onClick = {(e)=>this.onClickHandler(e)}
+        >
             <DrawCanvas
               width={this.state.width}
               viewBoxModel = {this.viewBoxModel}

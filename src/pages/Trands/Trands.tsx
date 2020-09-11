@@ -93,6 +93,9 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
                 step="1"
                 onChange={(e)=>this.changeScrollPosition(e)}/>
             </div>
+            <div>
+              <span>Index</span>
+            </div>
           </div>
         )
       }

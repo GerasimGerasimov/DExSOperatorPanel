@@ -99,7 +99,7 @@ export abstract class TModel {
   }
 
   public getMaxValue(FromIdx?: number, Count?:number): number {
-    const {mode} = {... this.MaxValueMode}
+    const {mode} = {...this.MaxValueMode}
     let res: number = 0;
     switch (mode) {
       case EMaxValueMode.Fixed:

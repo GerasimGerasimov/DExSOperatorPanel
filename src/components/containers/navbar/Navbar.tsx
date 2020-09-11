@@ -8,7 +8,7 @@ import { BackHistory } from '../../BackHistory/BackHistory';
 export const Navbar:React.FunctionComponent = (props) => {
     
     const [visible, setVisible] = useState(false);
-    const history: number = window.history.length;
+    
     const cls = [
         'navbar-dark',
         'bg-primary',

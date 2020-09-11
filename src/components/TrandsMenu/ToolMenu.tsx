@@ -10,6 +10,7 @@ export interface ITrandsMenuProps {
 }
 
 export default class ToolMenu extends Component<ITrandsMenuProps,{}> {
+  
   constructor (props:ITrandsMenuProps) {
     super(props)
   }
