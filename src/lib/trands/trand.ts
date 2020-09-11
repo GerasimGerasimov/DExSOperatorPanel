@@ -65,9 +65,12 @@ export class TTrand {
     return model;
   }
 
+  public getTagValue(): any {
+    const value: string = devicesInfoStore.getTagValue (this.tag);
+    return value
+  }
+
   public setValueToModel(value: any) {
-    //const max: number = this.model.getMaxValue(0, 5);
-    //console.log(`tag ${this.tag} max: ${max}`)
     this.model.setValue(value);
   }
 
