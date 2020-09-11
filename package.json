@@ -1,4 +1,5 @@
 {
+  "homepage": "./",
   "name": "dexs-operator-panel",
   "version": "0.1.0",
   "private": true,
