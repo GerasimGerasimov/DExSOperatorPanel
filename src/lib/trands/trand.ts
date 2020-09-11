@@ -1,4 +1,4 @@
-import { devicesInfoStore } from "../../store/devices/devicesinfo";
+import { devicesInfoStore, TParameter } from "../../store/devices/devicesinfo";
 import { TModel, IModelProp, EMaxValueMode} from "./models/TModel";
 import ModelFactory from "./models/ModelFactory";
 import { ITrandTagProperties, ITrandProp } from "./itrand";
@@ -19,6 +19,7 @@ export class TTrand {
   };
 
   private model: TModel;
+  private parameter: TParameter | undefined;
 
   constructor(prop: ITrandProp){
     this.tag = prop.tag;
@@ -29,7 +30,8 @@ export class TTrand {
     this.TrandProps.fraction = prop.fraction || 0;
     this.TrandProps.offset = prop.offset || '0';
     this.TrandProps.MaxValueMode = prop.MaxValueMode || defaultMaxValueMode;
-    this.model = this.getTagPropertiesForTrand(this.tag)
+    this.model = this.getTagPropertiesForTrand(this.tag);
+    this.parameter = this.getDeviceParameter();
   }
 
   public get TrandTagProps(): ITrandTagProperties {
@@ -65,8 +67,14 @@ export class TTrand {
     return model;
   }
 
+  private getDeviceParameter(): TParameter | undefined {
+    const parameter:TParameter | undefined= devicesInfoStore.getParameter(this.tag);
+    return parameter;
+  }
+
   public getTagValue(): any {
-    const value: string = devicesInfoStore.getTagValue (this.tag);
+    //const value: string = devicesInfoStore.getTagValue (this.tag);
+    const value: string = this.parameter?.value || '0';
     return value
   }
 

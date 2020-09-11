@@ -10,7 +10,7 @@ class TParameterFromAPI {
     objType: string = '';
 }
 
-class TParameter {
+export class TParameter {
     comment: string = '';
     msu: string = '';
     objType: string = '';
@@ -110,6 +110,15 @@ export class TDevicesInfoStore {
         const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
         const value: string = Tags.params.get(tag)?.value || ''
         return value;
+    }
+
+    //Даёт прямой доступ к параметру и его данным
+    public getParameter(request: string): TParameter | undefined {
+        const [position, section, tag] = getArrFromDelimitedStr(request,'/')
+        const Position: any = this.DevicesInfo.get(position)!;
+        const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
+        const parameter: TParameter | undefined = Tags.params.get(tag)
+        return parameter;
     }
 
     //отдаёт значение заданных свойств (value, msu) по тегу U1/RAM/Iexc
