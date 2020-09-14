@@ -15,7 +15,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     private ToolMenu: Array<IToolButtonProps> = [
       { name: 'onLine', type:'ToolButton', icon:['fa-network-wired'], onClick:this.handlerToolMenu.bind(this)},
       { name: 'DB', type:'ToolButton', icon:['fa-database'],      onClick:this.handlerToolMenu.bind(this)},
-      { name: 'PlayPause', type:'TougleButton', icon:['fa-play-circle','fa-pause-circle'], isTougle: !Trands.Run,
+      { name: 'PlayPause', type:'TougleButton', icon:['fa-pause-circle','fa-play-circle'], isTougle: Trands.Run,
         onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomMinus', type:'ToolButton', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)},
@@ -43,7 +43,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     }
 
     private onPlayPause(status: boolean) {
-      Trands.Run = status;
+      Trands.Run = !status;
     }
 
     private onAmplitude(status: boolean) {
@@ -92,9 +92,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
                 max={this.state.deep}
                 step="1"
                 onChange={(e)=>this.changeScrollPosition(e)}/>
-            </div>
-            <div>
-              <span>Index</span>
             </div>
           </div>
         )

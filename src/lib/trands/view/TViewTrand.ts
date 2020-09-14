@@ -67,11 +67,15 @@ export abstract class TViewTrand {
     return this.model.EndIndex;
   }
   
+  public getModelNextIndex(index: number): number {
+    return this.model.getNextIndex(index);
+  }
+  
   public getLegendModelValue(index: number): string {
     return this.model.getStringValueByIndex(index)
   }
 
-  protected getStartPosition(index: number, offset: number): number {
+  public getStartPosition(index: number, offset: number): number {
     let revOffset: number = offset;
     let res: number = index - this.Sizes.count - revOffset;
     let mod: number = res % this.deep;

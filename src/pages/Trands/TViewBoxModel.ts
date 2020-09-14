@@ -99,6 +99,16 @@ export default class TViewBoxModel {
       return res;
     }
 
+    public getStartPosition(): number {
+      let res: number = 0;
+      for (const [key, value] of this.views) {
+        const EndIndex: number = value.getModelEndIndex();
+        res = value.getStartPosition(EndIndex, this.scrollPosition)
+        break;
+      }
+      return res;
+    }
+
     public getLegendValues(index: number): Array<string> {
       const res: Array<string> = [];
       this.views.forEach((view: TViewTrand)=>{
@@ -166,5 +176,26 @@ export default class TViewBoxModel {
         if (view) {
           view.setCount(this.count)}
       })
+    }
+ 
+    public get WidthScale():number {
+      return this.widthScale;
+    }
+
+    public getIndexByClickXCoordinate(x: number): number {
+      const startPosition: number = this.getStartPosition();
+      const widthToClickIndex: number = x * this.WidthScale;
+      const index: number = (startPosition+widthToClickIndex) | 0;
+      const res:number = this.getModelNextIndex(index);
+      return res;
+    }
+
+    private getModelNextIndex(index: number): number {
+      let res: number = 0;
+      for (const [key, value] of this.views) {
+        res = value.getModelNextIndex(index)
+        break;
+      }
+      return res;
     }
 }

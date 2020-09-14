@@ -58,10 +58,10 @@ export class TTrandsGroup {
 
   public setTagsValues() {
     this.trands.forEach((tag:TTrand) => {
-      const value = tag.getTagValue();
-      tag.setValueToModel(value);
-      //tag.setValueToModel(this.count);
-      //if (this.count++ > 128) this.count = 0;
+      //const value = tag.getTagValue();
+      //tag.setValueToModel(value);
+      tag.setValueToModel(this.count);
+      if (this.count++ > 128) this.count = 0;
     })
   }
 }

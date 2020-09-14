@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import './Trands.css'
 import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
-import DrawCanvas from './TDrawCanvas';
+import DrawCanvas, { ELegendViewMode } from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
 
 export interface IViewBoxProps {
@@ -15,6 +15,7 @@ export interface IViewBoxProps {
 interface IViewBoxState {
   width: number;
   changeCount: number;
+  SelectedIndex: number;
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
@@ -29,7 +30,8 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       super(props);
       this.state = {
         width: window.innerWidth,
-        changeCount: 0
+        changeCount: 0,
+        SelectedIndex: 0
       }
       this.heightProp = this.props.height;
       this.scrollPosition = this.props.scrollPosition;
@@ -70,7 +72,15 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     private onClickHandler(e: any) {
-      console.log('click')
+      const x: number = e.clientX;
+      const position:number = this.viewBoxModel.getIndexByClickXCoordinate(x);
+      this.setState({SelectedIndex: position})
+    }
+
+    private getLegendViewMode():ELegendViewMode {
+      return (Trands.Run)
+        ? ELegendViewMode.EndIndex
+        : ELegendViewMode.SelectedIndex
     }
 
     render() {
@@ -85,7 +95,10 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               width={this.state.width}
               viewBoxModel = {this.viewBoxModel}
               scrollPosition = {this.scrollPosition}
+              LegendSelectedIndex = {this.state.SelectedIndex}
+              ViewMode = {this.getLegendViewMode()}
              />
+            <span style={{position: `relative`}}>Index:{this.state.SelectedIndex}</span>
         </div>
       )
     }

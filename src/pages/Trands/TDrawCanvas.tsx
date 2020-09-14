@@ -4,10 +4,17 @@ import OutCanvas from './TOutCanvas';
 import TViewBoxModel from './TViewBoxModel';
 import TViewBoxLegend, { ILegendItem } from '../../components/Legend/TViewBoxLegend';
 
+export enum ELegendViewMode {
+  EndIndex,
+  SelectedIndex
+}
+
 export interface IDrawCanvasProps {
   viewBoxModel: TViewBoxModel;
   width: number;
   scrollPosition: number;
+  LegendSelectedIndex: number;
+  ViewMode: ELegendViewMode;
 }
 
 export default class Canvas extends Component <IDrawCanvasProps, {}>{
@@ -16,12 +23,15 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   private height: number = 0;
   private width: number = 0;
   private LegendItems: Array<ILegendItem> = [];
+  private LegendIndex: number = 0;
+  private ViewMode: ELegendViewMode;
 
   constructor(props: IDrawCanvasProps) {
     super(props);
     this.viewBoxModel = this.props.viewBoxModel;
     this.viewBoxModel.ScrollPosition = this.props.scrollPosition;
     this.width = this.props.width;
+    this.ViewMode = this.props.ViewMode;
     this.LegendItems = this.viewBoxModel.getLegendStaticData();
   }
 
@@ -50,11 +60,21 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{
     this.viewBoxModel.ScrollPosition = 
         nextProps.scrollPosition;
+    console.log('LegendSelectedIndex:',nextProps.LegendSelectedIndex)
+    this.ViewMode = nextProps.ViewMode;
+    switch (this.ViewMode) {
+      case ELegendViewMode.EndIndex:
+        this.LegendIndex = this.viewBoxModel.getModelEndIndex();
+        break;
+      case ELegendViewMode.SelectedIndex:
+        this.LegendIndex = nextProps.LegendSelectedIndex;
+        break;
+    }
     return true;
   }
 
   private fillLegendValueItems(){
-    const index: number = this.viewBoxModel.getModelEndIndex();
+    const index: number = this.LegendIndex;
     const values: Array<string> = this.viewBoxModel.getLegendValues(index);
     values.forEach((value, index)=>{
       this.LegendItems[index].value = value
