@@ -186,11 +186,11 @@ export default class TViewBoxModel {
       const startPosition: number = this.getStartPosition();
       const widthToClickIndex: number = x * this.WidthScale;
       const index: number = (startPosition+widthToClickIndex) | 0;
-      const res:number = this.getModelNextIndex(index);
+      const res:number = this.getModelLoopIndex(index);
       return res;
     }
 
-    private getModelNextIndex(index: number): number {
+    private getModelLoopIndex(index: number): number {
       let res: number = 0;
       for (const [key, value] of this.views) {
         res = value.getModelNextIndex(index)

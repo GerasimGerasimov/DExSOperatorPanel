@@ -68,7 +68,7 @@ export abstract class TViewTrand {
   }
   
   public getModelNextIndex(index: number): number {
-    return this.model.getNextIndex(index);
+    return this.model.getLoopIndex(index);
   }
   
   public getLegendModelValue(index: number): string {

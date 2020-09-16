@@ -76,6 +76,13 @@ export abstract class TModel {
     return this.objType;
   }
 
+  public getLoopIndex(index: number): number {
+    let res: number = 0;
+    let mod: number = index % this.deep;
+    res = (mod == 0)? index: mod;
+    return res;
+  }
+
   public getNextIndex(index: number): number {
     let idx: number = index;
     if (++idx >= this.deep) {

@@ -60,7 +60,7 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{
     this.viewBoxModel.ScrollPosition = 
         nextProps.scrollPosition;
-    console.log('LegendSelectedIndex:',nextProps.LegendSelectedIndex)
+    //console.log('LegendSelectedIndex:',nextProps.LegendSelectedIndex)
     this.ViewMode = nextProps.ViewMode;
     switch (this.ViewMode) {
       case ELegendViewMode.EndIndex:
