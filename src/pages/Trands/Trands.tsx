@@ -68,10 +68,10 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     private getTrandsBoxes(scrollPosition: number): any{
       return Trands.getBoxes().map((box, index)=>{
         box.ScrollPosition = scrollPosition;
+        box.WidthScale = this.state.widthScale;
         return (
             <TViewBox
               key={index}
-              widthScale={this.state.widthScale}
               height = {box.Height}
               viewBox = {box}
             />

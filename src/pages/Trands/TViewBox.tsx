@@ -8,7 +8,6 @@ import { Trands } from '../../lib/trands/trands';
 export interface IViewBoxProps {
   height: TTrandHeight;
   viewBox: TViewBoxModel;
-  widthScale: number;
 }
 
 interface IViewBoxState {
@@ -18,10 +17,7 @@ interface IViewBoxState {
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
-    private heightProp: TTrandHeight;
-    private viewBoxModel: TViewBoxModel;
     private UpdateID: string = '';
-    private widthScale: number;
     private onResizeHandler: any;
 
     constructor (props: IViewBoxProps){
@@ -31,10 +27,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
         changeCount: 0,
         SelectedIndex: 0
       }
-      this.heightProp = this.props.height;
-      this.viewBoxModel = this.props.viewBox;
-      this.widthScale = this.props.widthScale;
-      this.onResizeHandler = this.onResize.bind(this)
+      this.onResizeHandler = this.onResize.bind(this);
     }
 
     componentDidMount() {
@@ -49,9 +42,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     private onResize(){
-      this.setState(state=>({
-        width: window.innerWidth,
-      }));
+      this.setState({width: window.innerWidth});
     }
     
     componentWillUnmount() {
@@ -59,17 +50,9 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       Trands.deleteOnUpdateByID(this.UpdateID);
     }
 
-    shouldComponentUpdate(nextProps:IViewBoxProps): boolean{
-      if (nextProps.widthScale != this.widthScale) {
-        this.widthScale = nextProps.widthScale;
-        this.viewBoxModel.WidthScale = this.widthScale;
-      }
-      return true;
-    }
-
     private onClickHandler(e: any) {
       const x: number = e.clientX;
-      const position:number = this.viewBoxModel.getIndexByClickXCoordinate(x);
+      const position:number = this.props.viewBox.getIndexByClickXCoordinate(x);
       this.setState({SelectedIndex: position})
     }
 
@@ -80,7 +63,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     render() {
-      const {height, mu} = {...this.heightProp}
+      const {height, mu} = {...this.props.height}
       return (
         <div
           className='Trands box'
@@ -89,7 +72,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
         >
             <DrawCanvas
               width={this.state.width}
-              viewBoxModel = {this.viewBoxModel}
+              viewBoxModel = {this.props.viewBox}
               LegendSelectedIndex = {this.state.SelectedIndex}
               ViewMode = {this.getLegendViewMode()}
              />
