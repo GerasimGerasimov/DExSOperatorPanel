@@ -12,94 +12,72 @@ export enum ELegendViewMode {
 export interface IDrawCanvasProps {
   viewBoxModel: TViewBoxModel;
   width: number;
-  scrollPosition: number;
   LegendSelectedIndex: number;
   ViewMode: ELegendViewMode;
 }
 
-export interface IDrawCanvasState {
-  //LegendIndex: number;
-}
-
-export default class Canvas extends Component <IDrawCanvasProps, IDrawCanvasState>{
+export default class Canvas extends Component <IDrawCanvasProps, {}>{
   private ctx: any;
-  private viewBoxModel: TViewBoxModel;
-  private height: number = 0;
-  private width: number = 0;
-  private LegendItems: Array<ILegendItem> = [];
-  private LegendIndex: number = 0;
-  private ViewMode: ELegendViewMode;
+  private LegendItemsStaticData: Array<ILegendItem> = [];
 
   constructor(props: IDrawCanvasProps) {
     super(props);
-    this.state = {
-      //LegendIndex: 0
-    }
-    this.viewBoxModel = this.props.viewBoxModel;
-    this.viewBoxModel.ScrollPosition = this.props.scrollPosition;
-    this.width = this.props.width;
-    this.ViewMode = this.props.ViewMode;
-    this.LegendItems = this.viewBoxModel.getLegendStaticData();
+    this.LegendItemsStaticData = this.props.viewBoxModel.getLegendStaticData();
   }
 
   saveContext(element: any) {
     this.ctx = element.getContext('bitmaprenderer', { alpha: false });
-    this.width = element.clientWidth;
-    this.height = element.clientHeight;
-    this.viewBoxModel.resize(this.width, this.height);
+    const width: number = element.clientWidth;
+    const height: number = element.clientHeight;
+    this.props.viewBoxModel.resize(width, height);
   }
 
   componentDidMount() {
-    this.update()
+    this.draw();
   }
 
   componentDidUpdate() {
-    this.update()
+    this.draw();
   }
 
-  private update(){
-    setTimeout(() => {
-      this.draw();
-    },0);
-    this.fillLegendValueItems();
-  }
-
-  shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{
-    this.viewBoxModel.ScrollPosition = 
-        nextProps.scrollPosition;
-    this.ViewMode = nextProps.ViewMode;
-    switch (this.ViewMode) {
+  private getLegendIndexByMode(mode: ELegendViewMode): number {
+    let index: number = 0;
+    switch (mode) {
       case ELegendViewMode.EndIndex:
-        this.LegendIndex = this.viewBoxModel.getModelEndIndex();
+        index =  this.props.viewBoxModel.getModelEndIndex();
         break;
       case ELegendViewMode.SelectedIndex:
-        this.LegendIndex = nextProps.LegendSelectedIndex;
+        index = this.props.LegendSelectedIndex;
         break;
     }
-    return true;
-  }
-
-  private fillLegendValueItems(){
-    const index: number = this.LegendIndex;
-    const values: Array<string> = this.viewBoxModel.getLegendValues(index);
-    values.forEach((value, index)=>{
-      this.LegendItems[index].value = value
-    })
+    return index;
   }
 
   private draw() {
-    this.viewBoxModel.draw();
-    const bitmapOne = this.viewBoxModel.Canvas.transferToImageBitmap();
+    this.props.viewBoxModel.draw();
+    const bitmapOne = this.props.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);
+  }
+
+  private getLegendItems(fromIndex: number, source: Array<ILegendItem>, model: TViewBoxModel): Array<ILegendItem> {
+    const items:Array<ILegendItem> = source;
+    const values: Array<string> = model.getLegendValues(fromIndex);
+    values.forEach((value, index)=>{
+      items[index].value = value
+    })
+    return items;
   }
 
   render() {
     return (
       <>
         <OutCanvas width={this.props.width} contextRef={this.saveContext.bind(this)} />
-        <TViewBoxLegend Items={this.LegendItems}/>
+        <TViewBoxLegend Items={
+            this.getLegendItems(
+              this.getLegendIndexByMode(this.props.ViewMode),
+                this.LegendItemsStaticData,
+                  this.props.viewBoxModel)}/>
       </>
     )
   }
 }
-//TODO проверить на реактивность - должны рендерится только значения

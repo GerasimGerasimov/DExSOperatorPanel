@@ -8,7 +8,6 @@ import { Trands } from '../../lib/trands/trands';
 export interface IViewBoxProps {
   height: TTrandHeight;
   viewBox: TViewBoxModel;
-  scrollPosition: number;
   widthScale: number;
 }
 
@@ -21,7 +20,6 @@ interface IViewBoxState {
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private heightProp: TTrandHeight;
     private viewBoxModel: TViewBoxModel;
-    private scrollPosition: number;
     private UpdateID: string = '';
     private widthScale: number;
     private onResizeHandler: any;
@@ -34,7 +32,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
         SelectedIndex: 0
       }
       this.heightProp = this.props.height;
-      this.scrollPosition = this.props.scrollPosition;
       this.viewBoxModel = this.props.viewBox;
       this.widthScale = this.props.widthScale;
       this.onResizeHandler = this.onResize.bind(this)
@@ -63,7 +60,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     shouldComponentUpdate(nextProps:IViewBoxProps): boolean{
-      this.scrollPosition = nextProps.scrollPosition;
       if (nextProps.widthScale != this.widthScale) {
         this.widthScale = nextProps.widthScale;
         this.viewBoxModel.WidthScale = this.widthScale;
@@ -94,7 +90,6 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             <DrawCanvas
               width={this.state.width}
               viewBoxModel = {this.viewBoxModel}
-              scrollPosition = {this.scrollPosition}
               LegendSelectedIndex = {this.state.SelectedIndex}
               ViewMode = {this.getLegendViewMode()}
              />
