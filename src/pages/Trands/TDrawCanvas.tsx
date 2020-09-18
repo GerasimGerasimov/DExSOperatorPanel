@@ -17,7 +17,11 @@ export interface IDrawCanvasProps {
   ViewMode: ELegendViewMode;
 }
 
-export default class Canvas extends Component <IDrawCanvasProps, {}>{
+export interface IDrawCanvasState {
+  //LegendIndex: number;
+}
+
+export default class Canvas extends Component <IDrawCanvasProps, IDrawCanvasState>{
   private ctx: any;
   private viewBoxModel: TViewBoxModel;
   private height: number = 0;
@@ -28,6 +32,9 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
 
   constructor(props: IDrawCanvasProps) {
     super(props);
+    this.state = {
+      //LegendIndex: 0
+    }
     this.viewBoxModel = this.props.viewBoxModel;
     this.viewBoxModel.ScrollPosition = this.props.scrollPosition;
     this.width = this.props.width;
@@ -60,7 +67,6 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
   shouldComponentUpdate(nextProps:IDrawCanvasProps): boolean{
     this.viewBoxModel.ScrollPosition = 
         nextProps.scrollPosition;
-    //console.log('LegendSelectedIndex:',nextProps.LegendSelectedIndex)
     this.ViewMode = nextProps.ViewMode;
     switch (this.ViewMode) {
       case ELegendViewMode.EndIndex:

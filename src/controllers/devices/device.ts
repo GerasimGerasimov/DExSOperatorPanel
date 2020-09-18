@@ -1,6 +1,7 @@
-const urlDevicesValuesGet: string = 'http://localhost:5004/v1/devices/';
-const urlDevicesValuesWrite: string = 'http://localhost:5004/v1/values/';
-const urlDevicesInfo: string = 'http://localhost:5004/v1/info/';
+const HOST: string = `${window.location.protocol}//${window.location.hostname}`;
+const urlDevicesValuesGet: string = `${HOST}:5004/v1/devices/`;
+const urlDevicesValuesWrite: string = `${HOST}:5004/v1/values/`;
+const urlDevicesInfo: string = `${HOST}:5004/v1/info/`;
 
 export default class DeviceController {
     public static async  getData(request: object): Promise<any> {

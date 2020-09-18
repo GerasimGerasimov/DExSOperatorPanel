@@ -16,9 +16,10 @@ const stores = {
 };
 
 (async () => {
-  await Trands.loadConfig();
-  Trands.startUpdateTimer();
-})();
+  await Trands.loadConfig()
+  .then (
+    ()=>Trands.startUpdateTimer());
+})()
 
 loadSVGImages()
 .then(()=>{//после подгрузки картинок, будет запущенj React приложение
