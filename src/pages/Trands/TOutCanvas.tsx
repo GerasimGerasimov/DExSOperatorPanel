@@ -19,7 +19,7 @@ export default class TOutCanvas extends Component <IOutCanvasProps, IOutCanvasSt
   }
 
   shouldComponentUpdate(nextProps: IOutCanvasProps): boolean {
-    if (this.state.width != nextProps.width) {
+    if (this.state.width !== nextProps.width) {
       this.setState({width: nextProps.width})
       return true;
     } 

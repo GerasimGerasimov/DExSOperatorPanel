@@ -13,10 +13,6 @@ export default class Home extends Component {
   private svgComponents: Array<TSVGComponent> = [];
   private handlers: Array<any> = [];
 
-  constructor (props: any){
-    super(props)
-  }
-
   private putValuesToSVGTemplate(changed: any){
     drawComponents(this.svgComponents, devicesInfoStore.getTagProperties.bind(devicesInfoStore));
   }

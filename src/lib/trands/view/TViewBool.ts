@@ -1,4 +1,4 @@
-import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps, IViewTrandSizeProp } from "./TViewTrand";
+import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps} from "./TViewTrand";
 import { IAxisProps } from "./IView";
 
 export class TViewBool extends TViewTrand {
@@ -9,7 +9,7 @@ export class TViewBool extends TViewTrand {
 
   protected getScaledY(index: number): number {
     const value: number = this.model.getValueByIndex(index);
-    const scaledValue: number = (value != 0)? 10 : 0;//value * this.Scales.HScale;
+    const scaledValue: number = (value !== 0)? 10 : 0;//value * this.Scales.HScale;
     const res = this.Scales.Axis - scaledValue;
     return res | 0
   }
@@ -45,7 +45,7 @@ export class TViewBool extends TViewTrand {
     let idx: number = this.model.getNextIndex(fromIdx);
     let x: number = 0;
     let dY: number = 0;
-    while (count-- != 0) {
+    while (count-- !== 0) {
       y = this.getScaledY(idx);
       x += this.Scales.WScale;
       idx = this.model.getNextIndex(idx);

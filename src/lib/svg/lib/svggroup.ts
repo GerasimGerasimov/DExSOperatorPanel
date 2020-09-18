@@ -137,8 +137,8 @@ class TTree {
 //a - массив родителей 'p', c с трансформациями 't' и их потомков
 //treeNode - начальная ветка дерева, куда надо добавить элементы из массива 
 function addArrToTree(a: Array<any>, treeNode: TNode) {
-    var i = 0;
-    var searchNode = treeNode;//с чего начинать поиск
+    var i: number = 0;
+    var searchNode: TNode = treeNode;//с чего начинать поиск
     while (i < a.length) {
         var p = a[i];//получил старшего родителя из списка
         //в функцию передаю родителя которго надо найти или создать

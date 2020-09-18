@@ -12,10 +12,6 @@ export default class Modal extends Component<IModalProps, {}> {
     this.props.classes || ''
   ];
 
-  constructor (props: any){
-    super(props)
-  }
-
   render() {
     return (
     <div className={this.cls.join(' ')}>

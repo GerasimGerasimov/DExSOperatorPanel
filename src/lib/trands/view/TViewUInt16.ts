@@ -1,4 +1,4 @@
-import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps, IViewTrandSizeProp } from "./TViewTrand";
+import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps} from "./TViewTrand";
 import { IAxisProps } from "./IView";
 
 export class TViewUInt16 extends TViewTrand {
@@ -39,7 +39,7 @@ export class TViewUInt16 extends TViewTrand {
     let idx: number = this.model.getNextIndex(fromIdx);
     let x: number = 0;
     ctx.moveTo(x,y)
-    while (count-- != 0) {
+    while (count-- !== 0) {
       y = this.getScaledY(idx);
       x += this.Scales.WScale;
       idx = this.model.getNextIndex(idx);

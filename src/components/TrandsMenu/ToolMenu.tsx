@@ -11,10 +11,6 @@ export interface ITrandsMenuProps {
 
 export default class ToolMenu extends Component<ITrandsMenuProps,{}> {
   
-  constructor (props:ITrandsMenuProps) {
-    super(props)
-  }
-
   private factory(prop:IToolButtonProps, key: number): any {
     const Types: {[type: string]: any} = {
       'TougleButton'  : () => {return (

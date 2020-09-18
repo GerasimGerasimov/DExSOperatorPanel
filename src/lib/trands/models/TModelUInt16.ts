@@ -17,7 +17,7 @@ export class TModelUInt16 extends TModel {
     let value: number = 0;
     let index: number = FromIdx;
     let idx: number = 0;
-    while (Count-- != 0) {
+    while (Count-- !== 0) {
       if ((idx = index++) >= this.deep) {
         idx = idx - this.deep;
       }
