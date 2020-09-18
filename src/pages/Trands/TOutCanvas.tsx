@@ -6,30 +6,16 @@ export interface IOutCanvasProps {
   width: number;
 }
 
-interface IOutCanvasState {
-  width: number;
-}
-export default class TOutCanvas extends Component <IOutCanvasProps, IOutCanvasState> {
-
-  constructor(props: IOutCanvasProps) {
-    super(props);
-    this.state = {
-      width: props.width
-    }
-  }
+export default class TOutCanvas extends Component <IOutCanvasProps, {}> {
 
   shouldComponentUpdate(nextProps: IOutCanvasProps): boolean {
-    if (this.state.width !== nextProps.width) {
-      this.setState({width: nextProps.width})
-      return true;
-    } 
-    return false;
+    return (this.props.width !== nextProps.width)
   }
 
   render() {
     return (
       <canvas className='Trands canvas'
-        key = {this.state.width}
+        key = {this.props.width}
         ref={element => element ? this.props.contextRef(element) : null}
       />
     )
