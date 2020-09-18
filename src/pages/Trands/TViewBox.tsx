@@ -93,8 +93,8 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
               LegendSelectedIndex = {this.state.SelectedIndex}
               ViewMode = {this.getLegendViewMode()}
              />
-            <span style={{position: `relative`}}>Index:{this.state.SelectedIndex}</span>
         </div>
       )
     }
 }
+//<span style={{position: `relative`}}>Index:{this.state.SelectedIndex}</span>

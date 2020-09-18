@@ -21,7 +21,6 @@ export class TViewUInt16 extends TViewTrand {
     }
     this.drawAxis(AxisProps);
     const startPosition: number = this.getStartPosition(this.model.EndIndex, props.fromIdx)
-    console.log(startPosition);
     //вычислить вертикальную шкалу HScale
     this.Scales.HScale = this.getHScale(startPosition);
     //собственна график

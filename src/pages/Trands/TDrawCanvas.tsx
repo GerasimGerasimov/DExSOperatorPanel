@@ -19,6 +19,8 @@ export interface IDrawCanvasProps {
 export default class Canvas extends Component <IDrawCanvasProps, {}>{
   private ctx: any;
   private LegendItemsStaticData: Array<ILegendItem> = [];
+  //private copyOffscreenCanvasToCanvasHandler: any;
+  //private RAFID: any;
 
   constructor(props: IDrawCanvasProps) {
     super(props);
@@ -34,11 +36,19 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
 
   componentDidMount() {
     this.draw();
+    //this.copyOffscreenCanvasToCanvasHandler = this.copyOffscreenCanvasToCanvas.bind(this)
+    //this.RAFID = requestAnimationFrame(this.copyOffscreenCanvasToCanvasHandler)
   }
 
   componentDidUpdate() {
-    this.draw();
+    setTimeout(()=>{
+      this.draw();
+    },0)
   }
+  
+  /* componentWillUnmount(){
+    cancelAnimationFrame(this.RAFID)
+  }*/
 
   private getLegendIndexByMode(mode: ELegendViewMode): number {
     let index: number = 0;
@@ -58,6 +68,15 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
     const bitmapOne = this.props.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);
   }
+
+  /*
+  private copyOffscreenCanvasToCanvas() {
+    this.props.viewBoxModel.draw();
+    const bitmapOne = this.props.viewBoxModel.Canvas.transferToImageBitmap();
+    this.ctx.transferFromImageBitmap(bitmapOne);
+    requestAnimationFrame(this.copyOffscreenCanvasToCanvasHandler)
+  }
+  */
 
   private getLegendItems(fromIndex: number, source: Array<ILegendItem>, model: TViewBoxModel): Array<ILegendItem> {
     const items:Array<ILegendItem> = source;

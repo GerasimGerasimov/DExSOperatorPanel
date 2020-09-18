@@ -67,7 +67,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 
     private getTrandsBoxes(scrollPosition: number): any{
       return Trands.getBoxes().map((box, index)=>{
-        box.ScrollPosition = scrollPosition
+        box.ScrollPosition = scrollPosition;
         return (
             <TViewBox
               key={index}
@@ -101,7 +101,4 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 /*TODO сделать "палку" измерения амплитуды
  1) палку надо показывать одновременно во всех TViewBox (из может быть >1)
  2) амплитуту надо показать во всех TViewBox
-*/
-/*TODO сделал пока без "палки" показать амплитуду в месте клика,
-но показывает амплитуду в предыдущем клике! надо работать над реактивностю
 */
