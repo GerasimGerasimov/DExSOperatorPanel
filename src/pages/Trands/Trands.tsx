@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
-import TViewBox, { IViewBoxSelectedPosition } from './TViewBox'
+import TViewBox from './TViewBox'
 import ToolMenu from '../../components/TrandsMenu/ToolMenu';
 import { IToolButtonProps } from '../../components/TrandsMenu/buttons/iToolButton';
 import { ISelected } from './TDrawCanvas';
@@ -11,6 +11,7 @@ interface ITrandsPageState {
   deep: number;
   widthScale: number;
   SelectedIndex: ISelected;
+  isMeasure: boolean;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
@@ -20,8 +21,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
       { name: 'PlayPause', type:'TougleButton', icon:['fa-pause-circle','fa-play-circle'], isTougle: Trands.Run,
         onClick:this.handlerToolMenu.bind(this)},
       { name: 'ZoomMinus', type:'ToolButton', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
-      { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)},
-      { name: 'Amplitude', type:'TougleButton', icon:['fa-ruler-combined', 'fa-ruler-combined'],onClick:this.handlerToolMenu.bind(this)},
+      { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)}
     ]
     constructor (props: any){
         super(props);
@@ -32,7 +32,8 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
           SelectedIndex: {
             Index: 0,
             Left: 0
-          }
+          },
+          isMeasure: false
         }
     }
 
@@ -50,10 +51,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 
     private onPlayPause(status: boolean) {
       Trands.Run = !status;
-    }
-
-    private onAmplitude(status: boolean) {
-      console.log((!status)?'Measure Amplitude':'Not Measure Amplitude');
+      this.setState({isMeasure: status})
     }
 
     private handlerToolMenu(name: string, status: boolean){
@@ -61,7 +59,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         'ZoomMinus' : this.onZoomMinus.bind(this),
         'ZoomPlus'  : this.onZoomPlus.bind(this),
         'PlayPause' : this.onPlayPause.bind(this),
-        'Amplitude' : this.onAmplitude.bind(this),
         'default'   : ()=>{console.log(`${name} not found`)}
       }
       return (handlers[name] || handlers['default'])(status)
@@ -71,10 +68,10 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
       this.setState({scrollPosition: e.target.value});
     }
 
-    private onViewBoxClickHandler( position: IViewBoxSelectedPosition): void {
+    private onViewBoxClickHandler( position: ISelected): void {
       this.setState({SelectedIndex:{
-        Index: position.position,
-        Left: position.left
+        Index: position.Index,
+        Left: position.Left
       }})
     }
 
@@ -88,6 +85,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
               viewBox = {box}
               onSetSelectedIndex = {this.onViewBoxClickHandler.bind(this)}
               Selected = {this.state.SelectedIndex}
+              isMeasure = {this.state.isMeasure}
             />
         )
       })
@@ -111,8 +109,3 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
         )
       }
 }
-
-/*TODO сделать "палку" измерения амплитуды
- 1) палку надо показывать одновременно во всех TViewBox (из может быть >1)
- 2) амплитуту надо показать во всех TViewBox
-*/

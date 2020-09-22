@@ -4,19 +4,15 @@ import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas, { ELegendViewMode, ISelected } from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
 
-export interface IViewBoxSelectedPosition {
-  position: number;//позиция в массиве
-  left: number; //координата Х в месте клика
-}
-
 export interface IViewBoxGetSelectedIndex {
-  (position: IViewBoxSelectedPosition): void;
+  (position: ISelected): void;
 }
 
 export interface IViewBoxProps {
   viewBox: TViewBoxModel;
   Selected: ISelected;
   onSetSelectedIndex: IViewBoxGetSelectedIndex;
+  isMeasure: boolean;
 }
 
 interface IViewBoxState {
@@ -64,9 +60,9 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     private onClickHandler(e: any) {
-      const left: number = e.clientX;
-      const position:number = this.props.viewBox.getIndexByClickXCoordinate(left);
-      this.props.onSetSelectedIndex({position, left});
+      const Left: number = e.clientX;
+      const Index:number = this.props.viewBox.getIndexByClickXCoordinate(Left);
+      this.props.onSetSelectedIndex({Index, Left});
     }
 
     render() {
@@ -80,8 +76,9 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             <DrawCanvas
               width={this.state.width}
               viewBoxModel = {this.props.viewBox}
-              LegendSelected = {this.props.Selected}
+              Selected = {this.props.Selected}
               ViewMode = {this.getLegendViewMode()}
+              isMeasure = {this.props.isMeasure}
              />
         </div>
       )

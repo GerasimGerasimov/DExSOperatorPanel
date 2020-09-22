@@ -17,8 +17,9 @@ export interface ISelected {
 export interface IDrawCanvasProps {
   viewBoxModel: TViewBoxModel;
   width: number;
-  LegendSelected: ISelected;
+  Selected: ISelected;
   ViewMode: ELegendViewMode;
+  isMeasure: boolean;
 }
 
 export default class Canvas extends Component <IDrawCanvasProps, {}>{
@@ -55,19 +56,6 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
     cancelAnimationFrame(this.RAFID)
   }*/
 
-  private getLegendIndexByMode(mode: ELegendViewMode): number {
-    let index: number = 0;
-    switch (mode) {
-      case ELegendViewMode.EndIndex:
-        index =  this.props.viewBoxModel.getModelEndIndex();
-        break;
-      case ELegendViewMode.SelectedIndex:
-        index = this.props.LegendSelected.Index;
-        break;
-    }
-    return index;
-  }
-
   private drawSelectingPointer(left: number) {
     const canvas = this.props.viewBoxModel.Context; 
     canvas.strokeStyle = "gray";
@@ -78,7 +66,8 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
 
   private draw() {
     this.props.viewBoxModel.draw();
-    this.drawSelectingPointer(this.props.LegendSelected.Left);
+    if (this.props.isMeasure)
+      {this.drawSelectingPointer(this.props.Selected.Left)}
     const bitmapOne = this.props.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);
   }
@@ -91,6 +80,18 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
     requestAnimationFrame(this.copyOffscreenCanvasToCanvasHandler)
   }
   */
+  private getLegendIndexByMode(mode: ELegendViewMode): number {
+    let index: number = 0;
+    switch (mode) {
+      case ELegendViewMode.EndIndex:
+        index =  this.props.viewBoxModel.getModelEndIndex();
+        break;
+      case ELegendViewMode.SelectedIndex:
+        index = this.props.Selected.Index;
+        break;
+    }
+    return index;
+  }
 
   private getLegendItems(fromIndex: number, source: Array<ILegendItem>, model: TViewBoxModel): Array<ILegendItem> {
     const items:Array<ILegendItem> = source;
