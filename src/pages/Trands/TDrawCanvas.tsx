@@ -9,10 +9,15 @@ export enum ELegendViewMode {
   SelectedIndex
 }
 
+export interface ISelected {
+  Index: number;
+  Left: number;
+}
+
 export interface IDrawCanvasProps {
   viewBoxModel: TViewBoxModel;
   width: number;
-  LegendSelectedIndex: number;
+  LegendSelected: ISelected;
   ViewMode: ELegendViewMode;
 }
 
@@ -57,14 +62,23 @@ export default class Canvas extends Component <IDrawCanvasProps, {}>{
         index =  this.props.viewBoxModel.getModelEndIndex();
         break;
       case ELegendViewMode.SelectedIndex:
-        index = this.props.LegendSelectedIndex;
+        index = this.props.LegendSelected.Index;
         break;
     }
     return index;
   }
 
+  private drawSelectingPointer(left: number) {
+    const canvas = this.props.viewBoxModel.Context; 
+    canvas.strokeStyle = "gray";
+    canvas.moveTo(left, 0);
+    canvas.lineTo(left, canvas.canvas.height);
+    canvas.stroke();
+  }
+
   private draw() {
     this.props.viewBoxModel.draw();
+    this.drawSelectingPointer(this.props.LegendSelected.Left);
     const bitmapOne = this.props.viewBoxModel.Canvas.transferToImageBitmap();
     this.ctx.transferFromImageBitmap(bitmapOne);
   }

@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
-import TViewBox from './TViewBox'
+import TViewBox, { IViewBoxSelectedPosition } from './TViewBox'
 import ToolMenu from '../../components/TrandsMenu/ToolMenu';
 import { IToolButtonProps } from '../../components/TrandsMenu/buttons/iToolButton';
+import { ISelected } from './TDrawCanvas';
 
 interface ITrandsPageState {
   scrollPosition: number;
   deep: number;
   widthScale: number;
-  SelectedIndex: number;
+  SelectedIndex: ISelected;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
@@ -28,7 +29,10 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
           scrollPosition: 0,
           deep: Trands.Deep,
           widthScale: Trands.WidthScale,
-          SelectedIndex: 0
+          SelectedIndex: {
+            Index: 0,
+            Left: 0
+          }
         }
     }
 
@@ -67,8 +71,11 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
       this.setState({scrollPosition: e.target.value});
     }
 
-    private onViewBoxClickHandler(index: number): void {
-      this.setState({SelectedIndex: index})
+    private onViewBoxClickHandler( position: IViewBoxSelectedPosition): void {
+      this.setState({SelectedIndex:{
+        Index: position.position,
+        Left: position.left
+      }})
     }
 
     private getTrandsBoxes(): any{
@@ -80,7 +87,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
               key = {index}
               viewBox = {box}
               onSetSelectedIndex = {this.onViewBoxClickHandler.bind(this)}
-              SelectedIndex = {this.state.SelectedIndex}
+              Selected = {this.state.SelectedIndex}
             />
         )
       })

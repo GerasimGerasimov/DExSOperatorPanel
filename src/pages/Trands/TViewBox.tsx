@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import './Trands.css'
 import TViewBoxModel from './TViewBoxModel';
-import DrawCanvas, { ELegendViewMode } from './TDrawCanvas';
+import DrawCanvas, { ELegendViewMode, ISelected } from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
+
+export interface IViewBoxSelectedPosition {
+  position: number;//позиция в массиве
+  left: number; //координата Х в месте клика
+}
+
 export interface IViewBoxGetSelectedIndex {
-  (index: any): void;
+  (position: IViewBoxSelectedPosition): void;
 }
 
 export interface IViewBoxProps {
   viewBox: TViewBoxModel;
-  SelectedIndex: number;
+  Selected: ISelected;
   onSetSelectedIndex: IViewBoxGetSelectedIndex;
 }
 
@@ -51,16 +57,16 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       Trands.deleteOnUpdateByID(this.UpdateID);
     }
 
-    private onClickHandler(e: any) {
-      const x: number = e.clientX;
-      const position:number = this.props.viewBox.getIndexByClickXCoordinate(x);
-      this.props.onSetSelectedIndex(position);
-    }
-
     private getLegendViewMode():ELegendViewMode {
       return (Trands.Run)
         ? ELegendViewMode.EndIndex
         : ELegendViewMode.SelectedIndex
+    }
+
+    private onClickHandler(e: any) {
+      const left: number = e.clientX;
+      const position:number = this.props.viewBox.getIndexByClickXCoordinate(left);
+      this.props.onSetSelectedIndex({position, left});
     }
 
     render() {
@@ -74,11 +80,10 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             <DrawCanvas
               width={this.state.width}
               viewBoxModel = {this.props.viewBox}
-              LegendSelectedIndex = {this.props.SelectedIndex}
+              LegendSelected = {this.props.Selected}
               ViewMode = {this.getLegendViewMode()}
              />
         </div>
       )
     }
 }
-//<span style={{position: `relative`}}>Index:{this.state.SelectedIndex}</span>
