@@ -47,5 +47,3 @@ export default class TViewBoxLegend extends Component<IViewBoxLegendProps, IView
       )
     }
 }
-
-//TODO сделать легенду к графику
