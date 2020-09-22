@@ -73,7 +73,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
             <TViewBox
               key = {index}
               viewBox = {box}
-              height  = {box.Height}
             />
         )
       })

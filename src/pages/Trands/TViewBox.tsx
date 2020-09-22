@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import './Trands.css'
-import { TTrandHeight } from '../../lib/trands/trandsgroup'
 import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas, { ELegendViewMode } from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
 
 export interface IViewBoxProps {
-  height: TTrandHeight;
   viewBox: TViewBoxModel;
 }
 
@@ -63,7 +61,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     render() {
-      const {height, mu} = {...this.props.height}
+      const {height, mu} = {...this.props.viewBox.Height}
       return (
         <div
           className='Trands box'
