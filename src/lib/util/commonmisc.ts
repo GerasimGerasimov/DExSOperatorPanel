@@ -24,9 +24,10 @@ export function getArrFromDelimitedStr(s: string, delimiter: string = ' '): Arra
 }
 
 export function loadLinesFromBuffer(buff:any): Array<string>{      
-    return buff.toString().split("\n").
-                    map((value: string): string => value.trim()).
-                        filter(String);
+    return buff.toString()
+               .split("\n")
+               .map((value: string): string => value.trim())
+               .filter(String);
 }
 
 export function isEmpty(obj: Object): boolean {
