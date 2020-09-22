@@ -3,15 +3,19 @@ import './Trands.css'
 import TViewBoxModel from './TViewBoxModel';
 import DrawCanvas, { ELegendViewMode } from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
+export interface IViewBoxGetSelectedIndex {
+  (index: any): void;
+}
 
 export interface IViewBoxProps {
   viewBox: TViewBoxModel;
+  SelectedIndex: number;
+  onSetSelectedIndex: IViewBoxGetSelectedIndex;
 }
 
 interface IViewBoxState {
   width: number;
   changeCount: number;
-  SelectedIndex: number;
 }
 
 export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
@@ -22,8 +26,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       super(props);
       this.state = {
         width: window.innerWidth,
-        changeCount: 0,
-        SelectedIndex: 0
+        changeCount: 0
       }
       this.onResizeHandler = this.onResize.bind(this);
     }
@@ -51,7 +54,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private onClickHandler(e: any) {
       const x: number = e.clientX;
       const position:number = this.props.viewBox.getIndexByClickXCoordinate(x);
-      this.setState({SelectedIndex: position})
+      this.props.onSetSelectedIndex(position);
     }
 
     private getLegendViewMode():ELegendViewMode {
@@ -71,7 +74,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
             <DrawCanvas
               width={this.state.width}
               viewBoxModel = {this.props.viewBox}
-              LegendSelectedIndex = {this.state.SelectedIndex}
+              LegendSelectedIndex = {this.props.SelectedIndex}
               ViewMode = {this.getLegendViewMode()}
              />
         </div>

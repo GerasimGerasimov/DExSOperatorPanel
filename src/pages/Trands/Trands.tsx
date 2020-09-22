@@ -9,6 +9,7 @@ interface ITrandsPageState {
   scrollPosition: number;
   deep: number;
   widthScale: number;
+  SelectedIndex: number;
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
@@ -27,6 +28,7 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
           scrollPosition: 0,
           deep: Trands.Deep,
           widthScale: Trands.WidthScale,
+          SelectedIndex: 0
         }
     }
 
@@ -65,6 +67,10 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
       this.setState({scrollPosition: e.target.value});
     }
 
+    private onViewBoxClickHandler(index: number): void {
+      this.setState({SelectedIndex: index})
+    }
+
     private getTrandsBoxes(): any{
       return Trands.getBoxes().map((box, index)=>{
         box.ScrollPosition = this.state.scrollPosition;
@@ -73,6 +79,8 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
             <TViewBox
               key = {index}
               viewBox = {box}
+              onSetSelectedIndex = {this.onViewBoxClickHandler.bind(this)}
+              SelectedIndex = {this.state.SelectedIndex}
             />
         )
       })

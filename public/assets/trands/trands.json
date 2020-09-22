@@ -12,6 +12,40 @@
                     "fraction":1,
                     "offset": "50 %",
                     "MaxValueMode":"MaxOfAllRange"
+                },
+                "U1/RAM/Istat":{
+                    "color":"#447BD4",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfAllRange"
+                },
+                "U1/RAM/DIN.1(C1_DC)":{
+                    "color":"#FFBA40",
+                    "offset": "0 %"
+                }
+            }
+        },
+        "trand_2":{
+            "height":"128 px",
+            "tags": {
+                "U1/RAM/Ustat":{
+                    "color":"blue",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"MaxOfAllRange"
+                },
+                "U1/RAM/Istat":{
+                    "color":"#447BD4",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfAllRange"
+                },
+                "U1/RAM/DIN.1(C1_DC)":{
+                    "color":"#FFBA40",
+                    "offset": "0 %"
                 }
             }
         }
