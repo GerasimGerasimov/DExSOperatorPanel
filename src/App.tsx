@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/devices" component={Devices}/>
           <Route exact path="/devices/:position" component={DevicesRouter}/>
           <Route path="/devices/:position/:list" component={DeviceParameters}/>
+          <Route path="/logs" component={About}/>
           <Route path="/about" component={About}/>
         </Switch>
       </div>
