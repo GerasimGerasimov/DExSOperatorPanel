@@ -66,11 +66,10 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     }
 
     render() {
-      const {height, mu} = {...this.props.viewBox.Height}
       return (
         <div
           className='Trands box'
-          style={{height: `${height}${mu}`}}
+          style={{height: this.props.viewBox.Height}}
           onClick = {(e)=>this.onClickHandler(e)}
         >
             <DrawCanvas

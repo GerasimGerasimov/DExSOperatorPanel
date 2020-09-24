@@ -1,10 +1,10 @@
-import { TTrandHeight, TTrandsGroup } from '../../lib/trands/trandsgroup'
+import {TTrandsGroup } from '../../lib/trands/trandsgroup'
 import { TTrand } from '../../lib/trands/trand';
 import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps, IViewTrandSizeProp } from '../../lib/trands/view/TViewTrand';
 import ViewFactory from '../../lib/trands/view/ViewTrandFactoty';
 
 export interface IViewBoxModelProps {
-  height: TTrandHeight;
+  height: string;
   models: TTrandsGroup;
   deep: number;
   WidthScale: number;
@@ -21,7 +21,7 @@ export default class TViewBoxModel {
     private deep: number = 0;
     private canvas: OffscreenCanvas;
     private ctx: any;
-    private height: TTrandHeight;
+    private height: string;
     private models: TTrandsGroup;
     private views: Map<string, TViewTrand>;
     private ctxsize: ICanvasSize = {
@@ -161,7 +161,7 @@ export default class TViewBoxModel {
       })
     }
 
-    public get Height():TTrandHeight {
+    public get Height():string {
       return this.height;
     }
 

@@ -7,20 +7,15 @@ interface ITrandsGroupProp {
   tags: Array<string>
 }
 
-export class TTrandHeight {
-  height: number = 0; //высота графика
-  mu: string = 'px';  //единицы измерения
-}
-
 export class TTrandsGroup {
   private deep: number; //глубина архива
-  private height: TTrandHeight;
+  private height: string;
   private trands: Map<string, TTrand>;
   private count: number = 0;
 
   constructor (deep: number, props: ITrandsGroupProp) {
     this.deep = deep;
-    this.height = this.setHeightProps(props.height);
+    this.height = props.height;
     this.trands = this.setTagsProps(props.tags);
   }
 
@@ -28,16 +23,8 @@ export class TTrandsGroup {
     return this.trands;
   }
 
-  public getBoxHeight():TTrandHeight{
+  public getBoxHeight():string{
     return this.height;
-  }
-
-  private setHeightProps(prop: string): TTrandHeight {
-    const [height, mu] = prop.split(' ');
-    return {
-      height: Number(height),
-      mu
-    }
   }
 
   private setTagsProps(props: Array<string>): Map<string, TTrand> {
