@@ -1,8 +1,17 @@
+.Trands_flex {
+  display: flex;          /**/
+  flex-direction: column; /**/
+  height: 100vh;          /**/
+}
+
 .Trands.wrapper {
+  flex-grow: 3;/*блок с TViewBox`es занимает всю доступную высоту flex-контейнера*/
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
 }
 
 .Trands.box {

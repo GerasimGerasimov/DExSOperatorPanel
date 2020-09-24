@@ -4,7 +4,7 @@
     "initialWidthScale": 1,
     "trands": {
         "trand_1":{
-            "height":"128 px",
+            "height":"70 %",
             "tags": {
                 "U1/RAM/Ustat":{
                     "color":"blue",
@@ -27,7 +27,7 @@
             }
         },
         "trand_2":{
-            "height":"128 px",
+            "height":"30 %",
             "tags": {
                 "U1/RAM/Ustat":{
                     "color":"blue",

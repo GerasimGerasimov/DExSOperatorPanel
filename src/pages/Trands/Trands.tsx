@@ -93,10 +93,11 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
 
     render() {
         return(
-          <div>
+          <div className='Trands_flex'>
             <ToolMenu elements = {this.ToolMenu}/>
             <div className='Trands wrapper'>
               {this.getTrandsBoxes()}
+            </div>
               <input type="range"
                 className = 'Trands range'
                 value={this.state.scrollPosition}
@@ -104,7 +105,6 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
                 max={this.state.deep}
                 step="1"
                 onChange={(e)=>this.changeScrollPosition(e)}/>
-            </div>
           </div>
         )
       }
