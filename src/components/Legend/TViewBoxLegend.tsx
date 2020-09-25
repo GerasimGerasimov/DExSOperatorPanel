@@ -35,7 +35,7 @@ export default class TViewBoxLegend extends Component<IViewBoxLegendProps, IView
                     <tr key={index}>
                       <td><ColorMark color={color}/></td>
                       <td>{tag}</td>
-                      <td >{value}</td>
+                      <td align="left">{value}</td>
                       <td >{msu}</td>
                     </tr>
                     )}
