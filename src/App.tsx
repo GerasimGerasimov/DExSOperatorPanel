@@ -8,6 +8,7 @@ import Trands from './pages/Trands/Trands';
 import Devices from './pages/settings/Devices';
 import DevicesRouter from './pages/settings/DevicesRouter';
 import DeviceParameters from './pages/settings/DeviceParameters';
+import Events from './pages/Events/Events';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/devices" component={Devices}/>
           <Route exact path="/devices/:position" component={DevicesRouter}/>
           <Route path="/devices/:position/:list" component={DeviceParameters}/>
-          <Route path="/logs" component={About}/>
+          <Route path="/events" component={Events}/>
           <Route path="/about" component={About}/>
         </Switch>
       </div>
