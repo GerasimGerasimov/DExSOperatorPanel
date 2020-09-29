@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import { Trands } from '../../lib/trands/trands'
 import './Trands.css'
 import TViewBox from './TViewBox'
-import ToolMenu from '../../components/TrandsMenu/ToolMenu';
-import { IToolButtonProps } from '../../components/TrandsMenu/buttons/iToolButton';
 import { ISelected } from './TDrawCanvas';
+import TrandsHeaderMenu from './TrandsHeaderMenu';
 
 interface ITrandsPageState {
   scrollPosition: number;
@@ -15,14 +14,6 @@ interface ITrandsPageState {
 }
 
 export default class TrandsPage extends Component<{}, ITrandsPageState> {
-    private ToolMenu: Array<IToolButtonProps> = [
-      { name: 'onLine', type:'ToolButton', icon:['fa-network-wired'], onClick:this.handlerToolMenu.bind(this)},
-      { name: 'DB', type:'ToolButton', icon:['fa-database'],      onClick:this.handlerToolMenu.bind(this)},
-      { name: 'PlayPause', type:'TougleButton', icon:['fa-pause-circle','fa-play-circle'], isTougle: Trands.Run,
-        onClick:this.handlerToolMenu.bind(this)},
-      { name: 'ZoomMinus', type:'ToolButton', icon:['fa-search-minus'],  onClick:this.handlerToolMenu.bind(this)},
-      { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.handlerToolMenu.bind(this)}
-    ]
     constructor (props: any){
         super(props);
         this.state = {
@@ -94,7 +85,10 @@ export default class TrandsPage extends Component<{}, ITrandsPageState> {
     render() {
         return(
           <div className='Trands_flex'>
-            <ToolMenu elements = {this.ToolMenu}/>
+            <TrandsHeaderMenu
+              ToolMenuHandler = {this.handlerToolMenu.bind(this)}
+              isTougle = {Trands.Run}
+            />
             <div className='Trands wrapper'>
               {this.getTrandsBoxes()}
             </div>
