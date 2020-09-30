@@ -21,10 +21,6 @@ export default class TrandsHeaderMenu extends Component <ITrandsHeaderMenuProps,
     { name: 'ZoomPlus', type:'ToolButton', icon:['fa-search-plus'],   onClick:this.props.ToolMenuHandler}
   ]
     
-  constructor (props: ITrandsHeaderMenuProps) {
-    super(props);
-  }
-
   render () {
     return (
       <div>
