@@ -92,7 +92,7 @@ export default class TViewBoxModel {
 
     public getModelEndIndex(): number {
       let res: number = 0;
-      for (const [key, value] of this.views) {
+      for (const [key , value] of this.views) {
         res = value.getModelEndIndex();
         break;
       }
@@ -133,8 +133,8 @@ export default class TViewBoxModel {
     }
 
     public resize(width: number, height: number) {
-      if ((width != this.ctxsize.width) || 
-          (height != this.ctxsize.height)) {
+      if ((width !== this.ctxsize.width) || 
+          (height !== this.ctxsize.height)) {
             this.ctxsize = {width, height}
             this.canvas = new OffscreenCanvas(this.ctxsize.width, this.ctxsize.height);
             this.ctx = this.canvas.getContext("2d", { alpha: false });

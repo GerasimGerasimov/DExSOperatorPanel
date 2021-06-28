@@ -80,7 +80,7 @@ export abstract class TViewTrand {
     let res: number = index - this.Sizes.count - revOffset;
     let mod: number = res % this.deep;
     if (res < 0) {
-      res = (mod == 0)? 0: this.deep + mod;
+      res = (mod === 0)? 0: this.deep + mod;
     }
     return res;
   }
@@ -94,12 +94,12 @@ export abstract class TViewTrand {
 
   protected getHScale(fromIdx: number): number {
     const max: number = this.model.getMaxValue(fromIdx, this.Sizes.count);
-    const HScale: number = (this.Scales.Axis / ((max != 0)? max : this.Scales.Axis));
+    const HScale: number = (this.Scales.Axis / ((max !== 0)? max : this.Scales.Axis));
     return HScale;
   }
 
   public resize(sizes: IViewTrandSizeProp): void {
-    const {width, height, count} = {... sizes};
+    const {width, height, count} = {...sizes};
     //при ресайзе меняются:
     //0) ширина-высота области отображения
     this.Sizes.count = count;
@@ -120,7 +120,7 @@ export abstract class TViewTrand {
   protected getOffsetInPixels(sOffset: string): number {
     let res: number = 0;
     const s: Array<string> = sOffset.split(' ');
-    const [value, msu] = [... s];
+    const [value, msu] = [...s];
     switch (msu) {
       case '%':
           res = this.getAxisPosFromPrc(Number(value || 0), this.Sizes.height)

@@ -79,7 +79,7 @@ export abstract class TModel {
   public getLoopIndex(index: number): number {
     let res: number = 0;
     let mod: number = index % this.deep;
-    res = (mod == 0)? index: mod;
+    res = (mod === 0)? index: mod;
     return res;
   }
 
