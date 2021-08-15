@@ -4,7 +4,7 @@ export class TDevicePagesContent {
   private pagesMap: Map<string, TDevicePageContent>;
 
   constructor(pages:Array<string>) {
-    this.pagesMap = new Map ([... this.getPagesMap(pages)])
+    this.pagesMap = new Map ([...this.getPagesMap(pages)])
   }
 
   get Values () {
