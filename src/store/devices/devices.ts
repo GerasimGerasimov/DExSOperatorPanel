@@ -1,7 +1,6 @@
-import {observable, action, autorun, runInAction} from 'mobx';
+import {observable, action, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
 import {devicesInfoStore} from './devicesinfo'
-import { FetchState } from '../../lib/util/misctypes';
 
 export class TDevicesValueStore {
     @observable count: number = 0;
@@ -13,16 +12,9 @@ export class TDevicesValueStore {
 
     constructor() {
         this.tickTimer();
-        autorun(()=>{this.isDevicesInfoLoaded(devicesInfoStore.loadState)});
     }
 
-    private isDevicesInfoLoaded(state: FetchState ){
-        if (state === FetchState.done) {
-            this.createTasksAndStartDataLoop();//инфа об устройствах прогрузилась
-        }
-    }
-
-    private createTasksAndStartDataLoop () {
+    public createTasksAndStartDataLoop () {
         //1. создать запросы
         this.Tasks = {
             index: 0,

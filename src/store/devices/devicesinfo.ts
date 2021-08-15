@@ -1,7 +1,6 @@
 import {observable, action, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
 import { isEmpty, getArrFromDelimitedStr } from '../../lib/util/commonmisc';
-import { FetchState } from '../../lib/util/misctypes';
 
 class TParameterFromAPI {
     name: string = '';
@@ -52,28 +51,23 @@ export class TDeviceInfoRAW {
 }
 
 export class TDevicesInfoStore {
-    @observable loadState: FetchState = FetchState.done;
+    //@observable loadState: FetchState = FetchState.done;
     public DevicesInfo: Map<string, TDeviceInfoRAW> = new Map<string, TDeviceInfoRAW>();
 
     constructor() {
-        this.getDevicesInfo();
+        //this.getDevicesInfo();
     }
 
     @action
-    private async getDevicesInfo(){
-        this.loadState = FetchState.pending;
+    public async getDevicesInfo(): Promise<any>{
         try {
             const data = await DeviceController.getDevicesInfo();
             runInAction(()=>{
-                this.loadState = FetchState.done;
                 const DevicesInfo: any = data || {};
                 this.parseDevicesInfoRAWData(DevicesInfo);
             })
         } catch (e) {
-            runInAction(()=>{
-                this.loadState = FetchState.error;
-                console.log(e);
-            })
+            throw new Error('Tagger service is not responded')
         }
     }
 
