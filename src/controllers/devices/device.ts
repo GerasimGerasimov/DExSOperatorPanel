@@ -1,4 +1,8 @@
-const HOST: string = `${window.location.protocol}//${window.location.hostname}`;
+const isDebug = true;
+const DEBUG_HOST = ' http://192.168.1.100';
+const HOST: string = (isDebug)
+                    ? DEBUG_HOST
+                    : `${window.location.protocol}//${window.location.hostname}`;
 const urlDevicesValuesGet: string = `${HOST}:5004/v1/devices/`;
 const urlDevicesValuesWrite: string = `${HOST}:5004/v1/values/`;
 const urlDevicesInfo: string = `${HOST}:5004/v1/info/`;
