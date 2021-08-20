@@ -9,6 +9,8 @@ import mainStore from './store/mainStore'
 import { loadSVGImages } from './lib/svg/svgloadimages';
 import { Trands } from './lib/trands/trands'
 
+//начало слияния с dexop-event-log-reader
+
 const stores = {
   mainStore,
   DeviceStore: mainStore.devicesValueStore
