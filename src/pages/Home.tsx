@@ -6,6 +6,7 @@ import MotorSVG from  '../assets/svg/vteg.svg'
 import {TSVGTemplateElement, loadSVGTemplateElements} from '../lib/svg/lib/svggroup'
 import {TSVGComponent, getTags, drawComponents} from '../lib/svg/lib/components/TSVGComponent'
 import { createSVGComponents } from '../lib/svg/lib/components/svgCompFactory'
+import './Home.css'
 
 @observer
 //export default class Home extends Component<HomeProps> {
@@ -32,13 +33,13 @@ export default class Home extends Component {
 
   render() {
     return(
-      <>
-        <object className="mt-1" id="vteg" type="image/svg+xml"
+      <div className="Home_flex">
+        <object className="m-1" id="vteg" type="image/svg+xml"
             data={MotorSVG}
             onLoad={()=>{this.handleImageLoaded()}}
             >
         </object>
-      </>
+      </div>
     )
   }
 }
