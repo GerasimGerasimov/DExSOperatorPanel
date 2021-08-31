@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import mainStore from './store/mainStore'
 import { loadSVGImages } from './lib/svg/svgloadimages';
 import { Trands } from './lib/trands/trands'
+import { ModelDates } from './dexop-event-log-reader/event-models/dates/dates-model';
 
 //начало слияния с dexop-event-log-reader
 
@@ -28,6 +29,8 @@ const stores = {
     console.log('AppError', e);
   }
 })()
+
+ModelDates.init();
 
 function startApp () {//после подгрузки картинок, будет запущенj React приложение
   ReactDOM.render(

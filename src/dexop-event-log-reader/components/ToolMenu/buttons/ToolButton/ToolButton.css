@@ -1,0 +1,20 @@
+.ToolButton {
+  height: 1rem;
+  font-size: 1rem;
+  color: black;
+  transition: opacity 0.25s ease-in;
+  opacity: 0.5;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 1px;
+}
+
+.ToolButton:hover {
+  opacity: 1;
+  background-color: white;
+  transition: opacity 0.25s ease-in;
+}
+
+.ToolButton.pressed {
+  background-color: white;
+}

@@ -8,7 +8,9 @@ import Trands from './pages/Trands/Trands';
 import Devices from './pages/settings/Devices';
 import DevicesRouter from './pages/settings/DevicesRouter';
 import DeviceParameters from './pages/settings/DeviceParameters';
-import Events from './pages/Events/Events';
+import DateCardsContainer from './dexop-event-log-reader/event-log-reader/date-cards-container/date-card-container';
+import EventTablePage from './dexop-event-log-reader/event-table/Pages/Events/event-table-page';
+//import Events from './pages/Events/Events';
 
 function App() {
   return (
@@ -21,7 +23,8 @@ function App() {
           <Route exact path="/devices" component={Devices}/>
           <Route exact path="/devices/:position" component={DevicesRouter}/>
           <Route path="/devices/:position/:list" component={DeviceParameters}/>
-          <Route path="/events" component={Events}/>
+          <Route exact path="/events"       component={DateCardsContainer}/>
+          <Route exact path="/events/:date" component={EventTablePage}/>
           <Route path="/about" component={About}/>
         </Switch>
       </div>
@@ -30,3 +33,4 @@ function App() {
 }
 
 export default App;
+//          <! -- <Route path="/events" component={Events}/ -->
