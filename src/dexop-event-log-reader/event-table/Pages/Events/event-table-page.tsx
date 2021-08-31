@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Modal from "../../../components/HOC/Modal";
 import EventsTable from "../../components/table/EventsTable";
 import FilterSettings from "../../Forms/FilterSettings/FilterSettings";
 
@@ -14,6 +13,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { IQueryDirection, ISortDirection } from "../../../event-models/sort-conditions";
 import { IonChangeCallback, ModelDates } from "../../../event-models/dates/dates-model";
 import { isNowDate } from "../../helpers/timeutils";
+import Modal from "../../../../components/HOC/Modal/Modal";
 
 interface IEventsProps {
   date: string;

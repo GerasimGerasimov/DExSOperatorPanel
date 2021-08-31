@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ToolMenu from "../../components/ToolMenu/ToolMenu";
+import ToolMenu from "../../../components/TrandsMenu/ToolMenu";
 
 
 interface IToolMenuHandler {
