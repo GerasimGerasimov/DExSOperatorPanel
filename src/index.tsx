@@ -10,8 +10,6 @@ import { loadSVGImages } from './lib/svg/svgloadimages';
 import { Trands } from './lib/trands/trands'
 import { ModelDates } from './dexop-event-log-reader/event-models/dates/dates-model';
 
-//начало слияния с dexop-event-log-reader
-
 const stores = {
   mainStore,
   DeviceStore: mainStore.devicesValueStore

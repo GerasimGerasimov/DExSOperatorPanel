@@ -1,10 +1,9 @@
-const isDebug = true;
+const isDebug = false;
 const DEBUG_HOST = '192.168.1.100';
 const HOST: string = (isDebug)
                     ? DEBUG_HOST
                     : window.location.hostname;
 
-/**TODO  если что то удалить http://  */
 export const SERVICES_HOST = HOST;
 export const urlDevicesValuesGet: string = `http://${HOST}:5004/v1/devices/`;
 export const urlDevicesValuesWrite: string = `http://${HOST}:5004/v1/values/`;

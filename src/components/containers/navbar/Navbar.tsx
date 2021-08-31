@@ -15,7 +15,7 @@ export const Navbar:React.FunctionComponent = (props) => {
         'h-100'
     ]
 
-    const NavLinkCls: string = "nav-link p-1 bg-primary";
+    const NavLinkCls: string = "nav-link p-1 bg-primary NavLinkFont";
 
     const tougleMenu = () => {
         setVisible(!visible)

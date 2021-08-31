@@ -1,6 +1,6 @@
 .ToolButton {
-  height: 1rem;
-  font-size: 1rem;
+  height: 2rem;
+  font-size: 2rem;
   color: black;
   transition: opacity 0.25s ease-in;
   opacity: 0.5;

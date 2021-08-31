@@ -1,3 +1,7 @@
+.NavLinkFont {
+    font-size: 1.5rem;
+}
+
 .NavBar {
     position: absolute;
     cursor: pointer;
@@ -11,8 +15,9 @@
 }
 
 .NavBarSizes {
-    height: 1rem;
+    height: 2rem;
     width: 2rem;
+    margin-bottom: 0.2rem;
     box-sizing: border-box;
 }
 
