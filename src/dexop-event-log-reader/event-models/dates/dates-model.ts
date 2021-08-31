@@ -1,5 +1,5 @@
+import { url_event_logger_service } from "../../../services-urls";
 import { EventReader } from "../../event-log-reader/controller/event-reader";
-import { url_event_logger_service } from "../../event-table/event-urls";
 import { waitForValidRespond } from "../../utils";
 import { WSInformer } from "../ws/client";
 import { IEventServiceError, IEventServiceRespond } from "./dates-types";

@@ -5,10 +5,9 @@ const HOST: string = (isDebug)
                     : window.location.hostname;
 
 export const SERVICES_HOST = HOST;
-export const urlDevicesValuesGet: string = `http://${HOST}:5004/v1/devices/`;
-export const urlDevicesValuesWrite: string = `http://${HOST}:5004/v1/values/`;
-export const urlDevicesInfo: string = `http://${HOST}:5004/v1/info/`;
+export const urlDevicesValuesGet: string = `http://${SERVICES_HOST}:5004/v1/devices/`;
+export const urlDevicesValuesWrite: string = `http://${SERVICES_HOST}:5004/v1/values/`;
+export const urlDevicesInfo: string = `http://${SERVICES_HOST}:5004/v1/info/`;
 
-//const url_even_host = HOST;
-//export const url_event_logger_service = `ws://${url_even_host}:5007`;
-//export const url_event_log_reader = `http://${url_even_host}:5008/`;
+export const url_event_logger_service = `ws://${SERVICES_HOST}:5007`;
+export const url_event_log_reader = `http://${SERVICES_HOST}:5008/`;

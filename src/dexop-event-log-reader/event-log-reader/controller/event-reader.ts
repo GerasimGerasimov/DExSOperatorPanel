@@ -1,5 +1,5 @@
+import { url_event_log_reader } from "../../../services-urls";
 import { TEventItems } from "../../event-models/events";
-import { url_event_log_reader } from "../../event-table/event-urls";
 
 const event_log_reader_dates = `${url_event_log_reader}v1/dates/`;
 const event_log_reader_events = `${url_event_log_reader}v1/events/`;
