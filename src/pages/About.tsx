@@ -17,14 +17,19 @@ export const About: React.FunctionComponent = ({}) => {
                 </h1>
                 <p className="lead">
                     Версия приложения
-                    <strong>1.0.</strong>
-                    <span className="badge badge-light bg-warning ml-1"
-                        onClick={() => setCount(count + 1)}>
-                        {count}
-                    </span>
+                    <strong>2.0.0</strong>
+                    <p>ООО "ИНТМАШ"</p>
+
                 </p>
                 <Link to="/" className="btn btn-primary">Back to Home</Link>
             </div>
         </div>
     )
 }
+
+/*
+                    <span className="badge badge-light bg-warning ml-1"
+                        onClick={() => setCount(count + 1)}>
+                        {count}
+                    </span>
+*/

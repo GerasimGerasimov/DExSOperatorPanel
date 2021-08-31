@@ -185,7 +185,7 @@ export default class DateCardsContainer extends Component <IDateCardsContainerPr
           />
         <div className='flex-all-client'>
           <b>Event log</b>
-          <div className="overflow-auto h-100 b1dg">
+          <div className="overflow-auto h-100">
             {this.state.isLoaded
               ? <ul className="list-group">{items}</ul>
               : waitForLoad()

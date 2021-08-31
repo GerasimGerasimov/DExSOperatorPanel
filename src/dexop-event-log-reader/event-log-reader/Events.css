@@ -2,13 +2,12 @@
   display: flex;          /**/
   flex-direction: column; /*вертикальное расположение юлоков в контейнере*/
   height: 100vh;          /*вся фзическая высота окна (% -не работают!)*/
-  border: 1px dashed red;
 }
 
 .flex-all-client {
   flex-grow: 3;
   overflow: hidden;
-  border: 1px dashed green;
+  /*border: 1px dashed green;*/
 }
 
 .b1dg {

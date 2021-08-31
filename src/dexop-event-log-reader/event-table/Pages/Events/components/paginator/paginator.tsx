@@ -63,7 +63,7 @@ export default class Paginator extends Component <IPaginatorProps,IPaginatorStat
 
   render () {
     return (
-      <div className='flex alitcn jcsa'>
+      <div className='flex alitcn jcsa border border-primary'>
         <span>{this.props.ItemsBefore}</span>
         <button
           className="btn btn-primary btn-xs"

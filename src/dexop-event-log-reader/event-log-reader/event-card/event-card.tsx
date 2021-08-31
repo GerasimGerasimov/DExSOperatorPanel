@@ -7,6 +7,7 @@ import { EventsCounter } from './event-counters';
 import {NavLink} from 'react-router-dom';
 import { IonChangeCallback, ModelDates } from '../../event-models/dates/dates-model';
 import { isNowDate } from '../../event-table/helpers/timeutils';
+import './event-card.css'
 
 interface IEventCardProps {
   date: string;
@@ -83,7 +84,7 @@ export default class EventCard extends Component<IEventCardProps, IEventCardStat
   render() {
     const url = `/events/${this.props.date}`;
     return (
-      <NavLink
+      <NavLink className="border d-flex" style={{ textDecoration: 'none' }}
         to={{
           pathname: url,
           state: {
@@ -91,13 +92,13 @@ export default class EventCard extends Component<IEventCardProps, IEventCardStat
           }
         }}
       >
-        <li className = "list-group-item list-group-item-action d-flex justify-content-between align-items-center m-1 shadow-sm">
+        <div className = "event-card d-flex justify-content-between">
           {this.props.date}
           {this.state.isLoaded
             ? <EventsCounter events = {this.state.events} />
             : <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           }
-        </li>
+        </div>
       </NavLink>
     )
   }
