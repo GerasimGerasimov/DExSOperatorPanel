@@ -1,8 +1,33 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import SystemServicesController, { ISystemHostTime } from '../../controllers/system-services/system-services';
 import './System.css';
 
-export default class System extends Component {
+interface ISystemState {
+  IP: string;
+  time: ISystemHostTime;
+}
+
+
+export default class System extends Component <{}, ISystemState> {
+
+  constructor () {
+    super({});
+    this.state = {
+      IP:'0.0.0.0',
+      time: {
+        ISO: '',
+        Local: '',
+        UNIX: 0
+      }
+    }
+  }
+
+  async componentDidMount(){
+    const IP: string = await SystemServicesController.getIP();
+    const time: ISystemHostTime = await SystemServicesController.getTime();
+    this.setState({IP, time})
+  }
 
   render() {
     return(
@@ -12,8 +37,10 @@ export default class System extends Component {
               System
           </h1>
           <p className="lead">
-              IP:
-              <strong>0.0.0.0</strong>
+              IP:<strong>{this.state.IP}</strong>
+          </p>
+          <p className="lead">
+              Host Time:<strong>{this.state.time.Local}</strong>
           </p>
           <Link to="/" className="btn btn-primary">Back to Home</Link>
       </div>
