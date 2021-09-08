@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import { observer} from 'mobx-react'
 import {autorun} from 'mobx'
-import {devicesInfoStore} from '../store/devices/devicesinfo'
-import MotorSVG from  '../assets/svg/vteg.svg'
-import {TSVGTemplateElement, loadSVGTemplateElements} from '../lib/svg/lib/svggroup'
-import {TSVGComponent, getTags, drawComponents} from '../lib/svg/lib/components/TSVGComponent'
-import { createSVGComponents } from '../lib/svg/lib/components/svgCompFactory'
+import {devicesInfoStore} from '../../store/devices/devicesinfo'
+import MotorSVG from  '../../assets/svg/vteg.svg'
+import {TSVGTemplateElement, loadSVGTemplateElements} from '../../lib/svg/lib/svggroup'
+import {TSVGComponent, getTags, drawComponents} from '../../lib/svg/lib/components/TSVGComponent'
+import { createSVGComponents } from '../../lib/svg/lib/components/svgCompFactory'
 import './Home.css'
 
 @observer
