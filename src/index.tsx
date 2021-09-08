@@ -42,3 +42,10 @@ function startApp () {//после подгрузки картинок, буде
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+/**TODO Добавить станицу системной информации
+ * IP
+ * Время хоста
+ * Установка времени хоста
+ * через сервис dexop-system-services
+ */
