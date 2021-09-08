@@ -4,10 +4,22 @@ const HOST: string = (isDebug)
                     ? DEBUG_HOST
                     : window.location.hostname;
 
-export const SERVICES_HOST = HOST;
-export const urlDevicesValuesGet: string = `http://${SERVICES_HOST}:5004/v1/devices/`;
-export const urlDevicesValuesWrite: string = `http://${SERVICES_HOST}:5004/v1/values/`;
-export const urlDevicesInfo: string = `http://${SERVICES_HOST}:5004/v1/info/`;
+const TaggerPort: number = 5004;
+const EventLoggerServicePort: number = 5007;
+const EventLogReaderPort: number = 5008;
+const DexopSystemServicesPort: number = 5011;
 
-export const url_event_logger_service = `ws://${SERVICES_HOST}:5007`;
-export const url_event_log_reader = `http://${SERVICES_HOST}:5008/`;
+const TaggerURL: string = `${HOST}:${TaggerPort}`;
+const EventLoggerServiceURL: string = `${HOST}:${EventLoggerServicePort}`;
+const EventLogReaderURL: string = `${HOST}:${EventLogReaderPort}`;
+const DexopSystemServicesURL: string = `${HOST}:${DexopSystemServicesPort}`;
+
+export const urlTaggerDevicesValuesGet: string = `http://${TaggerURL}/v1/devices/`;
+export const urlTaggerDevicesValuesWrite: string = `http://${TaggerURL}/v1/values/`;
+export const urlTaggerDevicesInfo: string = `http://${TaggerURL}/v1/info/`;
+
+export const urlEventLoggerServiceSubscribe = `ws://${EventLoggerServiceURL}`;
+export const urlEventLogReaderGet = `http://${EventLogReaderURL}/`;
+
+export const urlDexopSystemServicesGetIP = `http://${DexopSystemServicesURL}/v1/IP/`;
+export const urlDexopSystemServicesGetTime = `http://${DexopSystemServicesURL}/v1/time/`;

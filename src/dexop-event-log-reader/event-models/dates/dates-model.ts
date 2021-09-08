@@ -1,4 +1,4 @@
-import { url_event_logger_service } from "../../../services-urls";
+import { urlEventLoggerServiceSubscribe } from "../../../services-urls";
 import { EventReader } from "../../event-log-reader/controller/event-reader";
 import { waitForValidRespond } from "../../utils";
 import { WSInformer } from "../ws/client";
@@ -27,7 +27,7 @@ export class TDates {
   }
 
   public init() {
-    WSInformer.init(url_event_logger_service, this.onDBIsChangedAtNow.bind(this));
+    WSInformer.init(urlEventLoggerServiceSubscribe, this.onDBIsChangedAtNow.bind(this));
     this.waitForServiceRespond();
   }
 

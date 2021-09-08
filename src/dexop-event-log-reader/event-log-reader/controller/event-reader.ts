@@ -1,8 +1,8 @@
-import { url_event_log_reader } from "../../../services-urls";
+import { urlEventLogReaderGet } from "../../../services-urls";
 import { TEventItems } from "../../event-models/events";
 
-const event_log_reader_dates = `${url_event_log_reader}v1/dates/`;
-const event_log_reader_events = `${url_event_log_reader}v1/events/`;
+const event_log_reader_dates = `${urlEventLogReaderGet}v1/dates/`;
+const event_log_reader_events = `${urlEventLogReaderGet}v1/events/`;
 
 export class TEventReader {
   

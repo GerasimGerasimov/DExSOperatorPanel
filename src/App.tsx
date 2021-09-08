@@ -10,6 +10,7 @@ import DevicesRouter from './pages/settings/DevicesRouter';
 import DeviceParameters from './pages/settings/DeviceParameters';
 import DateCardsContainer from './dexop-event-log-reader/event-log-reader/date-cards-container/date-card-container';
 import EventTablePage from './dexop-event-log-reader/event-table/Pages/Events/event-table-page';
+import System from './pages/System/System';
 //import Events from './pages/Events/Events';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/devices/:position/:list" component={DeviceParameters}/>
           <Route exact path="/events"       component={DateCardsContainer}/>
           <Route exact path="/events/:date" component={EventTablePage}/>
+          <Route path="/system" component={System}/>
           <Route path="/about" component={About}/>
         </Switch>
       </div>

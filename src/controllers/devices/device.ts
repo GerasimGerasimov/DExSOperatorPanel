@@ -1,4 +1,4 @@
-import { urlDevicesInfo, urlDevicesValuesGet, urlDevicesValuesWrite } from "../../services-urls";
+import { urlTaggerDevicesInfo, urlTaggerDevicesValuesGet, urlTaggerDevicesValuesWrite } from "../../services-urls";
 
 export default class DeviceController {
     public static async  getData(request: object): Promise<any> {
@@ -11,7 +11,7 @@ export default class DeviceController {
                 },
                 body:JSON.stringify(request)
             }
-            return await fetch(urlDevicesValuesGet, header)
+            return await fetch(urlTaggerDevicesValuesGet, header)
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
@@ -30,7 +30,7 @@ export default class DeviceController {
                     'Content-Type':'application/json; charset=utf-8',
                 }
             }
-            return await fetch(urlDevicesInfo, header)
+            return await fetch(urlTaggerDevicesInfo, header)
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {
@@ -50,7 +50,7 @@ export default class DeviceController {
                 },
                 body:JSON.stringify(request)
             }
-            return await fetch(urlDevicesValuesWrite, header)
+            return await fetch(urlTaggerDevicesValuesWrite, header)
                 .then (this.handledHTTPResponse)
                 .then (this.validationJSON);
         } catch(e) {

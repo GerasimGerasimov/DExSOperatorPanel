@@ -34,6 +34,7 @@ export const Navbar:React.FunctionComponent = (props) => {
             <li><NavLink to="/trands" className={NavLinkCls}>Trands</NavLink></li>
             <li><NavLink to="/devices" className={NavLinkCls}>Devices</NavLink></li>
             <li><NavLink to="/events" className={NavLinkCls}>Events</NavLink></li>
+            <li><NavLink to="/system" className={NavLinkCls}>System</NavLink></li>
             <li><NavLink to="/about" className={NavLinkCls}>About</NavLink></li>
           </ul>
         </nav>
