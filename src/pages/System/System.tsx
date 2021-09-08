@@ -11,6 +11,8 @@ interface ISystemState {
 
 export default class System extends Component <{}, ISystemState> {
 
+  private updateTimer: any = undefined;
+
   constructor () {
     super({});
     this.state = {
@@ -23,10 +25,19 @@ export default class System extends Component <{}, ISystemState> {
     }
   }
 
+  async updateTime(){
+    const time: ISystemHostTime = await SystemServicesController.getTime();
+    this.setState({time})
+  }
+
   async componentDidMount(){
     const IP: string = await SystemServicesController.getIP();
-    const time: ISystemHostTime = await SystemServicesController.getTime();
-    this.setState({IP, time})
+    this.setState({IP});
+    this.updateTimer = setInterval(async ()=>{this.updateTime()}, 1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.updateTimer);
   }
 
   render() {
