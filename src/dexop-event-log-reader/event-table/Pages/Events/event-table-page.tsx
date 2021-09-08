@@ -41,10 +41,9 @@ export default class EventTablePage extends Component <RouteComponentProps<IEven
   private events_date: string = '';
   private callback: IonChangeCallback | undefined;
 
-  constructor({match} : RouteComponentProps<IEventsProps>) {
-    super( {match} as RouteComponentProps<IEventsProps>);
-
-    this.events_date = match.params.date;
+  constructor(props : RouteComponentProps<IEventsProps>) {
+    super(props);
+    this.events_date = props.match.params.date;
 
     console.log('EventTablePage: ', this.events_date);
     this.state = {
