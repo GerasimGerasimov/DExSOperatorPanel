@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-export const About: React.FunctionComponent = ({}) => {
+export const About: React.FunctionComponent = () => {
     const [count, setCount] = useState(0);
 
     useEffect(()=>{
@@ -25,10 +25,3 @@ export const About: React.FunctionComponent = ({}) => {
         </div>
     )
 }
-
-/*
-                    <span className="badge badge-light bg-warning ml-1"
-                        onClick={() => setCount(count + 1)}>
-                        {count}
-                    </span>
-*/

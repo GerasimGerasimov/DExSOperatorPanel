@@ -87,7 +87,6 @@ export default class KeyBoardNumeric extends Component<IKeyBoardProps, IState> {
   }
 
   private focus() {
-    const position = this.position;
     this.textInput.current.focus();
   }
 
@@ -157,26 +156,3 @@ export default class KeyBoardNumeric extends Component<IKeyBoardProps, IState> {
     )
   }
 }
-
-/*
-  private setUserKeyBoardEvent(key: string) {
-    const keyObj: any = { key ,
-      bubbles: true,
-      cancelable: false,
-      keyCode:8,
-      which: 8
-    }
-    var down = new KeyboardEvent('keydown', keyObj);
-    var press = new KeyboardEvent('keypress', keyObj);
-    var up = new KeyboardEvent('keyup', keyObj);
-      this.focus();
-      this.textInput.current.dispatchEvent(down);
-      this.textInput.current.dispatchEvent(press);
-      this.textInput.current.dispatchEvent(up);
-  }
-
-  //удаляет символы перед курсором
-  private backSpaceKey(){
-    this.setUserKeyBoardEvent('Backspace')
-  }
-*/

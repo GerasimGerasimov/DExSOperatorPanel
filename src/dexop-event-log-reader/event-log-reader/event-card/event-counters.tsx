@@ -13,10 +13,6 @@ interface IEventsCountersState {
 
 export class EventsCounter extends Component<IEventsCountersProps, IEventsCountersState> {
   
-  constructor (props: IEventsCountersProps) {
-    super(props)
-  }
-
   private getIconStyle(event_type: string): {color: string, icon: string} {
     const icons: {[index: string]: any} = {
       [EEventTypes.ALARM]: {color:'red', icon:'⬥'},

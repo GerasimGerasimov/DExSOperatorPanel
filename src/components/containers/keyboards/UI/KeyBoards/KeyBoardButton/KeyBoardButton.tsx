@@ -3,10 +3,6 @@ import {IKeyBoardButtonProps } from '../IKeyBoards';
 
 export default class KeyBoardButton extends Component<IKeyBoardButtonProps, {}> {
 
-  constructor (props: any){
-    super(props)
-  }
-
   render() {
     return(
         <div className={this.props.position}>

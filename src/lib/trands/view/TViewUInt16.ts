@@ -1,11 +1,7 @@
-import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps} from "./TViewTrand";
+import { TViewTrand, IViewTrandDrawMethodProps} from "./TViewTrand";
 import { IAxisProps } from "./IView";
 
 export class TViewUInt16 extends TViewTrand {
-
-  constructor(props: IViewTrandProp) {
-    super(props);
-  }
 
   public draw(props: IViewTrandDrawMethodProps): void {
     props.ctx.beginPath();

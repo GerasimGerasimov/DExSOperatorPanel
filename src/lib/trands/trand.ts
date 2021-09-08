@@ -55,7 +55,7 @@ export class TTrand {
   }
 
   private getTagPropertiesForTrand(tag: string): TModel {
-    const  {msu, comment, objType} = devicesInfoStore.getTagProperties (tag, ATagProperties);
+    const  {msu, objType} = devicesInfoStore.getTagProperties (tag, ATagProperties);
     const props: IModelProp = {
       objType,
       deep: this.TrandProps.deep,

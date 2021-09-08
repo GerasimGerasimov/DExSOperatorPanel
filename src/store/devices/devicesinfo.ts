@@ -54,10 +54,6 @@ export class TDevicesInfoStore {
     //@observable loadState: FetchState = FetchState.done;
     public DevicesInfo: Map<string, TDeviceInfoRAW> = new Map<string, TDeviceInfoRAW>();
 
-    constructor() {
-        //this.getDevicesInfo();
-    }
-
     @action
     public async getDevicesInfo(): Promise<any>{
         try {

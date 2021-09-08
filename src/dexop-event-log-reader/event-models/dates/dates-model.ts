@@ -22,10 +22,6 @@ export class TDates {
   private subscribers: Set<IonChangeCallback> = new Set();
   private isLoaded: boolean = false;
 
-  constructor() {
-   
-  }
-
   public init() {
     WSInformer.init(urlEventLoggerServiceSubscribe, this.onDBIsChangedAtNow.bind(this));
     this.waitForServiceRespond();

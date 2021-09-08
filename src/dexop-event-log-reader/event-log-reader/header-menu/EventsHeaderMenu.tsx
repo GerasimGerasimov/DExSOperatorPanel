@@ -13,11 +13,6 @@ export interface IToolMenuProps {
 
 export default class EventsHeaderMenu extends Component <IToolMenuProps,{}> {
 
-  constructor(props: IToolMenuProps) {
-    super(props);
-
-  }
-
   render () {
     return (
       <div>

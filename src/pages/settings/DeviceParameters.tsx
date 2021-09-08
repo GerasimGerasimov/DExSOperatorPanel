@@ -67,7 +67,7 @@ export default class DeviceParameters extends Component<{}, IState> {
 
   private update(changed: any){
     for (const [key, item] of this.parameters.entries()) {
-      const {value, msu} = this.getParameters(key);
+      const {value} = this.getParameters(key);
       item.value = value;
     }
   }
@@ -80,7 +80,7 @@ export default class DeviceParameters extends Component<{}, IState> {
   }
 
   private handlerModalShow(event: any) {
-    const {row, col} = getTableClickRowCol(event);
+    const {row /*, col*/} = getTableClickRowCol(event);
     const p:TParameter | undefined = getParameterByRow(this.parameters, row);
     if (p) {
       const  {msu, comment, objType, value} = devicesInfoStore.getTagProperties (p.tag, ['msu','value','comment','objType']);

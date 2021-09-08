@@ -31,7 +31,7 @@ export default class System extends Component <{}, ISystemState> {
       this.setState({time});
     } catch (e) {
       console.log(e);
-      let time = {... this.state.time};
+      let time = {...this.state.time};
       time.Local = 'unnown'
       this.setState({time})
     }

@@ -1,11 +1,7 @@
-import { TViewTrand, IViewTrandProp, IViewTrandDrawMethodProps} from "./TViewTrand";
+import { TViewTrand, IViewTrandDrawMethodProps} from "./TViewTrand";
 import { IAxisProps } from "./IView";
 
 export class TViewBool extends TViewTrand {
-
-  constructor(props: IViewTrandProp) {
-    super(props);
-  }
 
   protected getScaledY(index: number): number {
     const value: number = this.model.getValueByIndex(index);
