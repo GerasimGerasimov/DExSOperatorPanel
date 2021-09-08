@@ -25,14 +25,31 @@ export default class System extends Component <{}, ISystemState> {
     }
   }
 
-  async updateTime(){
-    const time: ISystemHostTime = await SystemServicesController.getTime();
-    this.setState({time})
+  private async updateTime(){
+    try {
+      const time: ISystemHostTime = await SystemServicesController.getTime();
+      this.setState({time});
+    } catch (e) {
+      console.log(e);
+      let time = {... this.state.time};
+      time.Local = 'unnown'
+      this.setState({time})
+    }
   }
 
-  async componentDidMount(){
-    const IP: string = await SystemServicesController.getIP();
-    this.setState({IP});
+  private async getTime() {
+    try {
+      const IP: string = await SystemServicesController.getIP();
+      this.setState({IP});
+    } catch (e) {
+      console.log(e);
+      let IP: string = 'unnown'
+      this.setState({IP})
+    }
+  }
+
+  componentDidMount(){
+    this.getTime();
     this.updateTimer = setInterval(async ()=>{this.updateTime()}, 1000);
   }
 
