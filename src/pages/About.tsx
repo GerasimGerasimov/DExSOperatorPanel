@@ -15,12 +15,11 @@ export const About: React.FunctionComponent = ({}) => {
                 <h1 className="display-4">
                     DExS OP
                 </h1>
-                <p className="lead">
+                <div className="lead">
                     Версия приложения
                     <strong>2.0.0</strong>
                     <p>ООО "ИНТМАШ"</p>
-
-                </p>
+                </div>
                 <Link to="/" className="btn btn-primary">Back to Home</Link>
             </div>
         </div>

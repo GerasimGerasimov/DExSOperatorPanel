@@ -13,8 +13,8 @@ export default class System extends Component <{}, ISystemState> {
 
   private updateTimer: any = undefined;
 
-  constructor () {
-    super({});
+  constructor (props?:any) {
+    super(props);
     this.state = {
       IP:'0.0.0.0',
       time: {

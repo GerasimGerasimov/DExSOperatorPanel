@@ -8,7 +8,7 @@ export class TModelBool extends TModel {
   }
 
   public setValue(value: any) {
-    super.setValue((value !=0 )?1:0);
+    super.setValue((value !==0 )?1:0);
     //super.setValue((value > 64 )?1:0);//TODO убрать после отладки
   }
 
