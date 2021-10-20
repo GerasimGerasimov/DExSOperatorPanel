@@ -1,4 +1,4 @@
-const isDebug = true;
+const isDebug = false;
 const DEBUG_HOST = '192.168.1.100';
 const HOST: string = (isDebug)
                     ? DEBUG_HOST

@@ -35,8 +35,8 @@ export class TDevicesValueStore {
         try {
             const data = await DeviceController.getData(task);
             runInAction(()=>{
-                for( const key in data.data) {
-                    devicesInfoStore.fillValuesFromReceivedData(data.data[key]);
+                for( const key in data) {
+                    devicesInfoStore.fillValuesFromReceivedData(data[key]);
                 }
             })
         } catch (e) {
