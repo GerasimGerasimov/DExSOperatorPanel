@@ -2,6 +2,7 @@ import {observable, action, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
 import {devicesInfoStore} from './devicesinfo'
 
+/**TODO запрашивать данные по WS */
 export class TDevicesValueStore {
     @observable count: number = 0;
     private autoReloadTimer: any;
