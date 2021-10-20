@@ -52,7 +52,7 @@ export default class Devices extends Component {
 
     return(
       <>
-        <h1>Devices</h1>
+        <h3>Devices</h3>
         <div className="text-left">
             <React.Fragment>
                 <ul>{listItems}</ul>

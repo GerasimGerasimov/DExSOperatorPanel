@@ -1,0 +1,6 @@
+.ToolMenu {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: flex-start;
+}

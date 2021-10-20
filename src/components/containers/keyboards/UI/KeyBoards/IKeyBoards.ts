@@ -1,6 +1,4 @@
-export interface IEventFunction {
-    (event: any): void;
-}
+import { IEventFunction } from "../../../../../lib/util/misctypes";
 
 export interface IKeyBoardProps {
     onClick: IEventFunction;

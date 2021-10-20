@@ -1,0 +1,33 @@
+.Trands_flex {
+  display: flex;          /**/
+  flex-direction: column; /*вертикальное расположение юлоков в контейнере*/
+  height: 100vh;          /*вся фзическая высота окна (% -не работают!)*/
+}
+
+.Trands.wrapper {
+  flex-grow: 3;/*блок с TViewBox`es занимает всю доступную высоту flex-контейнера*/
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  /*height: 100%; при установке flex-grow можно не ставить 100% width или height
+                  элемент сам автоматически займёт пространство указанное в flex-grow*/
+  overflow: hidden;
+}
+
+.Trands.box {
+  border: 1px dashed red;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.Trands.canvas {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.Trands.range {
+  width: 100%;
+}

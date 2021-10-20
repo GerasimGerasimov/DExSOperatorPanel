@@ -1,8 +1,8 @@
-import {observable, action, autorun, runInAction} from 'mobx';
+import {observable, action, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
 import {devicesInfoStore} from './devicesinfo'
-import { FetchState } from '../../lib/util/misctypes';
 
+/**TODO запрашивать данные по WS */
 export class TDevicesValueStore {
     @observable count: number = 0;
     private autoReloadTimer: any;
@@ -13,16 +13,9 @@ export class TDevicesValueStore {
 
     constructor() {
         this.tickTimer();
-        autorun(()=>{this.isDevicesInfoLoaded(devicesInfoStore.loadState)});
     }
 
-    private isDevicesInfoLoaded(state: FetchState ){
-        if (state === FetchState.done) {
-            this.createTasksAndStartDataLoop();//инфа об устройствах прогрузилась
-        }
-    }
-
-    private createTasksAndStartDataLoop () {
+    public createTasksAndStartDataLoop () {
         //1. создать запросы
         this.Tasks = {
             index: 0,
@@ -43,13 +36,13 @@ export class TDevicesValueStore {
         try {
             const data = await DeviceController.getData(task);
             runInAction(()=>{
-                for( const key in data.data) {
-                    devicesInfoStore.fillValuesFromReceivedData(data.data[key]);
+                for( const key in data) {
+                    devicesInfoStore.fillValuesFromReceivedData(data[key]);
                 }
             })
         } catch (e) {
             runInAction(()=>{
-                console.log(e);
+                //console.log(e);
             })
         }
         this.startAutoReloadData();

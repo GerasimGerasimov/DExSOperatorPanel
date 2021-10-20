@@ -1,7 +1,6 @@
 import {observable, action, runInAction} from 'mobx';
 import DeviceController from '../../controllers/devices/device'
 import { isEmpty, getArrFromDelimitedStr } from '../../lib/util/commonmisc';
-import { FetchState } from '../../lib/util/misctypes';
 
 class TParameterFromAPI {
     name: string = '';
@@ -10,7 +9,7 @@ class TParameterFromAPI {
     objType: string = '';
 }
 
-class TParameter {
+export class TParameter {
     comment: string = '';
     msu: string = '';
     objType: string = '';
@@ -52,28 +51,19 @@ export class TDeviceInfoRAW {
 }
 
 export class TDevicesInfoStore {
-    @observable loadState: FetchState = FetchState.done;
+    //@observable loadState: FetchState = FetchState.done;
     public DevicesInfo: Map<string, TDeviceInfoRAW> = new Map<string, TDeviceInfoRAW>();
 
-    constructor() {
-        this.getDevicesInfo();
-    }
-
     @action
-    private async getDevicesInfo(){
-        this.loadState = FetchState.pending;
+    public async getDevicesInfo(): Promise<any>{
         try {
             const data = await DeviceController.getDevicesInfo();
             runInAction(()=>{
-                this.loadState = FetchState.done;
                 const DevicesInfo: any = data || {};
                 this.parseDevicesInfoRAWData(DevicesInfo);
             })
         } catch (e) {
-            runInAction(()=>{
-                this.loadState = FetchState.error;
-                console.log(e);
-            })
+            throw new Error('Tagger service is not responded')
         }
     }
 
@@ -110,6 +100,15 @@ export class TDevicesInfoStore {
         const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
         const value: string = Tags.params.get(tag)?.value || ''
         return value;
+    }
+
+    //Даёт прямой доступ к параметру и его данным
+    public getParameter(request: string): TParameter | undefined {
+        const [position, section, tag] = getArrFromDelimitedStr(request,'/')
+        const Position: any = this.DevicesInfo.get(position)!;
+        const Tags: TParameters = Position.Tags[section.toLocaleLowerCase()];
+        const parameter: TParameter | undefined = Tags.params.get(tag)
+        return parameter;
     }
 
     //отдаёт значение заданных свойств (value, msu) по тегу U1/RAM/Iexc
@@ -149,7 +148,7 @@ export class TDevicesInfoStore {
         for (const key in DevicesInfo) {
             let info: TDeviceInfoRAW = DevicesInfo[key];
             //TODO поле Pages может быть пустым, поэтому его надо
-            //"собрать" в такое ко-во вскладок сколько есть секций (flash, ram, cd)
+            //"собрать" в такое ко-во вкладок сколько есть секций (flash, ram, cd)
             this.addDefaultPages(info);
             this.parseParameters(info);
             this.DevicesInfo.set(key, info);

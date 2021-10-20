@@ -6,8 +6,8 @@ export class mainStore {
     public devicesInfoStore: TDevicesInfoStore;
     
     constructor (){
-        this.devicesValueStore = devicesValueStore;
         this.devicesInfoStore = devicesInfoStore;
+        this.devicesValueStore = devicesValueStore;
     }
 }
 

@@ -1,0 +1,42 @@
+.search.block {
+  background: #AFCDE7;
+  color: white;
+  box-shadow: 5px 5px 15px 5px #000000;
+  padding: 0.5em;
+}
+
+.search.grid-container {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr auto auto 0.5fr auto 0.5fr;
+  gap: 2px 2px;
+  grid-template-areas:
+    "Header Header"
+    "DateConditionPicker DateConditionPicker"
+    "LabelFrom InputFrom"
+    "LabelTo InputTo"
+    "EventConditionPicker EventConditionPicker"
+    "EventPicker EventPicker"
+    "Search Cancel";
+}
+
+.search.Header { grid-area: Header; }
+
+.search.DateConditionPicker { grid-area: DateConditionPicker; }
+
+.search.LabelFrom { grid-area: LabelFrom; height: auto;}
+
+.search.LabelTo { grid-area: LabelTo; height: auto;}
+
+.search.InputFrom { grid-area: InputFrom; }
+
+.search.InputTo { grid-area: InputTo; }
+
+.search.EventConditionPicker { grid-area: EventConditionPicker; }
+
+.search.EventPicker { grid-area: EventPicker; }
+
+.search.Search { grid-area: Search; }
+
+.search.Cancel { grid-area: Cancel; }

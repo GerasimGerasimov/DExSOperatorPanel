@@ -1,7 +1,6 @@
 import {TSvgContents} from '../svgcontent'
 import {TSVGComponent, TSVGComponentArg}  from './TSVGComponent'
 import { svgContents } from '../../svgloadimages';
-import { TSVGComponentInitialArgs } from './svgCompFactory';
 //компоненты на структурной схеме
 
 //связь между состоянием и подгружаемой картинкой
@@ -16,10 +15,6 @@ export default class TSwitch extends TSVGComponent{
     private svgArray: TSvgContents = svgContents;//массива SVG изображений с доступом по ключу
     private stage: string= '';
  
-    constructor (args: TSVGComponentInitialArgs) {
-        super(args);
-    }
-
     public setState(arg:TSVGComponentArg): boolean {
         const value = arg.value.trim();
         this.stage = (value)

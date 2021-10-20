@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { autorun, extendObservable } from 'mobx';
 import { devicesInfoStore } from '../../store/devices/devicesinfo';
 import KeyBoard from '../../components/containers/keyboards/UI/KeyBoards/KeyBoard';
-import Modal from '../../components/HOC/Modal';
+import Modal from '../../components/HOC/Modal/Modal';
 import { getTableClickRowCol, getParameterByRow } from '../../components/containers/keyboards/helpers/tables';
 import DeviceController from '../../controllers/devices/device';
 import { getObjectFromTagAndValue } from '../../lib/util/commonmisc';
@@ -67,7 +67,7 @@ export default class DeviceParameters extends Component<{}, IState> {
 
   private update(changed: any){
     for (const [key, item] of this.parameters.entries()) {
-      const {value, msu} = this.getParameters(key);
+      const {value} = this.getParameters(key);
       item.value = value;
     }
   }
@@ -80,7 +80,7 @@ export default class DeviceParameters extends Component<{}, IState> {
   }
 
   private handlerModalShow(event: any) {
-    const {row, col} = getTableClickRowCol(event);
+    const {row /*, col*/} = getTableClickRowCol(event);
     const p:TParameter | undefined = getParameterByRow(this.parameters, row);
     if (p) {
       const  {msu, comment, objType, value} = devicesInfoStore.getTagProperties (p.tag, ['msu','value','comment','objType']);
@@ -119,14 +119,13 @@ export default class DeviceParameters extends Component<{}, IState> {
 
   render() {
     const modal = this.state.showModal
-    ? (<Modal>
+    ? (<Modal classes='content-center'>
         <KeyBoard keyBoardType={this.state.keyBoard} data={this.selected} onClick={this.handlerModalClose.bind(this)}/>
       </Modal>)
     : null;
 
     return(
       <>
-        <h1>Settings</h1>
           <div className="table-responsive"> 
             <table className="table table-bordered table-condensed table-hover"
                 >

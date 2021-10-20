@@ -1,0 +1,10 @@
+.flex-column {
+  display: flex;          /**/
+  flex-direction: column; /*вертикальное расположение юлоков в контейнере*/
+  height: 100vh;          /*вся фзическая высота окна (% -не работают!)*/
+}
+
+.flex-all-client {
+  flex-grow: 3;
+  overflow: hidden;
+}

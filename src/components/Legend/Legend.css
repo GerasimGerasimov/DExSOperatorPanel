@@ -1,0 +1,13 @@
+.legend {
+  display: table;/*оборачивает юлок по ширене контента*/
+  position: relative;
+  top: -100%;
+  left: 3px;
+  /*border: 1px dashed red;*/
+  line-height:70%;/*влияет на высоту элемента*/
+  color: black;
+  font-weight: bold;
+  font-size: small;
+  text-shadow: white 1px 1px 0, white -1px -1px 0, 
+               white -1px 1px 0, white 1px -1px 0;
+}
