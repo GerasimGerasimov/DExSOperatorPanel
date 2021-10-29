@@ -1,24 +1,22 @@
-export type voidCallback = () => void;
-
-export interface IErrorMessage {
-    status: string,
-    msg: any
+export interface IServiceRespond {
+    msa:any;
 }
 
-export interface ICmdToServer {
-    cmd:Array<number>,
-    payload: any
+export class TTask {
+    MessageID: string = '';
+    cmd: string = '';
+    payload: any = {};
 }
 
-export function validationJSON (data: any): any | IErrorMessage {
-    try {
-        return JSON.parse(data);
-    } catch (e) {
-        return {status: 'Error', msg: 'Invalid JSON'} as IErrorMessage;
-    }
+export class TMessage {
+    ClientID: string = '';
+    MessageID: string = '';
+    cmd: string = '';
+    payload: any = {};
 }
 
-export function ErrorMessage(msg: string): IErrorMessage {
-    const ErrorMsg: IErrorMessage = {status: 'Error', msg};
-    return ErrorMsg;
+export class TRespond {
+    MessageID: string = '';
+    cmd: string = '';
+    payload: any = {};
 }
