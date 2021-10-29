@@ -17,6 +17,7 @@ const stores = {
 
 (async () => {
   try {
+    await mainStore.Tagger.open();
     await stores.mainStore.devicesInfoStore.getDevicesInfo();//загрузить ini-структуры из Tegger
     stores.mainStore.devicesValueStore.createTasksAndStartDataLoop();
     await Trands.loadConfig()//это конфигурация трендов
