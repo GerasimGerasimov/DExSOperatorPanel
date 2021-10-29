@@ -1,5 +1,5 @@
 import {observable, action, runInAction} from 'mobx';
-import DeviceController from '../../controllers/devices/device'
+import DeviceController from '../../controllers/devices/http/device'
 import { isEmpty, getArrFromDelimitedStr } from '../../lib/util/commonmisc';
 
 class TParameterFromAPI {

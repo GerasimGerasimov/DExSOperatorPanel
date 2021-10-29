@@ -1,5 +1,5 @@
 import {observable, action, runInAction} from 'mobx';
-import DeviceController from '../../controllers/devices/device'
+import DeviceController from '../../controllers/devices/http/device'
 import {devicesInfoStore} from './devicesinfo'
 
 /**TODO запрашивать данные по WS */

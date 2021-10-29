@@ -77,9 +77,10 @@ export default class WSControl {
 
     private onClose(event: any) {
         console.log(`Closed connection to ${this.host}`);
-        this.onOpenConnection({});
-        setTimeout(async () => {
+        this.onCloseConnection({});
+        const timer = setTimeout(async () => {
             console.log(`Try connect to ${this.host}`);
+            clearTimeout(timer);
             this.ws = null!;
             this.ws = new WebSocket(this.host);
             this.initSocket();

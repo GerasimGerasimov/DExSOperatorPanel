@@ -2,6 +2,7 @@ import {devicesValueStore, TDevicesValueStore} from "./devices/devices";
 import { TDevicesInfoStore, devicesInfoStore } from "./devices/devicesinfo";
 
 export class mainStore {
+    public token: string = '';
     public devicesValueStore: TDevicesValueStore;
     public devicesInfoStore: TDevicesInfoStore;
     

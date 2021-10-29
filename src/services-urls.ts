@@ -14,6 +14,7 @@ const EventLoggerServiceURL: string = `${HOST}:${EventLoggerServicePort}`;
 const EventLogReaderURL: string = `${HOST}:${EventLogReaderPort}`;
 const DexopSystemServicesURL: string = `${HOST}:${DexopSystemServicesPort}`;
 
+export const urlTaggerService: string = `ws://${TaggerURL}`;
 export const urlTaggerDevicesValuesGet: string = `http://${TaggerURL}/v1/devices/`;
 export const urlTaggerDevicesValuesWrite: string = `http://${TaggerURL}/v1/values/`;
 export const urlTaggerDevicesInfo: string = `http://${TaggerURL}/v1/info/`;

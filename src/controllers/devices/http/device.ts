@@ -1,4 +1,4 @@
-import { urlTaggerDevicesInfo, urlTaggerDevicesValuesGet, urlTaggerDevicesValuesWrite } from "../../services-urls";
+import { urlTaggerDevicesInfo, urlTaggerDevicesValuesGet, urlTaggerDevicesValuesWrite } from "../../../services-urls";
 
 export default class DeviceController {
     public static async  getData(request: object): Promise<any> {
