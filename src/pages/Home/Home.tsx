@@ -3,6 +3,8 @@ import { observer} from 'mobx-react'
 import {autorun} from 'mobx'
 import {devicesInfoStore} from '../../store/devices/devicesinfo'
 import MotorSVG from  '../../assets/svg/vteg.svg'
+//import MotorSVG from  "!file-loader!../../assets/svg/vteg.svg"
+//import Logo from "!file-loader!./logo.svg";
 import {TSVGTemplateElement, loadSVGTemplateElements} from '../../lib/svg/lib/svggroup'
 import {TSVGComponent, getTags, drawComponents} from '../../lib/svg/lib/components/TSVGComponent'
 import { createSVGComponents } from '../../lib/svg/lib/components/svgCompFactory'

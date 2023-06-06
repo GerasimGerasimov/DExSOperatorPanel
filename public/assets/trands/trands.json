@@ -20,6 +20,13 @@
                     "offset": "10 %",
                     "MaxValueMode":"MaxOfAllRange"
                 },
+                "U1/RAM/Iexc":{
+                    "color":"red",
+                    "signed": false,
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfAllRange"
+                },
                 "U1/RAM/DIN.1(C1_DC)":{
                     "color":"#FFBA40",
                     "offset": "0 %"
