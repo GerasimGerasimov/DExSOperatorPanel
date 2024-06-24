@@ -1,0 +1,60 @@
+{
+    "deep":2048,
+    "interval":10,
+    "initialWidthScale": 1,
+    "trands": {
+        "trand_1":{
+            "height":"30%",
+            "tags": {
+                "U1/RAM/Ustat":{
+                    "color":"blue",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"MaxOfSelectedRange"
+                },
+                "U1/RAM/Istat":{
+                    "color":"#447BD4",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfSelectedRange"
+                },
+                "U1/RAM/Iexc":{
+                    "color":"red",
+                    "signed": false,
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfSelectedRange"
+                },
+                "U1/RAM/DIN.1(C1_DC)":{
+                    "color":"#FFBA40",
+                    "offset": "0 %"
+                }
+            }
+        },
+        "trand_2":{
+            "height":"70%",
+            "tags": {
+                "U1/RAM/Ustat":{
+                    "color":"blue",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "50 %",
+                    "MaxValueMode":"MaxOfSelectedRange"
+                },
+                "U1/RAM/Istat":{
+                    "color":"#447BD4",
+                    "signed": true,
+                    "fraction":1,
+                    "offset": "10 %",
+                    "MaxValueMode":"MaxOfSelectedRange"
+                },
+                "U1/RAM/DIN.1(C1_DC)":{
+                    "color":"#FFBA40",
+                    "offset": "0 %"
+                }
+            }
+        }
+    }
+}

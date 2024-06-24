@@ -1,14 +1,9 @@
-import React, {Component} from 'react'
-import {IKeyBoardButtonProps } from '../IKeyBoards';
+import React, { Component } from 'react';
+import { IKeyBoardButtonProps } from '../../../../../../interfaces/IKeyBoardButtonProps';
 
 export default class KeyBoardButton extends Component<IKeyBoardButtonProps, {}> {
-
-  constructor (props: any){
-    super(props)
-  }
-
-  render() {
-    return(
+  render () {
+    return (
         <div className={this.props.position}>
             <button
                 className="KeyBoardButton"

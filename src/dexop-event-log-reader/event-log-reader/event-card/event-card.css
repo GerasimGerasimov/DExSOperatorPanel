@@ -1,0 +1,13 @@
+.event-card {
+  color: black;
+  background: white;
+  margin: 0.2em;
+  padding: 0.4em;
+  width: 100%;
+}
+
+.event-card:hover {
+  font-weight: normal;
+  background-color: lightgray;
+  transition: background-color .15s ease-in;
+}

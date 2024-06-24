@@ -1,0 +1,30 @@
+.NavLinkFont {
+    font-size: 1.5rem;
+}
+
+.NavBar {
+    position: absolute;
+    cursor: pointer;
+    right: 32px;
+    top: 0.25rem;
+    display: flex;
+}
+
+.NavBar:hover {
+    opacity: 0.9;
+}
+
+.NavBarSizes {
+    height: 2rem;
+    width: 2rem;
+    margin-bottom: 0.2rem;
+    box-sizing: border-box;
+}
+
+.NavBarWrapper {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 14px;
+}

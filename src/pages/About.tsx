@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-export const About: React.FunctionComponent = ({}) => {
+export const About: React.FunctionComponent = () => {
     const [count, setCount] = useState(0);
 
-    useEffect(()=>{
-       const id = setInterval(()=>{setCount(count + 1)},1);
+    useEffect(() => {
+       const id = setInterval(() => { setCount(count + 1) }, 1);
        return () => clearInterval(id);
-    },[count])
+    }, [count]);
+
+    const companyName = "OOO" + " " + '"' + "ИНТМАШ" + '"';
 
     return (
         <div className="jumbotron jumbotron-fluid">
@@ -15,14 +17,11 @@ export const About: React.FunctionComponent = ({}) => {
                 <h1 className="display-4">
                     DExS OP
                 </h1>
-                <p className="lead">
+                <div className="lead">
                     Версия приложения
-                    <strong>1.0.</strong>
-                    <span className="badge badge-light bg-warning ml-1"
-                        onClick={() => setCount(count + 1)}>
-                        {count}
-                    </span>
-                </p>
+                    <strong>2.0.0</strong>
+                    <p>{companyName}</p>
+                </div>
                 <Link to="/" className="btn btn-primary">Back to Home</Link>
             </div>
         </div>

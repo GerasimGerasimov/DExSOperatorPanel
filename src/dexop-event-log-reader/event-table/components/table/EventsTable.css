@@ -1,0 +1,80 @@
+.events-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  font-size: 100%;/*от этой базы будут
+                    расчитываться em размера шрифта таблицы*/
+}
+
+.events {
+  border-collapse: collapse;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/*Table font size depend of screen size*/
+@media (max-width: 320px)                        { table.events {font-size:0.5em;}}
+@media (min-width: 321px) and (max-width: 640px) { table.events {font-size:0.7em;}}
+@media (min-width: 641px) and (max-width: 960px) { table.events {font-size:0.9em;}}
+@media (min-width: 960px)                        { table.events {font-size:1.0em;}}
+
+table.events tbody td {
+  padding: 0px 0px;/*наименьший размер ячеек*/
+}
+
+table.events tbody td {
+  color: black;
+  background: #D8E6F3;
+}
+
+table.events tbody tr:hover td {
+  font-weight: normal;
+  background-color:lightgray;
+  transition: background-color .15s ease-in;
+}
+
+table.events thead th {
+  position: sticky;
+  top: 0;
+  padding: 0px 0px;/*уменьшил размер заголовка*/
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-jc-start {
+  align-items: flex-start;
+  /*justify-content: flex-start;*/
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/*▲ 25b2 Треугольная стрелка вверх*/
+/*▼ 25bc Треугоьная стрелка вниз*/
+
+.tr-shadow-on {
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.tr-shadow-off {
+  box-shadow: none;
+  transition: box-shadow 0.25s ease;
+}
+
+@keyframes event-table-new-string-apear {
+  0% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.event-table-new {
+  transform-origin: top;
+  animation: event-table-new-string-apear 1350ms ease;
+}

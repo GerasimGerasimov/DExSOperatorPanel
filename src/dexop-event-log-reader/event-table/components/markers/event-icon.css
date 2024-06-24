@@ -1,0 +1,16 @@
+.div-item {
+  height: 100%;
+  width:  100%;
+  display: flex;
+  justify-content: center;
+}
+
+.legend-item {
+  height: 0%;
+  width:  50%;
+  max-width: 1em;
+}
+
+._svg {
+  box-sizing: border-box;
+}
