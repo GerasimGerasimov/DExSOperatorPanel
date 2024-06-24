@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './TougleButton.css';
-import { IToolButtonProps } from '../iToolButton';
+import { IToolButtonProps } from '../../../../interfaces/IToolButtonProps';
 
 export const TougleButton = (props: IToolButtonProps) => {
     const [tougle, changeTougle] = useState(props.isTougle || false);
@@ -8,9 +8,7 @@ export const TougleButton = (props: IToolButtonProps) => {
     const classes = [
         'MenuButton',
         'fa',
-        tougle
-        ? (`${props.icon[0]} toogled`)
-        : props.icon[1],
+        tougle ? (`${props.icon[0]} toogled`) : props.icon[1]
     ]
 
     const click = () => {
@@ -19,9 +17,9 @@ export const TougleButton = (props: IToolButtonProps) => {
     }
 
     return (
-        <i 
+        <i
             className = {classes.join(' ')}
-            onClick={()=>click()}
+            onClick={() => click()}
         ></i>
     )
 }

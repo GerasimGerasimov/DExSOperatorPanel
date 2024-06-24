@@ -1,52 +1,51 @@
 import { urlEventLogReaderGet } from "../../../services-urls";
 import { TEventItems } from "../../event-models/events";
 
-const event_log_reader_dates = `${urlEventLogReaderGet}v1/dates/`;
-const event_log_reader_events = `${urlEventLogReaderGet}v1/events/`;
+const eventLogReaderDates = `${urlEventLogReaderGet}v1/dates/`;
+const eventLogReaderEvents = `${urlEventLogReaderGet}v1/events/`;
 
 export class TEventReader {
-  
-  constructor(){
+  constructor () {
     console.log('TEventReader created');
   }
 
-  public async getDates(): Promise<Array<string>  | Error > {
+  public async getDates (): Promise<Array<string> | Error> {
       try {
         const header: any = {
             method: 'GET',
             cache: 'no-cache',
             headers: {
-                'Content-Type':'application/json; charset=utf-8',
+                'Content-Type': 'application/json; charset=utf-8'
             }
         }
-        return await fetch(event_log_reader_dates, header)
-            .then (this.handledHTTPResponse)
-            .then (this.validationJSON);
-      } catch(e) {
-        throw new Error (`Fetch Error: ${e.message}`);
+        return await fetch(eventLogReaderDates, header)
+            .then(this.handledHTTPResponse)
+            .then(this.validationJSON);
+      } catch (e) {
+        throw new Error(`Fetch Error: ${e}`);
       }
   }
 
-  public async getDateEvents(date: string): Promise<TEventItems> {
-    const url: string = `${event_log_reader_events}${date}`;
+  public async getDateEvents (date: string): Promise<TEventItems> {
+    const url: string = `${eventLogReaderEvents}${date}`;
     try {
       const header: any = {
           method: 'GET',
           cache: 'no-cache',
           headers: {
-              'Content-Type':'application/json; charset=utf-8',
+              'Content-Type': 'application/json; charset=utf-8'
           }
       }
       return await fetch(url, header)
-          .then (this.handledHTTPResponse)
-          .then (this.validationJSON);
-    } catch(e) {
-      throw new Error (`Fetch Error: ${e.message}`);
+          .then(this.handledHTTPResponse)
+          .then(this.validationJSON);
+    } catch (e) {
+      throw new Error(`Fetch Error: ${e}`);
     }
   }
 
   private handledHTTPResponse (response: any) {
-    if (response.status === 404) throw new Error ('Url not found');
+    if (response.status === 404) throw new Error('Url not found');
     return response.text();
   }
 
@@ -55,10 +54,9 @@ export class TEventReader {
       const result = JSON.parse(data);
       return result;
     } catch (e) {
-        throw new Error ('Invalid JSON');
+        throw new Error('Invalid JSON');
     }
   }
-
 }
 
 export const EventReader:TEventReader = new TEventReader();

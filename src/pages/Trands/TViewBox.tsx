@@ -1,14 +1,15 @@
-import React, {Component} from 'react'
-import './Trands.css'
+import React, { Component } from 'react';
+import './Trands.css';
 import TViewBoxModel from './TViewBoxModel';
-import DrawCanvas, { ELegendViewMode, ISelected } from './TDrawCanvas';
+import DrawCanvas, { ELegendViewMode } from './TDrawCanvas';
 import { Trands } from '../../lib/trands/trands';
+import { ISelected } from '../../interfaces/ISelected';
 
-export interface IViewBoxGetSelectedIndex {
+interface IViewBoxGetSelectedIndex {
   (position: ISelected): void;
 }
 
-export interface IViewBoxProps {
+interface IViewBoxProps {
   viewBox: TViewBoxModel;
   Selected: ISelected;
   onSetSelectedIndex: IViewBoxGetSelectedIndex;
@@ -24,7 +25,7 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
     private UpdateID: string = '';
     private onResizeHandler: any;
 
-    constructor (props: IViewBoxProps){
+    constructor (props: IViewBoxProps) {
       super(props);
       this.state = {
         width: window.innerWidth,
@@ -33,44 +34,44 @@ export default class TViewBox extends Component<IViewBoxProps, IViewBoxState> {
       this.onResizeHandler = this.onResize.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount () {
       window.addEventListener("resize", this.onResizeHandler);
       this.UpdateID = Trands.setOnUpdate(this.onDataUpdate.bind(this));
     }
 
-    private onDataUpdate(){
-      this.setState(state=> ({
+    private onDataUpdate () {
+      this.setState(state => ({
         changeCount: state.changeCount + 1
       }))
     }
 
-    private onResize(){
-      this.setState({width: window.innerWidth});
+    private onResize () {
+      this.setState({ width: window.innerWidth });
     }
-    
-    componentWillUnmount() {
+
+    componentWillUnmount () {
       window.removeEventListener("resize", this.onResizeHandler);
       Trands.deleteOnUpdateByID(this.UpdateID);
     }
 
-    private getLegendViewMode():ELegendViewMode {
+    private getLegendViewMode ():ELegendViewMode {
       return (Trands.Run)
         ? ELegendViewMode.EndIndex
-        : ELegendViewMode.SelectedIndex
+        : ELegendViewMode.SelectedIndex;
     }
 
-    private onClickHandler(e: any) {
-      const Left: number = e.clientX;
-      const Index:number = this.props.viewBox.getIndexByClickXCoordinate(Left);
-      this.props.onSetSelectedIndex({Index, Left});
+    private onClickHandler (e: any) {
+      const left: number = e.clientX;
+      const index: number = this.props.viewBox.getIndexByClickXCoordinate(left);
+      this.props.onSetSelectedIndex({ Index: index, Left: left });
     }
 
-    render() {
+    render () {
       return (
         <div
           className='Trands box'
-          style={{height: this.props.viewBox.Height}}
-          onClick = {(e)=>this.onClickHandler(e)}
+          style={{ height: this.props.viewBox.Height }}
+          onClick = {(e) => this.onClickHandler(e)}
         >
             <DrawCanvas
               width={this.state.width}

@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { EventReader } from '../controller/event-reader';
 import { TEventItems } from '../../event-models/events';
 import { sortMapKeyByOrder } from './event-card-helpers';
 import { EEventTypes } from './event-card-types';
 import { EventsCounter } from './event-counters';
-import {NavLink} from 'react-router-dom';
-import { IonChangeCallback, ModelDates } from '../../event-models/dates/dates-model';
+import { NavLink } from 'react-router-dom';
+import { ModelDates } from '../../event-models/dates/dates-model';
 import { isNowDate } from '../../event-table/helpers/timeutils';
-import './event-card.css'
+import './event-card.css';
+import { IOnChangeCallback } from '../../../interfaces/IOnChangeCallback';
 
 interface IEventCardProps {
   date: string;
@@ -19,21 +20,20 @@ interface IEventCardState {
 }
 
 export default class EventCard extends Component<IEventCardProps, IEventCardState> {
-
   private count: number = 0;
-  private callback: IonChangeCallback | undefined;
+  private callback: IOnChangeCallback | undefined;
 
-  constructor(props: IEventCardProps) {
-    super(props)
+  constructor (props: IEventCardProps) {
+    super(props);
     this.state = {
       events: new Map([['alarm', 0], ['warning', 0], ['info', 0]]),
       isLoaded: false
     };
   }
 
-  private getEventTypesCount(events: TEventItems): Map<string, number>{
-    let tmp: Map<string, number> = new Map();
-    events.forEach( item => {
+  private getEventTypesCount (events: TEventItems): Map<string, number> {
+    const tmp: Map<string, number> = new Map();
+    events.forEach(item => {
       if (tmp.has(item.type)) {
         let cnt: number = tmp.get(item.type) || 0;
         tmp.set(item.type, ++cnt)
@@ -41,47 +41,47 @@ export default class EventCard extends Component<IEventCardProps, IEventCardStat
         tmp.set(item.type, 1)
       }
     });
-    const c = Object.values(EEventTypes)// [EEventTypes.ALARM, EEventTypes.WARNING, EEventTypes.INFO]);
-    return sortMapKeyByOrder(tmp, c)
+    const c = Object.values(EEventTypes); // [EEventTypes.ALARM, EEventTypes.WARNING, EEventTypes.INFO]);
+    return sortMapKeyByOrder(tmp, c);
   }
 
-  private async getEvents() {
+  private async getEvents () {
     try {
       const events:TEventItems = await EventReader.getDateEvents(this.props.date);
       this.setState({
         events: this.getEventTypesCount(events),
         isLoaded: true
-      })
+      });
     } catch (e) {
-      this.setState({events:new Map()})
-      console.log(e)
+      this.setState({ events: new Map() });
+      console.log(e);
     }
-    console.log(this.count++)
+    console.log(this.count++);
   }
 
-  private onChangeDBatNow(props: any) {
+  private onChangeDBatNow (props: any) {
     this.getEvents();
   }
 
-  componentDidMount() {
+  componentDidMount () {
     console.log(this.props.date);
     if (isNowDate(this.props.date)) {
       this.callback = this.onChangeDBatNow.bind(this);
-      ModelDates.Subscribe = {func: this.callback, from:'event-card EventCard DidMount'};
+      ModelDates.Subscribe = { func: this.callback, from: 'event-card EventCard DidMount' };
     }
     this.getEvents();
   }
 
-  componentDidUpdate(){
+  componentDidUpdate () {
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (this.callback) {
       ModelDates.unSubscribe(this.callback, 'EventCard event-card.tsx willUnmount');
     };
   }
 
-  render() {
+  render () {
     const url = `/events/${this.props.date}`;
     return (
       <NavLink className="border d-flex" style={{ textDecoration: 'none' }}

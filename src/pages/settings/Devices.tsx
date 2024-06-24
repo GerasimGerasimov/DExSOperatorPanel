@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {NavLink } from 'react-router-dom';
-import {devicesInfoStore, TDeviceInfoRAW} from '../../store/devices/devicesinfo'
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom';
+import { devicesInfoStore, TDeviceInfoRAW } from '../../store/devices/devicesinfo'
 
 class TPageTitle {
   name:string = '';
@@ -8,38 +8,37 @@ class TPageTitle {
 }
 
 export default class Devices extends Component {
-
   private PagesMap: Map<string, TPageTitle>;
 
-  constructor (props: any){
+  constructor (props: any) {
     super(props)
     this.PagesMap = new Map<string, TPageTitle>();
     this.setMapFromDevices(this.PagesMap, devicesInfoStore.DevicesInfo);
   }
 
-  private setMapFromDevices(PagesMap:Map<string, TPageTitle>, Devices: Map<string, TDeviceInfoRAW>) {
+  private setMapFromDevices (PagesMap:Map<string, TPageTitle>, Devices: Map<string, TDeviceInfoRAW>) {
     Devices.forEach((value, key) => {
       let DeviceInfo: TDeviceInfoRAW | undefined = new TDeviceInfoRAW();
           DeviceInfo = Devices.get(key);
-      let pc: TPageTitle = {
-        name:key,
-        title: DeviceInfo?.Description || '',
+      const pc: TPageTitle = {
+        name: key,
+        title: DeviceInfo?.Description || ''
       }
       PagesMap.set(key, pc)
     })
   }
 
-  render() {
+  render () {
     const listItems = Array.from(this.PagesMap.values(),
       (item: TPageTitle) => {
-          const {name, title} = item;
+          const { name, title } = item;
           const url: string = `/devices/${name.toLowerCase()}/`;
           return (
             <NavLink
                 className="nav-link"
                 key={name}
                 to={{
-                  pathname:`${url}`,
+                  pathname: `${url}`,
                   state: {
                     position: name
                   }
@@ -50,7 +49,7 @@ export default class Devices extends Component {
           )
     });
 
-    return(
+    return (
       <>
         <h3>Devices</h3>
         <div className="text-left">

@@ -4,28 +4,28 @@ class TAppError {
     stack?: any
     value?: any;
   }
-  
-export function RowCountError(message: string): TAppError {
+
+export function RowCountError (message: string): TAppError {
     return {
         message,
-        name:'RowCountError',
+        name: 'RowCountError',
         value: undefined
-    }
+    };
 }
 
-export function SuccessfullyValueFound(message: string, value: any): TAppError {
+export function SuccessfullyValueFound (message: string, value: any): TAppError {
     return {
         message,
         value,
-        name:'SuccessfullyValueFound',
+        name: 'SuccessfullyValueFound',
         stack: value.stack
-    }
+    };
 }
 
-export function FailedSearchOfValue(message: string): TAppError {
+export function FailedSearchOfValue (message: string): TAppError {
     return {
         message,
-        name:'FailedSearchOfValue',
+        name: 'FailedSearchOfValue',
         value: undefined
-    }
+    };
 }

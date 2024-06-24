@@ -1,34 +1,32 @@
 import React, { Component } from "react";
-import './event-counter.css'
+import './event-counter.css';
 
 interface IEventCounterProps {
-  icon: JSX.Element;
+  icon: React.JSX.Element;
   value: number;
 }
-
 
 interface IEventCounterState {
   isUpdate: boolean;
 }
 
 export default class EventCounter extends Component<IEventCounterProps, IEventCounterState> {
-
-  constructor(props: IEventCounterProps) {
+  constructor (props: IEventCounterProps) {
     super(props)
-    this.state ={
+    this.state = {
       isUpdate: true
-    }
+    };
   }
 
-  componentDidMount() {
-    setTimeout(()=>{
-      this.setState({isUpdate:false});
-    }, 0)
+  componentDidMount () {
+    setTimeout(() => {
+      this.setState({ isUpdate: false });
+    }, 0);
   }
 
   render () {
     let className = 'd-inline badge badge-pill badge-primary mr-1';
-    className += this.state.isUpdate ?' shadow-on-phase' : ' shadow-off-phase';
+    className += this.state.isUpdate ? ' shadow-on-phase' : ' shadow-off-phase';
 
     return (
       <div className={className}>
@@ -37,4 +35,4 @@ export default class EventCounter extends Component<IEventCounterProps, IEventCo
       </div>
     )
   }
-} 
+}

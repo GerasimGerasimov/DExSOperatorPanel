@@ -1,19 +1,18 @@
-import { TModel, IModelProp } from "./TModel";
+import { IModelProps } from "../../../interfaces/IModelProp";
+import { TModel } from "./TModel";
 
 export class TModelBool extends TModel {
-
-  constructor(props: IModelProp) {
+  constructor (props: IModelProps) {
     super(props);
-    this.data = new Uint8Array(this.deep)
+    this.data = new Uint8Array(this.deep);
   }
 
-  public setValue(value: any) {
-    super.setValue((value !==0 )?1:0);
-    //super.setValue((value > 64 )?1:0);//TODO убрать после отладки
+  public setValue (value: any) {
+    super.setValue((value !== 0) ? 1 : 0);
+    // super.setValue((value > 64) ? 1 : 0); TODO убрать после отладки
   }
 
-  protected getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
+  protected getMaxValueOfselectedRange (FromIdx: number, Count: number): number {
     return 1;
   }
-
 }

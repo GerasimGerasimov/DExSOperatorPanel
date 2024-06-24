@@ -1,6 +1,4 @@
-export interface ITougleButtonProp {
-  isTougle?: boolean;
-}
+import { ITougleButtonProp } from "./ITougleButtonProp";
 
 export interface IToolButtonProps extends ITougleButtonProp {
   name: string;

@@ -1,18 +1,18 @@
-import { TModel, IModelProp } from "./TModel";
+import { IModelProps } from "../../../interfaces/IModelProp";
+import { TModel } from "./TModel";
 
 export class TModelUInt16 extends TModel {
-
-  constructor(props: IModelProp) {
+  constructor (props: IModelProps) {
     super(props);
-    this.data = new Uint16Array(this.deep)
+    this.data = new Uint16Array(this.deep);
   }
 
-  public setValue(value: any) {
+  public setValue (value: any) {
     super.setMaxOfAllRange(value);
     super.setValue(value);
   }
 
-  protected getMaxValueOfselectedRange(FromIdx: number, Count: number): number {
+  protected getMaxValueOfselectedRange (FromIdx: number, Count: number): number {
     let max: number = 0;
     let value: number = 0;
     let index: number = FromIdx;
@@ -27,5 +27,4 @@ export class TModelUInt16 extends TModel {
     }
     return max;
   }
-
 }

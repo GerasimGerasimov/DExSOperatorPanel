@@ -1,6 +1,6 @@
 import HostController from "../controllers/devices/ws/client/controller";
 import { urlTaggerService } from "../services-urls";
-import {devicesValueStore, TDevicesValueStore} from "./devices/devices";
+import { devicesValueStore, TDevicesValueStore } from "./devices/devices";
 import { TDevicesInfoStore, devicesInfoStore } from "./devices/devicesinfo";
 
 export class mainStore {
@@ -8,11 +8,12 @@ export class mainStore {
     public devicesValueStore: TDevicesValueStore;
     public devicesInfoStore: TDevicesInfoStore;
     public Tagger: HostController;
-    constructor (){
-        this.Tagger = new HostController({host: urlTaggerService});
-        this.devicesInfoStore = devicesInfoStore;
-        this.devicesValueStore = devicesValueStore;
+    constructor () {
+      this.Tagger = new HostController({ host: urlTaggerService });
+      this.devicesInfoStore = devicesInfoStore;
+      this.devicesValueStore = devicesValueStore;
     }
 }
 
-export default new mainStore();
+const store = new mainStore();
+export default store;
