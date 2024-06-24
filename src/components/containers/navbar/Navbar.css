@@ -5,8 +5,8 @@
 .NavBar {
     position: absolute;
     cursor: pointer;
-    right: 0rem;
-    top: 0rem;
+    right: 32px;
+    top: 0.25rem;
     display: flex;
 }
 
@@ -26,4 +26,5 @@
     align-items: stretch;
     flex-direction: column;
     justify-content: flex-start;
+    margin-right: 14px;
 }

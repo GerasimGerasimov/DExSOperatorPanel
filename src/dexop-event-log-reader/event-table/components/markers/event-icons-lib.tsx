@@ -2,24 +2,24 @@ import React from "react";
 import { EEventTypes } from "../../../event-log-reader/event-card/event-card-types";
 import './event-icon.css';
 
-export function getEventIconsByType(type: string): JSX.Element {
-  const icons: {[index: string]: any} = {
+export function getEventIconsByType (type: string): React.JSX.Element {
+  const icons: { [index: string]: any } = {
     [EEventTypes.ALARM]: getIconAlarm,
     [EEventTypes.WARNING]: getIconWarning,
     [EEventTypes.INFO]: getIconInfo,
     'defaulf': getIconDefault
   }
-  return (icons[type] || icons['default'])()
+  return (icons[type] || icons['default'])();
 }
 
-function getIconDefault(): JSX.Element{
+function getIconDefault (): React.JSX.Element {
   console.log(`getEventIconsByType: type not found`);
   return (
     <p>?</p>
   )
 }
 
-function getIconAlarm(): JSX.Element{
+function getIconAlarm (): React.JSX.Element {
   return (
     <svg className='_svg' viewBox="0 0 1 1">
       <g transform='translate(0.05, 0.05) scale(0.95)'>
@@ -30,7 +30,7 @@ function getIconAlarm(): JSX.Element{
   )
 }
 
-function getIconWarning(): JSX.Element{
+function getIconWarning (): React.JSX.Element {
   return (
     <svg className='_svg' viewBox="0 0 1 1">
       <g transform='translate(0.05, 0.05) scale(0.95)'>
@@ -41,7 +41,7 @@ function getIconWarning(): JSX.Element{
   )
 }
 
-function getIconInfo(): JSX.Element{
+function getIconInfo (): React.JSX.Element {
   return (
     <svg className='_svg' viewBox="0 0 1 1">
       <g transform='translate(0.05, 0.05) scale(0.95)'>

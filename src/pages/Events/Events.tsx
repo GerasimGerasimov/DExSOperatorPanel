@@ -9,6 +9,7 @@ interface IEventsState {
 }
 
 export default class Events extends Component <IEventsProps, IEventsState> {
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor (props: IEventsProps) {
     super(props);
   }

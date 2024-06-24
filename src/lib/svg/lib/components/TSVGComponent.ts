@@ -1,4 +1,4 @@
-import { TSVGComponentInitialArgs} from "./svgCompFactory";
+import { TSVGComponentInitialArgs } from "./svgCompFactory";
 
 export class TSVGComponentArg {
     value: string = '';
@@ -7,26 +7,28 @@ export class TSVGComponentArg {
 
 export class TSVGComponent {
     protected tag: string = '';
-    protected SVGconteiner: any = undefined;//SVG контейнер (объект на общей структурной схеме имеющий data-id="")
+    protected SVGconteiner: any = undefined; // SVG контейнер (объект на общей структурной схеме имеющий data-id="")
 
     constructor (args: TSVGComponentInitialArgs) {
         this.SVGconteiner = args.element;
         this.tag = args.tag;
     }
 
-    public get Tag(): string {
+    public get Tag (): string {
         return this.tag;
     }
 
-    public setState(arg: TSVGComponentArg): boolean { return false}
+    public setState (arg: TSVGComponentArg): boolean {
+      return false;
+    }
 
-	//Отрисовка компонента в контейнере(если состояние изменилось)
-   public async draw(){}
+	// Отрисовка компонента в контейнере(если состояние изменилось)
+   public async draw () {}
 }
 
-export function getTags(components: Array<TSVGComponent>): Array<string> {
+export function getTags (components: Array<TSVGComponent>): Array<string> {
     const res:Array<string> = []
-    components.forEach((item: TSVGComponent)=>{
+    components.forEach((item: TSVGComponent) => {
       res.push(item.Tag);
     })
     return res;
@@ -36,12 +38,12 @@ interface IDataSource
   {
       (tag: string, properties: Array<string>): any;
   };
-  
-export function drawComponents(components: Array<TSVGComponent>, getData: IDataSource) {
+
+export function drawComponents (components: Array<TSVGComponent>, getData: IDataSource) {
   components.forEach(async (item: TSVGComponent) => {
-    let {value, msu} = getData(item.Tag, ['value','msu']);
-    msu = ` ${msu}` || ''
-    let state: TSVGComponentArg = {
+    let { value, msu } = getData(item.Tag, ['value', 'msu']);
+    msu = ` ${msu}` || '';
+    const state: TSVGComponentArg = {
         value: `${value}${msu}`,
         valid: true
       }

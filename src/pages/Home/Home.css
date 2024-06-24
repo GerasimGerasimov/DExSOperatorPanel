@@ -3,3 +3,10 @@
   flex-direction: column; /*вертикальное расположение юлоков в контейнере*/
   height: 100vh;          /*вся физическая высота окна (% -не работают!)*/
 }
+
+.m-1 {
+  height: 98%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: -webkit-fill-available;
+}

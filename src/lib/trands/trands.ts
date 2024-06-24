@@ -7,23 +7,21 @@
    Высота графика в параметре height
 6) Если в массиве tags несколько трендов то графики требуется совмещать
 */
-import {getTextByURL} from '../svg/lib/utils' 
-import { TTrandsGroup} from './trandsgroup';
-import TViewBoxModel, { IViewBoxModelProps } from '../../pages/Trands/TViewBoxModel';
+import { getTextByURL } from '../svg/lib/utils';
+import { TTrandsGroup } from './trandsgroup';
+import TViewBoxModel from '../../pages/Trands/TViewBoxModel';
 import { randomStringAsBase64Url } from '../util/cryputils';
+import { IEventOnUpdate } from '../../interfaces/IEventOnUpdate';
+import { IViewBoxModelProps } from '../../interfaces/IViewBoxModelProps';
 
-const settingsURL = '/assets/trands/trands.json'
-
-export interface IEventOnUpdate {
-    (): void;
-}
+const settingsURL = '/assets/trands/trands.json';
 
 export class TTrands {
-    private url: string = ''
-    private deep: number = 0;// глубина архива
-    private interval: number = 0;// интервал обновления данных
-    private widthScale: number = 1; //масштаб по горизонтали
-    private trandsGroups: Map<string, TTrandsGroup> = new Map()
+    private url: string = '';
+    private deep: number = 0; // глубина архива
+    private interval: number = 0; // интервал обновления данных
+    private widthScale: number = 1; // масштаб по горизонтали
+    private trandsGroups: Map<string, TTrandsGroup> = new Map();
     private viewBoxesModel: Map<string, TViewBoxModel> = new Map();
     private updateTimer: any = undefined;
     private count: number = 0;
@@ -33,53 +31,55 @@ export class TTrands {
         this.url = url;
     }
 
-    public setOnUpdate(handler: IEventOnUpdate): string {
+    public setOnUpdate (handler: IEventOnUpdate): string {
         const ID: string = randomStringAsBase64Url(4);
         this.onUpdateHandlers.set(ID, handler);
         return ID;
     }
 
-    public deleteOnUpdateByID(ID: string): void {
+    public deleteOnUpdateByID (ID: string): void {
         this.onUpdateHandlers.delete(ID);
     }
 
-    public get Deep(): number {
+    public get Deep (): number {
         return this.deep;
     }
-    
-    public get WidthScale(): number {
+
+    public get WidthScale (): number {
         return this.widthScale;
     }
 
-    public set Run(value: boolean) {
+    public set Run (value: boolean) {
         this.run = value;
     }
 
-    public get Run(): boolean {
+    public get Run (): boolean {
         return this.run;
     }
 
-    public async loadConfig() {
-        const text: string = await getTextByURL(this.url)
+    public async loadConfig () {
+        const text: string = await getTextByURL(this.url);
         const settings = await JSON.parse(text);
         this.deep = settings.deep || 0;
         this.interval = settings.interval || 0;
         this.widthScale = settings.initialWidthScale || 1;
-        this.createTrandsGroups(settings.trands || undefined)
+        this.createTrandsGroups(settings.trands || undefined);
         this.createViewBoxesModels();
     }
 
-    private createTrandsGroups(trands: any) {
-        if (trands === undefined) return;
+    private createTrandsGroups (trands: any) {
+        if (trands === undefined) {
+            return;
+        }
         for (const key in trands) {
             const value: any = trands[key];
             const group: TTrandsGroup = new TTrandsGroup(this.deep, value);
-            this.trandsGroups.set(key, group)
+            this.trandsGroups.set(key, group);
         }
     }
 
-    private createViewBoxesModels() {
-        this.trandsGroups.forEach((trandsGroup: TTrandsGroup, key: string) =>{
+    private createViewBoxesModels () {
+        this.trandsGroups.forEach((trandsGroup: TTrandsGroup, key: string) => {
             const props: IViewBoxModelProps = {
                 height: trandsGroup.getBoxHeight(),
                 models: trandsGroup,
@@ -87,36 +87,36 @@ export class TTrands {
                 WidthScale: this.widthScale
             }
             const viewBoxModel: TViewBoxModel = new TViewBoxModel(props);
-            this.viewBoxesModel.set(key, viewBoxModel)
-        })
+            this.viewBoxesModel.set(key, viewBoxModel);
+        });
     }
 
-    public startUpdateTimer() {
-        this.updateTimer = setInterval(this.updateTrandsValue.bind(this), this.interval)
+    public startUpdateTimer () {
+        this.updateTimer = setInterval(this.updateTrandsValue.bind(this), this.interval);
     }
 
-    private updateTrandsValue(){
+    private updateTrandsValue () {
       if (this.run) {
-        this.trandsGroups.forEach((group:TTrandsGroup)=>{
+        this.trandsGroups.forEach((group:TTrandsGroup) => {
             group.setTagsValues();
             this.executeOnUpdateHandlers();
-        })
+        });
       }
     }
 
-    private executeOnUpdateHandlers() {
+    private executeOnUpdateHandlers () {
         this.onUpdateHandlers.forEach(handler => {
           if (handler) {
-            handler()
+            handler();
           }
-        })
+        });
     }
 
-    public getBoxes():Array<TViewBoxModel> {
-        const res: Array<TViewBoxModel>=[]
-        this.viewBoxesModel.forEach((box:TViewBoxModel)=>{
-            res.push(box)
-        })
+    public getBoxes ():Array<TViewBoxModel> {
+        const res: Array<TViewBoxModel> = [];
+        this.viewBoxesModel.forEach((box:TViewBoxModel) => {
+            res.push(box);
+        });
         return res;
     }
 }

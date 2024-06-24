@@ -1,0 +1,53 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": "warn",
+        "semi": "off",
+        "@typescript-eslint/semi": "off",
+        "no-unused-vars": "warn",
+        "quotes": "off",
+        "new-cap": "off",
+        "object-curly-spacing": "error",
+        "indent": "off",
+        "object-curly-newline": "error",
+        "key-spacing": "error",
+        "spaced-comment": "error",
+        "space-before-function-paren": "error",
+        "space-before-blocks": "error",
+        "prefer-const": "error",
+        "lines-between-class-members": "error",
+        "no-trailing-spaces": "error",
+        "curly": "error",
+        "space-infix-ops": "error",
+        "arrow-spacing": "error",
+        "comma-spacing": "error",
+        "react/prop-types": "off",
+        "quote-props": "off",
+        "dot-notation": "off",
+        "no-unreachable-loop": "warn",
+        "no-prototype-builtins": "off",
+        "no-tabs": "off",
+        "no-case-declarations": "off",
+        "no-extra-parens": "off",
+        "accessor-pairs": "off"
+    }
+}

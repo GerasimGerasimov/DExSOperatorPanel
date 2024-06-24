@@ -7,8 +7,3 @@ export enum IQueryDirection {
   Prev,
   Next
 }
-
-export interface ISearchDateRangeQuery {
-  dateFrom?: number;
-  dateTo?: number;
-}

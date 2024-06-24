@@ -1,28 +1,30 @@
-import React , { useState }  from 'react'
-import {NavLink} from 'react-router-dom'
-import './Navbar.css'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import './Navbar.css';
 import Modal from '../../HOC/Modal/Modal';
 import { MenuTougle } from '../../MenuTougle/MenuTougle';
 import { BackHistory } from '../../BackHistory/BackHistory';
 
-export const Navbar:React.FunctionComponent = (props) => {
-    
-    const [visible, setVisible] = useState(false);
-    
+type NavbarProps = {
+};
+
+export const Navbar: React.FunctionComponent = (props: NavbarProps) => {
+    const [isVisible, setIsVisible] = useState(false);
+
     const cls = [
         'navbar-dark',
         'bg-primary',
         'h-100'
-    ]
+    ];
 
     const NavLinkCls: string = "nav-link p-1 bg-primary NavLinkFont";
 
     const tougleMenu = () => {
-        setVisible(!visible)
+        setIsVisible(!isVisible)
     }
 
     const handleClose = () => {
-        setVisible(false)
+        setIsVisible(false)
     }
 
     const navbar = (
@@ -45,20 +47,20 @@ export const Navbar:React.FunctionComponent = (props) => {
         <div
           className="NavBar">
           <BackHistory
-              onBack={()=>{
+              onBack={() => {
                 if (window.history.state !== null) {
                   window.history.back();
                 }
               }}
           />
           <MenuTougle
-              isOpen={visible}
+              isOpen={isVisible}
               onTougle={tougleMenu}
           />
         </div>
     )
 
-    const modal = (visible)
+    const modal = (isVisible)
         ? (
             <div>
               <Modal classes="content-right">

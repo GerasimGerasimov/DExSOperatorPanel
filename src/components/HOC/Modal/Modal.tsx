@@ -1,10 +1,6 @@
-import React, {Component} from 'react'
-import './Modal.css'
-
-export interface IModalProps {
-  classes?: string;
-  children?: any;
-}
+import React, { Component } from 'react';
+import './Modal.css';
+import { IModalProps } from '../../../interfaces/IModalProps';
 
 export default class Modal extends Component<IModalProps, {}> {
   private cls: Array<string> = [
@@ -12,10 +8,11 @@ export default class Modal extends Component<IModalProps, {}> {
     this.props.classes || ''
   ];
 
-  render() {
+  render () {
     return (
-    <div className={this.cls.join(' ')}>
-      {this.props.children}
-    </div>
-  )}
+      <div className={this.cls.join(' ')}>
+        {this.props.children}
+      </div>
+    )
+  }
 }

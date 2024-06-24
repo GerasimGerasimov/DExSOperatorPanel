@@ -1,21 +1,18 @@
 import React from 'react';
 import './BackHistory.css';
-
-export interface IBackHistoryProps {
-    onBack: (e: any) => any;
-}
+import { IBackHistoryProps } from '../../interfaces/IBackHistory';
 
 export const BackHistory = (props: IBackHistoryProps) => {
     const classes = [
         'BackHistory',
         'fa',
         'fa-chevron-left'
-    ]
+    ];
 
     return (
-        <i 
+        <i
             className = {classes.join(' ')}
-            onClick={(e)=>props.onBack(e)}
-        ></i>
-    )
+            onClick={(e) => props.onBack(e)}
+        />
+    );
 }

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { TEventDefaultDetails, TEventItem } from "../../../event-models/events";
+import { TEventDefaultDetails } from "../../../event-models/events";
 import Markers from "../markers/event-icon";
-
 import './EventsTable.css'
+import { IEventItem } from "../../../../interfaces/IEventItem";
 
 interface IEventTableProps {
-  items: Array<TEventItem>;
+  items: Array<IEventItem>;
   DateSortDirectionIcon: string;
   EventsSortModeIcon: string;
   changeDateSortModeHandler(): void;
@@ -13,42 +13,39 @@ interface IEventTableProps {
 }
 
 interface IEventsTableState {
-
 }
 
-export default class EventsTable extends Component<IEventTableProps ,IEventsTableState> {
+export default class EventsTable extends Component<IEventTableProps, IEventsTableState> {
+  private items: Array<IEventItem> = [];
 
-  private items: Array<TEventItem> = [];
-
-  private getFormatedDateTime(datetime: string): string {
+  private getFormatedDateTime (datetime: string): string {
     const time = new Date(datetime).toLocaleTimeString();
     return time;
   }
 
-  private parseDetails(details: string): TEventDefaultDetails {
+  private parseDetails (details: string): TEventDefaultDetails {
     let res = new TEventDefaultDetails();
     try {
-      res =  JSON.parse(details)
+      res = JSON.parse(details)
     } catch (e) {
-
-    } 
+      console.log(e);
+    }
     return res;
   }
 
-
-  componentDidMount() {
+  componentDidMount () {
     console.log('EventsTable DidMount')
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     this.items = [...this.props.items];
   }
 
-  private isNew(value: number): boolean {
-    return this.items.every((item)=>item.utime !== value)
+  private isNew (value: number): boolean {
+    return this.items.every((item) => item.utime !== value)
   }
 
-  private setClasses(value: number): string {
+  private setClasses (value: number): string {
     let res = "";
     res += this.isNew(value) ? "event-table-new" : "";
     console.log(res);
@@ -62,12 +59,12 @@ export default class EventsTable extends Component<IEventTableProps ,IEventsTabl
           <thead>
             <tr>
                 <th
-                  onClick={()=>this.props.changeDateSortModeHandler()}>
+                  onClick={() => this.props.changeDateSortModeHandler()}>
                   Time {this.props.DateSortDirectionIcon}
                 </th>
                 <th>AW</th>
                 <th
-                  onClick={()=>this.props.changeEventsSortModeHandler()}>
+                  onClick={() => this.props.changeEventsSortModeHandler()}>
                   Comment {this.props.EventsSortModeIcon}
                 </th>
                 <th>Tag</th>
@@ -75,9 +72,9 @@ export default class EventsTable extends Component<IEventTableProps ,IEventsTabl
             </thead>
             <tbody>
               {
-                this.props.items.map((item, index)=>{
-                  const {tag, date, details, type, utime} = {...item};
-                  const {comment} = {...this.parseDetails(details)}//{initialValue, comment, todo}
+                this.props.items.map((item, index) => {
+                  const { tag, date, details, type, utime } = { ...item };
+                  const { comment } = { ...this.parseDetails(details) } // {initialValue, comment, todo}
                   const classes = this.setClasses(utime);
                   return (
                     <tr key={utime} className={classes}>

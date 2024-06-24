@@ -1,24 +1,18 @@
 import React from 'react';
 import './MenuTougle.css';
-
-export interface IMenuTougleProps {
-    isOpen: boolean;
-    onTougle: (e: any) => any;
-}
+import { IMenuTougleProps } from '../../interfaces/IMenuTougleProps';
 
 export const MenuTougle = (props: IMenuTougleProps) => {
     const classes = [
         'MenuTougle',
         'fa',
-        props.isOpen 
-        ? 'fa-times open'
-        : 'fa-bars' //'fa-chevron-left'
-    ]
+        props.isOpen ? 'fa-times open' : 'fa-bars' // 'fa-chevron-left'
+    ];
 
     return (
-        <i 
+        <i
             className = {classes.join(' ')}
-            onClick={(e)=>props.onTougle(e)}
-        ></i>
+            onClick={(e) => props.onTougle(e)}
+        />
     )
 }

@@ -1,7 +1,3 @@
-export interface IServiceRespond {
-    msa:any;
-}
-
 export class TTask {
     MessageID: string = '';
     cmd: string = '';

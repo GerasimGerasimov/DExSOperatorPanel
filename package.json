@@ -23,7 +23,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^4.0.3",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -50,7 +50,15 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.10",
     "@fortawesome/fontawesome-free": "^5.13.0",
-    "@svgr/webpack": "^8.0.1"
+    "@svgr/webpack": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.34.1"
   },
   "resolutions": {
     "@svgr/webpack": "8.0.1"
