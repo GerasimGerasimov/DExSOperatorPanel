@@ -56,8 +56,8 @@ export default class DeviceParameters extends Component<{}, IState> {
     // запустить автообновление при изменении времени появления новой инфы
     const changes: Array<any> = devicesInfoStore.getObservableValues(
                                   getTags(this.position,
-                                            Array.from(this.parameters.values())))
-    this.handlers = changes.map(item => autorun(() => { this.update(item.time) }))
+                                            Array.from(this.parameters.values())));
+    this.handlers = changes.map(item => autorun(() => { this.update(item.time) }));
   }
 
   private getParameters (tagPath: string): {value: string, msu: string} {

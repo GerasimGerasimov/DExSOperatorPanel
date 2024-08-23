@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { Navbar } from './components/containers/navbar/Navbar';
 import { About } from './pages/About';
@@ -11,7 +11,11 @@ import DateCardsContainer from './dexop-event-log-reader/event-log-reader/date-c
 import EventTablePage from './dexop-event-log-reader/event-table/Pages/Events/event-table-page';
 import System from './pages/System/System';
 import Home from './pages/Home/Home';
+import { Users } from './components/Users/Users';
+import { UpdateUserForm } from './components/Users/forms/UpdateUserForm/UpdateUserForm';
+import { CreateUserForm } from './components/Users/forms/CreateUserForm/CreateUserForm';
 // import Events from './pages/Events/Events';
+import { LoginForm } from './components/Users/forms/LoginForm/LoginForm';
 
 function App () {
   return (
@@ -28,6 +32,11 @@ function App () {
             exact
             path="/trands"
             component={Trands}
+          />
+          <Route
+            exact
+            path="/users"
+            component={Users}
           />
           <Route
             exact
@@ -60,6 +69,18 @@ function App () {
           <Route
             path="/about"
             component={About}
+          />
+          <Route
+            path="/edit-user/:id"
+            component={UpdateUserForm}
+          />
+          <Route
+            path="/create-user"
+            component={CreateUserForm}
+          />
+          <Route
+            path="/login"
+            component={LoginForm}
           />
         </Switch>
       </div>

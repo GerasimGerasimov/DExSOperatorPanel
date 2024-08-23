@@ -34,6 +34,7 @@ export const Navbar: React.FunctionComponent = (props: NavbarProps) => {
           <ul className="navbar-nav">
             <li><NavLink exact to="/" className={NavLinkCls}>Home</NavLink></li>
             <li><NavLink to="/trands" className={NavLinkCls}>Trands</NavLink></li>
+            <li><NavLink to="/users" className={NavLinkCls}>Users</NavLink></li>
             <li><NavLink to="/devices" className={NavLinkCls}>Devices</NavLink></li>
             <li><NavLink to="/events" className={NavLinkCls}>Events</NavLink></li>
             <li><NavLink to="/system" className={NavLinkCls}>System</NavLink></li>
